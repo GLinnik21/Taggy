@@ -21,7 +21,7 @@ namespace MVCTraining.Controllers
         [HttpPost]
         public ActionResult Convert(HttpPostedFileBase file)
         {
-            IEnumerable<string> files = Directory.EnumerateFiles(@"C:\Users\Tiger\Desktop\Ценники");
+            IEnumerable<string> files = new string[0];
             ViewBag.Files = files;
 
             if (file == null)
