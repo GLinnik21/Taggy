@@ -38,11 +38,11 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="puma.interop">
-      <HintPath>..\Puma.NET\Assemblies\puma.interop.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\PumaLib\puma.interop.dll</HintPath>
     </Reference>
     <Reference Include="Puma.Net">
-      <HintPath>..\Puma.NET\Assemblies\Puma.Net.dll</HintPath>
+      <HintPath>..\PumaLib\Puma.Net.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
