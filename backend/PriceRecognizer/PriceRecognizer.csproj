@@ -44,7 +44,7 @@
   <ItemGroup>
     <None Include="Puma\puma.interop.dll" />
     <None Include="Puma\Puma.Net.dll" />
-    <None Include="Puma\dibapi.dll">
+    <None Include="dibapi.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
