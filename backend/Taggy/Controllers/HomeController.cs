@@ -33,7 +33,6 @@ namespace Taggy
             var bitmap = new Bitmap(file.InputStream);
             ViewBag.Image = BitmapToBase64(bitmap);
 
-            //var data = (RecognitionData) ConvertBitmap(bitmap).Data;
             var data = new RecognitionData {
                 ok = true,
                 message = "",
@@ -41,6 +40,7 @@ namespace Taggy
                     "25000",
                 }
             };
+            data = (RecognitionData) ConvertBitmap(bitmap).Data;
 
             return View(data);
         }
