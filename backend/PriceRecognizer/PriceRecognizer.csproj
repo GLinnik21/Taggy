@@ -44,6 +44,7 @@
   <ItemGroup>
     <None Include="Puma\puma.interop.dll" />
     <None Include="Puma\Puma.Net.dll" />
+    <None Include="Puma\dibapi.dll" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Puma\" />
