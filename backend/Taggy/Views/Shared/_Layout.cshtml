@@ -1,0 +1,41 @@
+﻿@using System.Web.Optimization
+@using Taggy
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="taggy price converter ocr recognition">
+    <meta name="author" content="VASAG">
+
+    <title>Taggy - Конвертер цен</title>
+
+    @Styles.Render("~/css")
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          @Html.MenuLink("Конвертер", "Index", "Home")
+          @Html.MenuLink("Об авторе", "About", "Home")
+        </ul>
+        <h3 class="text-muted">Taggy - Конвертер цен</h3>
+      </div>
+
+      <div class="well">
+      	@RenderBody()
+      </div>
+
+      <div class="footer">
+        <p>&copy; VASAG 2014</p>
+      </div>
+
+    </div> <!-- /container -->
+      
+    @Scripts.Render("~/js")
+    @RenderSection("scripts", required: false)
+  </body>
+</html>
+		

@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taggy", "Taggy\Taggy.csproj", "{73D90D95-19AD-4870-BF26-77F037651495}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PriceRecognizer", "PriceRecognizer\PriceRecognizer.csproj", "{78A6F6F7-3B0E-4216-91E7-ECF08811127B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73D90D95-19AD-4870-BF26-77F037651495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73D90D95-19AD-4870-BF26-77F037651495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73D90D95-19AD-4870-BF26-77F037651495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73D90D95-19AD-4870-BF26-77F037651495}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78A6F6F7-3B0E-4216-91E7-ECF08811127B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78A6F6F7-3B0E-4216-91E7-ECF08811127B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78A6F6F7-3B0E-4216-91E7-ECF08811127B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78A6F6F7-3B0E-4216-91E7-ECF08811127B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Taggy\Taggy.csproj
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
