@@ -20,11 +20,14 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - TesseractOCRiOS (2.22)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0)
+  - TesseractOCRiOS (~> 2.2)
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  TesseractOCRiOS: 96e638295c3af9d95f27e9999eabfad405274466
 
 COCOAPODS: 0.34.2
