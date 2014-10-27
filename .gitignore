@@ -15,7 +15,7 @@ xcuserdata
 *.moved-aside
 DerivedData
 *.xcuserstate
-
+Pods/
 
 ### VisualStudio ###
 ## Ignore Visual Studio temporary files, build results, and
