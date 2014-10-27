@@ -10,11 +10,12 @@
 #import "ViewController.h"
 #import "Data.h"
 #import "imageCell.h"
-#import <TesseractOCR/TesseractOCR.h>
+#import <TesseractOCR/Tesseract.h>
+#import <CoreImage/CoreImage.h>
 
 static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
 
-@interface PhotoCaptureViewController()
+@interface PhotoCaptureViewController() <TesseractDelegate>
 
 @property (nonatomic, weak) IBOutlet UIImageView *imageview;
 
@@ -38,6 +39,7 @@ static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    image = [UIImage imageNamed:@"3.png"];
 
     [self recognizeImage:image];
 
@@ -58,11 +60,39 @@ static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
 - (void)recognizeImage:(UIImage *)imageToRecognize
 {
     Tesseract* tesseract = [[Tesseract alloc] initWithLanguage:@"rus"];
+    tesseract.delegate = self;
+
+    [tesseract setVariableValue:@"0123456789,." forKey:@"tessedit_char_whitelist"];
     [tesseract setImage:imageToRecognize];
     [tesseract recognize];
 
+    NSDictionary *charackterBoxes = tesseract.characterBoxes;
+    NSArray *conf = tesseract.getConfidenceByWord;
+
+    conf = [conf sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *obj1, NSDictionary *obj2) {
+        NSNumber *cg1 = obj1[@"confidence"];
+        NSNumber *cg2 = obj2[@"confidence"];
+        return [cg2 compare:cg1];
+    }];
+
+    NSMutableArray *goodWords = [[NSMutableArray alloc] init];
+    for (NSDictionary *dict in conf) {
+        NSNumber *confidence = dict[@"confidence"];
+        NSString *data = dict[@"text"];
+        CGRect rect = [((NSValue *)dict[@"boundingbox"]) CGRectValue];
+
+        data = [data stringByReplacingOccurrencesOfString:@"," withString:@"."];
+        CGFloat value = [data floatValue];
+        if (value == 0) continue;
+        if (ABS(rect.size.height) < 30) continue;
+        //if (((int)value & 10) != 0 || value < 50) continue;
+
+        [goodWords addObject:dict];
+    }
+
+
     [[[UIAlertView alloc] initWithTitle:@"Распознанный текст"
-                                message:[tesseract recognizedText]
+                                message:[goodWords description]
                                delegate:nil
                       cancelButtonTitle:@"ОК"
                       otherButtonTitles:nil]show];

@@ -1,33 +1,14 @@
 PODS:
-  - AFNetworking (2.4.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.4.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.4.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.4.1)
-  - AFNetworking/Security (2.4.1)
-  - AFNetworking/Serialization (2.4.1)
-  - AFNetworking/UIKit (2.4.1):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-  - TesseractOCRiOS (2.22)
+  - TesseractOCRiOS (2.3)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.0)
-  - TesseractOCRiOS (~> 2.2)
+  - TesseractOCRiOS (from `.`)
+
+EXTERNAL SOURCES:
+  TesseractOCRiOS:
+    :podspec: .
 
 SPEC CHECKSUMS:
-  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  TesseractOCRiOS: 96e638295c3af9d95f27e9999eabfad405274466
+  TesseractOCRiOS: 2739fa5bf0a2f4ff18d5630bf980cfd787a3e3b6
 
 COCOAPODS: 0.34.2

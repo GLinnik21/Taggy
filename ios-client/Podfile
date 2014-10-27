@@ -5,8 +5,7 @@ platform :ios, "6.0"
 
 target "Taggy" do
 
-pod 'AFNetworking', '~> 2.0'
-pod 'TesseractOCRiOS', '~> 2.2'
+pod 'TesseractOCRiOS', :podspec=>'.'
 
 end
 
