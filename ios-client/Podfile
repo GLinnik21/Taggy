@@ -1,0 +1,11 @@
+source 'https://github.com/CocoaPods/Specs.git'
+xcodeproj 'Taggy.xcodeproj/'
+
+platform :ios, "6.0"
+
+target "Taggy" do
+
+pod 'AFNetworking', '~> 2.0'
+
+end
+
