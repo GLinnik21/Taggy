@@ -21,4 +21,6 @@
 -(IBAction)TakePhoto;
 -(IBAction)ChooseExisting;
 
++ (NSArray *)recognizeImage:(UIImage *)imageToRecognize;
+
 @end

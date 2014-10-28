@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		410C200619FE745B0082C66C /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 410C200519FE745B0082C66C /* tessdata */; };
+		419876F919FFBAE500EA58DF /* testImages in Resources */ = {isa = PBXBuildFile; fileRef = 419876F819FFBAE500EA58DF /* testImages */; };
 		E1333C0F2263E54E9C49B26F /* libPods-Taggy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9526B84B57BF771D8B42008E /* libPods-Taggy.a */; };
 		ED077A1519F93FE300B203CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A1419F93FE300B203CB /* main.m */; };
 		ED077A1819F93FE300B203CB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A1719F93FE300B203CB /* AppDelegate.m */; };
@@ -53,6 +54,7 @@
 /* Begin PBXFileReference section */
 		395A8A22D6331D24085F5332 /* Pods-Taggy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taggy/Pods-Taggy.release.xcconfig"; sourceTree = "<group>"; };
 		410C200519FE745B0082C66C /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		419876F819FFBAE500EA58DF /* testImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = testImages; sourceTree = "<group>"; };
 		4A072264AC63C331560A9A6C /* Pods-Taggy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taggy/Pods-Taggy.debug.xcconfig"; sourceTree = "<group>"; };
 		9526B84B57BF771D8B42008E /* libPods-Taggy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Taggy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED077A0F19F93FE300B203CB /* Taggy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taggy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +194,7 @@
 		ED077A2B19F93FE300B203CB /* TaggyTests */ = {
 			isa = PBXGroup;
 			children = (
+				419876F819FFBAE500EA58DF /* testImages */,
 				ED077A2E19F93FE300B203CB /* TaggyTests.m */,
 				ED077A2C19F93FE300B203CB /* Supporting Files */,
 			);
@@ -341,6 +344,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				419876F919FFBAE500EA58DF /* testImages in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

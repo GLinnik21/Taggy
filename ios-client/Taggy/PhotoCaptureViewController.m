@@ -40,8 +40,15 @@ static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     image = [info objectForKey:UIImagePickerControllerOriginalImage];
 
-    NSNumber *recognizedValue = [self recognizeImage:image];
+    NSArray *recognized = [[self class] recognizeImage:image];
+    NSNumber *recognizedValue = [recognized firstObject];
     NSNumber *converted = @([recognizedValue floatValue] / 35);
+
+    [[[UIAlertView alloc] initWithTitle:@"Распознанный текст"
+                                message:[recognized description]
+                               delegate:nil
+                      cancelButtonTitle:@"ОК"
+                      otherButtonTitles:nil]show];
 
     Data *item = [[Data alloc] init];
     item.image = image;
@@ -57,7 +64,7 @@ static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (NSNumber *)recognizeImage:(UIImage *)imageToRecognize
++ (NSArray *)recognizeImage:(UIImage *)imageToRecognize
 {
     Tesseract* tesseract = [[Tesseract alloc] initWithLanguage:@"rus"];
     tesseract.delegate = self;
@@ -66,7 +73,6 @@ static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
     [tesseract setImage:imageToRecognize];
     [tesseract recognize];
 
-    NSDictionary *charackterBoxes = tesseract.characterBoxes;
     NSArray *conf = tesseract.getConfidenceByWord;
 
     conf = [conf sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *obj1, NSDictionary *obj2) {
@@ -91,7 +97,7 @@ static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
             }
             continue;
         }
-        if (ABS(rect.size.height) < 30) continue;
+        if (ABS(rect.size.height) < imageToRecognize.size.height * 0.2) continue;
         //if (((int)value & 10) != 0 || value < 50) continue;
 
         [goodWords addObject:dict];
@@ -144,12 +150,7 @@ static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
         goodWords = newGoodWords;
     } while (anyFound);
 
-    [[[UIAlertView alloc] initWithTitle:@"Распознанный текст"
-                                message:[[[results objectEnumerator] allObjects] description]
-                               delegate:nil
-                      cancelButtonTitle:@"ОК"
-                      otherButtonTitles:nil]show];
-    return [[results allObjects] firstObject];
+    return [results allObjects];
 }
 
 @end
