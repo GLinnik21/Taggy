@@ -103,12 +103,17 @@ static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
     // redirect, so each time we reset the data.
     
     // receivedData is an instance variable declared elsewhere.
+    
+    NSString *resultString = @"{\"ok\": true, \"price\":[\"12345\",\"2345\"]}";
+    
     [[[UIAlertView alloc] initWithTitle:@"Отправлено!"
-                               message:response.description
+                               message:resultString.description
                               delegate:nil
                      cancelButtonTitle:@"ОК"
                      otherButtonTitles:nil]show];
     
 }
+
+
 
 @end

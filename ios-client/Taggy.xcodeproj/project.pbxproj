@@ -16,8 +16,6 @@
 		ED077A4A19F9405E00B203CB /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3919F9405E00B203CB /* 1.png */; };
 		ED077A4B19F9405E00B203CB /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3A19F9405E00B203CB /* 2.png */; };
 		ED077A4C19F9405E00B203CB /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3B19F9405E00B203CB /* 3.png */; };
-		ED077A4D19F9405E00B203CB /* Button.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3C19F9405E00B203CB /* Button.png */; };
-		ED077A4E19F9405E00B203CB /* ButtonP.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3D19F9405E00B203CB /* ButtonP.png */; };
 		ED077A4F19F9405E00B203CB /* res.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3E19F9405E00B203CB /* res.png */; };
 		ED077A5019F9405E00B203CB /* res.textClipping in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3F19F9405E00B203CB /* res.textClipping */; };
 		ED077A5119F9405E00B203CB /* res@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A4019F9405E00B203CB /* res@2x.png */; };
@@ -36,6 +34,11 @@
 		ED077A6E19F940F700B203CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED077A6619F940F700B203CB /* Images.xcassets */; };
 		ED077A6F19F940F700B203CB /* PhotoCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A6819F940F700B203CB /* PhotoCaptureViewController.m */; };
 		ED077A7519F9448E00B203CB /* CustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A7419F9448E00B203CB /* CustomTabBarController.m */; };
+		ED2DE36919FCF8C4008C69F2 /* PhotoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2DE36719FCF8C4008C69F2 /* PhotoButton.png */; };
+		ED2DE36A19FCF8C4008C69F2 /* PhotoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2DE36819FCF8C4008C69F2 /* PhotoButton@2x.png */; };
+		ED2DE36D19FCFA8E008C69F2 /* PhotoButtonP.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2DE36B19FCFA8E008C69F2 /* PhotoButtonP.png */; };
+		ED2DE36E19FCFA8E008C69F2 /* PhotoButtonP@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2DE36C19FCFA8E008C69F2 /* PhotoButtonP@2x.png */; };
+		ED6C079119FAE3570000770D /* retina.png in Resources */ = {isa = PBXBuildFile; fileRef = ED6C079019FAE3570000770D /* retina.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,8 +67,6 @@
 		ED077A3919F9405E00B203CB /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		ED077A3A19F9405E00B203CB /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		ED077A3B19F9405E00B203CB /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
-		ED077A3C19F9405E00B203CB /* Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button.png; sourceTree = "<group>"; };
-		ED077A3D19F9405E00B203CB /* ButtonP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ButtonP.png; sourceTree = "<group>"; };
 		ED077A3E19F9405E00B203CB /* res.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = res.png; sourceTree = "<group>"; };
 		ED077A3F19F9405E00B203CB /* res.textClipping */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = res.textClipping; sourceTree = "<group>"; };
 		ED077A4019F9405E00B203CB /* res@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "res@2x.png"; sourceTree = "<group>"; };
@@ -89,6 +90,11 @@
 		ED077A6819F940F700B203CB /* PhotoCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoCaptureViewController.m; sourceTree = "<group>"; };
 		ED077A7319F9448E00B203CB /* CustomTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomTabBarController.h; path = ../CustomTabBarController.h; sourceTree = "<group>"; };
 		ED077A7419F9448E00B203CB /* CustomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomTabBarController.m; path = ../CustomTabBarController.m; sourceTree = "<group>"; };
+		ED2DE36719FCF8C4008C69F2 /* PhotoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhotoButton.png; sourceTree = "<group>"; };
+		ED2DE36819FCF8C4008C69F2 /* PhotoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoButton@2x.png"; sourceTree = "<group>"; };
+		ED2DE36B19FCFA8E008C69F2 /* PhotoButtonP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhotoButtonP.png; sourceTree = "<group>"; };
+		ED2DE36C19FCFA8E008C69F2 /* PhotoButtonP@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoButtonP@2x.png"; sourceTree = "<group>"; };
+		ED6C079019FAE3570000770D /* retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retina.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,11 +188,14 @@
 		ED077A3819F9405E00B203CB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ED2DE36B19FCFA8E008C69F2 /* PhotoButtonP.png */,
+				ED2DE36C19FCFA8E008C69F2 /* PhotoButtonP@2x.png */,
+				ED2DE36719FCF8C4008C69F2 /* PhotoButton.png */,
+				ED2DE36819FCF8C4008C69F2 /* PhotoButton@2x.png */,
+				ED6C079019FAE3570000770D /* retina.png */,
 				ED077A3919F9405E00B203CB /* 1.png */,
 				ED077A3A19F9405E00B203CB /* 2.png */,
 				ED077A3B19F9405E00B203CB /* 3.png */,
-				ED077A3C19F9405E00B203CB /* Button.png */,
-				ED077A3D19F9405E00B203CB /* ButtonP.png */,
 				ED077A3E19F9405E00B203CB /* res.png */,
 				ED077A3F19F9405E00B203CB /* res.textClipping */,
 				ED077A4019F9405E00B203CB /* res@2x.png */,
@@ -284,6 +293,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED2DE36A19FCF8C4008C69F2 /* PhotoButton@2x.png in Resources */,
 				ED077A1E19F93FE300B203CB /* Main.storyboard in Resources */,
 				ED077A6E19F940F700B203CB /* Images.xcassets in Resources */,
 				ED077A5919F9405E00B203CB /* Taggy4.png in Resources */,
@@ -292,16 +302,18 @@
 				ED077A5719F9405E00B203CB /* Taggy2.png in Resources */,
 				ED077A5519F9405E00B203CB /* set@2x.png in Resources */,
 				ED077A5A19F9405E00B203CB /* VASAG.png in Resources */,
-				ED077A4E19F9405E00B203CB /* ButtonP.png in Resources */,
+				ED2DE36919FCF8C4008C69F2 /* PhotoButton.png in Resources */,
+				ED2DE36E19FCFA8E008C69F2 /* PhotoButtonP@2x.png in Resources */,
 				ED077A4F19F9405E00B203CB /* res.png in Resources */,
 				ED077A4B19F9405E00B203CB /* 2.png in Resources */,
 				ED077A4C19F9405E00B203CB /* 3.png in Resources */,
 				ED077A5119F9405E00B203CB /* res@2x.png in Resources */,
-				ED077A4D19F9405E00B203CB /* Button.png in Resources */,
 				ED077A5619F9405E00B203CB /* Taggy1.png in Resources */,
 				ED077A5219F9405E00B203CB /* scan.png in Resources */,
 				ED077A2319F93FE300B203CB /* LaunchScreen.xib in Resources */,
+				ED6C079119FAE3570000770D /* retina.png in Resources */,
 				ED077A5419F9405E00B203CB /* set.png in Resources */,
+				ED2DE36D19FCFA8E008C69F2 /* PhotoButtonP.png in Resources */,
 				ED077A5819F9405E00B203CB /* Taggy3.png in Resources */,
 				ED077A5019F9405E00B203CB /* res.textClipping in Resources */,
 			);
@@ -450,6 +462,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Taggy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -461,6 +474,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = Taggy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
