@@ -7,6 +7,8 @@
 //
 
 #import "DetailViewController.h"
+#import "Data.h"
+#import "ViewController.h"
 
 @implementation DetailViewController
 
@@ -20,7 +22,6 @@
 - (void)setDetail:(Data *)detail
 {
     _detail=detail;
-    NSLog(@"setDetail %@", _detail.Btransf);
 }
 
 - (void)reloadData

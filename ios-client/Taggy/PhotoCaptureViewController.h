@@ -20,5 +20,6 @@
 
 -(IBAction)TakePhoto;
 -(IBAction)ChooseExisting;
+@property (weak, nonatomic) IBOutlet UIButton *TakePhotoButton;
 
 @end

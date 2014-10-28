@@ -1,4 +1,4 @@
-//
+///Users/gleblinkin/Desktop/Taggy/Taggy/DetailViewController.h
 //  DetailViewController.h
 //  Test
 //
@@ -17,6 +17,5 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UILabel *BTransfDetailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ATransfDetailLabel;
-
 
 @end

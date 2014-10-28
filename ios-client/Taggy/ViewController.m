@@ -17,12 +17,28 @@
 
 @implementation ViewController
 
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.navigationItem.title = @"Результаты";
-    
-    //self.tableView.allowsMultipleSelectionDuringEditing = NO;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.editButtonItem.title = @"Изменить";
+}
+
+
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+    if (editing == YES) {
+        [self.tableView setEditing:YES animated:YES];
+        self.editButtonItem.title = @"Готово";
+    }
+    else
+    {
+        [self.tableView setEditing:NO animated:YES];
+        self.editButtonItem.title = @"Изменить";
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -55,6 +71,7 @@
     
 }
 
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Remove the row from data model
@@ -62,16 +79,19 @@
     [Data removeObject:currentData[indexPath.row]];
     
     // Request table view to reload
-    [tableView reloadData];
+    //[tableView reloadData];
+    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+}
+
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"Удалить";
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"prepareForSegue %@", segue.identifier);
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     if (indexPath) {
         Data *item = [[Data currentData] objectAtIndex:indexPath.row];
-        NSLog(@"%@", item.Btransf);
         [segue.destinationViewController setDetail:item];
     }
 }
