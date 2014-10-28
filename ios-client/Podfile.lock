@@ -1,0 +1,14 @@
+PODS:
+  - TesseractOCRiOS (2.3)
+
+DEPENDENCIES:
+  - TesseractOCRiOS (from `.`)
+
+EXTERNAL SOURCES:
+  TesseractOCRiOS:
+    :podspec: .
+
+SPEC CHECKSUMS:
+  TesseractOCRiOS: 2739fa5bf0a2f4ff18d5630bf980cfd787a3e3b6
+
+COCOAPODS: 0.34.2

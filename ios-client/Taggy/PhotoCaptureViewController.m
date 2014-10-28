@@ -10,11 +10,12 @@
 #import "ViewController.h"
 #import "Data.h"
 #import "imageCell.h"
-#import <CoreData/CoreData.h>
+#import <TesseractOCR/Tesseract.h>
+#import <CoreImage/CoreImage.h>
 
 static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
 
-@interface PhotoCaptureViewController() <NSURLConnectionDelegate>
+@interface PhotoCaptureViewController() <TesseractDelegate>
 
 @property (nonatomic, weak) IBOutlet UIImageView *imageview;
 
@@ -38,11 +39,21 @@ static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    [self sendImage:image];
+
+    NSArray *recognized = [[self class] recognizeImage:image];
+    NSNumber *recognizedValue = [recognized firstObject];
+    NSNumber *converted = @([recognizedValue floatValue] / 35);
+
+    [[[UIAlertView alloc] initWithTitle:@"Распознанный текст"
+                                message:[recognized description]
+                               delegate:nil
+                      cancelButtonTitle:@"ОК"
+                      otherButtonTitles:nil]show];
+
     Data *item = [[Data alloc] init];
     item.image = image;
-    item.Btransf = @"$";
-    item.Atransf = @"%";
+    item.Btransf = [NSString stringWithFormat:@"%@ $", converted];
+    item.Atransf = [NSString stringWithFormat:@"%@ руб", recognizedValue];
     [Data addObject:item];
     //[self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:self.dataAr.count - 1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
     [self.imageview setImage:image];
@@ -53,65 +64,93 @@ static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
-- (void)sendImage:(UIImage *)sendingImage
++ (NSArray *)recognizeImage:(UIImage *)imageToRecognize
 {
-    //Activate the status bar spinner
-    UIApplication* app = [UIApplication sharedApplication];
-    app.networkActivityIndicatorVisible = YES;
-    
-    //The image you want to upload represented in JPEG
-    //NOTE: the 'selectedPhoto' needs to be replaced with the UIImage you'd like to upload
-    NSData *imageData = UIImageJPEGRepresentation(sendingImage, 1);
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:kSendingURL]];
-    [request setHTTPMethod:@"POST"];
-    
-    NSMutableData *body = [NSMutableData data];
-    
-    NSString *boundary = @"---------------------------14737809831466499882746641449";
-    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-    [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
-    
-    //The file to upload
-    [body appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[[NSString stringWithFormat:@"Content-Disposition: attachment; name=\"file\"; filename=\"image.jpg\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    [body appendData:[NSData dataWithData:imageData]];
-    [body appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    
-    // close the form
-    [body appendData:[[NSString stringWithFormat:@"--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    // set request body
-    [request setHTTPBody:body];
-    
-    // Configure your request here.  Set timeout values, HTTP Verb, etc.
-    NSURLConnection *connection = [NSURLConnection connectionWithRequest:request delegate:self];
-    
-    //Stop the status bar spinner
-    app.networkActivityIndicatorVisible = NO;
-}
+    Tesseract* tesseract = [[Tesseract alloc] initWithLanguage:@"rus"];
+    tesseract.delegate = self;
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    // This method is called when the server has determined that it
-    // has enough information to create the NSURLResponse object.
-    
-    // It can be called multiple times, for example in the case of a
-    // redirect, so each time we reset the data.
-    
-    // receivedData is an instance variable declared elsewhere.
-    
-    NSString *resultString = @"{\"ok\": true, \"price\":[\"12345\",\"2345\"]}";
-    
-    [[[UIAlertView alloc] initWithTitle:@"Отправлено!"
-                               message:resultString.description
-                              delegate:nil
-                     cancelButtonTitle:@"ОК"
-                     otherButtonTitles:nil]show];
-    
+    [tesseract setVariableValue:@"0123456789,." forKey:@"tessedit_char_whitelist"];
+    [tesseract setImage:imageToRecognize];
+    [tesseract recognize];
+
+    NSArray *conf = tesseract.getConfidenceByWord;
+
+    conf = [conf sortedArrayUsingComparator:^NSComparisonResult(NSDictionary *obj1, NSDictionary *obj2) {
+        NSNumber *cg1 = obj1[@"confidence"];
+        NSNumber *cg2 = obj2[@"confidence"];
+        return [cg2 compare:cg1];
+    }];
+
+    NSMutableArray *goodWords = [[NSMutableArray alloc] init];
+    NSMutableSet *badWords = [[NSMutableSet alloc] init];
+
+    for (NSDictionary *dict in conf) {
+        NSNumber *confidence = dict[@"confidence"];
+        NSString *data = dict[@"text"];
+        CGRect rect = [((NSValue *)dict[@"boundingbox"]) CGRectValue];
+
+        data = [data stringByReplacingOccurrencesOfString:@"," withString:@"."];
+        CGFloat value = [data floatValue];
+        if (value == 0) {
+            if (data.length < 2) {
+                [badWords addObject:dict];
+            }
+            continue;
+        }
+        if (ABS(rect.size.height) < imageToRecognize.size.height * 0.2) continue;
+        //if (((int)value & 10) != 0 || value < 50) continue;
+
+        [goodWords addObject:dict];
+    }
+
+    NSMutableSet *results = [[NSMutableSet alloc] init];
+
+    bool anyFound = false;
+    do {
+        NSMutableArray *newGoodWords = [[NSMutableArray alloc] initWithArray:goodWords];
+        for (NSDictionary *dict in conf) {
+            if ([badWords containsObject:dict]) continue;
+
+            NSNumber *confidence = dict[@"confidence"];
+            NSString *data = dict[@"text"];
+            CGRect rect = [((NSValue *)dict[@"boundingbox"]) CGRectValue];
+
+            for (NSDictionary *exDict in goodWords) {
+                NSString *exData = exDict[@"text"];
+                CGRect exRect = [((NSValue *)exDict[@"boundingbox"]) CGRectValue];
+
+                CGFloat topDelta = ABS(CGRectGetMinY(rect) - CGRectGetMinY(exRect));
+                CGFloat bottomDelta = ABS(CGRectGetMaxY(rect) - CGRectGetMaxY(exRect));
+                CGFloat leftDistDelta = ABS(CGRectGetMinX(rect) - CGRectGetMaxX(exRect));
+                CGFloat rightDistDelta = ABS(CGRectGetMaxX(rect) - CGRectGetMinX(exRect));
+
+                NSString *unionedResult = nil;
+                if (topDelta < 10 && bottomDelta < 10) {
+                    if (leftDistDelta > 10 || rightDistDelta > 10) {
+                        if (leftDistDelta < 15) {
+                            NSLog(@"new word: %@ + %@", exData, data);
+                            unionedResult = [exData stringByAppendingString:data];
+                        }
+                        if (rightDistDelta < 15) {
+                            NSLog(@"new word: %@ + %@", data, exData);
+                            unionedResult = [data stringByAppendingString:exData];
+                        }
+                    }
+                }
+
+                if (unionedResult != nil) {
+                    CGFloat value = [[unionedResult stringByReplacingOccurrencesOfString:@"," withString:@"."] floatValue];
+                    [results addObject:@(value)];
+                    if ([goodWords containsObject:dict] == NO) {
+                        [newGoodWords addObject:dict];
+                    }
+                }
+            }
+        }
+        goodWords = newGoodWords;
+    } while (anyFound);
+
+    return [results allObjects];
 }
 
 
