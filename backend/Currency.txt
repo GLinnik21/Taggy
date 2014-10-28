@@ -1,4 +1,0 @@
-Name	Currency
-USD	10640
-EUR	13380
-RUB	258

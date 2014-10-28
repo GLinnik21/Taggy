@@ -1,0 +1,28 @@
+﻿<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">Введите изображение с ценником</h3>
+	</div>
+	<div class="panel-body">
+    	<form class="form" method="post" style="text-align: center;" enctype="multipart/form-data">
+			<input type="file" name="file"/>
+			<input type="submit" class="btn btn-success" value="Распознать"/>
+		</form>
+  	</div>
+</div>
+
+@if (Model != null) {
+  	var Result = Model as Taggy.RecognitionData;
+	<hr/>
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3 class="panel-title">Результат</h3>
+		</div>
+		<div class="panel-body">
+			<p> @Result.price[0] </p>
+			<img src="data:image/jpeg;base64,@ViewBag.Image" />
+			@if (!string.IsNullOrEmpty(Result.message)) {
+	    		<pre>@Result.message</pre>
+	    	}
+	  	</div>
+	</div>
+}
