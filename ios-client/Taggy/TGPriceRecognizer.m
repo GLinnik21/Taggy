@@ -46,9 +46,9 @@ static CGFloat const kTGMaximumVerticalDelta = 10.0f;
 - (void)setImage:(UIImage *)image
 {
     if (_image != image) {
-        _image = [[self imageWithImage:image scaledToSizeWithSameAspectRatio:CGSizeMake(500, 500)] blackAndWhite];
+        _image = [self imageWithImage:image scaledToSizeWithSameAspectRatio:CGSizeMake(500, 500)];
 
-        self.tesseract.image = _image;
+        self.tesseract.image = [_image blackAndWhite];
     }
 }
 
