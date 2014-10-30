@@ -8,16 +8,35 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
-#import "PhotoCaptureViewController.h"
+#import "TGPriceRecognizer.h"
 
 @interface TaggyTests : XCTestCase
+
+@property (nonatomic, weak) NSDictionary *testImages;
 
 @end
 
 @implementation TaggyTests
 
-+ (NSArray *)testImageIndex:(NSUInteger)index
++ (BOOL)testImageIndex:(NSUInteger)index
 {
+    NSDictionary *images  = @{
+                              @(1): @(8100),
+                              @(2): @(22000),
+                              @(3): @(668750),
+                              @(4): @(26350),
+                              @(5): @(33000),
+                              @(6): @(26300),
+                              @(7): @(15200),
+                              @(8): @(23150),
+                              @(9): @(23050),
+                              @(10): @(6950),
+                              @(11): @(10150),
+                              @(12): @(17050),
+                              @(13): @(3150),
+                              @(14): @(26300),
+                              };
+
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
 
     NSString *filename = [NSString stringWithFormat:@"testImages/%@", @(index)];
@@ -25,99 +44,172 @@
 
     UIImage *image = [UIImage imageWithContentsOfFile:tessdataPath];
 
-    return [PhotoCaptureViewController recognizeImage:image];
+    return [[TGPriceRecognizer recognizeImage:image] containsObject:images[@(index)]];
 }
 
-//#define TEST_VALUES
+#define TEST_VALUES
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+
+    }
+    return self;
+}
 
 - (void)testImage1
 {
-    [self measureBlock:^{
-        NSArray *result = [[self class] testImageIndex:1];
 #ifdef TEST_VALUES
-        XCTAssert([result containsObject:@(8100)]);
-#endif
+    XCTAssert([[self class] testImageIndex:1]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:1];
     }];
+#endif
 }
 
 - (void)testImage2
 {
-    [self measureBlock:^{
-        NSArray *result = [[self class] testImageIndex:2];
 #ifdef TEST_VALUES
-        XCTAssert([result containsObject:@(22000)]);
-#endif
+    XCTAssert([[self class] testImageIndex:2]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:2];
     }];
+#endif
 }
 
 - (void)testImage3
 {
-    [self measureBlock:^{
-        NSArray *result = [[self class] testImageIndex:3];
 #ifdef TEST_VALUES
-        XCTAssert([result containsObject:@(668750)]);
-#endif
+    XCTAssert([[self class] testImageIndex:3]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:3];
     }];
+#endif
 }
 
 - (void)testImage4
 {
-    [self measureBlock:^{
-        NSArray *result = [[self class] testImageIndex:4];
 #ifdef TEST_VALUES
-        XCTAssert([result containsObject:@(26350)]);
-#endif
+    XCTAssert([[self class] testImageIndex:4]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:4];
     }];
+#endif
 }
 
 - (void)testImage5
 {
-    [self measureBlock:^{
-        NSArray *result = [[self class] testImageIndex:5];
 #ifdef TEST_VALUES
-        XCTAssert([result containsObject:@(33000)]);
-#endif
+    XCTAssert([[self class] testImageIndex:5]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:5];
     }];
+#endif
 }
 
 - (void)testImage6
 {
-    [self measureBlock:^{
-        NSArray *result = [[self class] testImageIndex:6];
 #ifdef TEST_VALUES
-        XCTAssert([result containsObject:@(26300)]);
-#endif
+    XCTAssert([[self class] testImageIndex:6]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:6];
     }];
+#endif
 }
 
 - (void)testImage7
 {
-    [self measureBlock:^{
-        NSArray *result = [[self class] testImageIndex:7];
 #ifdef TEST_VALUES
-        XCTAssert([result containsObject:@(15200)]);
-#endif
+    XCTAssert([[self class] testImageIndex:7]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:7];
     }];
+#endif
 }
 
 - (void)testImage8
 {
-    [self measureBlock:^{
-        NSArray *result = [[self class] testImageIndex:8];
 #ifdef TEST_VALUES
-        XCTAssert([result containsObject:@(23150)]);
-#endif
+    XCTAssert([[self class] testImageIndex:8]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:8];
     }];
+#endif
 }
 
 - (void)testImage9
 {
-    [self measureBlock:^{
-        NSArray *result = [[self class] testImageIndex:9];
 #ifdef TEST_VALUES
-        XCTAssert([result containsObject:@(23050)]);
-#endif
+    XCTAssert([[self class] testImageIndex:9]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:9];
     }];
+#endif
+}
+
+- (void)testImage10
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:10]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:10];
+    }];
+#endif
+}
+
+- (void)testImage11
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:11]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:11];
+    }];
+#endif
+}
+
+- (void)testImage12
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:12]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:12];
+    }];
+#endif
+}
+
+- (void)testImage13
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:13]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:13];
+    }];
+#endif
+}
+
+- (void)testImage14
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:14]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:14];
+    }];
+#endif
 }
 
 @end

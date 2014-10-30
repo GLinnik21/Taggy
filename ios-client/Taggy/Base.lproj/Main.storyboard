@@ -33,7 +33,7 @@
                                     <action selector="ChooseExisting" destination="JLx-bl-ZQA" eventType="touchUpInside" id="T4O-iX-I2g"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="pVN-hc-EWd">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="pVN-hc-EWd">
                                 <rect key="frame" x="9" y="132" width="303" height="303"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>

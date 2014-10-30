@@ -22,6 +22,4 @@
 -(IBAction)ChooseExisting;
 @property (weak, nonatomic) IBOutlet UIButton *TakePhotoButton;
 
-+ (NSArray *)recognizeImage:(UIImage *)imageToRecognize;
-
 @end
