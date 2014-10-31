@@ -1,6 +1,6 @@
 //
 //  TGPhotoCaptureViewController.h
-//  Test
+//  Taggy
 //
 //  Created by Gleb Linkin on 10/14/14.
 //  Copyright (c) 2014 Gleb Linkin. All rights reserved.

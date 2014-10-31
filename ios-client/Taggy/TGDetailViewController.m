@@ -1,6 +1,6 @@
 //
 //  TGDetailViewController.m
-//  Test
+//  Taggy
 //
 //  Created by Gleb Linkin on 10/11/14.
 //  Copyright (c) 2014 Gleb Linkin. All rights reserved.
