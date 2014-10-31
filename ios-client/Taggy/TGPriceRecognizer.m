@@ -9,6 +9,7 @@
 #import "TGPriceRecognizer.h"
 #import <TesseractOCR/Tesseract.h>
 #import <CoreImage/CoreImage.h>
+#import <ARAnalytics/ARAnalytics.h>
 
 static NSString *const kTGNumberRegexPattern = @"([0-9]*|[0-9]+[,.])([,.][0-9]+|[0-9]+)";
 
@@ -68,6 +69,9 @@ static CGFloat const kTGMaximumVerticalDelta = 10.0f;
     @try {
         [self clear];
 
+        [ARAnalytics event:@"Recognizing image"
+            withProperties:@{ @"size" : [NSValue valueWithCGSize:self.image.size] }];
+
         [self.tesseract recognize];
         self.recognizedBlocks = [TGRecognizedBlock blocksFromRecognitionArray:self.tesseract.getConfidenceByWord];
         self.wellRecognizedBlocks = self.recognizedBlocks;
@@ -79,9 +83,18 @@ static CGFloat const kTGMaximumVerticalDelta = 10.0f;
         [self joinBlocks];
 
         [self formatPrices];
+
+        [ARAnalytics event:@"Image recognized"
+            withProperties:@{ @"recognizedPrices" : self.recognizedPrices.description }];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception: %@", exception.description);
+
+        [ARAnalytics error:[NSError errorWithDomain:@"Tesseract"
+                                               code:NSExecutableRuntimeMismatchError
+                                           userInfo:@{ @"description" : exception.description }]
+               withMessage:@"Recognition exception"];
+
         [self clear];
     }
 }

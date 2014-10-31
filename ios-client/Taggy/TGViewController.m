@@ -7,6 +7,8 @@
 //
 
 #import "TGViewController.h"
+
+#import <ARAnalytics/ARAnalytics.h>
 #import "TGImageCell.h"
 #import "TGData.h"
 #import "TGDetailViewController.h"
@@ -69,7 +71,12 @@ static NSString *const kTGImageCellId = @"ImageCell";
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *currentData = [TGData currentData];
-    [TGData removeObject:currentData[indexPath.row]];
+    TGData *item = currentData[indexPath.row];
+
+    [ARAnalytics event:@"Item been deleted"
+        withProperties:@{ @"from" : item.sourcePrice, @"to" : item.convertedPrice}];
+
+    [TGData removeObject:item];
 
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
 }
@@ -84,6 +91,10 @@ static NSString *const kTGImageCellId = @"ImageCell";
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     if (indexPath != nil) {
         TGData *item = [[TGData currentData] objectAtIndex:indexPath.row];
+
+        [ARAnalytics event:@"Item opened"
+            withProperties:@{ @"from" : item.sourcePrice, @"to" : item.convertedPrice}];
+
         [segue.destinationViewController setDetail:item];
     }
 }
