@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
 using Puma.Net;
+using tessnet2;
+using System.IO;
 
 namespace PriceRecognizer
 {
@@ -10,8 +12,17 @@ namespace PriceRecognizer
     {
         public static string ParseImage(Bitmap bitmap)
         {
-            var pumaPage = new PumaPage(bitmap);//new PumaPage(@"D:\картинки\ценники\9e5208a1d53c9f7d9d18aa3e47773e6d.jpg");
-
+			string toReturn = "";
+			var ocr  =  new Tesseract();
+			ocr.SetVariable("tessedit_char_whitelist", "0123456789йцукенгшщзхъэждлорпавыфячсмитьбю");
+			string dir = String.Format(Directory.GetCurrentDirectory().ToString() + "\\Content\\tessdata");
+			ocr.Init(dir, "rus", false);
+			var result = ocr.DoOCR (bitmap, Rectangle.Empty);
+			foreach (var word in result) {
+				toReturn += word.Text;
+				toReturn += ' ';
+			}
+           /* var pumaPage = new PumaPage(bitmap);//new PumaPage(@"D:\картинки\ценники\9e5208a1d53c9f7d9d18aa3e47773e6d.jpg");
             using (pumaPage)
             {
                 pumaPage.FileFormat = PumaFileFormat.RtfAnsi;
@@ -19,7 +30,8 @@ namespace PriceRecognizer
                 pumaPage.Language = PumaLanguage.Russian; // puma.checklanguage попробовать
 
                 return pumaPage.RecognizeToString();
-            }
+            }*/
+			return toReturn;
         }
 
         public static bool ContainsSymbols(string s) //!!!!!!
