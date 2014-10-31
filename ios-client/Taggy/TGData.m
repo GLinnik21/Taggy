@@ -1,36 +1,36 @@
 //
-//  Data.m
-//  Test
+//  TGData.m
+//  Taggy
 //
 //  Created by Gleb Linkin on 10/10/14.
 //  Copyright (c) 2014 Gleb Linkin. All rights reserved.
 //
 
-#import "Data.h"
+#import "TGData.h"
 
-@implementation Data
+@implementation TGData
 
 + (NSArray *)CData
 {
     NSMutableArray *result = [NSMutableArray array];
     
-    Data *item;
+    TGData *item;
     
-    item = [[Data alloc] init];
-    item.Btransf = @"$4.53";
-    item.Atransf = @"BYR48400";
+    item = [[TGData alloc] init];
+    item.convertedPrice = @"$4.53";
+    item.sourcePrice = @"BYR48400";
     item.image = [UIImage imageNamed:@"1"];
     [result addObject:item];
     
-    item = [[Data alloc] init];
-    item.Btransf = @"₽110";
-    item.Atransf = @"BYR29100";
+    item = [[TGData alloc] init];
+    item.convertedPrice = @"₽110";
+    item.sourcePrice = @"BYR29100";
     item.image = [UIImage imageNamed:@"2"];
     [result addObject:item];
     
-    item = [[Data alloc] init];
-    item.Btransf = @"€24.99";
-    item.Atransf = @"BYR337000";
+    item = [[TGData alloc] init];
+    item.convertedPrice = @"€24.99";
+    item.sourcePrice = @"BYR337000";
     item.image = [UIImage imageNamed:@"3"];
     [result addObject:item];
     
@@ -63,6 +63,5 @@
     NSMutableArray *ar = [[self class] mutableCurrentData];
     [ar removeObject:object];
 }
-
 
 @end

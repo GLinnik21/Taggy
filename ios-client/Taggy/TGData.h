@@ -1,6 +1,6 @@
 //
-//  Data.h
-//  Test
+//  TGData.h
+//  Taggy
 //
 //  Created by Gleb Linkin on 10/10/14.
 //  Copyright (c) 2014 Gleb Linkin. All rights reserved.
@@ -9,12 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface Data : NSObject
+@interface TGData : NSObject
 
-@property(nonatomic, copy) NSString *Btransf;
-@property(nonatomic, copy) NSString *Atransf;
-@property(nonatomic, copy) NSString *Transf;
-@property(nonatomic, copy) UIImage *image;
+@property(nonatomic, copy) NSString *sourcePrice;
+@property(nonatomic, copy) NSString *convertedPrice;
+@property(nonatomic, strong) UIImage *image;
 
 + (NSArray *)currentData;
 + (void)addObject:(id)object;

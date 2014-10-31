@@ -1,41 +1,42 @@
 //
-//  ViewController.m
-//  Test
+//  TGViewController.m
+//  Taggy
 //
 //  Created by Gleb Linkin on 9/29/14.
 //  Copyright (c) 2014 Gleb Linkin. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "imageCell.h"
-#import "Data.h"
-#import "DetailViewController.h"
+#import "TGViewController.h"
+#import "TGImageCell.h"
+#import "TGData.h"
+#import "TGDetailViewController.h"
 
-@interface ViewController ()
+static NSString *const kTGImageCellId = @"ImageCell";
+
+@interface TGViewController () <UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @end
 
-@implementation ViewController
+@implementation TGViewController
 
-
-
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.navigationItem.title = @"Результаты";
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.editButtonItem.title = @"Изменить";
 }
 
-
--(void)setEditing:(BOOL)editing animated:(BOOL)animated
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
-    if (editing == YES) {
+    if (editing) {
         [self.tableView setEditing:YES animated:YES];
         self.editButtonItem.title = @"Готово";
     }
-    else
-    {
+    else {
         [self.tableView setEditing:NO animated:YES];
         self.editButtonItem.title = @"Изменить";
     }
@@ -43,55 +44,46 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [self.tableView reloadData];
-}
+    [super viewDidAppear:animated];
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [Data currentData].count;
+    return [TGData currentData].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    static NSString *const CellId = @"Cell";
-    static NSString *const ImageCellId = @"ImageCell";
-    imageCell *cell = [tableView dequeueReusableCellWithIdentifier:ImageCellId];
+    TGImageCell *cell = [tableView dequeueReusableCellWithIdentifier:kTGImageCellId];
     
-    Data *item = [Data currentData][indexPath.row];
+    TGData *item = [TGData currentData][indexPath.row];
     cell.cellImageView.image = item.image;
-    cell.cellAtransfLabel.text = item.Atransf;
-    cell.cellBtransfLabel.text = item.Btransf;
+    cell.cellSourcePriceLabel.text = item.sourcePrice;
+    cell.cellConvertedPriceLabel.text = item.convertedPrice;
     
     return cell;
-    
 }
-
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Remove the row from data model
-    NSArray *currentData = [Data currentData];
-    [Data removeObject:currentData[indexPath.row]];
-    
-    // Request table view to reload
-    //[tableView reloadData];
+    NSArray *currentData = [TGData currentData];
+    [TGData removeObject:currentData[indexPath.row]];
+
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     return @"Удалить";
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    if (indexPath) {
-        Data *item = [[Data currentData] objectAtIndex:indexPath.row];
+    if (indexPath != nil) {
+        TGData *item = [[TGData currentData] objectAtIndex:indexPath.row];
         [segue.destinationViewController setDetail:item];
     }
 }
