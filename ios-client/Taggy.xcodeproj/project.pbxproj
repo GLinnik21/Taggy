@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		410C200619FE745B0082C66C /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 410C200519FE745B0082C66C /* tessdata */; };
 		419876F919FFBAE500EA58DF /* testImages in Resources */ = {isa = PBXBuildFile; fileRef = 419876F819FFBAE500EA58DF /* testImages */; };
+		41A9D0481A00F2A700922CBC /* TGRecognizedBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A9D0471A00F2A700922CBC /* TGRecognizedBlock.m */; };
+		41A9D04B1A022F6500922CBC /* TGPriceRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A9D04A1A022F6500922CBC /* TGPriceRecognizer.m */; };
 		E1333C0F2263E54E9C49B26F /* libPods-Taggy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9526B84B57BF771D8B42008E /* libPods-Taggy.a */; };
 		ED077A1519F93FE300B203CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A1419F93FE300B203CB /* main.m */; };
 		ED077A1819F93FE300B203CB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A1719F93FE300B203CB /* AppDelegate.m */; };
@@ -58,6 +60,10 @@
 		395A8A22D6331D24085F5332 /* Pods-Taggy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taggy/Pods-Taggy.release.xcconfig"; sourceTree = "<group>"; };
 		410C200519FE745B0082C66C /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		419876F819FFBAE500EA58DF /* testImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = testImages; sourceTree = "<group>"; };
+		41A9D0461A00F2A700922CBC /* TGRecognizedBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGRecognizedBlock.h; sourceTree = "<group>"; };
+		41A9D0471A00F2A700922CBC /* TGRecognizedBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGRecognizedBlock.m; sourceTree = "<group>"; };
+		41A9D0491A022F6400922CBC /* TGPriceRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGPriceRecognizer.h; sourceTree = "<group>"; };
+		41A9D04A1A022F6500922CBC /* TGPriceRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGPriceRecognizer.m; sourceTree = "<group>"; };
 		4A072264AC63C331560A9A6C /* Pods-Taggy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taggy/Pods-Taggy.debug.xcconfig"; sourceTree = "<group>"; };
 		9526B84B57BF771D8B42008E /* libPods-Taggy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Taggy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED077A0F19F93FE300B203CB /* Taggy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taggy.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +185,10 @@
 				ED077A1719F93FE300B203CB /* AppDelegate.m */,
 				ED077A1919F93FE300B203CB /* ViewController.h */,
 				ED077A1A19F93FE300B203CB /* ViewController.m */,
+				41A9D0461A00F2A700922CBC /* TGRecognizedBlock.h */,
+				41A9D0471A00F2A700922CBC /* TGRecognizedBlock.m */,
+				41A9D0491A022F6400922CBC /* TGPriceRecognizer.h */,
+				41A9D04A1A022F6500922CBC /* TGPriceRecognizer.m */,
 				ED077A1C19F93FE300B203CB /* Main.storyboard */,
 				ED077A2119F93FE300B203CB /* LaunchScreen.xib */,
 				ED077A6619F940F700B203CB /* Images.xcassets */,
@@ -403,11 +413,13 @@
 			files = (
 				ED077A6F19F940F700B203CB /* PhotoCaptureViewController.m in Sources */,
 				ED077A6C19F940F700B203CB /* DetailViewController.m in Sources */,
+				41A9D04B1A022F6500922CBC /* TGPriceRecognizer.m in Sources */,
 				ED077A1B19F93FE300B203CB /* ViewController.m in Sources */,
 				ED077A1819F93FE300B203CB /* AppDelegate.m in Sources */,
 				ED077A1519F93FE300B203CB /* main.m in Sources */,
 				ED077A6B19F940F700B203CB /* Data.m in Sources */,
 				ED077A7519F9448E00B203CB /* CustomTabBarController.m in Sources */,
+				41A9D0481A00F2A700922CBC /* TGRecognizedBlock.m in Sources */,
 				ED077A6D19F940F700B203CB /* imageCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
