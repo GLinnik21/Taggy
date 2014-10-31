@@ -17,20 +17,20 @@
     TGData *item;
     
     item = [[TGData alloc] init];
-    item.Btransf = @"$4.53";
-    item.Atransf = @"BYR48400";
+    item.convertedPrice = @"$4.53";
+    item.sourcePrice = @"BYR48400";
     item.image = [UIImage imageNamed:@"1"];
     [result addObject:item];
     
     item = [[TGData alloc] init];
-    item.Btransf = @"₽110";
-    item.Atransf = @"BYR29100";
+    item.convertedPrice = @"₽110";
+    item.sourcePrice = @"BYR29100";
     item.image = [UIImage imageNamed:@"2"];
     [result addObject:item];
     
     item = [[TGData alloc] init];
-    item.Btransf = @"€24.99";
-    item.Atransf = @"BYR337000";
+    item.convertedPrice = @"€24.99";
+    item.sourcePrice = @"BYR337000";
     item.image = [UIImage imageNamed:@"3"];
     [result addObject:item];
     
@@ -63,6 +63,5 @@
     NSMutableArray *ar = [[self class] mutableCurrentData];
     [ar removeObject:object];
 }
-
 
 @end

@@ -8,35 +8,39 @@
 
 #import "TGDetailViewController.h"
 #import "TGData.h"
-#import "TGViewController.h"
+
+@interface TGDetailViewController()
+
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+@property (nonatomic, weak) IBOutlet UIView *contentView;
+@property (nonatomic, weak) IBOutlet UIImageView *imageView;
+@property (nonatomic, weak) IBOutlet UILabel *sourcePriceDetailLabel;
+@property (nonatomic, weak) IBOutlet UILabel *targetPriceDetailLabel;
+
+@end
 
 @implementation TGDetailViewController
 
--(void)viewDidLoad
+- (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [self reloadData];
 }
 
-- (void)setDetail:(TGData *)detail
-{
-    _detail=detail;
-}
-
 - (void)reloadData
 {
-    if (!_detail) {
+    if (self.detail == nil) {
         return;
     }
-    self.navigationItem.title = _detail.Btransf;
+
+    self.navigationItem.title = self.detail.convertedPrice;
     
-    self.BTransfDetailLabel.text = _detail.Btransf;
-    self.ATransfDetailLabel.text = _detail.Atransf;
-    self.imageView.image = _detail.image;
-    
-    
-    _scrollView.contentSize = _scrollView.frame.size;
+    self.targetPriceDetailLabel.text = self.detail.convertedPrice;
+    self.sourcePriceDetailLabel.text = self.detail.sourcePrice;
+    self.imageView.image = self.detail.image;
+
+    self.scrollView.contentSize = self.scrollView.frame.size;
 }
 
 @end

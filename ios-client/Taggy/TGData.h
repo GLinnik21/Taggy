@@ -11,10 +11,9 @@
 
 @interface TGData : NSObject
 
-@property(nonatomic, copy) NSString *Btransf;
-@property(nonatomic, copy) NSString *Atransf;
-@property(nonatomic, copy) NSString *Transf;
-@property(nonatomic, copy) UIImage *image;
+@property(nonatomic, copy) NSString *sourcePrice;
+@property(nonatomic, copy) NSString *convertedPrice;
+@property(nonatomic, strong) UIImage *image;
 
 + (NSArray *)currentData;
 + (void)addObject:(id)object;

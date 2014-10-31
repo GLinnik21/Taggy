@@ -10,9 +10,8 @@
 
 @interface TGImageCell : UITableViewCell
 
-
-@property (weak, nonatomic) IBOutlet UIImageView *cellImageView;
-@property (weak, nonatomic) IBOutlet UILabel *cellAtransfLabel;
-@property (weak, nonatomic) IBOutlet UILabel *cellBtransfLabel;
+@property (nonatomic, weak) IBOutlet UIImageView *cellImageView;
+@property (nonatomic, weak) IBOutlet UILabel *cellSourcePriceLabel;
+@property (nonatomic, weak) IBOutlet UILabel *cellConvertedPriceLabel;
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface TGCustomTabBarController : UITabBarController
-@property (weak, nonatomic) IBOutlet UITabBar *CustomTabBar;
+
+@property (weak, nonatomic) IBOutlet UITabBar *customTabBar;
 
 @end

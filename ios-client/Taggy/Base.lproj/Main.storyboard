@@ -20,7 +20,7 @@
                                 <state key="normal" title="Сфотографировать" backgroundImage="PhotoButton.png"/>
                                 <state key="highlighted" backgroundImage="PhotoButtonP.png"/>
                                 <connections>
-                                    <action selector="TakePhoto" destination="JLx-bl-ZQA" eventType="touchUpInside" id="NNI-3x-vfF"/>
+                                    <action selector="takePhoto" destination="G5l-i6-tbZ" eventType="touchUpInside" id="Psg-NP-HvE"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LMM-Ox-1Ry">
@@ -30,7 +30,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="ChooseExisting" destination="JLx-bl-ZQA" eventType="touchUpInside" id="T4O-iX-I2g"/>
+                                    <action selector="chooseExisting" destination="G5l-i6-tbZ" eventType="touchUpInside" id="A93-KZ-dTN"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="pVN-hc-EWd">
@@ -42,8 +42,8 @@
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="Сканер" image="scan.png" id="VpX-Fe-AWi"/>
                     <connections>
-                        <outlet property="TakePhotoButton" destination="vIe-cy-7uO" id="eN5-7t-jlG"/>
                         <outlet property="imageview" destination="pVN-hc-EWd" id="bkU-4h-hnc"/>
+                        <outlet property="takePhotoButton" destination="vIe-cy-7uO" id="Zdz-RO-wWV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JLx-bl-ZQA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -98,9 +98,9 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="cellAtransfLabel" destination="VgM-kZ-GeX" id="IBJ-C2-7rB"/>
-                                            <outlet property="cellBtransfLabel" destination="SJM-Xi-DOG" id="eMu-VI-Gku"/>
+                                            <outlet property="cellConvertedPriceLabel" destination="VgM-kZ-GeX" id="itI-lS-CJK"/>
                                             <outlet property="cellImageView" destination="ibE-7V-Cb4" id="lJL-eD-JSH"/>
+                                            <outlet property="cellSourcePriceLabel" destination="SJM-Xi-DOG" id="7QP-nP-Jnq"/>
                                             <segue destination="nlV-8a-42T" kind="push" identifier="SelectCell" id="fen-cT-SvR"/>
                                         </connections>
                                     </tableViewCell>
@@ -177,11 +177,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="zu5-gE-ALQ"/>
                     <connections>
-                        <outlet property="ATransfDetailLabel" destination="b0B-0G-4ij" id="NoQ-WY-rBd"/>
-                        <outlet property="BTransfDetailLabel" destination="dFn-mR-FxZ" id="6or-QA-cRf"/>
                         <outlet property="contentView" destination="Ro4-E5-HKr" id="C0K-d6-Cgz"/>
                         <outlet property="imageView" destination="7po-xN-aY2" id="tGd-3q-gEn"/>
                         <outlet property="scrollView" destination="aee-PX-Bcx" id="WLR-SX-4vv"/>
+                        <outlet property="sourcePriceDetailLabel" destination="dFn-mR-FxZ" id="Xao-hx-Jvm"/>
+                        <outlet property="targetPriceDetailLabel" destination="b0B-0G-4ij" id="nAv-Hi-vOi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nct-uu-T62" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -217,7 +217,7 @@
                         <color key="tintColor" red="1" green="0.2139268248" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <outlet property="CustomTabBar" destination="g2P-py-6wP" id="CNJ-ND-UH2"/>
+                        <outlet property="customTabBar" destination="g2P-py-6wP" id="Tyk-ZX-nal"/>
                         <segue destination="6yL-bV-xYj" kind="relationship" relationship="viewControllers" id="ufE-HX-Kj6"/>
                         <segue destination="G5l-i6-tbZ" kind="relationship" relationship="viewControllers" id="iU7-VV-JeT"/>
                     </connections>

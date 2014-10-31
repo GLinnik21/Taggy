@@ -8,12 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TGViewController : UIViewController <UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
-{
-    UIImage *image;
-    NSArray *_data;
-}
-
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@interface TGViewController : UIViewController
 
 @end

@@ -8,18 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TGPhotoCaptureViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface TGPhotoCaptureViewController : UIViewController
 
-{
-    UIImagePickerController *picker;
-    UIImagePickerController *picker2;
-    UIImage *image;
-    NSArray *_data;
-}
-
-
--(IBAction)TakePhoto;
--(IBAction)ChooseExisting;
-@property (weak, nonatomic) IBOutlet UIButton *TakePhotoButton;
+@property (nonatomic, strong) UIImage *image;
 
 @end

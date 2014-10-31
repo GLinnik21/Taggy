@@ -10,36 +10,36 @@
 #import "TGViewController.h"
 #import "TGData.h"
 #import "TGImageCell.h"
-#import <TesseractOCR/Tesseract.h>
-#import <CoreImage/CoreImage.h>
 #import "TGPriceRecognizer.h"
 
-static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
-
-@interface TGPhotoCaptureViewController() <TesseractDelegate>
+@interface TGPhotoCaptureViewController() <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, weak) IBOutlet UIImageView *imageview;
+@property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
 
 @end
 
 @implementation TGPhotoCaptureViewController
 
--(IBAction)TakePhoto{
-    picker = [[UIImagePickerController alloc] init];
+- (IBAction)takePhoto
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
     [self presentViewController:picker animated:YES completion:NULL];
 }
 
--(IBAction)ChooseExisting{
-    picker2 = [[UIImagePickerController alloc] init];
-    picker2.delegate = self;
-    [picker2 setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-    [self presentViewController:picker2 animated:YES completion:NULL];
+- (IBAction)chooseExisting
+{
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [self presentViewController:picker animated:YES completion:NULL];
 }
 
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    image = [info objectForKey:UIImagePickerControllerOriginalImage];
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 
     TGPriceRecognizer *recognizer = [[TGPriceRecognizer alloc] init];
     recognizer.image = image;
@@ -59,14 +59,16 @@ static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
 
     TGData *item = [[TGData alloc] init];
     item.image = image;
-    item.Btransf = [NSString stringWithFormat:@"%@ $", converted];
-    item.Atransf = [NSString stringWithFormat:@"%@ руб", recognizedValue];
+    item.convertedPrice = [NSString stringWithFormat:@"%@ $", converted];
+    item.sourcePrice = [NSString stringWithFormat:@"%@ руб", recognizedValue];
+    
     [TGData addObject:item];
     [self.imageview setImage:image];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
