@@ -1,21 +1,21 @@
 //
-//  ViewController.m
+//  TGViewController.m
 //  Test
 //
 //  Created by Gleb Linkin on 9/29/14.
 //  Copyright (c) 2014 Gleb Linkin. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "imageCell.h"
-#import "Data.h"
-#import "DetailViewController.h"
+#import "TGViewController.h"
+#import "TGImageCell.h"
+#import "TGData.h"
+#import "TGDetailViewController.h"
 
-@interface ViewController ()
+@interface TGViewController ()
 
 @end
 
-@implementation ViewController
+@implementation TGViewController
 
 
 

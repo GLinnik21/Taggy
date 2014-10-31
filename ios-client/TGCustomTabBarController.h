@@ -1,5 +1,5 @@
 //
-//  CustomTabBarController.h
+//  TGCustomTabBarController.h
 //  Taggy
 //
 //  Created by Gleb Linkin on 10/23/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomTabBarController : UITabBarController
+@interface TGCustomTabBarController : UITabBarController
 @property (weak, nonatomic) IBOutlet UITabBar *CustomTabBar;
 
 @end

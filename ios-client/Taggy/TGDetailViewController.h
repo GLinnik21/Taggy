@@ -1,5 +1,5 @@
-///Users/gleblinkin/Desktop/Taggy/Taggy/DetailViewController.h
-//  DetailViewController.h
+//
+//  TGDetailViewController.h
 //  Test
 //
 //  Created by Gleb Linkin on 10/11/14.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Data.h"
 
-@interface DetailViewController : UIViewController
+@interface TGDetailViewController : UIViewController
 
 @property (nonatomic, strong) Data *detail;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;

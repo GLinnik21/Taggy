@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  TGViewController.h
 //  Test
 //
 //  Created by Gleb Linkin on 9/29/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController <UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface TGViewController : UIViewController <UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 {
     UIImage *image;
     NSArray *_data;

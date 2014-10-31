@@ -1,18 +1,18 @@
 //
-//  CustomTabBarController.m
+//  TGCustomTabBarController.m
 //  Taggy
 //
 //  Created by Gleb Linkin on 10/23/14.
 //  Copyright (c) 2014 Gleb Linkin. All rights reserved.
 //
 
-#import "CustomTabBarController.h"
+#import "TGCustomTabBarController.h"
 
-@interface CustomTabBarController ()
+@interface TGCustomTabBarController ()
 
 @end
 
-@implementation CustomTabBarController
+@implementation TGCustomTabBarController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -1,5 +1,5 @@
 //
-//  PhotoCaptureViewController.h
+//  TGPhotoCaptureViewController.h
 //  Test
 //
 //  Created by Gleb Linkin on 10/14/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PhotoCaptureViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface TGPhotoCaptureViewController : UIViewController<UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 {
     UIImagePickerController *picker;

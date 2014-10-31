@@ -1,5 +1,5 @@
 //
-//  imageCell.h
+//  TGImageCell.h
 //  Test
 //
 //  Created by Gleb Linkin on 10/10/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface imageCell : UITableViewCell
+@interface TGImageCell : UITableViewCell
 
 
 @property (weak, nonatomic) IBOutlet UIImageView *cellImageView;

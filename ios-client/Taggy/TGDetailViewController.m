@@ -1,16 +1,16 @@
 //
-//  DetailViewController.m
+//  TGDetailViewController.m
 //  Test
 //
 //  Created by Gleb Linkin on 10/11/14.
 //  Copyright (c) 2014 Gleb Linkin. All rights reserved.
 //
 
-#import "DetailViewController.h"
-#import "Data.h"
-#import "ViewController.h"
+#import "TGDetailViewController.h"
+#import "TGData.h"
+#import "TGViewController.h"
 
-@implementation DetailViewController
+@implementation TGDetailViewController
 
 -(void)viewDidLoad
 {

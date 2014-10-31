@@ -1,5 +1,5 @@
 //
-//  Data.h
+//  TGData.h
 //  Test
 //
 //  Created by Gleb Linkin on 10/10/14.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface Data : NSObject
+@interface TGData : NSObject
 
 @property(nonatomic, copy) NSString *Btransf;
 @property(nonatomic, copy) NSString *Atransf;

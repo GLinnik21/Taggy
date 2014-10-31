@@ -1,28 +1,28 @@
 //
-//  PhotoCaptureViewController.m
+//  TGPhotoCaptureViewController.m
 //  Test
 //
 //  Created by Gleb Linkin on 10/14/14.
 //  Copyright (c) 2014 Gleb Linkin. All rights reserved.
 //
 
-#import "PhotoCaptureViewController.h"
-#import "ViewController.h"
-#import "Data.h"
-#import "imageCell.h"
+#import "TGPhotoCaptureViewController.h"
+#import "TGViewController.h"
+#import "TGData.h"
+#import "TGImageCell.h"
 #import <TesseractOCR/Tesseract.h>
 #import <CoreImage/CoreImage.h>
 #import "TGPriceRecognizer.h"
 
 static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
 
-@interface PhotoCaptureViewController() <TesseractDelegate>
+@interface TGPhotoCaptureViewController() <TesseractDelegate>
 
 @property (nonatomic, weak) IBOutlet UIImageView *imageview;
 
 @end
 
-@implementation PhotoCaptureViewController
+@implementation TGPhotoCaptureViewController
 
 -(IBAction)TakePhoto{
     picker = [[UIImagePickerController alloc] init];

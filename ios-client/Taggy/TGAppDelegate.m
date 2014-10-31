@@ -1,18 +1,18 @@
 //
-//  AppDelegate.m
+//  TGAppDelegate.m
 //  Test
 //
 //  Created by Gleb Linkin on 9/29/14.
 //  Copyright (c) 2014 Gleb Linkin. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "TGAppDelegate.h"
 
-@interface AppDelegate ()
+@interface TGAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation TGAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
