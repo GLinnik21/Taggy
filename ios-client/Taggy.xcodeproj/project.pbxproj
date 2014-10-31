@@ -130,6 +130,78 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		41A9D04C1A038B5100922CBC /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				ED077A1C19F93FE300B203CB /* Main.storyboard */,
+				41A9D0521A038BC000922CBC /* Common */,
+				41A9D04E1A038B6500922CBC /* Views */,
+				41A9D04D1A038B5800922CBC /* ViewControllers */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		41A9D04D1A038B5800922CBC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				ED077A1919F93FE300B203CB /* TGViewController.h */,
+				ED077A1A19F93FE300B203CB /* TGViewController.m */,
+				ED077A6719F940F700B203CB /* TGPhotoCaptureViewController.h */,
+				ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */,
+				ED077A6219F940F700B203CB /* TGDetailViewController.h */,
+				ED077A6319F940F700B203CB /* TGDetailViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		41A9D04E1A038B6500922CBC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ED077A6419F940F700B203CB /* TGImageCell.h */,
+				ED077A6519F940F700B203CB /* TGImageCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		41A9D04F1A038B8700922CBC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				41A9D0511A038BA000922CBC /* Storage */,
+				41A9D0501A038B8D00922CBC /* Recognition */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		41A9D0501A038B8D00922CBC /* Recognition */ = {
+			isa = PBXGroup;
+			children = (
+				410C200519FE745B0082C66C /* tessdata */,
+				41A9D0461A00F2A700922CBC /* TGRecognizedBlock.h */,
+				41A9D0471A00F2A700922CBC /* TGRecognizedBlock.m */,
+				41A9D0491A022F6400922CBC /* TGPriceRecognizer.h */,
+				41A9D04A1A022F6500922CBC /* TGPriceRecognizer.m */,
+			);
+			name = Recognition;
+			sourceTree = "<group>";
+		};
+		41A9D0511A038BA000922CBC /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				ED077A6019F940F700B203CB /* TGData.h */,
+				ED077A6119F940F700B203CB /* TGData.m */,
+			);
+			name = Storage;
+			sourceTree = "<group>";
+		};
+		41A9D0521A038BC000922CBC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				ED077A7319F9448E00B203CB /* TGCustomTabBarController.h */,
+				ED077A7419F9448E00B203CB /* TGCustomTabBarController.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		60F7A1E202F18365195CEA81 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,29 +242,10 @@
 		ED077A1119F93FE300B203CB /* Taggy */ = {
 			isa = PBXGroup;
 			children = (
-				410C200519FE745B0082C66C /* tessdata */,
-				ED077A7319F9448E00B203CB /* TGCustomTabBarController.h */,
-				ED077A7419F9448E00B203CB /* TGCustomTabBarController.m */,
-				ED077A6019F940F700B203CB /* TGData.h */,
-				ED077A6119F940F700B203CB /* TGData.m */,
-				ED077A6219F940F700B203CB /* TGDetailViewController.h */,
-				ED077A6319F940F700B203CB /* TGDetailViewController.m */,
-				ED077A6419F940F700B203CB /* TGImageCell.h */,
-				ED077A6519F940F700B203CB /* TGImageCell.m */,
-				ED077A6719F940F700B203CB /* TGPhotoCaptureViewController.h */,
-				ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */,
+				41A9D04F1A038B8700922CBC /* Core */,
+				41A9D04C1A038B5100922CBC /* UI */,
 				ED077A1619F93FE300B203CB /* TGAppDelegate.h */,
 				ED077A1719F93FE300B203CB /* TGAppDelegate.m */,
-				ED077A1919F93FE300B203CB /* TGViewController.h */,
-				ED077A1A19F93FE300B203CB /* TGViewController.m */,
-				41A9D0461A00F2A700922CBC /* TGRecognizedBlock.h */,
-				41A9D0471A00F2A700922CBC /* TGRecognizedBlock.m */,
-				41A9D0491A022F6400922CBC /* TGPriceRecognizer.h */,
-				41A9D04A1A022F6500922CBC /* TGPriceRecognizer.m */,
-				ED077A1C19F93FE300B203CB /* Main.storyboard */,
-				ED077A2119F93FE300B203CB /* LaunchScreen.xib */,
-				ED077A6619F940F700B203CB /* Images.xcassets */,
-				ED077A3819F9405E00B203CB /* Resources */,
 				ED077A1219F93FE300B203CB /* Supporting Files */,
 			);
 			path = Taggy;
@@ -201,6 +254,9 @@
 		ED077A1219F93FE300B203CB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ED077A6619F940F700B203CB /* Images.xcassets */,
+				ED077A3819F9405E00B203CB /* Resources */,
+				ED077A2119F93FE300B203CB /* LaunchScreen.xib */,
 				ED077A1319F93FE300B203CB /* Info.plist */,
 				ED077A1419F93FE300B203CB /* main.m */,
 			);
