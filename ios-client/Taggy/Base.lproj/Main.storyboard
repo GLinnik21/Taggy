@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Wnc-nd-Cx3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="Wnc-nd-Cx3">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <deployment defaultVersion="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
         <!--Сканер-->
         <scene sceneID="Ubn-tF-v6l">
             <objects>
-                <viewController id="G5l-i6-tbZ" customClass="PhotoCaptureViewController" sceneMemberID="viewController">
+                <viewController id="G5l-i6-tbZ" customClass="TGPhotoCaptureViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lIJ-kn-CEM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -53,7 +53,7 @@
         <!--Результаты-->
         <scene sceneID="G5w-Yh-xCf">
             <objects>
-                <viewController id="sLy-DR-MhB" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="sLy-DR-MhB" customClass="TGViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gVY-mh-cxc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -63,7 +63,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ImageCell" rowHeight="64" id="IdO-uy-VMI" customClass="imageCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ImageCell" rowHeight="64" id="IdO-uy-VMI" customClass="TGImageCell">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IdO-uy-VMI" id="mAA-pU-uQZ">
@@ -128,7 +128,7 @@
         <!--Detail View Controller-->
         <scene sceneID="Cr0-1I-sPr">
             <objects>
-                <viewController id="nlV-8a-42T" customClass="DetailViewController" sceneMemberID="viewController">
+                <viewController id="nlV-8a-42T" customClass="TGDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ARo-gT-8C8">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -208,7 +208,7 @@
         <!--Custom Tab Bar Controller-->
         <scene sceneID="d7H-zO-dd8">
             <objects>
-                <tabBarController id="Wnc-nd-Cx3" customClass="CustomTabBarController" sceneMemberID="viewController">
+                <tabBarController id="Wnc-nd-Cx3" customClass="TGCustomTabBarController" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="g2P-py-6wP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>

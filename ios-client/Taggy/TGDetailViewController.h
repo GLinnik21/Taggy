@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Data.h"
+#import "TGData.h"
 
 @interface TGDetailViewController : UIViewController
 
-@property (nonatomic, strong) Data *detail;
+@property (nonatomic, strong) TGData *detail;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;

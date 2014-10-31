@@ -57,11 +57,11 @@ static NSString *const kSendingURL = @"http://taggy-api.bx23.net/Home/Convert";
                       cancelButtonTitle:@"ОК"
                       otherButtonTitles:nil]show];
 
-    Data *item = [[Data alloc] init];
+    TGData *item = [[TGData alloc] init];
     item.image = image;
     item.Btransf = [NSString stringWithFormat:@"%@ $", converted];
     item.Atransf = [NSString stringWithFormat:@"%@ руб", recognizedValue];
-    [Data addObject:item];
+    [TGData addObject:item];
     [self.imageview setImage:image];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }

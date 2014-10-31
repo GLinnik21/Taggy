@@ -19,7 +19,7 @@
     [self reloadData];
 }
 
-- (void)setDetail:(Data *)detail
+- (void)setDetail:(TGData *)detail
 {
     _detail=detail;
 }

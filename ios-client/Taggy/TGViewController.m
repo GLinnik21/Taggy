@@ -53,16 +53,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [Data currentData].count;
+    return [TGData currentData].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 //    static NSString *const CellId = @"Cell";
     static NSString *const ImageCellId = @"ImageCell";
-    imageCell *cell = [tableView dequeueReusableCellWithIdentifier:ImageCellId];
+    TGImageCell *cell = [tableView dequeueReusableCellWithIdentifier:ImageCellId];
     
-    Data *item = [Data currentData][indexPath.row];
+    TGData *item = [TGData currentData][indexPath.row];
     cell.cellImageView.image = item.image;
     cell.cellAtransfLabel.text = item.Atransf;
     cell.cellBtransfLabel.text = item.Btransf;
@@ -75,8 +75,8 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Remove the row from data model
-    NSArray *currentData = [Data currentData];
-    [Data removeObject:currentData[indexPath.row]];
+    NSArray *currentData = [TGData currentData];
+    [TGData removeObject:currentData[indexPath.row]];
     
     // Request table view to reload
     //[tableView reloadData];
@@ -91,7 +91,7 @@
 {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     if (indexPath) {
-        Data *item = [[Data currentData] objectAtIndex:indexPath.row];
+        TGData *item = [[TGData currentData] objectAtIndex:indexPath.row];
         [segue.destinationViewController setDetail:item];
     }
 }
