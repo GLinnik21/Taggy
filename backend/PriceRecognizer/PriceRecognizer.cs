@@ -5,11 +5,61 @@ using System.Drawing;
 using Puma.Net;
 using tessnet2;
 using System.IO;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 
 namespace PriceRecognizer
 {
     public static class PriceRecognizer
     {
+		public static Bitmap ToBlackAndWhite(Bitmap b)
+		{
+			var bmp = b;
+			// Задаём формат Пикселя.
+			PixelFormat pxf = PixelFormat.Format24bppRgb;
+
+			// Получаем данные картинки.
+			Rectangle rect = new Rectangle(0, 0, bmp.Width, bmp.Height);
+			//Блокируем набор данных изображения в памяти
+			BitmapData bmpData = bmp.LockBits(rect, ImageLockMode.ReadWrite, pxf);
+
+			// Получаем адрес первой линии.
+			IntPtr ptr = bmpData.Scan0;
+
+			// Задаём массив из Byte и помещаем в него надор данных.
+			// int numBytes = bmp.Width * bmp.Height * 3; 
+			//На 3 умножаем - поскольку RGB цвет кодируется 3-мя байтами
+			//Либо используем вместо Width - Stride
+			int numBytes = bmpData.Stride * bmp.Height;
+			int widthBytes = bmpData.Stride;
+			byte[] rgbValues = new byte[numBytes];
+
+			// Копируем значения в массив.
+			Marshal.Copy(ptr, rgbValues, 0, numBytes);
+
+			// Перебираем пикселы по 3 байта на каждый и меняем значения
+			for (int counter = 0; counter < rgbValues.Length-2; counter += 3)
+			{
+
+				int value = rgbValues[counter] + rgbValues[counter + 1] + rgbValues[counter + 2];
+				byte color_b = 0;
+
+				color_b = Convert.ToByte(value / 3);
+
+
+				rgbValues[counter] = color_b;
+				rgbValues[counter + 1] = color_b;
+				rgbValues[counter + 2] = color_b;
+
+			}
+			// Копируем набор данных обратно в изображение
+			Marshal.Copy(rgbValues, 0, ptr, numBytes);
+
+			// Разблокируем набор данных изображения в памяти.
+			bmp.UnlockBits(bmpData);
+			return bmp;
+		}
+
         public static string ParseImage(Bitmap bitmap)
         {
 			string toReturn = "";
@@ -22,15 +72,6 @@ namespace PriceRecognizer
 				toReturn += word.Text;
 				toReturn += ' ';
 			}
-           /* var pumaPage = new PumaPage(bitmap);//new PumaPage(@"D:\картинки\ценники\9e5208a1d53c9f7d9d18aa3e47773e6d.jpg");
-            using (pumaPage)
-            {
-                pumaPage.FileFormat = PumaFileFormat.RtfAnsi;
-                pumaPage.EnableSpeller = true;// Изначально False
-                pumaPage.Language = PumaLanguage.Russian; // puma.checklanguage попробовать
-
-                return pumaPage.RecognizeToString();
-            }*/
 			return toReturn;
         }
 
