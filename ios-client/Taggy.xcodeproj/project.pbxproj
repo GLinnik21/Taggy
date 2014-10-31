@@ -355,6 +355,7 @@
 		ED077A0719F93FE300B203CB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = TG;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Gleb Linkin";
 				TargetAttributes = {
