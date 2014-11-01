@@ -63,15 +63,18 @@ namespace PriceRecognizer
         public static string ParseImage(Bitmap bitmap)
         {
 			string toReturn = "";
-			var ocr  =  new Tesseract();
-			ocr.SetVariable("tessedit_char_whitelist", "0123456789йцукенгшщзхъэждлорпавыфячсмитьбю");
-			string dir = String.Format(Directory.GetCurrentDirectory().ToString() + "\\Content\\tessdata");
-			ocr.Init(dir, "rus", false);
-			var result = ocr.DoOCR (bitmap, Rectangle.Empty);
-			foreach (var word in result) {
-				toReturn += word.Text;
-				toReturn += ' ';
+			PumaPage pumaPage = new PumaPage (ToBlackAndWhite(bitmap));
+
+			using (pumaPage) {
+				pumaPage.FileFormat = PumaFileFormat.TxtAscii;
+				pumaPage.AutoRotateImage = true;
+				pumaPage.EnableSpeller = false;
+				pumaPage.RecognizeTables = true;
+				pumaPage.FontSettings.DetectItalic = true;
+				pumaPage.Language = PumaLanguage.Russian;
+				toReturn = pumaPage.RecognizeToString ();
 			}
+
 			return toReturn;
         }
 
