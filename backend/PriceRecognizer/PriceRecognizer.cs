@@ -57,6 +57,15 @@ namespace PriceRecognizer
 
 			// Разблокируем набор данных изображения в памяти.
 			bmp.UnlockBits(bmpData);
+
+			/*for (int i = 1; i < bmp.Width; i++)
+				for (int j = 1; j < bmp.Height; j++) {
+					Color c;
+					if ((c = bmp.GetPixel (i, j)) != Color.Black || (c = bmp.GetPixel (i, j)) != Color.DarkGray) {
+						bmp.SetPixel (i, j, Color.White);
+					}
+				}*/
+		
 			return bmp;
 		}
 
@@ -70,8 +79,9 @@ namespace PriceRecognizer
 				pumaPage.AutoRotateImage = true;
 				pumaPage.EnableSpeller = false;
 				pumaPage.RecognizeTables = true;
-				pumaPage.FontSettings.DetectItalic = true;
+				//pumaPage.FontSettings.DetectItalic = true;
 				pumaPage.Language = PumaLanguage.Russian;
+
 				toReturn = pumaPage.RecognizeToString ();
 			}
 
