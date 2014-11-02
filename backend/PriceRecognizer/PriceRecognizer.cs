@@ -15,29 +15,18 @@ namespace PriceRecognizer
 		public static Bitmap ToBlackAndWhite(Bitmap b)
 		{
 			var bmp = b;
-			// Задаём формат Пикселя.
 			PixelFormat pxf = PixelFormat.Format24bppRgb;
-
-			// Получаем данные картинки.
 			Rectangle rect = new Rectangle(0, 0, bmp.Width, bmp.Height);
-			//Блокируем набор данных изображения в памяти
-			BitmapData bmpData = bmp.LockBits(rect, ImageLockMode.ReadWrite, pxf);
 
-			// Получаем адрес первой линии.
+			BitmapData bmpData = bmp.LockBits(rect, ImageLockMode.ReadWrite, pxf);
 			IntPtr ptr = bmpData.Scan0;
 
-			// Задаём массив из Byte и помещаем в него надор данных.
-			// int numBytes = bmp.Width * bmp.Height * 3; 
-			//На 3 умножаем - поскольку RGB цвет кодируется 3-мя байтами
-			//Либо используем вместо Width - Stride
 			int numBytes = bmpData.Stride * bmp.Height;
 			int widthBytes = bmpData.Stride;
 			byte[] rgbValues = new byte[numBytes];
 
-			// Копируем значения в массив.
 			Marshal.Copy(ptr, rgbValues, 0, numBytes);
 
-			// Перебираем пикселы по 3 байта на каждый и меняем значения
 			for (int counter = 0; counter < rgbValues.Length-2; counter += 3)
 			{
 
@@ -52,20 +41,9 @@ namespace PriceRecognizer
 				rgbValues[counter + 2] = color_b;
 
 			}
-			// Копируем набор данных обратно в изображение
+
 			Marshal.Copy(rgbValues, 0, ptr, numBytes);
-
-			// Разблокируем набор данных изображения в памяти.
 			bmp.UnlockBits(bmpData);
-
-			/*for (int i = 1; i < bmp.Width; i++)
-				for (int j = 1; j < bmp.Height; j++) {
-					Color c;
-					if ((c = bmp.GetPixel (i, j)) != Color.Black || (c = bmp.GetPixel (i, j)) != Color.DarkGray) {
-						bmp.SetPixel (i, j, Color.White);
-					}
-				}*/
-		
 			return bmp;
 		}
 
@@ -164,13 +142,16 @@ namespace PriceRecognizer
                     toRemove.Add(str);
                 } else if (str[0] == '0' || str[str.Length - 1] != '0') {
                     toRemove.Add(str);
-                } else if (splited.Count > 1)
-                if (Convert.ToInt32(str) < 1000) {
+                } // else if (splited.Count > 1)
+
+             /*  if (Convert.ToInt32(str) < 1000)
+				{
                     toRemove.Add(str);
                 }
-                //int a = Convert.ToInt32(str);
+                //int a = Convert.ToInt32(str); */
 
             }
+
 
             foreach (string str in toRemove) { // ContainsDigits
                 if (splited.Contains(str))
