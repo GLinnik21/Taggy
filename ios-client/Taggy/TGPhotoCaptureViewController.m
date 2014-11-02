@@ -7,6 +7,8 @@
 //
 
 #import "TGPhotoCaptureViewController.h"
+
+#import <ARAnalytics/ARAnalytics.h>
 #import "TGViewController.h"
 #import "TGData.h"
 #import "TGImageCell.h"
@@ -16,6 +18,9 @@
 
 @property (nonatomic, weak) IBOutlet UIImageView *imageview;
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
+
+@property (nonatomic, weak) UIImagePickerController *takePhotoPicker;
+@property (nonatomic, weak) UIImagePickerController *chooseExistingPicker;
 
 @end
 
@@ -27,6 +32,9 @@
     picker.delegate = self;
     [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
     [self presentViewController:picker animated:YES completion:NULL];
+    self.takePhotoPicker = picker;
+
+    [ARAnalytics event:@"Take photo"];
 }
 
 - (IBAction)chooseExisting
@@ -35,10 +43,20 @@
     picker.delegate = self;
     [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     [self presentViewController:picker animated:YES completion:NULL];
+    self.chooseExistingPicker = picker;
+
+    [ARAnalytics event:@"Choose existing photo"];
 }
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    if (picker == self.takePhotoPicker) {
+        [ARAnalytics event:@"Photo takken"];
+    }
+    else if (picker == self.chooseExistingPicker) {
+        [ARAnalytics event:@"Existing photo choosen"];
+    }
+
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 
     TGPriceRecognizer *recognizer = [[TGPriceRecognizer alloc] init];
@@ -61,6 +79,9 @@
     item.image = image;
     item.convertedPrice = [NSString stringWithFormat:@"%@ $", converted];
     item.sourcePrice = [NSString stringWithFormat:@"%@ руб", recognizedValue];
+
+    [ARAnalytics event:@"Converted"
+        withProperties:@{ @"from" : item.sourcePrice, @"to" : item.convertedPrice}];
     
     [TGData addObject:item];
     [self.imageview setImage:image];
