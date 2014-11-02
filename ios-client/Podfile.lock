@@ -1,7 +1,9 @@
 PODS:
+  - InAppSettingsKit (2.2)
   - TesseractOCRiOS (2.3)
 
 DEPENDENCIES:
+  - InAppSettingsKit (~> 2.1)
   - TesseractOCRiOS (from `.`)
 
 EXTERNAL SOURCES:
@@ -9,6 +11,7 @@ EXTERNAL SOURCES:
     :podspec: .
 
 SPEC CHECKSUMS:
+  InAppSettingsKit: 08d5d21057973c5fd6cd9f7063fc27f73aa0d7a3
   TesseractOCRiOS: 2739fa5bf0a2f4ff18d5630bf980cfd787a3e3b6
 
-COCOAPODS: 0.34.2
+COCOAPODS: 0.34.4

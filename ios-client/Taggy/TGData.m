@@ -18,19 +18,19 @@
     
     item = [[TGData alloc] init];
     item.convertedPrice = @"$4.53";
-    item.sourcePrice = @"BYR48400";
+    item.sourcePrice = @"48400р.";
     item.image = [UIImage imageNamed:@"1"];
     [result addObject:item];
     
     item = [[TGData alloc] init];
     item.convertedPrice = @"₽110";
-    item.sourcePrice = @"BYR29100";
+    item.sourcePrice = @"29100р.";
     item.image = [UIImage imageNamed:@"2"];
     [result addObject:item];
     
     item = [[TGData alloc] init];
     item.convertedPrice = @"€24.99";
-    item.sourcePrice = @"BYR337000";
+    item.sourcePrice = @"337000р.";
     item.image = [UIImage imageNamed:@"3"];
     [result addObject:item];
     

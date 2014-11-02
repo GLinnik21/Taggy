@@ -26,7 +26,6 @@ static NSString *const kTGImageCellId = @"ImageCell";
     [super viewDidLoad];
     self.navigationItem.title = @"Результаты";
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.editButtonItem.title = @"Изменить";
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -34,11 +33,9 @@ static NSString *const kTGImageCellId = @"ImageCell";
     [super setEditing:editing animated:animated];
     if (editing) {
         [self.tableView setEditing:YES animated:YES];
-        self.editButtonItem.title = @"Готово";
     }
     else {
         [self.tableView setEditing:NO animated:YES];
-        self.editButtonItem.title = @"Изменить";
     }
 }
 
@@ -74,10 +71,6 @@ static NSString *const kTGImageCellId = @"ImageCell";
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return @"Удалить";
-}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

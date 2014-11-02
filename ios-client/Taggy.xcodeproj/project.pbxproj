@@ -44,6 +44,9 @@
 		ED2DE36D19FCFA8E008C69F2 /* PhotoButtonP.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2DE36B19FCFA8E008C69F2 /* PhotoButtonP.png */; };
 		ED2DE36E19FCFA8E008C69F2 /* PhotoButtonP@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2DE36C19FCFA8E008C69F2 /* PhotoButtonP@2x.png */; };
 		ED6C079119FAE3570000770D /* retina.png in Resources */ = {isa = PBXBuildFile; fileRef = ED6C079019FAE3570000770D /* retina.png */; };
+		ED7C11041A068AB00037C843 /* TGSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7C11031A068AB00037C843 /* TGSettingsViewController.m */; };
+		ED7C11071A069F220037C843 /* choose.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7C11051A069F220037C843 /* choose.png */; };
+		ED7C11081A069F220037C843 /* choose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7C11061A069F220037C843 /* choose@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +112,10 @@
 		ED2DE36B19FCFA8E008C69F2 /* PhotoButtonP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhotoButtonP.png; sourceTree = "<group>"; };
 		ED2DE36C19FCFA8E008C69F2 /* PhotoButtonP@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoButtonP@2x.png"; sourceTree = "<group>"; };
 		ED6C079019FAE3570000770D /* retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retina.png; sourceTree = "<group>"; };
+		ED7C11021A068AB00037C843 /* TGSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGSettingsViewController.h; sourceTree = "<group>"; };
+		ED7C11031A068AB00037C843 /* TGSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGSettingsViewController.m; sourceTree = "<group>"; };
+		ED7C11051A069F220037C843 /* choose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = choose.png; sourceTree = "<group>"; };
+		ED7C11061A069F220037C843 /* choose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "choose@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,10 +153,12 @@
 			children = (
 				ED077A1919F93FE300B203CB /* TGViewController.h */,
 				ED077A1A19F93FE300B203CB /* TGViewController.m */,
-				ED077A6719F940F700B203CB /* TGPhotoCaptureViewController.h */,
-				ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */,
 				ED077A6219F940F700B203CB /* TGDetailViewController.h */,
 				ED077A6319F940F700B203CB /* TGDetailViewController.m */,
+				ED077A6719F940F700B203CB /* TGPhotoCaptureViewController.h */,
+				ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */,
+				ED7C11021A068AB00037C843 /* TGSettingsViewController.h */,
+				ED7C11031A068AB00037C843 /* TGSettingsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -284,6 +293,8 @@
 		ED077A3819F9405E00B203CB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				ED7C11051A069F220037C843 /* choose.png */,
+				ED7C11061A069F220037C843 /* choose@2x.png */,
 				ED2DE36B19FCFA8E008C69F2 /* PhotoButtonP.png */,
 				ED2DE36C19FCFA8E008C69F2 /* PhotoButtonP@2x.png */,
 				ED2DE36719FCF8C4008C69F2 /* PhotoButton.png */,
@@ -408,6 +419,7 @@
 				ED077A4B19F9405E00B203CB /* 2.png in Resources */,
 				ED077A4C19F9405E00B203CB /* 3.png in Resources */,
 				ED077A5119F9405E00B203CB /* res@2x.png in Resources */,
+				ED7C11081A069F220037C843 /* choose@2x.png in Resources */,
 				ED077A5619F9405E00B203CB /* Taggy1.png in Resources */,
 				ED077A5219F9405E00B203CB /* scan.png in Resources */,
 				ED077A2319F93FE300B203CB /* LaunchScreen.xib in Resources */,
@@ -417,6 +429,7 @@
 				ED2DE36D19FCFA8E008C69F2 /* PhotoButtonP.png in Resources */,
 				ED077A5819F9405E00B203CB /* Taggy3.png in Resources */,
 				ED077A5019F9405E00B203CB /* res.textClipping in Resources */,
+				ED7C11071A069F220037C843 /* choose.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +484,7 @@
 				ED077A6F19F940F700B203CB /* TGPhotoCaptureViewController.m in Sources */,
 				ED077A6C19F940F700B203CB /* TGDetailViewController.m in Sources */,
 				41A9D04B1A022F6500922CBC /* TGPriceRecognizer.m in Sources */,
+				ED7C11041A068AB00037C843 /* TGSettingsViewController.m in Sources */,
 				ED077A1B19F93FE300B203CB /* TGViewController.m in Sources */,
 				ED077A1819F93FE300B203CB /* TGAppDelegate.m in Sources */,
 				ED077A1519F93FE300B203CB /* main.m in Sources */,
@@ -606,6 +620,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -620,6 +635,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
