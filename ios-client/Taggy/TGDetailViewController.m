@@ -7,7 +7,7 @@
 //
 
 #import "TGDetailViewController.h"
-#import "TGData.h"
+#import "TGPriceImage.h"
 
 @interface TGDetailViewController()
 
@@ -34,10 +34,14 @@
         return;
     }
 
-    self.navigationItem.title = self.detail.convertedPrice;
-    
-    self.targetPriceDetailLabel.text = self.detail.convertedPrice;
-    self.sourcePriceDetailLabel.text = self.detail.sourcePrice;
+    TGRecognizedPrice *firstPrice = self.detail.prices.firstObject;
+
+    self.navigationItem.title =
+        [NSString stringWithFormat:@"%f (%@)", firstPrice.value, [self.detail localizedCaptureDate]];
+
+    CGFloat convertedPrice = firstPrice.value * firstPrice.defaultCurrency.value;
+    self.targetPriceDetailLabel.text = [NSString stringWithFormat:@"%f", convertedPrice];
+    self.sourcePriceDetailLabel.text = [NSString stringWithFormat:@"%f", firstPrice.value];
     self.imageView.image = self.detail.image;
 
     self.scrollView.contentSize = self.scrollView.frame.size;

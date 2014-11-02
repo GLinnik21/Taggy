@@ -7,6 +7,8 @@
 //
 
 #import "TGAppDelegate.h"
+#import <ARAnalytics/ARAnalytics.h>
+#import "TGDataManager.h"
 
 @interface TGAppDelegate ()
 
@@ -15,6 +17,13 @@
 @implementation TGAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [ARAnalytics setupWithAnalytics:@{
+                                      ARFlurryAPIKey : @"R28M5M82FH2X33XCQW4N",
+                                      ARGoogleAnalyticsID : @"UA-9189602-6"
+                                      }];
+
+    [TGDataManager fillSample];
+
     return YES;
 }
 
