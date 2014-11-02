@@ -10,7 +10,7 @@
 
 #import <ARAnalytics/ARAnalytics.h>
 #import "TGImageCell.h"
-#import "TGData.h"
+#import "TGDataManager.h"
 #import "TGDetailViewController.h"
 
 static NSString *const kTGImageCellId = @"ImageCell";
@@ -53,30 +53,31 @@ static NSString *const kTGImageCellId = @"ImageCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [TGData currentData].count;
+    return [TGDataManager recognizedImagesCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TGImageCell *cell = [tableView dequeueReusableCellWithIdentifier:kTGImageCellId];
     
-    TGData *item = [TGData currentData][indexPath.row];
-    cell.cellImageView.image = item.image;
-    cell.cellSourcePriceLabel.text = item.sourcePrice;
-    cell.cellConvertedPriceLabel.text = item.convertedPrice;
+    TGPriceImage *item = [TGDataManager recognizedImageAtIndex:indexPath.row];
+    cell.cellImageView.image = item.thumbnail;
+
+    TGRecognizedPrice *firstPrice = item.prices.firstObject;
+    cell.cellSourcePriceLabel.text = [NSString stringWithFormat:@"%f", firstPrice.value];
+    cell.cellConvertedPriceLabel.text =
+        [NSString stringWithFormat:@"%f", firstPrice.value * firstPrice.defaultCurrency.value];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *currentData = [TGData currentData];
-    TGData *item = currentData[indexPath.row];
+    TGPriceImage *item = [TGDataManager recognizedImageAtIndex:indexPath.row];
 
-    [ARAnalytics event:@"Item been deleted"
-        withProperties:@{ @"from" : item.sourcePrice, @"to" : item.convertedPrice}];
+    [ARAnalytics event:@"Item been deleted"];
 
-    [TGData removeObject:item];
+    [TGDataManager removeRecognizedImage:item];
 
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
 }
@@ -90,10 +91,9 @@ static NSString *const kTGImageCellId = @"ImageCell";
 {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     if (indexPath != nil) {
-        TGData *item = [[TGData currentData] objectAtIndex:indexPath.row];
+        TGPriceImage *item = [TGDataManager recognizedImageAtIndex:indexPath.row];
 
-        [ARAnalytics event:@"Item opened"
-            withProperties:@{ @"from" : item.sourcePrice, @"to" : item.convertedPrice}];
+        [ARAnalytics event:@"Item opened"];
 
         [segue.destinationViewController setDetail:item];
     }

@@ -7,6 +7,7 @@
 //
 
 #import "TGPriceRecognizer.h"
+#import "TGCommon.h"
 #import <TesseractOCR/Tesseract.h>
 #import <CoreImage/CoreImage.h>
 #import <ARAnalytics/ARAnalytics.h>
@@ -47,7 +48,7 @@ static CGFloat const kTGMaximumVerticalDelta = 10.0f;
 - (void)setImage:(UIImage *)image
 {
     if (_image != image) {
-        _image = [self imageWithImage:image scaledToSizeWithSameAspectRatio:CGSizeMake(500, 500)];
+        _image = [TGCommon imageWithImage:image scaledToSizeWithSameAspectRatio:CGSizeMake(500, 500)];
 
         self.tesseract.image = [_image blackAndWhite];
     }
@@ -81,6 +82,7 @@ static CGFloat const kTGMaximumVerticalDelta = 10.0f;
         //[self removeSmallBlocks];
         [self sortBlocks];
         [self joinBlocks];
+        [self removeBadPrices];
 
         [self formatPrices];
 
@@ -214,14 +216,20 @@ static CGFloat const kTGMaximumVerticalDelta = 10.0f;
     } while (anyFound);
 }
 
+- (void)removeBadPrices
+{
+    NSMutableArray *newBlocks = [[NSMutableArray alloc] initWithCapacity:self.wellRecognizedBlocks.count];
+    for (TGRecognizedBlock *block in self.wellRecognizedBlocks) {
+        if ([[block number] floatValue] < 10) continue;
+
+        [newBlocks addObject:block];
+    }
+    self.wellRecognizedBlocks = newBlocks;
+}
+
 - (void)formatPrices
 {
-    NSMutableArray *results = [[NSMutableArray alloc] initWithCapacity:self.wellRecognizedBlocks.count];
-    for (TGRecognizedBlock *block in self.wellRecognizedBlocks) {
-        [results addObject:[block number]];
-    }
-
-    self.recognizedPrices = results;
+    self.recognizedPrices = self.wellRecognizedBlocks;
 }
 
 - (UIImage *)debugImage
@@ -236,40 +244,6 @@ static CGFloat const kTGMaximumVerticalDelta = 10.0f;
     [recognizer recognize];
     
     return recognizer.recognizedPrices;
-}
-
-- (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSizeWithSameAspectRatio:(CGSize)targetSize
-{
-    CGSize imageSize = sourceImage.size;
-    CGFloat width = imageSize.width;
-    CGFloat height = imageSize.height;
-    CGFloat targetWidth = targetSize.width;
-    CGFloat targetHeight = targetSize.height;
-
-    CGFloat scaleFactor = 1.0f;
-    CGFloat scaledWidth = targetWidth;
-    CGFloat scaledHeight = targetHeight;
-
-    if (CGSizeEqualToSize(imageSize, targetSize) == NO) {
-        CGFloat widthFactor = targetWidth / width;
-        CGFloat heightFactor = targetHeight / height;
-
-        if (widthFactor < heightFactor) {
-            scaleFactor = widthFactor;
-        }
-        else {
-            scaleFactor = heightFactor;
-        }
-
-        scaledWidth  = width * scaleFactor;
-        scaledHeight = height * scaleFactor;
-    }
-
-    UIGraphicsBeginImageContext(CGSizeMake(scaledWidth, scaledHeight));
-    [sourceImage drawInRect: CGRectMake(0, 0, scaledWidth, scaledHeight)];
-    UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    return smallImage;
 }
 
 @end

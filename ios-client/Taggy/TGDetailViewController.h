@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class TGData;
+@class TGPriceImage;
 
 @interface TGDetailViewController : UIViewController
 
-@property (nonatomic, weak) TGData *detail;
+@property (nonatomic, weak) TGPriceImage *detail;
 
 @end

@@ -10,9 +10,8 @@
 
 #import <ARAnalytics/ARAnalytics.h>
 #import "TGViewController.h"
-#import "TGData.h"
 #import "TGImageCell.h"
-#import "TGPriceRecognizer.h"
+#import "TGDataManager.h"
 
 @interface TGPhotoCaptureViewController() <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -59,37 +58,29 @@
 
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 
-    TGPriceRecognizer *recognizer = [[TGPriceRecognizer alloc] init];
-    recognizer.image = image;
-    [recognizer recognize];
+    [TGDataManager recognizeImage:image withCallback:^(TGPriceImage *priceImage) {
+        [[[UIAlertView alloc] initWithTitle:@"Распознанные цены"
+                                    message:priceImage.prices.description
+                                   delegate:nil
+                          cancelButtonTitle:@"ОК"
+                          otherButtonTitles:nil]show];
 
-    image = [recognizer debugImage];
+        [self.imageview setImage:priceImage.image];
+    }];
 
-    NSArray *recognized = recognizer.recognizedPrices;
-    NSNumber *recognizedValue = [recognized firstObject];
-    NSNumber *converted = @([recognizedValue floatValue] / 35);
-
-    [[[UIAlertView alloc] initWithTitle:@"Распознанные цены"
-                                message:[[recognizer recognizedPrices] description]
-                               delegate:nil
-                      cancelButtonTitle:@"ОК"
-                      otherButtonTitles:nil]show];
-
-    TGData *item = [[TGData alloc] init];
-    item.image = image;
-    item.convertedPrice = [NSString stringWithFormat:@"%@ $", converted];
-    item.sourcePrice = [NSString stringWithFormat:@"%@ руб", recognizedValue];
-
-    [ARAnalytics event:@"Converted"
-        withProperties:@{ @"from" : item.sourcePrice, @"to" : item.convertedPrice}];
-    
-    [TGData addObject:item];
     [self.imageview setImage:image];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
+    if (picker == self.takePhotoPicker) {
+        [ARAnalytics event:@"Photo not takken"];
+    }
+    else if (picker == self.chooseExistingPicker) {
+        [ARAnalytics event:@"Existing photo not choosen"];
+    }
+
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
