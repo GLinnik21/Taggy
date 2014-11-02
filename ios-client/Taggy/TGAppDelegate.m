@@ -8,6 +8,7 @@
 
 #import "TGAppDelegate.h"
 #import <ARAnalytics/ARAnalytics.h>
+#import "TGDataManager.h"
 
 @interface TGAppDelegate ()
 
@@ -20,6 +21,9 @@
                                       ARFlurryAPIKey : @"R28M5M82FH2X33XCQW4N",
                                       ARGoogleAnalyticsID : @"UA-9189602-6"
                                       }];
+
+    [TGDataManager fillSample];
+
     return YES;
 }
 

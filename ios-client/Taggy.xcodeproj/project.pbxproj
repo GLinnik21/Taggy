@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		410C200619FE745B0082C66C /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 410C200519FE745B0082C66C /* tessdata */; };
 		419876F919FFBAE500EA58DF /* testImages in Resources */ = {isa = PBXBuildFile; fileRef = 419876F819FFBAE500EA58DF /* testImages */; };
+		41A76FB81A05226900176A14 /* TGCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A76FB71A05226900176A14 /* TGCurrency.m */; };
+		41A76FBB1A05335100176A14 /* TGPriceImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A76FBA1A05335100176A14 /* TGPriceImage.m */; };
+		41A76FBE1A05343800176A14 /* TGRecognizedPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A76FBD1A05343800176A14 /* TGRecognizedPrice.m */; };
+		41A76FC21A05A1D800176A14 /* TGCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A76FC11A05A1D800176A14 /* TGCommon.m */; };
+		41A76FC51A05A43600176A14 /* TGDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A76FC41A05A43600176A14 /* TGDataManager.m */; };
 		41A9D0481A00F2A700922CBC /* TGRecognizedBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A9D0471A00F2A700922CBC /* TGRecognizedBlock.m */; };
 		41A9D04B1A022F6500922CBC /* TGPriceRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A9D04A1A022F6500922CBC /* TGPriceRecognizer.m */; };
 		E1333C0F2263E54E9C49B26F /* libPods-Taggy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9526B84B57BF771D8B42008E /* libPods-Taggy.a */; };
@@ -33,7 +38,6 @@
 		ED077A5819F9405E00B203CB /* Taggy3.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A4719F9405E00B203CB /* Taggy3.png */; };
 		ED077A5919F9405E00B203CB /* Taggy4.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A4819F9405E00B203CB /* Taggy4.png */; };
 		ED077A5A19F9405E00B203CB /* VASAG.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A4919F9405E00B203CB /* VASAG.png */; };
-		ED077A6B19F940F700B203CB /* TGData.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A6119F940F700B203CB /* TGData.m */; };
 		ED077A6C19F940F700B203CB /* TGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A6319F940F700B203CB /* TGDetailViewController.m */; };
 		ED077A6D19F940F700B203CB /* TGImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A6519F940F700B203CB /* TGImageCell.m */; };
 		ED077A6E19F940F700B203CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED077A6619F940F700B203CB /* Images.xcassets */; };
@@ -60,6 +64,16 @@
 		395A8A22D6331D24085F5332 /* Pods-Taggy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taggy/Pods-Taggy.release.xcconfig"; sourceTree = "<group>"; };
 		410C200519FE745B0082C66C /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		419876F819FFBAE500EA58DF /* testImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = testImages; sourceTree = "<group>"; };
+		41A76FB61A05226900176A14 /* TGCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGCurrency.h; sourceTree = "<group>"; };
+		41A76FB71A05226900176A14 /* TGCurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGCurrency.m; sourceTree = "<group>"; };
+		41A76FB91A05335100176A14 /* TGPriceImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGPriceImage.h; sourceTree = "<group>"; };
+		41A76FBA1A05335100176A14 /* TGPriceImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGPriceImage.m; sourceTree = "<group>"; };
+		41A76FBC1A05343800176A14 /* TGRecognizedPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGRecognizedPrice.h; sourceTree = "<group>"; };
+		41A76FBD1A05343800176A14 /* TGRecognizedPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGRecognizedPrice.m; sourceTree = "<group>"; };
+		41A76FC01A05A1D800176A14 /* TGCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGCommon.h; sourceTree = "<group>"; };
+		41A76FC11A05A1D800176A14 /* TGCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGCommon.m; sourceTree = "<group>"; };
+		41A76FC31A05A43600176A14 /* TGDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGDataManager.h; sourceTree = "<group>"; };
+		41A76FC41A05A43600176A14 /* TGDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGDataManager.m; sourceTree = "<group>"; };
 		41A9D0461A00F2A700922CBC /* TGRecognizedBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGRecognizedBlock.h; sourceTree = "<group>"; };
 		41A9D0471A00F2A700922CBC /* TGRecognizedBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGRecognizedBlock.m; sourceTree = "<group>"; };
 		41A9D0491A022F6400922CBC /* TGPriceRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGPriceRecognizer.h; sourceTree = "<group>"; };
@@ -93,8 +107,6 @@
 		ED077A4719F9405E00B203CB /* Taggy3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Taggy3.png; sourceTree = "<group>"; };
 		ED077A4819F9405E00B203CB /* Taggy4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Taggy4.png; sourceTree = "<group>"; };
 		ED077A4919F9405E00B203CB /* VASAG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VASAG.png; sourceTree = "<group>"; };
-		ED077A6019F940F700B203CB /* TGData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGData.h; sourceTree = "<group>"; };
-		ED077A6119F940F700B203CB /* TGData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGData.m; sourceTree = "<group>"; };
 		ED077A6219F940F700B203CB /* TGDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGDetailViewController.h; sourceTree = "<group>"; };
 		ED077A6319F940F700B203CB /* TGDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGDetailViewController.m; sourceTree = "<group>"; };
 		ED077A6419F940F700B203CB /* TGImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGImageCell.h; sourceTree = "<group>"; };
@@ -130,6 +142,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		41A76FBF1A05A1B900176A14 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				41A76FC01A05A1D800176A14 /* TGCommon.h */,
+				41A76FC11A05A1D800176A14 /* TGCommon.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		41A9D04C1A038B5100922CBC /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +187,7 @@
 		41A9D04F1A038B8700922CBC /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				41A76FBF1A05A1B900176A14 /* Common */,
 				41A9D0511A038BA000922CBC /* Storage */,
 				41A9D0501A038B8D00922CBC /* Recognition */,
 			);
@@ -187,8 +209,14 @@
 		41A9D0511A038BA000922CBC /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				ED077A6019F940F700B203CB /* TGData.h */,
-				ED077A6119F940F700B203CB /* TGData.m */,
+				41A76FB61A05226900176A14 /* TGCurrency.h */,
+				41A76FB71A05226900176A14 /* TGCurrency.m */,
+				41A76FB91A05335100176A14 /* TGPriceImage.h */,
+				41A76FBA1A05335100176A14 /* TGPriceImage.m */,
+				41A76FBC1A05343800176A14 /* TGRecognizedPrice.h */,
+				41A76FBD1A05343800176A14 /* TGRecognizedPrice.m */,
+				41A76FC31A05A43600176A14 /* TGDataManager.h */,
+				41A76FC41A05A43600176A14 /* TGDataManager.m */,
 			);
 			name = Storage;
 			sourceTree = "<group>";
@@ -471,13 +499,17 @@
 				ED077A6F19F940F700B203CB /* TGPhotoCaptureViewController.m in Sources */,
 				ED077A6C19F940F700B203CB /* TGDetailViewController.m in Sources */,
 				41A9D04B1A022F6500922CBC /* TGPriceRecognizer.m in Sources */,
+				41A76FB81A05226900176A14 /* TGCurrency.m in Sources */,
+				41A76FC51A05A43600176A14 /* TGDataManager.m in Sources */,
 				ED077A1B19F93FE300B203CB /* TGViewController.m in Sources */,
 				ED077A1819F93FE300B203CB /* TGAppDelegate.m in Sources */,
+				41A76FBE1A05343800176A14 /* TGRecognizedPrice.m in Sources */,
+				41A76FBB1A05335100176A14 /* TGPriceImage.m in Sources */,
 				ED077A1519F93FE300B203CB /* main.m in Sources */,
-				ED077A6B19F940F700B203CB /* TGData.m in Sources */,
 				ED077A7519F9448E00B203CB /* TGCustomTabBarController.m in Sources */,
 				41A9D0481A00F2A700922CBC /* TGRecognizedBlock.m in Sources */,
 				ED077A6D19F940F700B203CB /* TGImageCell.m in Sources */,
+				41A76FC21A05A1D800176A14 /* TGCommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
