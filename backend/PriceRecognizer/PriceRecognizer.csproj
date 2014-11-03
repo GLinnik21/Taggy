@@ -35,9 +35,6 @@
       <HintPath>Puma\puma.interop.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
-    <Reference Include="tessnet2_32">
-      <HintPath>..\..\..\..\Downloads\tessnet2\Release32\tessnet2_32.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

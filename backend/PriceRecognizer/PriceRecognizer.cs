@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
 using Puma.Net;
-using tessnet2;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
@@ -17,29 +16,20 @@ namespace PriceRecognizer
 			var bmp = b;
 			PixelFormat pxf = PixelFormat.Format24bppRgb;
 			Rectangle rect = new Rectangle(0, 0, bmp.Width, bmp.Height);
-
 			BitmapData bmpData = bmp.LockBits(rect, ImageLockMode.ReadWrite, pxf);
 			IntPtr ptr = bmpData.Scan0;
-
 			int numBytes = bmpData.Stride * bmp.Height;
 			int widthBytes = bmpData.Stride;
 			byte[] rgbValues = new byte[numBytes];
-
 			Marshal.Copy(ptr, rgbValues, 0, numBytes);
-
 			for (int counter = 0; counter < rgbValues.Length-2; counter += 3)
 			{
-
 				int value = rgbValues[counter] + rgbValues[counter + 1] + rgbValues[counter + 2];
 				byte color_b = 0;
-
 				color_b = Convert.ToByte(value / 3);
-
-
 				rgbValues[counter] = color_b;
 				rgbValues[counter + 1] = color_b;
 				rgbValues[counter + 2] = color_b;
-
 			}
 
 			Marshal.Copy(rgbValues, 0, ptr, numBytes);
@@ -54,10 +44,9 @@ namespace PriceRecognizer
 
 			using (pumaPage) {
 				pumaPage.FileFormat = PumaFileFormat.TxtAscii;
-				pumaPage.AutoRotateImage = true;
+				//pumaPage.AutoRotateImage = true;
 				pumaPage.EnableSpeller = false;
 				pumaPage.RecognizeTables = true;
-				//pumaPage.FontSettings.DetectItalic = true;
 				pumaPage.Language = PumaLanguage.Russian;
 
 				toReturn = pumaPage.RecognizeToString ();
@@ -93,11 +82,8 @@ namespace PriceRecognizer
 
             toRecognize = "";
 
-            for (int i = 0; i < newRec.Length - 3; i++) {
-                if (newRec[i] == ' ' && Char.IsDigit(newRec[i + 1]) && Char.IsDigit(newRec[i + 2]) && newRec[i + 3] == '0') {
-                } else
-                    toRecognize += newRec[i];
-            }
+			for (int i = 0; i < newRec.Length - 1; i++)
+				toRecognize += newRec [i];
 
             newRec = "";
 
