@@ -6,6 +6,9 @@ platform :ios, "6.0"
 target "Taggy" do
 
 pod 'TesseractOCRiOS', :podspec=>'.'
+pod 'ARAnalytics/Flurry'
+pod 'ARAnalytics/GoogleAnalytics'
+pod 'Realm'
 
 end
 
