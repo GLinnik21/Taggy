@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.IO;
 using System.Drawing;
+using System.Text.RegularExpressions;
+using System.Web.Helpers;
 
 namespace Taggy
 {
@@ -45,7 +47,7 @@ namespace Taggy
             return View(data);
         }
 
-        [HttpPost]
+       [HttpPost]
         public ActionResult Convert(HttpPostedFileBase file)
         {
             if (file == null)
@@ -55,6 +57,43 @@ namespace Taggy
 
             var bitmap = new Bitmap(file.InputStream);
             return ConvertBitmap(bitmap);
+        }
+
+        [HttpPost]
+        public Json[] Get()
+        {
+            //{"err": "failed to parse response from xe.com."}
+            List<Json> jsons = new List<Json> ();
+          /*Mistake?*/  
+            Regex regex = new Regex ("{\"to\": \"(?<to>D{3})\", \"rate\": (?<rate>\\d.\\d+), \"from\": \"(?<from>D{3})\"}");
+
+            using (StreamReader reader = new StreamReader (Directory.GetCurrentDirectory ()) + "\\Content\\Rates.txt")
+            {
+                string r = " ";
+                while (r != null) 
+                {
+                    r = reader.ReadLine ();
+                    if (regex.IsMatch(r))
+                    {
+                        Match match = regex.Match (r);
+
+                        Json result = { 
+                            "to" = match.Groups["to"].Value,
+                            "rate" = match.Groups["rate"].Value,
+                            "from" = match.Groups["from"].Value
+                        };
+                        jsons.Add (result);
+                    }
+                }
+            }
+           
+            Json[] toReturn = { };
+            int counter = 0;
+            foreach (var j in jsons) {
+                toReturn [counter] = j;
+                counter++;
+            }
+            return toReturn;
         }
 
         private JsonResult ConvertBitmap(Bitmap bitmap)
