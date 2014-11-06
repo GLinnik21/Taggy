@@ -43,8 +43,15 @@
     NSString *tessdataPath = [bundle pathForResource:filename ofType:@"jpg"];
 
     UIImage *image = [UIImage imageWithContentsOfFile:tessdataPath];
+    NSArray *blocks = [TGPriceRecognizer recognizeImage:image];
 
-    return [[TGPriceRecognizer recognizeImage:image] containsObject:images[@(index)]];
+    for (TGRecognizedBlock *block in blocks) {
+        if ([[block number] isEqualToNumber:images[@(index)]]) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 #define TEST_VALUES
