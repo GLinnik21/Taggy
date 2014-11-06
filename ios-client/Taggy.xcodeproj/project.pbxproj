@@ -48,6 +48,7 @@
 		ED2DE36D19FCFA8E008C69F2 /* PhotoButtonP.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2DE36B19FCFA8E008C69F2 /* PhotoButtonP.png */; };
 		ED2DE36E19FCFA8E008C69F2 /* PhotoButtonP@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2DE36C19FCFA8E008C69F2 /* PhotoButtonP@2x.png */; };
 		ED6C079119FAE3570000770D /* retina.png in Resources */ = {isa = PBXBuildFile; fileRef = ED6C079019FAE3570000770D /* retina.png */; };
+		ED715FDC1A0927DD00F81CAF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED715FDB1A0927DD00F81CAF /* Settings.bundle */; };
 		ED7C11041A068AB00037C843 /* TGSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7C11031A068AB00037C843 /* TGSettingsViewController.m */; };
 		ED7C11071A069F220037C843 /* choose.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7C11051A069F220037C843 /* choose.png */; };
 		ED7C11081A069F220037C843 /* choose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7C11061A069F220037C843 /* choose@2x.png */; };
@@ -124,6 +125,9 @@
 		ED2DE36B19FCFA8E008C69F2 /* PhotoButtonP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhotoButtonP.png; sourceTree = "<group>"; };
 		ED2DE36C19FCFA8E008C69F2 /* PhotoButtonP@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoButtonP@2x.png"; sourceTree = "<group>"; };
 		ED6C079019FAE3570000770D /* retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retina.png; sourceTree = "<group>"; };
+		ED715FDB1A0927DD00F81CAF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		ED715FDD1A09282F00F81CAF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		ED715FDE1A09282F00F81CAF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		ED7C11021A068AB00037C843 /* TGSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGSettingsViewController.h; sourceTree = "<group>"; };
 		ED7C11031A068AB00037C843 /* TGSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGSettingsViewController.m; sourceTree = "<group>"; };
 		ED7C11051A069F220037C843 /* choose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = choose.png; sourceTree = "<group>"; };
@@ -296,6 +300,7 @@
 				ED077A2119F93FE300B203CB /* LaunchScreen.xib */,
 				ED077A1319F93FE300B203CB /* Info.plist */,
 				ED077A1419F93FE300B203CB /* main.m */,
+				ED715FDB1A0927DD00F81CAF /* Settings.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -323,8 +328,8 @@
 			children = (
 				ED7C11051A069F220037C843 /* choose.png */,
 				ED7C11061A069F220037C843 /* choose@2x.png */,
-				ED2DE36B19FCFA8E008C69F2 /* PhotoButtonP.png */,
 				ED2DE36C19FCFA8E008C69F2 /* PhotoButtonP@2x.png */,
+				ED2DE36B19FCFA8E008C69F2 /* PhotoButtonP.png */,
 				ED2DE36719FCF8C4008C69F2 /* PhotoButton.png */,
 				ED2DE36819FCF8C4008C69F2 /* PhotoButton@2x.png */,
 				ED6C079019FAE3570000770D /* retina.png */,
@@ -457,6 +462,7 @@
 				ED2DE36D19FCFA8E008C69F2 /* PhotoButtonP.png in Resources */,
 				ED077A5819F9405E00B203CB /* Taggy3.png in Resources */,
 				ED077A5019F9405E00B203CB /* res.textClipping in Resources */,
+				ED715FDC1A0927DD00F81CAF /* Settings.bundle in Resources */,
 				ED7C11071A069F220037C843 /* choose.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +556,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				ED077A1D19F93FE300B203CB /* Base */,
+				ED715FDD1A09282F00F81CAF /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -558,6 +565,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				ED077A2219F93FE300B203CB /* Base */,
+				ED715FDE1A09282F00F81CAF /* ru */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";

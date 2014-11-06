@@ -1,0 +1,51 @@
+
+/* Class = "IBUILabel"; text = "-"; ObjectID = "12F-CJ-c1l"; */
+"12F-CJ-c1l.text" = "-";
+
+/* Class = "IBUINavigationItem"; title = "Сканер"; ObjectID = "1HU-ub-24H"; */
+"1HU-ub-24H.title" = "Сканер";
+
+/* Class = "IBUIBarButtonItem"; title = "Назад"; ObjectID = "8nw-R2-dam"; */
+"8nw-R2-dam.title" = "Назад";
+
+/* Class = "IBUITabBarItem"; title = "Результаты"; ObjectID = "Nna-ET-djC"; */
+"Nna-ET-djC.title" = "Результаты";
+
+/* Class = "IBUILabel"; text = "-"; ObjectID = "OLE-Wj-jQW"; */
+"OLE-Wj-jQW.text" = "-";
+
+/* Class = "IBUITabBarItem"; title = "Результаты"; ObjectID = "PVV-W9-UJQ"; */
+"PVV-W9-UJQ.title" = "Результаты";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "SJM-Xi-DOG"; */
+"SJM-Xi-DOG.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "VgM-kZ-GeX"; */
+"VgM-kZ-GeX.text" = "Label";
+
+/* Class = "IBUITabBarItem"; title = "Сканер"; ObjectID = "VpX-Fe-AWi"; */
+"VpX-Fe-AWi.title" = "Сканер";
+
+/* Class = "IBUINavigationItem"; title = "Результаты"; ObjectID = "XX7-In-ySs"; */
+"XX7-In-ySs.title" = "Результаты";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "b0B-0G-4ij"; */
+"b0B-0G-4ij.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "dFn-mR-FxZ"; */
+"dFn-mR-FxZ.text" = "Label";
+
+/* Class = "IBUITabBarItem"; title = "Настройки"; ObjectID = "hVP-ii-hPN"; */
+"hVP-ii-hPN.title" = "Настройки";
+
+/* Class = "IBUITabBarItem"; title = "Сканер"; ObjectID = "k91-Bn-oGz"; */
+"k91-Bn-oGz.title" = "Сканер";
+
+/* Class = "IBUIButton"; normalTitle = "Сфотографировать"; ObjectID = "vIe-cy-7uO"; */
+"vIe-cy-7uO.normalTitle" = "Сфотографировать";
+
+/* Class = "IBUINavigationItem"; title = "Настройки"; ObjectID = "xeP-iS-vPM"; */
+"xeP-iS-vPM.title" = "Настройки";
+
+/* Class = "IBUITabBarItem"; title = "Настройки"; ObjectID = "zTU-fO-yMG"; */
+"zTU-fO-yMG.title" = "Настройки";
