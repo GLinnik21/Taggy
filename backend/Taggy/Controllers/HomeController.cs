@@ -8,14 +8,18 @@ using System.IO;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Web.Helpers;
+using System.Net;
 
 namespace Taggy
 {
     public class HomeController : Controller
     {
+        string ip;
+
         [HttpGet]
         public ActionResult Index()
         {
+            ip = Request.UserHostAddress;
             return View();
         }
 
@@ -59,12 +63,12 @@ namespace Taggy
             return ConvertBitmap(bitmap);
         }
 
-        [HttpPost]
+      /*  [HttpPost]
         public Json[] Get()
         {
             //{"err": "failed to parse response from xe.com."}
             List<Json> jsons = new List<Json> ();
-          /*Mistake?*/  
+
             Regex regex = new Regex ("{\"to\": \"(?<to>D{3})\", \"rate\": (?<rate>\\d.\\d+), \"from\": \"(?<from>D{3})\"}");
 
             using (StreamReader reader = new StreamReader (Directory.GetCurrentDirectory ()) + "\\Content\\Rates.txt")
@@ -94,7 +98,7 @@ namespace Taggy
                 counter++;
             }
             return toReturn;
-        }
+        }*/
 
         private JsonResult ConvertBitmap(Bitmap bitmap)
         {
@@ -124,6 +128,14 @@ namespace Taggy
             return rslt;
         }
 
+        static public string GetCountry(string ip)
+        {
+            string country = "";
+            //http://ru.smart-ip.net/geoip/87.252.227.29/auto
+            WebClient wclient = new WebClient ();
+            country = wclient.DownloadString (String.Format ("http://ip-api.com/json/{0}", ip));
+            return country;
+        }
         static public string BitmapToBase64(System.Drawing.Bitmap bitmap)
         {
             var stream = new MemoryStream();
