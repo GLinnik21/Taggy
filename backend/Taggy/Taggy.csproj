@@ -216,7 +216,7 @@
     <None Include="Content\css\bootstrap-theme.css.map" />
     <None Include="Content\css\bootstrap.css.map" />
     <None Include="Content\ConsoleConverter.zip" />
-    <None Include="Content\Rates.txt" />
+    <None Include="Rates.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PriceRecognizer\PriceRecognizer.csproj">

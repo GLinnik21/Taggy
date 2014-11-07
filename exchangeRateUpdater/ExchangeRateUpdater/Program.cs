@@ -1,0 +1,71 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Net;
+using System.Text.RegularExpressions;
+using System.IO;
+
+namespace ExchangeRateUpdater
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string url = "http://rate-exchange.appspot.com/currency?from={0}&to=USD";
+            WebClient wclient = new WebClient();
+
+            Console.Write("Please, select a directory to keep exchange rate: ");
+            string directoryPath = String.Format(Console.ReadLine());
+            string[] currencyAbbreviations = { "AUD", "EUR", "AZN", "ALL", "DZD", "USD", "XCD", "AOA", "ANG", "ARS", "AMD", 
+                                                  "AWG", "AFA", "BSD", "BDT", "BBD", "BHD", "BYR", "BZD", "XOF", "BMD", "BGL", 
+                                                  "BOB", "BAM", "BWP", "BRR", "BIF", "BTN", "VUV", "GBP", "HUF", "VEB", "VND",
+                                                  "HTG", "GMD", "GHC", "GTQ", "GNF", "XAF", "GIP", "HML", "DKK", "GEL", "DJF", 
+                                                  "DOP", "EGP", "ZMK", "WST", "ZWD", "ILS", "INR", "IDR", "JOD", "IQD", "IRR", 
+                                                  "IEP", "ISK", "YER", "CVE", "KZT", "KYD", "KHR", "XAF", "CAD", "QAR", "KES", 
+                                                  "CYP", "CNY", "COP", "KMF", "CRC", "CUP", "KWD", "KGS", "LAK", "LVL", "LSL", 
+                                                  "LRD", "LBP", "LYD", "LTL", "CHF", "MUR", "MRO", "MGF", "MKD", "MWK", "MYR", 
+                                                  "MVR", "MTL", "MAD", "MXN", "MZM", "MDL", "MNT", "XCD", "MMK", "ZAR", "NPR", 
+                                                  "NGN", "ANG", "NIO", "NZD", "XPF", "NOK", "AED", "OMR", "PKR", "PGK", "PYG", 
+                                                  "PEN", "PLZ", "RUB", "RWF", "ROL", "SVC", "STD", "SAR", "SZL", "KPW", "SCR", 
+                                                  "XCD", "XOP", "RSD", "SGD", "SYP", "SIT", "SBD", "SOS", "SDD", "SRG", "SLL", 
+                                                  "TMM", "THB", "TWD", "TZS", "TOP", "TTD", "TND", "TMM", "TRY", "UGS", "UZS", 
+                                                  "UAH", "UYP", "DKK", "FJD", "PHP", "FKP", "HRK", "CZK", "CLP", "CHF", "SEK", 
+                                                  "LKR", "ESC", "ERN", "EEK", "ETB", "KRW", "ZAR", "JPY" };
+            Dictionary<string, double> dict = new Dictionary<string, double>(); // Аббр. + курс при конвертации в доллар США
+            Regex regex = new Regex(@"{""to"": ""(?<To>[A-Z]{3})"", ""rate"": (?<ratehigh>\d+)\.(?<ratelow>\d+), ""from"": ""(?<from>[A-Z]{3})""}");
+            string response = null;
+
+
+            using (StreamWriter writer = new StreamWriter(directoryPath + "\\Rates.txt"))
+            {
+                foreach (var abb in currencyAbbreviations)
+                {
+                    Console.WriteLine("Starting updating exchange rate for {0}...", abb);
+                    try
+                    {
+                        response = wclient.DownloadString(String.Format(url, abb));
+                        if (response != null)
+                            if (!response.Contains("fail"))
+                            {
+                                Match m = regex.Match(response);
+                                string to = m.Groups["to"].Value;
+                                string from = m.Groups["from"].Value;
+                                double rate = Double.Parse(m.Groups["ratehigh"].Value + "." + m.Groups["ratelow"].Value);
+                                rate = System.Math.Round(rate, 5);
+                                writer.WriteLine(to + "\t" + rate.ToString() + "\t" + from);
+                            }
+                    }
+
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+            }
+
+
+            Console.ReadKey();
+        }
+    }
+}

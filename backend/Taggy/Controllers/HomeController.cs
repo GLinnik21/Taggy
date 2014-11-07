@@ -62,43 +62,41 @@ namespace Taggy
             var bitmap = new Bitmap(file.InputStream);
             return ConvertBitmap(bitmap);
         }
-
-      /*  [HttpPost]
-        public Json[] Get()
+            
+        public ActionResult Get()
         {
-            //{"err": "failed to parse response from xe.com."}
-            List<Json> jsons = new List<Json> ();
-
-            Regex regex = new Regex ("{\"to\": \"(?<to>D{3})\", \"rate\": (?<rate>\\d.\\d+), \"from\": \"(?<from>D{3})\"}");
-
-            using (StreamReader reader = new StreamReader (Directory.GetCurrentDirectory ()) + "\\Content\\Rates.txt")
+            List<object> rateList = new List<object> ();
+            using (var reader = System.IO.File.OpenText("Rates.new.txt")) 
             {
-                string r = " ";
-                while (r != null) 
-                {
-                    r = reader.ReadLine ();
-                    if (regex.IsMatch(r))
-                    {
-                        Match match = regex.Match (r);
+                string rstring = reader.ReadLine ();
+                Regex r = new Regex (@"(?<to>[A-Z]{3})\t(?<ratehigh>\d+)\.(?<ratelow>\d{5})\t(?<from>[A-Z]{3})");
 
-                        Json result = { 
-                            "to" = match.Groups["to"].Value,
-                            "rate" = match.Groups["rate"].Value,
-                            "from" = match.Groups["from"].Value
-                        };
-                        jsons.Add (result);
+                while (rstring != null) 
+                {
+                    if (!rstring.Contains ("failed")) 
+                    {
+                        MatchCollection collection = r.Matches (rstring);
+                        if (collection != null) 
+                        {
+                            foreach (Match match in collection) 
+                            {
+                                rateList.Add (new {
+                                    To = match.Groups ["to"].Value, 
+                                    From = match.Groups ["from"].Value,
+                                    Rate = match.Groups ["ratehigh"].Value + /*System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator*/ "." + match.Groups ["ratelow"].Value
+                                });
+                            }
+                        }
                     }
+                    rstring = reader.ReadLine ();
                 }
             }
-           
-            Json[] toReturn = { };
-            int counter = 0;
-            foreach (var j in jsons) {
-                toReturn [counter] = j;
-                counter++;
-            }
+            JsonResult toReturn = new JsonResult ();
+
+            toReturn.Data = rateList.ToArray();
+            toReturn.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return toReturn;
-        }*/
+        }
 
         private JsonResult ConvertBitmap(Bitmap bitmap)
         {
@@ -122,7 +120,8 @@ namespace Taggy
                 message = message,
                 price = new []{ 
                     recognition,
-                } 
+                },
+                country = GetCountry(ip)
             };
             rslt.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return rslt;
@@ -134,6 +133,12 @@ namespace Taggy
             //http://ru.smart-ip.net/geoip/87.252.227.29/auto
             WebClient wclient = new WebClient ();
             country = wclient.DownloadString (String.Format ("http://ip-api.com/json/{0}", ip));
+            if (country != null) 
+            {
+                Regex r = new Regex ("\"country\":\"(?<country>[A-Z]{1}[a-z]+)\"");
+                Match m = r.Match (country);
+                country = m.Groups ["country"].Value.ToString ();
+            }
             return country;
         }
         static public string BitmapToBase64(System.Drawing.Bitmap bitmap)
