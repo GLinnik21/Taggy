@@ -15,7 +15,7 @@ PODS:
   - Realm (0.87.1):
     - Realm/Headers
   - Realm/Headers (0.87.1)
-  - TesseractOCRiOS (2.3)
+  - TesseractOCRiOS (2.3-dev)
 
 DEPENDENCIES:
   - ARAnalytics/Flurry
@@ -34,6 +34,6 @@ SPEC CHECKSUMS:
   FlurrySDK: bed9e5598353f867508d164795a451e3ada92cb6
   GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
   Realm: d2a10a60bbbd66c64ae8d839a378b88c68cf79bb
-  TesseractOCRiOS: 2739fa5bf0a2f4ff18d5630bf980cfd787a3e3b6
+  TesseractOCRiOS: 2dcbc741142453d5a5b4ae738a7cc8488c541203
 
 COCOAPODS: 0.34.4

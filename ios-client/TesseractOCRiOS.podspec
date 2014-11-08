@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name              = 'TesseractOCRiOS'
-  s.version           = '2.3'
+  s.version           = '2.3-dev'
 
   s.summary           = 'It helps you to use OCR in iOS projects, writing Objective-C. Easy and fast.'
  
@@ -23,7 +23,7 @@ all copies or substantial portions of the Software.
     }
 
   s.author            = { 'Daniele Galiotto' => 'genius@g8production.com' }
-  s.source            = { :git => 'https://github.com/gali8/Tesseract-OCR-iOS.git', :branch => 'master' }
+  s.source            = { :git => 'https://github.com/BamX/Tesseract-OCR-iOS.git', :branch => 'master' }
 
   s.platform          = :ios, '5.0'
   s.source_files      = 'TesseractOCR/*.{h,a}', 'TesseractOCR/**/*.{h,a}'

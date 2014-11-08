@@ -30,7 +30,7 @@ namespace Taggy
                 return View(new RecognitionData{ ok = false, message = "Файл не выбран" });
             }
                 
-            var bitmap = new Bitmap(file.InputStream);
+			var bitmap = new Bitmap(file.InputStream);
             ViewBag.Image = BitmapToBase64(bitmap);
 
             var data = new RecognitionData {
@@ -40,7 +40,7 @@ namespace Taggy
                     "25000",
                 }
             };
-            data = (RecognitionData) ConvertBitmap(bitmap).Data;
+			data = (RecognitionData) ConvertBitmap(bitmap).Data;
 
             return View(data);
         }
