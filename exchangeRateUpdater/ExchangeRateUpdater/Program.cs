@@ -33,7 +33,7 @@ namespace ExchangeRateUpdater
                                                   "UAH", "UYP", "DKK", "FJD", "PHP", "FKP", "HRK", "CZK", "CLP", "CHF", "SEK", 
                                                   "LKR", "ESC", "ERN", "EEK", "ETB", "KRW", "ZAR", "JPY" };
             Dictionary<string, double> dict = new Dictionary<string, double>(); // Аббр. + курс при конвертации в доллар США
-            Regex regex = new Regex(@"{""to"": ""(?<To>[A-Z]{3})"", ""rate"": (?<ratehigh>\d+)\.(?<ratelow>\d+), ""from"": ""(?<from>[A-Z]{3})""}");
+            Regex regex = new Regex(@"""rate"": (?<rate>\d+\.\d{5})");
             string response = null;
 
 
@@ -48,12 +48,31 @@ namespace ExchangeRateUpdater
                         if (response != null)
                             if (!response.Contains("fail"))
                             {
-                                Match m = regex.Match(response);
-                                string to = m.Groups["to"].Value;
-                                string from = m.Groups["from"].Value;
-                                double rate = Double.Parse(m.Groups["ratehigh"].Value + "." + m.Groups["ratelow"].Value);
-                                rate = System.Math.Round(rate, 5);
-                                writer.WriteLine(to + "\t" + rate.ToString() + "\t" + from);
+                                string rate = "";
+                                Match match = regex.Match(response);
+                                string to = "USD";
+                                string from = abb;
+                                if (regex.IsMatch(response))
+                                    rate = match.Groups["rate"].Value;
+                                else 
+                                {
+                                    Regex r = new Regex(@"""rate"": (?<rate>\d+\.\d{4})");
+                                    if (r.IsMatch(response))
+                                    {
+                                        Match m = r.Match(response);
+                                        rate = m.Groups["rate"].Value + "0";
+                                    }
+                                    else
+                                    {
+                                        Regex r1 = new Regex(@"""rate"": (?<rate>\d+\.\d{1})");
+                                        if (r1.IsMatch(response))
+                                        {
+                                            Match m1 = r1.Match(response);
+                                            rate = m1.Groups["rate"].Value + "0000";
+                                        }
+                                    }
+                                }
+                                writer.WriteLine(to + "\t" + rate + "\t" + from);
                             }
                     }
 

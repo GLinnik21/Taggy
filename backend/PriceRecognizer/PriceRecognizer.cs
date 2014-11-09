@@ -83,7 +83,7 @@ namespace PriceRecognizer
 
             for (int i = 0; i < toRecognize.Length - 1; i++)
             {
-                if (toRecognize[i] == "(" & toRecognize[i + 1] == ")")
+                if (toRecognize[i] == '(' & toRecognize[i + 1] == ')')
                     newRec += "0"; else 
                     if (toRecognize[i] == 'о' || toRecognize[i] == 'О' || toRecognize[i] == 'o' || toRecognize[i] == 'O')
                         newRec += '0';
@@ -92,7 +92,7 @@ namespace PriceRecognizer
 
             for (int i = 1; i < newRec.Length; i++)
             {
-                if ((newRec[i - 1] == "." || newRec[i - 1] == ",") && newRec[i] == ' ')
+                if ((newRec[i - 1] == '.' || newRec[i - 1] == ',') && newRec[i] == ' ')
                 {
                 }
                 else
@@ -102,7 +102,7 @@ namespace PriceRecognizer
 
             for (int i = 0; i < toRecognize.Length-1; i++)
             {
-                if (toRecognize[i] == " " && (toRecognize[i + 1] == "." || toRecognize[i + 1] == ","))
+                if (toRecognize[i] == ' ' && (toRecognize[i + 1] == '.' || toRecognize[i + 1] == ','))
                 {
                 }
                 else

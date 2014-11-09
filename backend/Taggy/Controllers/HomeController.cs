@@ -14,12 +14,10 @@ namespace Taggy
 {
     public class HomeController : Controller
     {
-        string ip;
 
         [HttpGet]
         public ActionResult Index()
         {
-            ip = Request.UserHostAddress;
             return View();
         }
 
@@ -51,7 +49,7 @@ namespace Taggy
             return View(data);
         }
 
-       [HttpPost]
+        [HttpPost]
         public ActionResult Convert(HttpPostedFileBase file)
         {
             if (file == null)
@@ -66,7 +64,7 @@ namespace Taggy
         public ActionResult Get()
         {
             List<object> rateList = new List<object> ();
-            using (var reader = System.IO.File.OpenText("Rates.new.txt")) 
+            using (var reader = System.IO.File.OpenText("Rates.txt")) 
             {
                 string rstring = reader.ReadLine ();
                 Regex r = new Regex (@"(?<to>[A-Z]{3})\t(?<ratehigh>\d+)\.(?<ratelow>\d{5})\t(?<from>[A-Z]{3})");
@@ -103,7 +101,7 @@ namespace Taggy
             bool isOk = true;
             string message = "";
             string recognition = "";
-
+            string ip = Request.UserHostAddress;
             try
             {
                 recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);
