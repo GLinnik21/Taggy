@@ -130,10 +130,10 @@ namespace Taggy
             string country = "";
             //http://ru.smart-ip.net/geoip/87.252.227.29/auto
             WebClient wclient = new WebClient ();
-            country = wclient.DownloadString (String.Format ("http://ip-api.com/json/{0}", ip));
+            country = wclient.DownloadString (String.Format ("http://ip-api.com/json/{0}", "141.55.48.111"));
             if (country != null) 
             {
-                Regex r = new Regex ("\"country\":\"(?<country>[A-Z]{1}[a-z]+)\"");
+                Regex r = new Regex (@"""country"":""(?<country>\D+)"",""countryCode""");
                 Match m = r.Match (country);
                 country = m.Groups ["country"].Value.ToString ();
             }
