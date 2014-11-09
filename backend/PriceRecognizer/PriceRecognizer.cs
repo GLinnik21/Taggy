@@ -75,28 +75,34 @@ namespace PriceRecognizer
             string toRecognize = "";
             string newRec = "";
 
-            for (int i = 1; i < s.Length - 1; i++) // ';
+            for (int i = 0; i < s.Length; i++) // ';
             {
                 if (!alowedChars.Contains(s[i])) toRecognize += "#";
-                if (alowedChars.Contains(s[i]))  toRecognize += s[i];
+                else 
+                    toRecognize += s[i];
             }
                 
-            for (int i = 1; i < toRecognize.Length - 1; i++)
+            for (int i = 0; i < toRecognize.Length; i++)
             {
                 int c = 0;
+                if (i < toRecognize.Length - 2)
                 if (toRecognize[i] == ' ' && toRecognize[i + 1] == Convert.ToChar("'") && toRecognize[i + 2] == ';')
                     c++;
+                if (i < toRecognize.Length -1)
                 if (toRecognize[i] == '(' && toRecognize[i + 1] == ')')
                     newRec += "0";
                 else if (toRecognize[i] == 'о' || toRecognize[i] == 'О' || toRecognize[i] == 'o' || toRecognize[i] == 'O')
                     newRec += "0";
-                else if (toRecognize[i] == Convert.ToChar("'") && Char.IsDigit(toRecognize[i - 1]) && Char.IsDigit(toRecognize[i + 1]))
-                    newRec += "";
-                else if (toRecognize[i] == ';' && toRecognize[i - 1] == Convert.ToChar("'"))
+                else if (i < toRecognize.Length - 1 && i > 0)
+                    if (toRecognize[i] == Convert.ToChar("'") && Char.IsDigit(toRecognize[i - 1]) && Char.IsDigit(toRecognize[i + 1]))
+                        newRec += "";
+                else if (i > 0) 
+                if (toRecognize[i] == ';' && toRecognize[i - 1] == Convert.ToChar("'"))
                 {
                 }
-                else if (toRecognize[i] == Convert.ToChar("'") && toRecognize[i + 1] == ';' && toRecognize[i - 1] == ' ')
-                    newRec += "3";
+                else if (i < toRecognize.Length - 1 && i > 0)
+                    if (toRecognize[i] == Convert.ToChar("'") && toRecognize[i + 1] == ';' && toRecognize[i - 1] == ' ')
+                        newRec += "3";
                 else if (c == 0)
                     newRec += toRecognize[i];
             }
@@ -133,7 +139,7 @@ namespace PriceRecognizer
 
             List<string> splited = toRecognize.Split(' ').ToList<string>();
             List<string> toRemove = new List<string>();
-
+            
             foreach (var str in splited)
             {
                 if (str == "")
