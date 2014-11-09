@@ -70,53 +70,76 @@ namespace PriceRecognizer
         {
             HashSet<char> alowedChars = new HashSet<char>()
             { // '; = 3
-                '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '(', ')', 'о', 'О', '.', ',', ' '
+                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '(', ')', 'о', 'О', '.', ',', ' ', 'o', 'O', '`', Convert.ToChar("'"), ';'
             };
-            string toRecognize = s;
+            string toRecognize = "";
             string newRec = "";
 
-            for (int i = 1; i < toRecognize.Length - 1; i++)
-            { // for torecognize[1] and toRecognize[toRecognize.Length] d0:
-                if ((toRecognize[i] == 'О' || (toRecognize[i] == '(' && toRecognize[i + 1] == ')')) && Char.IsDigit(toRecognize[i - 1]) == true)
-                {
-                    newRec += '0';
-                }
-                else
-                    newRec += toRecognize[i];
-                // o - копейки или центы
+            for (int i = 0; i < s.Length; i++) // ';
+            {
+                if (!alowedChars.Contains(s[i])) toRecognize += "#";
+                else 
+                    toRecognize += s[i];
             }
-
-            toRecognize = "";
-
-            for (int i = 0; i < newRec.Length - 1; i++)
-                toRecognize += newRec[i];
-
-            newRec = "";
-
+                
             for (int i = 0; i < toRecognize.Length; i++)
             {
-                if (!alowedChars.Contains(toRecognize[i]))
-                    newRec += '#';
-                else
+                int c = 0;
+                if (i < toRecognize.Length - 2)
+                if (toRecognize[i] == ' ' && toRecognize[i + 1] == Convert.ToChar("'") && toRecognize[i + 2] == ';')
+                    c++;
+                if (i < toRecognize.Length -1)
+                if (toRecognize[i] == '(' && toRecognize[i + 1] == ')')
+                    newRec += "0";
+                else if (toRecognize[i] == 'о' || toRecognize[i] == 'О' || toRecognize[i] == 'o' || toRecognize[i] == 'O')
+                    newRec += "0";
+                else if (i < toRecognize.Length - 1 && i > 0)
+                    if (toRecognize[i] == Convert.ToChar("'") && Char.IsDigit(toRecognize[i - 1]) && Char.IsDigit(toRecognize[i + 1]))
+                        newRec += "";
+                else if (i > 0) 
+                if (toRecognize[i] == ';' && toRecognize[i - 1] == Convert.ToChar("'"))
+                {
+                }
+                else if (i < toRecognize.Length - 1 && i > 0)
+                    if (toRecognize[i] == Convert.ToChar("'") && toRecognize[i + 1] == ';' && toRecognize[i - 1] == ' ')
+                        newRec += "3";
+                else if (c == 0)
                     newRec += toRecognize[i];
             }
-
             toRecognize = "";
 
-            for (int i = 0; i < newRec.Length; i++)
+            for (int i = 1; i < newRec.Length; i++)
             {
-                if (newRec[i] == '#' || newRec[i] == ')' || newRec[i] == '(')
+                if ((newRec[i - 1] == '.' || newRec[i - 1] == ',') && newRec[i] == ' ')
                 {
                 }
                 else
                     toRecognize += newRec[i];
             }
-
             newRec = "";
-            // 5400 54 4
+
+            for (int i = 0; i < toRecognize.Length-1; i++)
+            {
+                if (toRecognize[i] == ' ' && (toRecognize[i + 1] == '.' || toRecognize[i + 1] == ','))
+                {
+                }
+                else
+                    newRec += toRecognize[i];
+            }
+            toRecognize = "";
+
+            for (int i = 0; i < newRec.Length; i++)
+            {
+                if (newRec[i] != '#')
+                    toRecognize += newRec[i];
+                else
+                    toRecognize += ' ';
+            }
+            newRec = "";
+
             List<string> splited = toRecognize.Split(' ').ToList<string>();
             List<string> toRemove = new List<string>();
-
+            
             foreach (var str in splited)
             {
                 if (str == "")
@@ -130,7 +153,7 @@ namespace PriceRecognizer
                 if (splited.Contains(str2))
                     splited.Remove(str2);
             }
-            toRemove.Clear();
+            toRemove.Clear(); // Удаление пустых строк
 
             foreach (var str in splited)
             {
@@ -150,23 +173,15 @@ namespace PriceRecognizer
                 {
                     toRemove.Add(str);
                 } // else if (splited.Count > 1)
-
-                /*  if (Convert.ToInt32(str) < 1000)
-				{
-                    toRemove.Add(str);
-                }
-                //int a = Convert.ToInt32(str); */
-
             }
 
 
             foreach (string str in toRemove)
-            { // ContainsDigits
+            { 
                 if (splited.Contains(str))
                     splited.Remove(str);
             }
-
-            /////
+                
             foreach (var str in splited)
             {
                 newRec += str;

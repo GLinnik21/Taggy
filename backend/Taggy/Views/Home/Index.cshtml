@@ -6,7 +6,7 @@
     	<form class="form" method="post" style="text-align: center;" enctype="multipart/form-data">
 			<input type="file" name="file"/>
 			<input type="submit" class="btn btn-success" value="Распознать"/>
-		</form>
+		</form>	
   	</div>
 </div>
 
@@ -19,6 +19,7 @@
 		</div>
 		<div class="panel-body">
 			<p> @Result.price[0] </p>
+			<p>Your country is @Result.country</p>
 			<img src="data:image/jpeg;base64,@ViewBag.Image" class="img-responsive" />
 			@if (!string.IsNullOrEmpty(Result.message)) {
 	    		<pre>@Result.message</pre>

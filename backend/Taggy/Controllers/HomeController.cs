@@ -6,11 +6,15 @@ using System.Web.Mvc;
 using System.Web.Mvc.Ajax;
 using System.IO;
 using System.Drawing;
+using System.Text.RegularExpressions;
+using System.Web.Helpers;
+using System.Net;
 
 namespace Taggy
 {
     public class HomeController : Controller
     {
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -56,13 +60,48 @@ namespace Taggy
             var bitmap = new Bitmap(file.InputStream);
             return ConvertBitmap(bitmap);
         }
+            
+        public ActionResult Get()
+        {
+            List<object> rateList = new List<object> ();
+            using (var reader = System.IO.File.OpenText("Rates.txt")) 
+            {
+                string rstring = reader.ReadLine ();
+                Regex r = new Regex (@"(?<to>[A-Z]{3})\t(?<ratehigh>\d+)\.(?<ratelow>\d{5})\t(?<from>[A-Z]{3})");
+
+                while (rstring != null) 
+                {
+                    if (!rstring.Contains ("failed")) 
+                    {
+                        MatchCollection collection = r.Matches (rstring);
+                        if (collection != null) 
+                        {
+                            foreach (Match match in collection) 
+                            {
+                                rateList.Add (new {
+                                    To = match.Groups ["to"].Value, 
+                                    From = match.Groups ["from"].Value,
+                                    Rate = match.Groups ["ratehigh"].Value + /*System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator*/ "." + match.Groups ["ratelow"].Value
+                                });
+                            }
+                        }
+                    }
+                    rstring = reader.ReadLine ();
+                }
+            }
+            JsonResult toReturn = new JsonResult ();
+
+            toReturn.Data = rateList.ToArray();
+            toReturn.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return toReturn;
+        }
 
         private JsonResult ConvertBitmap(Bitmap bitmap)
         {
             bool isOk = true;
             string message = "";
             string recognition = "";
-
+            string ip = Request.UserHostAddress;
             try
             {
                 recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);
@@ -79,12 +118,27 @@ namespace Taggy
                 message = message,
                 price = new []{ 
                     recognition,
-                } 
+                },
+                country = GetCountry(ip)
             };
             rslt.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return rslt;
         }
 
+        static public string GetCountry(string ip)
+        {
+            string country = "";
+            //http://ru.smart-ip.net/geoip/87.252.227.29/auto
+            WebClient wclient = new WebClient ();
+            country = wclient.DownloadString (String.Format ("http://ip-api.com/json/{0}", ip));
+            if (country != null) 
+            {
+                Regex r = new Regex ("\"country\":\"(?<country>[A-Z]{1}[a-z]+)\"");
+                Match m = r.Match (country);
+                country = m.Groups ["country"].Value.ToString ();
+            }
+            return country;
+        }
         static public string BitmapToBase64(System.Drawing.Bitmap bitmap)
         {
             var stream = new MemoryStream();
