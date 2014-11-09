@@ -133,7 +133,7 @@ namespace Taggy
             country = wclient.DownloadString (String.Format ("http://ip-api.com/json/{0}", ip));
             if (country != null) 
             {
-                Regex r = new Regex ("\"country\":\"(?<country>[A-Z]{1}[a-z]+)\"");
+                Regex r = new Regex (@"""country"":""(?<country>\D+)"",""countryCode""");
                 Match m = r.Match (country);
                 country = m.Groups ["country"].Value.ToString ();
             }
