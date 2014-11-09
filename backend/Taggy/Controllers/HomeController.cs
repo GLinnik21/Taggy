@@ -102,6 +102,7 @@ namespace Taggy
             string message = "";
             string recognition = "";
             string ip = Request.UserHostAddress;
+            ViewBag.IP = ip;
             try
             {
                 recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);

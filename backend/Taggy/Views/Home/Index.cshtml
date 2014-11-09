@@ -19,6 +19,7 @@
 		</div>
 		<div class="panel-body">
 			<p> @Result.price[0] </p>
+			<p> Your IP is @ViewBag.IP</p>
 			<p>Your country is @Result.country</p>
 			<img src="data:image/jpeg;base64,@ViewBag.Image" class="img-responsive" />
 			@if (!string.IsNullOrEmpty(Result.message)) {
