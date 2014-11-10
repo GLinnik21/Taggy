@@ -101,12 +101,13 @@ namespace Taggy
             bool isOk = true;
             string message = "";
             string recognition = "";
-            string ip = Request.UserHostAddress;
+            string ip = this.HttpContext.Request.UserHostAddress;
+            //string ip=HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
             ViewBag.IP = ip;
             try
             {
                 recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);
-                recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
+                //recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
             }
             catch (Exception ex) {
                 isOk = false;
