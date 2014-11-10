@@ -9,11 +9,11 @@ PODS:
   - FlurrySDK (5.4.0):
     - FlurrySDK/FlurrySDK
   - FlurrySDK/FlurrySDK (5.4.0)
-  - GoogleAnalytics-iOS-SDK (3.0.9)
-  - InAppSettingsKit (2.2)
-  - Realm (0.87.1):
+  - GoogleAnalytics-iOS-SDK (3.10)
+  - InAppSettingsKit (2.2.1)
+  - Realm (0.87.4):
     - Realm/Headers
-  - Realm/Headers (0.87.1)
+  - Realm/Headers (0.87.4)
   - TesseractOCRiOS (2.3-dev)
 
 DEPENDENCIES:
@@ -30,9 +30,9 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   ARAnalytics: 93c5b65989145f88f4d45e262612eac277b0c219
   FlurrySDK: bed9e5598353f867508d164795a451e3ada92cb6
-  GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
-  InAppSettingsKit: 08d5d21057973c5fd6cd9f7063fc27f73aa0d7a3
-  Realm: d2a10a60bbbd66c64ae8d839a378b88c68cf79bb
+  GoogleAnalytics-iOS-SDK: e5872d2acc120613d954320e206c7e3bc8357d7c
+  InAppSettingsKit: 1d23ffbc68f628fb5d6fce0c2eed46ac6b4f3ce7
+  Realm: 17d0d9c94b38d15223fa3e806ead0e0562765e46
   TesseractOCRiOS: 2dcbc741142453d5a5b4ae738a7cc8488c541203
 
 COCOAPODS: 0.34.4

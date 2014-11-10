@@ -37,11 +37,10 @@
     TGRecognizedPrice *firstPrice = self.detail.prices.firstObject;
 
     self.navigationItem.title =
-        [NSString stringWithFormat:@"%f (%@)", firstPrice.value, [self.detail localizedCaptureDate]];
+        [NSString stringWithFormat:@"%.2f (%@)", firstPrice.value, [self.detail localizedCaptureDate]];
 
-    CGFloat convertedPrice = firstPrice.value * firstPrice.defaultCurrency.value;
-    self.targetPriceDetailLabel.text = [NSString stringWithFormat:@"%f", convertedPrice];
-    self.sourcePriceDetailLabel.text = [NSString stringWithFormat:@"%f", firstPrice.value];
+    self.targetPriceDetailLabel.text = [firstPrice formattedConvertedPrice];
+    self.sourcePriceDetailLabel.text = [firstPrice formattedSourcePrice];
     self.imageView.image = self.detail.image;
 
     self.scrollView.contentSize = self.scrollView.frame.size;

@@ -29,8 +29,8 @@
 
         price = [[TGRecognizedPrice alloc] init];
         price.value = 4.53;
-        price.sourceCurrencyCode = @"USD";
-        price.defaultCurrency = nil;
+        price.sourceCurrency = nil;
+        price.defaultCurrency = [TGCurrency currencyForCode:@"BYR"];
         price.rectString = @"";
         [item.prices addObject:price];
 
@@ -43,8 +43,8 @@
 
         price = [[TGRecognizedPrice alloc] init];
         price.value = 110;
-        price.sourceCurrencyCode = @"RUB";
-        price.defaultCurrency = nil;
+        price.sourceCurrency = [TGCurrency currencyForCode:@"RUB"];
+        price.defaultCurrency = [TGCurrency currencyForCode:@"BYR"];
         price.rectString = @"";
         [item.prices addObject:price];
 
@@ -57,8 +57,8 @@
 
         price = [[TGRecognizedPrice alloc] init];
         price.value = 24.99;
-        price.sourceCurrencyCode = @"EUR";
-        price.defaultCurrency = nil;
+        price.sourceCurrency = [TGCurrency currencyForCode:@"EUR"];
+        price.defaultCurrency = [TGCurrency currencyForCode:@"BYR"];
         price.rectString = @"";
         [item.prices addObject:price];
 
@@ -109,7 +109,7 @@
                 price.value = [[block number] floatValue];
                 price.confidence = block.confidence;
                 price.rectString = [NSValue valueWithCGRect:block.region].description;
-                price.sourceCurrencyCode = @"BYR"; //TODO: fix hardcode
+                price.sourceCurrency = [TGCurrency currencyForCode:@"BYR"]; //TODO: fix hardcode
                 price.defaultCurrency = [[self class] defaultCurrency];
 
                 [item.prices addObject:price];

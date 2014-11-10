@@ -10,4 +10,9 @@
 
 @implementation TGCurrency
 
++ (TGCurrency *)currencyForCode:(NSString *)code
+{
+    return [TGCurrency objectsWhere:@"codeFrom == %@", code].firstObject;
+}
+
 @end

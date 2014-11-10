@@ -61,9 +61,8 @@ static NSString *const kTGImageCellId = @"ImageCell";
     cell.cellImageView.image = item.thumbnail;
 
     TGRecognizedPrice *firstPrice = item.prices.firstObject;
-    cell.cellSourcePriceLabel.text = [NSString stringWithFormat:@"%f", firstPrice.value];
-    cell.cellConvertedPriceLabel.text =
-        [NSString stringWithFormat:@"%f", firstPrice.value * firstPrice.defaultCurrency.value];
+    cell.cellSourcePriceLabel.text = [firstPrice formattedSourcePrice];
+    cell.cellConvertedPriceLabel.text = [firstPrice formattedConvertedPrice];
     
     return cell;
 }

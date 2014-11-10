@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4106C4641A109047004790DB /* TGCurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4106C4631A109047004790DB /* TGCurrencyManager.m */; };
+		4106C4661A109D4A004790DB /* currency.json in Resources */ = {isa = PBXBuildFile; fileRef = 4106C4651A109D4A004790DB /* currency.json */; };
+		4106C4691A10A642004790DB /* TGMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4106C4681A10A642004790DB /* TGMigrationManager.m */; };
 		410C200619FE745B0082C66C /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 410C200519FE745B0082C66C /* tessdata */; };
 		419876F919FFBAE500EA58DF /* testImages in Resources */ = {isa = PBXBuildFile; fileRef = 419876F819FFBAE500EA58DF /* testImages */; };
 		41A76FB81A05226900176A14 /* TGCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A76FB71A05226900176A14 /* TGCurrency.m */; };
@@ -66,6 +69,11 @@
 
 /* Begin PBXFileReference section */
 		395A8A22D6331D24085F5332 /* Pods-Taggy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Taggy/Pods-Taggy.release.xcconfig"; sourceTree = "<group>"; };
+		4106C4621A109047004790DB /* TGCurrencyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGCurrencyManager.h; sourceTree = "<group>"; };
+		4106C4631A109047004790DB /* TGCurrencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGCurrencyManager.m; sourceTree = "<group>"; };
+		4106C4651A109D4A004790DB /* currency.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = currency.json; sourceTree = "<group>"; };
+		4106C4671A10A642004790DB /* TGMigrationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGMigrationManager.h; sourceTree = "<group>"; };
+		4106C4681A10A642004790DB /* TGMigrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGMigrationManager.m; sourceTree = "<group>"; };
 		410C200519FE745B0082C66C /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		419876F819FFBAE500EA58DF /* testImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = testImages; sourceTree = "<group>"; };
 		41A76FB61A05226900176A14 /* TGCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGCurrency.h; sourceTree = "<group>"; };
@@ -153,6 +161,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4106C4611A10800C004790DB /* Currency */ = {
+			isa = PBXGroup;
+			children = (
+				4106C4621A109047004790DB /* TGCurrencyManager.h */,
+				4106C4631A109047004790DB /* TGCurrencyManager.m */,
+			);
+			name = Currency;
+			sourceTree = "<group>";
+		};
 		41A76FBF1A05A1B900176A14 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +220,7 @@
 				41A76FBF1A05A1B900176A14 /* Common */,
 				41A9D0511A038BA000922CBC /* Storage */,
 				41A9D0501A038B8D00922CBC /* Recognition */,
+				4106C4611A10800C004790DB /* Currency */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -230,6 +248,8 @@
 				41A76FBD1A05343800176A14 /* TGRecognizedPrice.m */,
 				41A76FC31A05A43600176A14 /* TGDataManager.h */,
 				41A76FC41A05A43600176A14 /* TGDataManager.m */,
+				4106C4671A10A642004790DB /* TGMigrationManager.h */,
+				4106C4681A10A642004790DB /* TGMigrationManager.m */,
 			);
 			name = Storage;
 			sourceTree = "<group>";
@@ -326,6 +346,7 @@
 		ED077A3819F9405E00B203CB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4106C4651A109D4A004790DB /* currency.json */,
 				ED7C11051A069F220037C843 /* choose.png */,
 				ED7C11061A069F220037C843 /* choose@2x.png */,
 				ED2DE36C19FCFA8E008C69F2 /* PhotoButtonP@2x.png */,
@@ -457,6 +478,7 @@
 				ED077A5219F9405E00B203CB /* scan.png in Resources */,
 				ED077A2319F93FE300B203CB /* LaunchScreen.xib in Resources */,
 				ED6C079119FAE3570000770D /* retina.png in Resources */,
+				4106C4661A109D4A004790DB /* currency.json in Resources */,
 				410C200619FE745B0082C66C /* tessdata in Resources */,
 				ED077A5419F9405E00B203CB /* set.png in Resources */,
 				ED2DE36D19FCFA8E008C69F2 /* PhotoButtonP.png in Resources */,
@@ -523,6 +545,7 @@
 				41A76FC51A05A43600176A14 /* TGDataManager.m in Sources */,
 				ED077A1B19F93FE300B203CB /* TGViewController.m in Sources */,
 				ED077A1819F93FE300B203CB /* TGAppDelegate.m in Sources */,
+				4106C4691A10A642004790DB /* TGMigrationManager.m in Sources */,
 				41A76FBE1A05343800176A14 /* TGRecognizedPrice.m in Sources */,
 				41A76FBB1A05335100176A14 /* TGPriceImage.m in Sources */,
 				ED077A1519F93FE300B203CB /* main.m in Sources */,
@@ -530,6 +553,7 @@
 				41A9D0481A00F2A700922CBC /* TGRecognizedBlock.m in Sources */,
 				ED077A6D19F940F700B203CB /* TGImageCell.m in Sources */,
 				41A76FC21A05A1D800176A14 /* TGCommon.m in Sources */,
+				4106C4641A109047004790DB /* TGCurrencyManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

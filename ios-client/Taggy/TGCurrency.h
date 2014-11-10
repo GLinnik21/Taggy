@@ -16,6 +16,8 @@
 @property NSString *codeTo;
 @property CGFloat value;
 
++ (TGCurrency *)currencyForCode:(NSString *)code;
+
 @end
 
 // RLMArray<TGCurrency>

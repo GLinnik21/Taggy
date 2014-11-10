@@ -9,6 +9,8 @@
 #import "TGAppDelegate.h"
 #import <ARAnalytics/ARAnalytics.h>
 #import "TGDataManager.h"
+#import "TGCurrencyManager.h"
+#import "TGMigrationManager.h"
 
 @interface TGAppDelegate ()
 
@@ -22,6 +24,9 @@
                                       ARGoogleAnalyticsID : @"UA-9189602-6"
                                       }];
 
+    [TGMigrationManager migrate];
+    
+    [TGCurrencyManager update];
     [TGDataManager fillSample];
 
     return YES;
