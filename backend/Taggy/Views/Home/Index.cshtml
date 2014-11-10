@@ -19,7 +19,7 @@
 		<p id="price"> </p>
 		<p>Your ip: <span id="ip-addr"></span></p>
 		<p>Your country: <span id="country"></span></p>
-		<div id="image-div"></div>
+		<img id="image" class="img-responsive" /><br/>
     	<pre id="message"></pre>
   	</div>
 </div>
@@ -34,7 +34,7 @@
 			maxWidth: 500,
 			maxHeight: 500,
 			complete: function (result) {
-				$("#image-div").html(result.canvas);
+				$("#image").attr("src", "data:image/jpeg;base64" + result.data);
 				$("#results-panel").show();
 				prj1551.imageResizer.upload({
 					url: 'Convert',
