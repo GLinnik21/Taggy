@@ -107,7 +107,6 @@ namespace Taggy
             try
             {
                 recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);
-                 //recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
             }
             catch (Exception ex) {
                 isOk = false;
