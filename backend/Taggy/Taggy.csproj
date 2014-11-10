@@ -158,6 +158,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\binaryajax.js" />
+    <Content Include="Scripts\exif.js" />
+    <Content Include="Scripts\project1551.imageResizer.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
