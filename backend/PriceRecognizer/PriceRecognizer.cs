@@ -45,7 +45,6 @@ namespace PriceRecognizer
             using (pumaPage)
             {
                 pumaPage.FileFormat = PumaFileFormat.TxtAscii;
-                //pumaPage.AutoRotateImage = true;
                 pumaPage.EnableSpeller = false;
                 pumaPage.RecognizeTables = true;
                 pumaPage.Language = PumaLanguage.Russian;
