@@ -45,7 +45,7 @@
     <None Include="Puma\puma.interop.dll" />
     <None Include="Puma\Puma.Net.dll" />
     <None Include="dibapi.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <ItemGroup>
