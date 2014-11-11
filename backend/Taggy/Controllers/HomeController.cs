@@ -42,7 +42,8 @@ namespace Taggy
                 message = "",
                 price = new []{
                     "25000",
-                }
+                },
+                ip = this.HttpContext.Request.UserHostAddress
             };
 			data = (RecognitionData) ConvertBitmap(bitmap).Data;
 
@@ -120,7 +121,8 @@ namespace Taggy
                 price = new []{ 
                     recognition,
                 },
-                country = GetCountry(ip)
+                country = GetCountry(ip),
+                ip = ip
             };
             rslt.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return rslt;

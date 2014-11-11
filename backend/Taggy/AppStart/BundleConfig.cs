@@ -22,6 +22,9 @@ namespace Taggy.AppStart
         {
             bundles.Add(new ScriptBundle("~/js")
                             .Include("~/Scripts/jquery-2.1.1.js")
+                            .Include("~/Scripts/binaryajax.js")
+                            .Include("~/Scripts/exif.js")
+                            .Include("~/Scripts/project1551.imageResizer.js")
                             .Include("~/Scripts/bootstrap.js"));
         }
     }
