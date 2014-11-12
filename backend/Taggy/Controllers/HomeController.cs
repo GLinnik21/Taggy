@@ -21,6 +21,10 @@ namespace Taggy
             return View();
         }
 
+        public ActionResult Information()
+        {
+            return View ();
+        }
         public ActionResult About()
         {
             return View();
@@ -108,6 +112,7 @@ namespace Taggy
             try
             {
                 recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);
+                recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
             }
             catch (Exception ex) {
                 isOk = false;

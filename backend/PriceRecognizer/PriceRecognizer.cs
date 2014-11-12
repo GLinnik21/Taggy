@@ -69,7 +69,7 @@ namespace PriceRecognizer
         {
             HashSet<char> alowedChars = new HashSet<char>()
             { // '; = 3
-                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '(', ')', 'о', 'О', '.', ',', ' ', 'o', 'O', '`', Convert.ToChar("'"), ';'
+                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '(', ')', 'о', 'О', '.', ',', ' ', 'o', 'O', '`', Convert.ToChar("'"), ';', 'б'
             };
             string toRecognize = "";
             string newRec = "";
@@ -87,19 +87,22 @@ namespace PriceRecognizer
                 if (i < toRecognize.Length - 2)
                 if (toRecognize[i] == ' ' && toRecognize[i + 1] == Convert.ToChar("'") && toRecognize[i + 2] == ';')
                     c++;
-                if (i < toRecognize.Length -1)
+                if (i < toRecognize.Length - 1)
                 if (toRecognize[i] == '(' && toRecognize[i + 1] == ')')
                     newRec += "0";
                 else if (toRecognize[i] == 'о' || toRecognize[i] == 'О' || toRecognize[i] == 'o' || toRecognize[i] == 'O')
                     newRec += "0";
                 else if (i < toRecognize.Length - 1 && i > 0)
-                    if (toRecognize[i] == Convert.ToChar("'") && Char.IsDigit(toRecognize[i - 1]) && Char.IsDigit(toRecognize[i + 1]))
-                        newRec += "";
-                else if (i > 0) 
+                if (toRecognize[i] == Convert.ToChar("'") && Char.IsDigit(toRecognize[i - 1]) && Char.IsDigit(toRecognize[i + 1]))
+                    newRec += "";
+                else if (i > 0)
                 if (toRecognize[i] == ';' && toRecognize[i - 1] == Convert.ToChar("'"))
                 {
                 }
                 else if (i < toRecognize.Length - 1 && i > 0)
+                if (toRecognize[i] == 'б' && Char.IsDigit(toRecognize[i - 1]) && Char.IsDigit(toRecognize[i + 1]))
+                    newRec += 6;
+                else
                     if (toRecognize[i] == Convert.ToChar("'") && toRecognize[i + 1] == ';' && toRecognize[i - 1] == ' ')
                         newRec += "3";
                 else if (c == 0)
