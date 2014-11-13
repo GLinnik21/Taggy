@@ -47,7 +47,8 @@ namespace Taggy
                 price = new []{
                     "25000",
                 },
-                ip = this.HttpContext.Request.UserHostAddress
+                //ip = this.HttpContext.Request.UserHostAddress
+                ip = Request.ServerVariables["REMOTE_ADDR"]
             };
 			data = (RecognitionData) ConvertBitmap(bitmap).Data;
 
@@ -106,6 +107,7 @@ namespace Taggy
             bool isOk = true;
             string message = "";
             string recognition = "";
+            string rates = "";
             string ip = this.HttpContext.Request.UserHostAddress;
             //string ip=HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
             ViewBag.IP = ip;
@@ -113,6 +115,7 @@ namespace Taggy
             {
                 recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);
                 recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
+                rates = PriceRecognizer.RatesConverter.Exchange("BYR","USD",recognition);
             }
             catch (Exception ex) {
                 isOk = false;
@@ -124,7 +127,8 @@ namespace Taggy
                 ok = isOk, 
                 message = message,
                 price = new []{ 
-                    recognition,
+                    //recognition,
+                    rates,
                 },
                 country = GetCountry(ip),
                 ip = ip

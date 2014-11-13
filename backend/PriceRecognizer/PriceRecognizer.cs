@@ -189,7 +189,6 @@ namespace PriceRecognizer
                 newRec += str;
                 newRec += ' ';
             }
-
             return newRec.Trim();
         }
     }
