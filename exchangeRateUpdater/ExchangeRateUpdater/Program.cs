@@ -33,7 +33,7 @@ namespace ExchangeRateUpdater
                                                   "UAH", "UYP", "DKK", "FJD", "PHP", "FKP", "HRK", "CZK", "CLP", "CHF", "SEK", 
                                                   "LKR", "ESC", "ERN", "EEK", "ETB", "KRW", "ZAR", "JPY" };
             Dictionary<string, double> dict = new Dictionary<string, double>(); // Аббр. + курс при конвертации в доллар США
-            Regex regex = new Regex(@"""rate"": (?<rate>\d+\.\d+\S{4})");
+            Regex regex = new Regex(@"""rate"": (?<rate>\d+\.\d+\S{4})\,");
             string response = null;
 
 
