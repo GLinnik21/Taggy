@@ -40,9 +40,12 @@ DEPENDENCIES:
   - ARAnalytics/Flurry
   - ARAnalytics/GoogleAnalytics
   - ARAnalytics/YandexMobileMetrica
+  - FlurrySDK (~> 5.4.0)
+  - GoogleAnalytics-iOS-SDK (~> 3.10)
   - InAppSettingsKit (~> 2.1)
-  - Realm
+  - Realm (~> 0.87.4)
   - TesseractOCRiOS (from `https://github.com/BamX/Tesseract-OCR-iOS.git`, branch `working`)
+  - YandexMobileMetrica (~> 1.6.1)
 
 EXTERNAL SOURCES:
   TesseractOCRiOS:
