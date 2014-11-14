@@ -67,11 +67,10 @@ static CGFloat const kTGMaximumVerticalDelta = 10.0f;
 
 - (void)recognize
 {
+    [ARAnalytics startTimingEvent:@"Recognizing image"];
+
     @try {
         [self clear];
-
-        [ARAnalytics event:@"Recognizing image"
-            withProperties:@{ @"size" : [NSValue valueWithCGSize:self.image.size] }];
 
         [self.tesseract recognize];
         self.recognizedBlocks = [TGRecognizedBlock blocksFromRecognitionArray:self.tesseract.getConfidenceByWord];
@@ -87,7 +86,9 @@ static CGFloat const kTGMaximumVerticalDelta = 10.0f;
         [self formatPrices];
 
         [ARAnalytics event:@"Image recognized"
-            withProperties:@{ @"recognizedPrices" : self.recognizedPrices.description }];
+            withProperties:@{
+                             @"recognizedPrices" : self.recognizedPrices.description,
+                             @"count": @(self.recognizedPrices.count)}];
     }
     @catch (NSException *exception) {
         NSLog(@"Exception: %@", exception.description);
@@ -98,6 +99,9 @@ static CGFloat const kTGMaximumVerticalDelta = 10.0f;
                withMessage:@"Recognition exception"];
 
         [self clear];
+    }
+    @finally {
+        [ARAnalytics finishTimingEvent:@"Recognizing image"];
     }
 }
 
