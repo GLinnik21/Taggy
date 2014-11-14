@@ -33,7 +33,7 @@ namespace ExchangeRateUpdater
                                                   "UAH", "UYP", "DKK", "FJD", "PHP", "FKP", "HRK", "CZK", "CLP", "CHF", "SEK", 
                                                   "LKR", "ESC", "ERN", "EEK", "ETB", "KRW", "ZAR", "JPY" };
             Dictionary<string, double> dict = new Dictionary<string, double>(); // Аббр. + курс при конвертации в доллар США
-            Regex regex = new Regex(@"""rate"": (?<rate>\d+\.\d{5})");
+            Regex regex = new Regex(@"""rate"": (?<rate>\d+\.\d+\S{4})\,");
             string response = null;
 
 
@@ -56,20 +56,11 @@ namespace ExchangeRateUpdater
                                     rate = match.Groups["rate"].Value;
                                 else 
                                 {
-                                    Regex r = new Regex(@"""rate"": (?<rate>\d+\.\d{4})");
+                                    Regex r = new Regex(@"""rate"": (?<rate>\d+\.\d+)");
                                     if (r.IsMatch(response))
                                     {
                                         Match m = r.Match(response);
                                         rate = m.Groups["rate"].Value + "0";
-                                    }
-                                    else
-                                    {
-                                        Regex r1 = new Regex(@"""rate"": (?<rate>\d+\.\d{1})");
-                                        if (r1.IsMatch(response))
-                                        {
-                                            Match m1 = r1.Match(response);
-                                            rate = m1.Groups["rate"].Value + "0000";
-                                        }
                                     }
                                 }
                                 writer.WriteLine(to + "\t" + rate + "\t" + from);

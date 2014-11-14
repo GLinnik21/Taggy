@@ -31,8 +31,8 @@
 		var t = event.target.files[0];
 		prj1551.imageResizer.resize({
 			file: t,
-			maxWidth: 500,
-			maxHeight: 500,
+			maxWidth: 650,
+			maxHeight: 650,
 			complete: function (result) {
 				$("#image").attr("src", "data:image/jpeg;base64" + result.data);
 				$("#results-panel").show();
