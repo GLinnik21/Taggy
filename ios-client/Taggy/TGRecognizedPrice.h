@@ -19,9 +19,14 @@
 
 @property CGFloat value;
 @property NSString *rectString;
-@property NSString *sourceCurrencyCode;
+@property TGCurrency *sourceCurrency;
 @property TGCurrency *defaultCurrency;
 @property CGFloat confidence;
+
+- (CGFloat)convertedPrice;
+
+- (NSString *)formattedSourcePrice;
+- (NSString *)formattedConvertedPrice;
 
 @end
 

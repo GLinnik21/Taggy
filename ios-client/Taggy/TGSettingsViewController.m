@@ -7,31 +7,25 @@
 //
 
 #import "TGSettingsViewController.h"
-#import <MessageUI/MessageUI.h>
 
-#ifdef USES_IASK_STATIC_LIBRARY
-#import "InAppSettingsKit/IASKSettingsReader.h"
-#else
-#import "IASKSettingsReader.h"
-#endif
-
-@interface TGSettingsViewController ()<UIPopoverControllerDelegate>
-- (void)settingDidChange:(NSNotification*)notification;
-
-@property (nonatomic) UIPopoverController* currentPopoverController;
+@interface TGSettingsViewController () <IASKSettingsDelegate>
 
 @end
 
 @implementation TGSettingsViewController
 
-@synthesize appSettingsViewController, tabAppSettingsViewController;
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super initWithCoder:aDecoder];
+    if (self != nil) {
+        self.delegate = self;
+    }
+    return self;
+}
 
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-    self.appSettingsViewController = nil;
+- (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
