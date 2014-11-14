@@ -1,38 +1,64 @@
 PODS:
-  - ARAnalytics/CoreIOS (2.8.0)
-  - ARAnalytics/Flurry (2.8.0):
+  - ARAnalytics/CoreIOS (2.9.1)
+  - ARAnalytics/Flurry (2.9.1):
     - ARAnalytics/CoreIOS
     - FlurrySDK
-  - ARAnalytics/GoogleAnalytics (2.8.0):
+  - ARAnalytics/GoogleAnalytics (2.9.1):
     - ARAnalytics/CoreIOS
     - GoogleAnalytics-iOS-SDK
+  - ARAnalytics/YandexMobileMetrica (2.9.1):
+    - ARAnalytics/CoreIOS
+    - YandexMobileMetrica
   - FlurrySDK (5.4.0):
     - FlurrySDK/FlurrySDK
   - FlurrySDK/FlurrySDK (5.4.0)
+  - FMDB (2.2):
+    - FMDB/standard
+  - FMDB/common (2.2)
+  - FMDB/standard (2.2):
+    - FMDB/common
   - GoogleAnalytics-iOS-SDK (3.10)
-  - InAppSettingsKit (2.2.1)
+  - InAppSettingsKit (2.2.2)
+  - KSCrash/Recording (0.0.3)
+  - KSCrash/Reporting/Filters/AppleFmt (0.0.3):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/Base (0.0.3):
+    - KSCrash/Recording
+  - protobuf-c (0.15)
   - Realm (0.87.4):
     - Realm/Headers
   - Realm/Headers (0.87.4)
-  - TesseractOCRiOS (2.3-dev)
+  - TesseractOCRiOS (2.3)
+  - YandexMobileMetrica (1.6.1):
+    - FMDB (= 2.2.0)
+    - KSCrash/Recording (~> 0.0.3)
+    - KSCrash/Reporting/Filters/AppleFmt (~> 0.0.3)
+    - protobuf-c (= 0.15)
 
 DEPENDENCIES:
   - ARAnalytics/Flurry
   - ARAnalytics/GoogleAnalytics
+  - ARAnalytics/YandexMobileMetrica
   - InAppSettingsKit (~> 2.1)
   - Realm
-  - TesseractOCRiOS (from `.`)
+  - TesseractOCRiOS (from `https://github.com/BamX/Tesseract-OCR-iOS.git`, branch `working`)
 
 EXTERNAL SOURCES:
   TesseractOCRiOS:
-    :podspec: .
+    :branch: working
+    :git: https://github.com/BamX/Tesseract-OCR-iOS.git
 
 SPEC CHECKSUMS:
-  ARAnalytics: 93c5b65989145f88f4d45e262612eac277b0c219
+  ARAnalytics: a06e6d012b5999d8598ec9bacec45c8a8099f668
   FlurrySDK: bed9e5598353f867508d164795a451e3ada92cb6
+  FMDB: f6f4511ad1e9ace38e9b6f4d83c2cddaabf98ea6
   GoogleAnalytics-iOS-SDK: e5872d2acc120613d954320e206c7e3bc8357d7c
-  InAppSettingsKit: 1d23ffbc68f628fb5d6fce0c2eed46ac6b4f3ce7
+  InAppSettingsKit: cd8ffa4266fb5c4778af8bda8aa9bf08b6733fd4
+  KSCrash: c0a693b2d83ced5c15a40d4e916833c655475e6a
+  protobuf-c: 0177b8dbc4afc4ec5d01e868b3e25a7400b98ca0
   Realm: 17d0d9c94b38d15223fa3e806ead0e0562765e46
-  TesseractOCRiOS: 2dcbc741142453d5a5b4ae738a7cc8488c541203
+  TesseractOCRiOS: 02a1ea2c76f8329aa16ebd856259146b6ca92f43
+  YandexMobileMetrica: d570b4182c091523c02510654d0af4cd8b95631f
 
 COCOAPODS: 0.34.4

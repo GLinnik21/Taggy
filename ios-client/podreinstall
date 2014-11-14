@@ -1,0 +1,5 @@
+#!/bin/bash
+rm -rf Pods
+rm -rf ~/Library/Developer/Xcode/DerivedData/Taggy-*
+xcodebuild clean
+pod install

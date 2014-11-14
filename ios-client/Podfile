@@ -5,10 +5,11 @@ platform :ios, "6.0"
 
 target "Taggy" do
 
-pod 'TesseractOCRiOS', :podspec=>'.'
+pod 'TesseractOCRiOS', :git => 'https://github.com/BamX/Tesseract-OCR-iOS.git', :branch => 'working'
 pod 'InAppSettingsKit', '~> 2.1'
 pod 'ARAnalytics/Flurry'
 pod 'ARAnalytics/GoogleAnalytics'
+pod 'ARAnalytics/YandexMobileMetrica'
 pod 'Realm'
 
 end
