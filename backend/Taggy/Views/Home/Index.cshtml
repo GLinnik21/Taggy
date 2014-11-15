@@ -17,7 +17,8 @@
 	</div>
 	<div id="results" class="panel-body">
 		<p id="price"></p>
-		<p id="position0"></p>
+		<p id="pos1"></p>
+		<p id="pos2"></p>
 		<p>Your ip: <span id="ip-addr"></span></p>
 		<p>Your country: <span id="country"></span></p>
 		<img id="image" class="img-responsive" /><br/>
@@ -27,12 +28,15 @@
 
 @section scripts {
   	<script>
-  	      if(navigator.geolocation) {
-    		navigator.geolocation.getCurrentPosition(function(position) {
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
-        	});
-     		}
+  	if(navigator.geolocation) {
+			    		navigator.geolocation.getCurrentPosition(function(position) {
+			            var latitude = position.coords.latitude;
+			            var longitude = position.coords.longitude;
+			            obj.position[0] = latitude;
+			            obj.position[1] = longitude;
+			        	});
+			     		}
+					}
   	</script>
 
 	<script>
@@ -62,15 +66,20 @@
 						$('#message').html(obj.message);
 						$('#ip-addr').html(obj.ip);
 						$('#country').html(obj.country);
+					
+						$('#pos1').html(obj.position[0]);
+						$('#pos2').html(obj.position[1]);
 
 						if (obj.ok) {
 							$('#price').show();
 							$('#message').hide();
+							$('#pos1').show();
+							$('#pos2').show();
 						} else {
 							$('#price').hide();
 							$('#message').show();
 						}
-					}
+
 				});
 			}
 		});

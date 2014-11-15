@@ -71,7 +71,7 @@ namespace Taggy
         public ActionResult Get()
         {
             List<object> rateList = new List<object> ();
-            using (var reader = System.IO.File.OpenText("Rates.txt")) 
+            using (var reader = System.IO.File.OpenText(Server.MapPath("~/Rates.txt"))) 
             {
                 string rstring = reader.ReadLine ();
                 Regex r = new Regex (@"(?<to>[A-Z]{3})\t(?<ratehigh>\d+)\.(?<ratelow>\S+)\t(?<from>[A-Z]{3})"); // OK
@@ -109,6 +109,7 @@ namespace Taggy
             string message = "";
             string recognition = "";
             string rates = "";
+            string[] position = { "",""};
             string ip = Request.ServerVariables ["REMOTE_ADDR"];
             //string ip=HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
             ViewBag.IP = ip;
@@ -130,6 +131,10 @@ namespace Taggy
                 price = new []{ 
                     //recognition,
                     rates,
+                },
+                position = new []{
+                    "",
+                    "",
                 },
                 country = GetCountry(ip),
                 ip = ip
