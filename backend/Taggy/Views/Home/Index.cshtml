@@ -11,21 +11,13 @@
   	</div>
 </div>
 
-<script>
-  	if(navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
-		});
-     }
-</script>
-
 <div id="results-panel" class="panel panel-success">
 	<div class="panel-heading">
 		<h3 class="panel-title">Результат</h3>
 	</div>
 	<div id="results" class="panel-body">
 		<p id="price"></p>
+		<p id="position0"></p>
 		<p>Your ip: <span id="ip-addr"></span></p>
 		<p>Your country: <span id="country"></span></p>
 		<img id="image" class="img-responsive" /><br/>
@@ -34,6 +26,15 @@
 </div>
 
 @section scripts {
+  	<script>
+  	      if(navigator.geolocation) {
+    		navigator.geolocation.getCurrentPosition(function(position) {
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
+        	});
+     		}
+  	</script>
+
 	<script>
 	$("#results-panel").hide();
 	$("#file").on("change", function (event) {

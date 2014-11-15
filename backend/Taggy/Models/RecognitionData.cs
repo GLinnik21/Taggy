@@ -16,6 +16,7 @@ namespace Taggy
         public string[] price { get; set; }
         public string country { get; set; }
         public string ip { get; set; }
+        public string[] position { get; set;}
     }
     
 }
