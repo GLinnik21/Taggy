@@ -109,7 +109,7 @@ namespace Taggy
             string message = "";
             string recognition = "";
             string rates = "";
-            string[] position = { "",""};
+            string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables ["REMOTE_ADDR"];
             try
             {
                 recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);
@@ -133,6 +133,7 @@ namespace Taggy
                     "",
                     "",
                 },
+                ip = ip
             };
             rslt.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return rslt;
