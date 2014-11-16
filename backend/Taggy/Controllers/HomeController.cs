@@ -110,9 +110,6 @@ namespace Taggy
             string recognition = "";
             string rates = "";
             string[] position = { "",""};
-            string ip = Request.ServerVariables ["REMOTE_ADDR"];
-            //string ip=HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
-            ViewBag.IP = ip;
             try
             {
                 recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);
@@ -136,13 +133,11 @@ namespace Taggy
                     "",
                     "",
                 },
-                country = GetCountry(ip),
-                ip = ip
             };
             rslt.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return rslt;
         }
-
+            
         static public string GetCountry(string ip)
         {
             string country = "";
