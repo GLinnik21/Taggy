@@ -33,6 +33,7 @@
             [ARAnalytics finishTimingEvent:@"Migration 0 > 1"];
         }
     }];
+    [RLMRealm migrateRealmAtPath:[RLMRealm defaultRealmPath]];
 }
 
 @end
