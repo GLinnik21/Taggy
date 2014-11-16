@@ -26,7 +26,6 @@ static NSString *const kTGImageCellId = @"ImageCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"Результаты";
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
