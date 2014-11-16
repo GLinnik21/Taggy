@@ -28,7 +28,7 @@
 			<key>Key</key>
 			<string>version</string>
 			<key>DefaultValue</key>
-			<string>0.3(Beta)</string>
+			<string>0.4(Beta)</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>
