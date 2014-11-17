@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace PriceRecognizer
 {
@@ -11,7 +12,7 @@ namespace PriceRecognizer
 
         public static  string Exchange(string From , string To, string s/*int v изначальной валюты*/) // USD   9.2674099999999994e-05  BYR
         {
-            double rateValue = Double.Parse("9,2674099999999994e-05");
+            double rateValue = 9.26741e-05;
             // Когда заработает открытие файла, считывать строку, проверять, содержит ли подстроку Tо, Regex -> курс
             // From -> USD = X и To -> USD = Y, то From -> To = X * (1 / Y)
             string[] toConvert = s.Split(' ');
