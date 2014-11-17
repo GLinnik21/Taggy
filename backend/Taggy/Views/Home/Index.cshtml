@@ -26,8 +26,6 @@
 	</div>
 	<div id="results" class="panel-body">
 		<p id="price"></p>
-		<p id="pos1"></p>
-		<p id="pos2"></p>
 		<img id="image" class="img-responsive" /><br/>
     	<pre id="message"></pre>
   	</div>
@@ -83,15 +81,9 @@
 						var obj = jQuery.parseJSON(this.response);
 						$('#price').html(obj.price);
 						$('#message').html(obj.message);
-					
-						$('#pos1').html(obj.position[0]);
-						$('#pos2').html(obj.position[1]);
-
 						if (obj.ok) {
 							$('#price').show();
 							$('#message').hide();
-							$('#pos1').show();
-							$('#pos2').show();
 						} else {
 							$('#price').hide();
 							$('#message').show();
