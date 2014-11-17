@@ -33,6 +33,8 @@ namespace Taggy
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
+            var Long = ViewBag.Long;
+            var Lat = ViewBag.Lat;
             if (file == null)
             {
                 return View(new RecognitionData{ ok = false, message = "Файл не выбран" });
@@ -51,7 +53,6 @@ namespace Taggy
                 ip = Request.ServerVariables["REMOTE_ADDR"]
             };
 			data = (RecognitionData) ConvertBitmap(bitmap).Data;
-
             return View(data);
         }
 
@@ -70,10 +71,10 @@ namespace Taggy
         public ActionResult Get()
         {
             List<object> rateList = new List<object> ();
-            using (var reader = System.IO.File.OpenText("Rates.txt")) 
+            using (var reader = System.IO.File.OpenText(Server.MapPath("~/Rates.txt"))) 
             {
                 string rstring = reader.ReadLine ();
-                Regex r = new Regex (@"(?<to>[A-Z]{3})\t(?<ratehigh>\d+)\.(?<ratelow>\d{5})\t(?<from>[A-Z]{3})");
+                Regex r = new Regex (@"(?<to>[A-Z]{3})\t(?<ratehigh>\d+)\.(?<ratelow>\S+)\t(?<from>[A-Z]{3})"); // OK
 
                 while (rstring != null) 
                 {
@@ -108,9 +109,7 @@ namespace Taggy
             string message = "";
             string recognition = "";
             string rates = "";
-            string ip = this.HttpContext.Request.UserHostAddress;
-            //string ip=HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
-            ViewBag.IP = ip;
+            string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables ["REMOTE_ADDR"];
             try
             {
                 recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);
@@ -130,13 +129,16 @@ namespace Taggy
                     //recognition,
                     rates,
                 },
-                country = GetCountry(ip),
+                position = new []{
+                    "",
+                    "",
+                },
                 ip = ip
             };
             rslt.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
             return rslt;
         }
-
+            
         static public string GetCountry(string ip)
         {
             string country = "";

@@ -162,6 +162,8 @@
     <Content Include="Scripts\exif.js" />
     <Content Include="Scripts\project1551.imageResizer.js" />
     <Content Include="Views\Home\Information.cshtml" />
+    <Content Include="Scripts\geo-min.js" />
+    <Content Include="Scripts\geo.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

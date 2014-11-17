@@ -14,13 +14,11 @@ namespace PriceRecognizer
             double rateValue = Double.Parse("9,2674099999999994e-05");
             // Когда заработает открытие файла, считывать строку, проверять, содержит ли подстроку Tо, Regex -> курс
             // From -> USD = X и To -> USD = Y, то From -> To = X * (1 / Y)
-            double X = 0;
-            double Y = 1; 
             string[] toConvert = s.Split(' ');
             string toReturn = "";
             foreach (var str in toConvert)
             {
-                toReturn += str + " -> " + Int32.Parse(str) * rateValue + " ";
+                toReturn += str + " --->> " + Math.Round(Int32.Parse(str) * rateValue, 3) + "<br>";
             }
             return toReturn;
         }
