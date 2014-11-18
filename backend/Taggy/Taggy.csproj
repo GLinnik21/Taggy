@@ -164,6 +164,7 @@
     <Content Include="Views\Home\Information.cshtml" />
     <Content Include="Scripts\geo-min.js" />
     <Content Include="Scripts\geo.js" />
+    <Content Include="Content\InfoImage.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

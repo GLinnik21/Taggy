@@ -23,6 +23,8 @@ namespace Taggy
 
         public ActionResult Information()
         {
+            Bitmap bitmap = new Bitmap (Server.MapPath("~/Content/InfoImage.jpg"));
+            ViewBag.InfoImage = BitmapToBase64 (bitmap);
             return View ();
         }
         public ActionResult About()
