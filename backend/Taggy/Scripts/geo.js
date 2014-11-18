@@ -1,3 +1,4 @@
+
 //****NOTE*****: SEE THIS NOTE REGARDING the 404
 //http://code.google.com/p/geo-location-javascript/issues/detail?id=48
 

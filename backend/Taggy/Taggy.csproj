@@ -165,6 +165,7 @@
     <Content Include="Scripts\geo-min.js" />
     <Content Include="Scripts\geo.js" />
     <Content Include="Content\InfoImage.jpg" />
+    <Content Include="Scripts\converter.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

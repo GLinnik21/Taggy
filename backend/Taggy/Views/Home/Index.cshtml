@@ -15,7 +15,7 @@
 
 			<div class="progress2" style="background:#B4F5B4;height:20px;border-radius:3px;width: 0"></div>
 			<span id="getting-location" class="label label-info"></span><hr />
-			<button type="button" id="loading-button" data-loading-text="Загурзка..." class="btn btn-primary" autocomplete="off">Распознать</button>
+			<button type="button" id="loading-button" data-loading-text="Загрузка..." class="btn btn-primary" autocomplete="off">Распознать</button>
 		</form>
   	</div>
 </div>
@@ -48,9 +48,6 @@
 			}
 		});
 
-  	</script>
-
-	<script>
 	$("#results-panel").hide();
 	$('#loading-button').on('click', function () {
 		var btn = $(this).button('loading');

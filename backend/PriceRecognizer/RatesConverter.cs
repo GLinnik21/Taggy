@@ -19,7 +19,7 @@ namespace PriceRecognizer
             string toReturn = "";
             foreach (var str in toConvert)
             {
-                toReturn += str + " --->> " + Math.Round(Int32.Parse(str) * rateValue, 3) + "<br>";
+                toReturn += str + "    ---->>>     " + Math.Round(Int32.Parse(str) * rateValue, 3) + "<br>";
             }
             return toReturn;
         }
