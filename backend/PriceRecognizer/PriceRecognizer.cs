@@ -87,44 +87,64 @@ namespace PriceRecognizer
                 if (i < toRecognize.Length - 2)
                 if (toRecognize[i] == ' ' && toRecognize[i + 1] == Convert.ToChar("'") && toRecognize[i + 2] == ';')
                     c++;
-                if (i < toRecognize.Length - 1)
+
+                if (i < toRecognize.Length - 1 && c == 0)
                 if (toRecognize[i] == '(' && toRecognize[i + 1] == ')')
-                    newRec += "0";
-                else if (toRecognize[i] == 'о' || toRecognize[i] == 'О' || toRecognize[i] == 'o' || toRecognize[i] == 'O')
-                    newRec += "0";
-                else if (i < toRecognize.Length - 1 && i > 0)
-                if (toRecognize[i] == Convert.ToChar("'") && Char.IsDigit(toRecognize[i - 1]) && Char.IsDigit(toRecognize[i + 1]))
-                    newRec += "";
-                else if (i > 0)
-                if (toRecognize[i] == ';' && toRecognize[i - 1] == Convert.ToChar("'"))
                 {
+                    c++;
+                    newRec += "0";
                 }
-                else if (i < toRecognize.Length - 1 && i > 0)
-                if (toRecognize[i] == 'б' && Char.IsDigit(toRecognize[i - 1]) && Char.IsDigit(toRecognize[i + 1]))
+                if (c == 0 && (toRecognize[i] == 'о' || toRecognize[i] == 'О' || toRecognize[i] == 'o' || toRecognize[i] == 'O'))
+                {
+                    c++;
+                    newRec += "0";
+                }
+                if (i < toRecognize.Length - 1 && i > 0)
+                if (c == 0 && toRecognize[i] == Convert.ToChar("'") && Char.IsDigit(toRecognize[i - 1]) && Char.IsDigit(toRecognize[i + 1]))
+                {
+                    c++;
+                    newRec += "";
+                }
+
+                if (i > 0)
+                if (toRecognize[i] == ';' && toRecognize[i - 1] == Convert.ToChar("'") && c == 0)
+                {
+                    c++;
+                }
+                if (i < toRecognize.Length - 1 && i > 0)
+                if (c == 0 && toRecognize[i] == 'б' && Char.IsDigit(toRecognize[i - 1]) && Char.IsDigit(toRecognize[i + 1]))
+                {
+                    c++;
                     newRec += 6;
-                else
-                    if (toRecognize[i] == Convert.ToChar("'") && toRecognize[i + 1] == ';' && toRecognize[i - 1] == ' ')
-                        newRec += "3";
-                else if (c == 0)
+                }
+                if (c == 0 && toRecognize[i] == Convert.ToChar("'") && toRecognize[i + 1] == ';' && toRecognize[i - 1] == ' ')
+                {
+                    c++;
+                    newRec += "3";
+                }
+                if (c == 0)
                     newRec += toRecognize[i];
             }
             toRecognize = "";
 
-            for (int i = 1; i < newRec.Length; i++)
+            for (int i = 0; i < newRec.Length; i++)
             {
-                if ((newRec[i - 1] == '.' || newRec[i - 1] == ',') && newRec[i] == ' ')
+                if (i>0 && ((newRec[i - 1] == '.' || newRec[i - 1] == ',') && newRec[i] == ' '))
                 {
                 }
                 else
+                {
                     toRecognize += newRec[i];
+                }
+
             }
             newRec = "";
 
-            for (int i = 0; i < toRecognize.Length-1; i++)
+            for (int i = 0; i < toRecognize.Length; i++)
             {
-                if (toRecognize[i] == ' ' && (toRecognize[i + 1] == '.' || toRecognize[i + 1] == ','))
-                {
-                }
+                if (i < toRecognize.Length - 1 && (toRecognize[i] == ' ' && (toRecognize[i + 1] == '.' || toRecognize[i + 1] == ',')))
+                    {
+                    }
                 else
                     newRec += toRecognize[i];
             }
@@ -132,7 +152,7 @@ namespace PriceRecognizer
 
             for (int i = 0; i < newRec.Length; i++)
             {
-                if (newRec[i] != '#')
+                if (Char.IsDigit(newRec[i]) )
                     toRecognize += newRec[i];
                 else
                     toRecognize += ' ';
