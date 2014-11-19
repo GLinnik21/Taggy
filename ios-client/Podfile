@@ -5,7 +5,7 @@ platform :ios, "6.0"
 
 target "Taggy" do
 
-pod 'TesseractOCRiOS', :git => 'https://github.com/BamX/Tesseract-OCR-iOS.git', :branch => 'working'
+pod 'TesseractOCRiOS', :git => 'https://github.com/gali8/Tesseract-OCR-iOS.git'
 pod 'InAppSettingsKit', '~> 2.1'
 pod 'Realm', '~> 0.87.4'
 

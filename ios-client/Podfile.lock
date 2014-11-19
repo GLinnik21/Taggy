@@ -44,13 +44,12 @@ DEPENDENCIES:
   - GoogleAnalytics-iOS-SDK (~> 3.10)
   - InAppSettingsKit (~> 2.1)
   - Realm (~> 0.87.4)
-  - TesseractOCRiOS (from `https://github.com/BamX/Tesseract-OCR-iOS.git`, branch `working`)
+  - TesseractOCRiOS (from `https://github.com/gali8/Tesseract-OCR-iOS.git`)
   - YandexMobileMetrica (~> 1.6.1)
 
 EXTERNAL SOURCES:
   TesseractOCRiOS:
-    :branch: working
-    :git: https://github.com/BamX/Tesseract-OCR-iOS.git
+    :git: https://github.com/gali8/Tesseract-OCR-iOS.git
 
 SPEC CHECKSUMS:
   ARAnalytics: a06e6d012b5999d8598ec9bacec45c8a8099f668
