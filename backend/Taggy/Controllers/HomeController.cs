@@ -116,7 +116,7 @@ namespace Taggy
             {
                 recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);
                 recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
-                //rates = PriceRecognizer.RatesConverter.Exchange("BYR","USD",recognition);
+                rates = PriceRecognizer.RatesConverter.Exchange("BYR","USD",recognition);
             }
             catch (Exception ex) {
                 isOk = false;
@@ -128,8 +128,8 @@ namespace Taggy
                 ok = isOk, 
                 message = message,
                 price = new []{ 
-                    recognition,
-                    //rates,
+                    //recognition,
+                    rates,
                 },
                 position = new []{
                     "",
