@@ -48,6 +48,23 @@
 			}
 		});
 
+		   $.getJSON("/Get", function(data){
+        	if (data){
+        	 for (var i =0; i < data.length; i++)
+        	 {
+        	 	var obj = data[i];
+        	 	var json = JSON.stringify(obj);
+        	 	data[i] = json;
+        	 }
+        	 var from = "BYR";
+        	 var to = "USD"; // To From Rate
+        	 var rate = "9.25e-05"
+        	 var value = 1/+rate;
+        	 value = Math.floor(value);
+        	 var toReturn = "USD = " + value;
+        	 alert(toReturn); // Также получить список стран и используемой валюты
+        	}
+        });
 	$("#results-panel").hide();
 	$('#loading-button').on('click', function () {
 		var btn = $(this).button('loading');
