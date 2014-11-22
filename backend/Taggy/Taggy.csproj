@@ -164,8 +164,9 @@
     <Content Include="Views\Home\Information.cshtml" />
     <Content Include="Scripts\geo-min.js" />
     <Content Include="Scripts\geo.js" />
-    <Content Include="Scripts\converter.js" />
     <Content Include="Content\InfoImage.png" />
+    <Content Include="Scripts\todo.js" />
+    <Content Include="Scripts\onchange.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
