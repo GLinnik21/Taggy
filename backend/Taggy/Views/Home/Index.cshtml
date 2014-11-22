@@ -12,7 +12,12 @@
 			<input type="hidden" id="country-code" name="country-code" />
 			<input type="hidden" id="country-name" name="country-name" />
 			<input type="hidden" id="self-ip" name="self-ip" />
-
+			<select id="currency">
+				<option>Set currency</option>
+				<option value="USD">USD</option>
+				<option value="EUR">EUR</option>
+				<option value="RUB">RUB</option>
+			</select>
 			<div class="progress2" style="background:#B4F5B4;height:20px;border-radius:3px;width: 0"></div>
 			<span id="getting-location" class="label label-info"></span><hr />
 			<button type="button" id="loading-button" data-loading-text="Загрузка..." class="btn btn-primary" autocomplete="off">Распознать</button>
@@ -48,23 +53,33 @@
 			}
 		});
 
+		$('#currency').change( function() {
 		   $.getJSON("/Get", function(data){
         	if (data){
-        	 for (var i =0; i < data.length; i++)
+        	 var to = $('#currency option:selected').val(); // во что
+        	 var from = "BYR"; // получать из еще одного списка
+        	 var FROMrate;
+        	 var TOrate;
+        	 var toConvert = $("#price").html();
+        	 for(var i=0; i<data.length;i++)
         	 {
-        	 	var obj = data[i];
-        	 	var json = JSON.stringify(obj);
-        	 	data[i] = json;
+				if (data[i].From == from)
+				{
+					FROMrate = data[i].Rate; // рубль относительно доллара
+					continue;
+				}
+			    if(data[i].From == to)
+			    {
+			    	TOrate = data[i].Rate; // евро относительно доллара
+			    	continue;
+			    }
         	 }
-        	 var from = "BYR";
-        	 var to = "USD"; // To From Rate
-        	 var rate = "9.25e-05"
-        	 var value = 1/+rate;
-        	 value = Math.floor(value);
-        	 var toReturn = "USD = " + value;
-        	 alert(toReturn); // Также получить список стран и используемой валюты
+             var r = +TOrate / +FROMrate;
+        	 alert(r);
         	}
-        });
+		});
+		});
+
 	$("#results-panel").hide();
 	$('#loading-button').on('click', function () {
 		var btn = $(this).button('loading');
