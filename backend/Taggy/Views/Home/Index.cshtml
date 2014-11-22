@@ -31,6 +31,7 @@
 	</div>
 	<div id="results" class="panel-body">
 		<p id="price"></p>
+		<p id="priceConverted"></p>
 		<img id="image" class="img-responsive" /><br/>
     	<pre id="message"></pre>
   	</div>
@@ -60,7 +61,7 @@
         	 var from = "BYR"; // получать из еще одного списка
         	 var FROMrate;
         	 var TOrate;
-        	 var toConvert = $("#price").html();
+        	 var toConvert = $("#price").html(); // заменить
         	 for(var i=0; i<data.length;i++)
         	 {
 				if (data[i].From == from)
@@ -74,10 +75,19 @@
 			    	continue;
 			    }
         	 }
+
              var r = +TOrate / +FROMrate;
-        	 alert(r);
+			 var prices = [];
+			prices = toConvert.split(' ');
+			for(var i=0; i<prices.length; i++)
+			{
+				prices[i] = prices[i] + " ----- >>>>>" +  (prices[i] / +r).toFixed(3) + " </br>";
+			}
+			$("#price").hide();
+			$("#priceConverted").html(prices);
         	}
 		});
+	
 		});
 
 	$("#results-panel").hide();
