@@ -167,6 +167,7 @@
     <Content Include="Content\InfoImage.png" />
     <Content Include="Scripts\todo.js" />
     <Content Include="Scripts\onchange.js" />
+    <Content Include="Content\nex.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
