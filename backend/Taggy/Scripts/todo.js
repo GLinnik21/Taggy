@@ -43,8 +43,7 @@
 						$('#price').html(obj.price);
 						$('#message').html(obj.message);
 						if (obj.ok) {
-							$('#price').show();
-							first();
+							//$('#price').show();
 							$('#message').hide();
 						} else {
 							$('#price').hide();

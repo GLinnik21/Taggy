@@ -168,6 +168,7 @@
     <Content Include="Scripts\todo.js" />
     <Content Include="Scripts\onchange.js" />
     <Content Include="Content\nex.jpg" />
+    <Content Include="Scripts\first.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
