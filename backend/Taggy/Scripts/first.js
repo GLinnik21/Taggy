@@ -28,6 +28,6 @@
 				prices[i] = prices[i] +" " + from + " ----- >>>>>" +  (prices[i] / +r).toFixed(3) + " " + to + " </br>";
 			}
 			//$("#price").hide();
-			$("#prieConverted").html(prices);
+			$("#priceConverted").html(prices);
         	}
 		});
