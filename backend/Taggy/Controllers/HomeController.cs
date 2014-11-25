@@ -51,7 +51,6 @@ namespace Taggy
                 price = new []{
                     "25000",
                 },
-                //ip = this.HttpContext.Request.UserHostAddress
                 ip = Request.ServerVariables["REMOTE_ADDR"]
             };
 			data = (RecognitionData) ConvertBitmap(bitmap).Data;
@@ -116,7 +115,6 @@ namespace Taggy
             {
                 recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);
                 recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
-                //rates = PriceRecognizer.RatesConverter.Exchange("BYR","USD",recognition);
             }
             catch (Exception ex) {
                 isOk = false;
@@ -129,7 +127,6 @@ namespace Taggy
                 message = message,
                 price = new []{ 
                     recognition,
-                    //rates,
                 },
                 position = new []{
                     "",
@@ -144,7 +141,6 @@ namespace Taggy
         static public string GetCountry(string ip)
         {
             string country = "";
-            //http://ru.smart-ip.net/geoip/87.252.227.29/auto
             WebClient wclient = new WebClient ();
             country = wclient.DownloadString (String.Format ("http://ip-api.com/json/{0}", ip));
             if (country != null) 
