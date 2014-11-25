@@ -1,7 +1,0 @@
-function getcurrency()
-{
-}
-
-function convertcurrency()
-{
-}
