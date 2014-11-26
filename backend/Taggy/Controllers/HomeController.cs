@@ -68,8 +68,35 @@ namespace Taggy
             var bitmap = new Bitmap(file.InputStream);
             return ConvertBitmap(bitmap);
         }
-            
-        public ActionResult Get()
+
+        public ActionResult GetSymbols() // change name
+        {
+            List<object> list = new List<object> ();
+            using (var reader = System.IO.File.OpenText (Server.MapPath ("~/Countries.txt"))) //EUR € IT
+            {
+                string rstring = reader.ReadLine ();
+                while (rstring != null) 
+                {
+                    string[] splited = rstring.Split (' '); // Regex didn`t work
+                    if (splited.Length > 0) 
+                    {
+                        list.Add (new {
+                            Currency = splited[0],
+                            Symbol = splited[1],
+                            CountryCode = splited[2]
+                        });
+                    }
+                    rstring = reader.ReadLine ();
+                }
+                JsonResult toReturn = new JsonResult ();
+                toReturn.Data = list.ToArray ();
+                toReturn.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                return toReturn;
+            }
+
+            return new JsonResult ();
+        }
+        public ActionResult GetRates()
         {
             List<object> rateList = new List<object> ();
             using (var reader = System.IO.File.OpenText(Server.MapPath("~/Rates.txt"))) 
