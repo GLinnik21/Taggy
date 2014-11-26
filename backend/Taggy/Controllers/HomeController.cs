@@ -23,7 +23,7 @@ namespace Taggy
 
         public ActionResult Information()
         {
-            Bitmap bitmap = new Bitmap (Server.MapPath("~/Content/InfoImage.png"));
+            Bitmap bitmap = new Bitmap (Server.MapPath("~/Content/nex.jpg"));
             ViewBag.InfoImage = BitmapToBase64 (bitmap);
             return View ();
         }
@@ -51,7 +51,6 @@ namespace Taggy
                 price = new []{
                     "25000",
                 },
-                //ip = this.HttpContext.Request.UserHostAddress
                 ip = Request.ServerVariables["REMOTE_ADDR"]
             };
 			data = (RecognitionData) ConvertBitmap(bitmap).Data;
@@ -69,8 +68,35 @@ namespace Taggy
             var bitmap = new Bitmap(file.InputStream);
             return ConvertBitmap(bitmap);
         }
-            
-        public ActionResult Get()
+
+        public ActionResult GetSymbols() // change name
+        {
+            List<object> list = new List<object> ();
+            using (var reader = System.IO.File.OpenText (Server.MapPath ("~/Countries.txt"))) //EUR € IT
+            {
+                string rstring = reader.ReadLine ();
+                while (rstring != null) 
+                {
+                    string[] splited = rstring.Split (' '); // Regex didn`t work
+                    if (splited.Length > 0) 
+                    {
+                        list.Add (new {
+                            Currency = splited[0],
+                            Symbol = splited[1],
+                            CountryCode = splited[2]
+                        });
+                    }
+                    rstring = reader.ReadLine ();
+                }
+                JsonResult toReturn = new JsonResult ();
+                toReturn.Data = list.ToArray ();
+                toReturn.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                return toReturn;
+            }
+
+            return new JsonResult ();
+        }
+        public ActionResult GetRates()
         {
             List<object> rateList = new List<object> ();
             using (var reader = System.IO.File.OpenText(Server.MapPath("~/Rates.txt"))) 
@@ -116,7 +142,6 @@ namespace Taggy
             {
                 recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);
                 recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
-                rates = PriceRecognizer.RatesConverter.Exchange("BYR","USD",recognition);
             }
             catch (Exception ex) {
                 isOk = false;
@@ -128,8 +153,7 @@ namespace Taggy
                 ok = isOk, 
                 message = message,
                 price = new []{ 
-                    //recognition,
-                    rates,
+                    recognition,
                 },
                 position = new []{
                     "",
@@ -144,7 +168,6 @@ namespace Taggy
         static public string GetCountry(string ip)
         {
             string country = "";
-            //http://ru.smart-ip.net/geoip/87.252.227.29/auto
             WebClient wclient = new WebClient ();
             country = wclient.DownloadString (String.Format ("http://ip-api.com/json/{0}", ip));
             if (country != null) 
