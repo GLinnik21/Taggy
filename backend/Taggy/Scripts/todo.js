@@ -61,7 +61,7 @@ $('#loading-button').on('click', function () {
 });
 
 function convert() {
-    $.getJSON("/Get", function (data) {
+    $.getJSON("/GetRates", function (data) {
     if ($('#price').html().length > 1)
         if (data) {
             //var to = $('#currency option:selected').val(); // во что
