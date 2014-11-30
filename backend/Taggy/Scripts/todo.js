@@ -12,6 +12,11 @@ $.getJSON("http://ip-api.com/json", function (data) {
     }
 });
 
+var curr;
+var symbol;
+var to = $('#currency option:selected').val();
+var toSymbol;
+
 $("#results-panel").hide();
 $('#loading-button').on('click', function () {
     var btn = $(this).button('loading');
@@ -45,8 +50,10 @@ $('#loading-button').on('click', function () {
                     if (obj.ok) {
                         //$('#price').show();
                         $('#message').hide();
+                        getsymbol();
                         convert();
                         $('#currency').change(function () {
+                            getsymbol();
                             convert();
                         });
 
@@ -61,41 +68,55 @@ $('#loading-button').on('click', function () {
 });
 
 function convert() {
-    $.getJSON("/Get", function (data) {
-    if ($('#price').html().length > 1)
-        if (data) {
-            //var to = $('#currency option:selected').val(); // во что
-            var to = $('#currency option:selected').val(); // во что
-            var from = "BYR"; // получать из еще одного списка
-            var FROMrate;
-            var TOrate;
-            var toConvert = $("#price").html(); // заменить
-            for (var i = 0; i < data.length; i++) {
-                if (data[i].From == from) {
-                    FROMrate = data[i].Rate; // рубль относительно доллара
-                    continue;
+    $.getJSON("/GetRates", function (data) {
+        if ($('#price').html().length > 1)
+            if (data) {
+                //var to = $('#currency option:selected').val(); // во что
+                var from = curr; // получать из еще одного списка
+                to = $('#currency option:selected').val();
+                var FROMrate;
+                var TOrate;
+                var toConvert = $("#price").html(); // заменить
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].From == from) {
+                        FROMrate = data[i].Rate; // рубль относительно доллара
+                        continue;
+                    }
+                    if (data[i].From == to) {
+                        TOrate = data[i].Rate; // евро относительно доллара
+                        continue;
+                    }
                 }
-                if (data[i].From == to) {
-                    TOrate = data[i].Rate; // евро относительно доллара
-                    continue;
-                }
-            }
 
-            var r = +TOrate / +FROMrate;
-            var prices = [];
-            prices = toConvert.split(' ');
-            for (var i = 0; i < prices.length; i++) {
-                prices[i] = prices[i] + " " + from + " ----- >>>>>" + (prices[i] / +r).toFixed(3) + " " + to + " </br>";
+                var r = +TOrate / +FROMrate;
+                var prices = [];
+                prices = toConvert.split(' ');
+                for (var i = 0; i < prices.length; i++) {
+                    prices[i] = prices[i] + " " + symbol + " ----- >>>>>" + (prices[i] / +r).toFixed(3) + " " + toSymbol + " </br>";
+                }
+                $("#price").hide();
+                $('#priceConverted').hide();
+                $("#priceConverted").html(prices);
+                $('#priceConverted').show();
             }
-            $("#price").hide();
-            $('#priceConverted').hide();
-            $("#priceConverted").html(prices);
-            $('#priceConverted').show();
+    });
+    if (!$('#price').html()) {
+        $('#priceConverted').html('Не удалось распознать ценник');
+        $('#priceConverted').show();
+    }
+}
+function getsymbol() {
+    var countryCode = $("#country-code").val();
+    $.getJSON("/GetSymbols", function (data) {
+        for (var i = 0; i < data.length; i++) {
+            if (data[i].CountryCode == countryCode) {
+                curr = data[i].Currency;
+                symbol = data[i].Symbol;
+            }
+            to = $('#currency option:selected').val();
+            if (data[i].Currency == to) {
+                toSymbol = data[i].Symbol;
+            }
         }
     });
-	if (!$('#price').html())
-		{
-			$('#priceConverted').html('Не удалось распознать ценник');
-			$('#priceConverted').show();
-		}
 }
