@@ -1,42 +1,60 @@
 ﻿<div class="panel panel-info">
-	<div class="panel-heading">
-		<h3 class="panel-title">Введите изображение с ценником</h3>
-	</div>
-	<div class="panel-body">
-    	<form class="form" method="post" style="text-align: center;" enctype="multipart/form-data">
-			<input type="file" id="file" name="file"/>
-			<span class="percent2"></span>
-
-			<input type="hidden" id="latitude" name="latitude" />
-			<input type="hidden" id="longitude" name="longitude" />
-			<input type="hidden" id="country-code" name="country-code" />
-			<input type="hidden" id="country-name" name="country-name" />
-			<input type="hidden" id="self-ip" name="self-ip" />
-			<select id="currency">
-				<option value="USD">Доллар США</option>
-				<option value="EUR">Евро</option>
-				<option value="RUB">Российский рубль</option>
-				<option value="AUD">Австралийский доллар</option>
-			</select>
-			<div class="progress2" style="background:#B4F5B4;height:20px;border-radius:3px;width: 0"></div>
-			<span id="getting-location" class="label label-info"></span><hr />
-			<button type="button" id="loading-button" data-loading-text="Загрузка..." class="btn btn-primary" autocomplete="off">Распознать</button>
-		</form>
-  	</div>
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Введите изображение с ценником</h3>
+    </div>
+    <div class="panel-body">
+        <style>
+            .inp
+            {
+                background: navy; /* Синий цвет фона */
+                color: white; /* Белые буквы */
+                font-size: 9pt; /* Размер шрифта в пунктах */
+                width: 90pt;
+                height: 90pt;
+                border-radius: 45pt; 
+            }
+        </style>
+        <form class="form" method="post" style="text-align: center;" enctype="multipart/form-data">
+        <div>
+            <input type="file" class="inp" name="file" />
+            </br> <span class="percent2"></span>
+            <input type="hidden" id="latitude" name="latitude" />
+            <input type="hidden" id="longitude" name="longitude" />
+            <input type="hidden" id="country-code" name="country-code" />
+            <input type="hidden" id="country-name" name="country-name" />
+            <input type="hidden" id="self-ip" name="self-ip" />
+            <select id="currency">
+                <option value="USD">Доллар США</option>
+                <option value="EUR">Евро</option>
+                <option value="RUB">Российский рубль</option>
+                <option value="AUD">Австралийский доллар</option>
+            </select>
+            <div class="progress2" style="background: #B4F5B4; height: 20px; border-radius: 3px;
+                width: 0">
+            </div>
+            <span id="getting-location" class="label label-info"></span>
+            <hr />
+            <button type="button" id="loading-button" data-loading-text="Загрузка..." class="btn btn-primary"
+                autocomplete="off">
+                Распознать</button>
+        </form>
+    </div>
 </div>
-
 <div id="results-panel" class="panel panel-success">
-	<div class="panel-heading">
-		<h3 class="panel-title">Результат</h3>
-	</div>
-	<div id="results" class="panel-body">
-        <p id="price"></p>
-		<p id="priceConverted"></p>
-		<img id="image" class="img-responsive" /><br/>
-    	<pre id="message"></pre>
-  	</div>
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Результат</h3>
+    </div>
+    <div id="results" class="panel-body">
+        <p id="price">
+        </p>
+        <p id="priceConverted">
+        </p>
+        <img id="image" class="img-responsive" /><br />
+        <pre id="message"></pre>
+    </div>
 </div>
-
 @section scripts {
     <script src="/Scripts/todo.js"></script>
 }
