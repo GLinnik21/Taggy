@@ -4,20 +4,15 @@
             Введите изображение с ценником</h3>
     </div>
     <div class="panel-body">
-        <style>
-            .inp
-            {
-                background: navy; /* Синий цвет фона */
-                color: white; /* Белые буквы */
-                font-size: 9pt; /* Размер шрифта в пунктах */
-                width: 90pt;
-                height: 90pt;
-                border-radius: 45pt; 
-            }
-        </style>
         <form class="form" method="post" style="text-align: center;" enctype="multipart/form-data">
         <div>
-            <input type="file" class="inp" name="file" />
+            <div class="file_upload">
+                <button type="button">
+                    Выбрать</button>
+                <div>
+                    Файл не выбран</div>
+                <input type="file">
+            </div>
             </br> <span class="percent2"></span>
             <input type="hidden" id="latitude" name="latitude" />
             <input type="hidden" id="longitude" name="longitude" />
