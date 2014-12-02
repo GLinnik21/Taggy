@@ -11,7 +11,10 @@ html {
       -ms-text-size-adjust: 100%;
 }
 body {
+      font: 14px/1 "Helvetica Neue", "Helvetica", Helvetica,Arial, sans-serif; /* example */
   margin: 0;
+height: 100%;
+width: 100%;
 }
 article,
 aside,
@@ -461,6 +464,69 @@ th {
 .glyphicon-align-justify:before {
   content: "\e055";
 }
+  .file_upload{
+    position: relative;
+    overflow: hidden;
+    font-size: 1em;        /* example */
+    height: 2em;           /* example */
+    line-height: 2em       /* the same as height */
+}
+.file_upload > button, .file_upload > div{
+    cursor: pointer
+}
+.file_upload > button{
+    float: right;
+    width: 8em;            /* example */
+    height: 100%
+}
+.file_upload > div{
+    padding-left: 1em      /* example */
+}
+@media only screen and ( max-width: 500px ){  /* example */
+    .file_upload > div{
+        display: none
+    }
+    .file_upload > button{
+        width: 100%
+    }
+}
+.file_upload input[type=file]{
+    position: absolute;
+    top: 0;
+    visibility: hidden
+}
+
+/* Making it beautiful */
+
+.file_upload{
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    transition: box-shadow 0.1s linear
+}
+.file_upload.focus{
+    box-shadow: 0 0 5px rgba(0,30,255,0.4)
+}
+.file_upload > button{
+    background: #428bca;
+    transition: background 0.2s;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
+    border-radius: 2px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+.file_upload:hover > button{
+    background: #2d6ca2;
+}
+.file_upload:active > button{
+    background: #2d6ca2;
+    box-shadow: 0 0 3px rgba(0,0,0,0.3) inset
+}
+
 .glyphicon-list:before {
   content: "\e056";
 }
@@ -2814,6 +2880,11 @@ fieldset[disabled] .btn-default.active {
   background-color: #428bca;
   border-color: #357ebd;
 }
+ #file{
+color: #fff;
+ background-color : #428bca;
+ border-color: #357ebd;
+}
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active,
@@ -4485,11 +4556,11 @@ a.label:focus {
   background-color: #449d44;
 }
 .label-info {
-  background-color: #5bc0de;
+  color: #777;
 }
 .label-info[href]:hover,
 .label-info[href]:focus {
-  background-color: #31b0d5;
+  color: #777;
 }
 .label-warning {
   background-color: #f0ad4e;
@@ -6199,5 +6270,10 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+ .country-list {
+border-color: #bce8f1;
+ border-width: 2px;
+ color: #000000;
 }
 /*# sourceMappingURL=bootstrap.css.map */
