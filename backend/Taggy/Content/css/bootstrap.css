@@ -13,6 +13,8 @@ html {
 body {
       font: 14px/1 "Helvetica Neue", "Helvetica", Helvetica,Arial, sans-serif; /* example */
   margin: 0;
+height: 100%;
+width: 100%;
 }
 article,
 aside,
@@ -506,24 +508,22 @@ th {
     box-shadow: 0 0 5px rgba(0,30,255,0.4)
 }
 .file_upload > button{
-    background: #7300df;
+    background: #428bca;
     transition: background 0.2s;
     border: 1px solid rgba(0,0,0,0.1);
     border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
     border-radius: 2px;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
     color: #fff;
-    text-shadow: #6200bd 0 -1px 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis
 }
 .file_upload:hover > button{
-    background: #6200bd;
-    text-shadow: #5d00b3 0 -1px 0
+    background: #2d6ca2;
 }
 .file_upload:active > button{
-    background: #5d00b3;
+    background: #2d6ca2;
     box-shadow: 0 0 3px rgba(0,0,0,0.3) inset
 }
 
@@ -4556,11 +4556,11 @@ a.label:focus {
   background-color: #449d44;
 }
 .label-info {
-  background-color: #5bc0de;
+  color: #777;
 }
 .label-info[href]:hover,
 .label-info[href]:focus {
-  background-color: #31b0d5;
+  color: #777;
 }
 .label-warning {
   background-color: #f0ad4e;
@@ -6270,5 +6270,10 @@ button.close {
   .hidden-print {
     display: none !important;
   }
+}
+ .country-list {
+border-color: #bce8f1;
+ border-width: 2px;
+ color: #000000;
 }
 /*# sourceMappingURL=bootstrap.css.map */
