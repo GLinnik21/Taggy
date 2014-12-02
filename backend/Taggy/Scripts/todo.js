@@ -25,6 +25,8 @@ $('#loading-button').on('click', function () {
         btn.button('reset');
         return;
     }
+$('.progress2').show(),
+        $('.percent2').show(),
     prj1551.imageResizer.resize({
         file: t,
         maxWidth: 670,
