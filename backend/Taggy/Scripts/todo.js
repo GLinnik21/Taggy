@@ -112,8 +112,9 @@ function convert() {
                 if ($("#priceConverted") == "") $("#priceConverted").hide();
             }
         if ($("#price").html().length < 1) {
-            $('#priceConverted').html('Не удалось распознать ценник');
-            $('#priceConverted').show();
+            $("#priceConverted").hide();
+            $('#message').html('Не удалось распознать ценник');
+            $('#message').show();
         }
     });
 }
