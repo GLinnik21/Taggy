@@ -21,6 +21,8 @@ $("#results-panel").hide();
 $('#loading-button').on('click', function () {
     var btn = $(this).button('loading');
     var t = $('#file')[0].files[0];
+    $("#message").hide();
+    $("#priceConverted").hide();
     if (!t) {
         btn.button('reset');
         return;
