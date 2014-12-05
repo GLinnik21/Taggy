@@ -25,7 +25,7 @@ $('#loading-button').on('click', function () {
         btn.button('reset');
         return;
     }
-$('.progress2').show(),
+    $('.progress2').show(),
         $('.percent2').show(),
     prj1551.imageResizer.resize({
         file: t,
@@ -62,6 +62,7 @@ $('.progress2').show(),
                     } else {
                         $('#price').hide();
                         $('#message').show();
+                        $("#priceConverted").hide();
                     }
                 }
             });
@@ -73,6 +74,8 @@ function convert() {
     $.getJSON("/GetRates", function (data) {
         if ($('#price').html().length > 1)
             if (data) {
+                $("#priceConverted").hide();
+                $("#priceConverted").html(null);
                 //var to = $('#currency option:selected').val(); // во что
                 var from = curr; // получать из еще одного списка
                 to = $('#currency option:selected').val();
@@ -99,13 +102,21 @@ function convert() {
                 $("#price").hide();
                 $('#priceConverted').hide();
                 $("#priceConverted").html(prices);
-                $('#priceConverted').show();
+
+                if (!$('#price').html()) {
+                    $('#priceConverted').html('Не удалось распознать ценник');
+                    $('#priceConverted').show();
+                }
+                $("#priceConverted").show();
+
+                if ($("#priceConverted") == "") $("#priceConverted").hide();
             }
+        if ($("#price").html().length < 1) {
+            $("#priceConverted").hide();
+            $('#message').html('Не удалось распознать ценник');
+            $('#message').show();
+        }
     });
-    if (!$('#price').html()) {
-        $('#priceConverted').html('Не удалось распознать ценник');
-        $('#priceConverted').show();
-    }
 }
 function getsymbol() {
     var countryCode = $("#country-code").val();
@@ -122,44 +133,3 @@ function getsymbol() {
         }
     });
 }
-    $(function(){
-    var wrapper = $( ".file_upload" ),
-        inp = wrapper.find( "input" ),
-        btn = wrapper.find( "button" ),
-        lbl = wrapper.find( "div" );
-
-    // Crutches for the :focus style:
-    btn.focus(function(){
-        wrapper.addClass( "focus" );
-    }).blur(function(){
-        wrapper.removeClass( "focus" );
-    });
-
-    // Yep, it works!
-    btn.add( lbl ).click(function(){
-        inp.click();
-    });
-
-    var file_api = ( window.File && window.FileReader && window.FileList && window.Blob ) ? true : false;
-
-    inp.change(function(){
-
-        var file_name;
-        if( file_api && inp[ 0 ].files[ 0 ] )
-            file_name = inp[ 0 ].files[ 0 ].name;
-        else
-            file_name = inp.val().replace( "C:\\fakepath\\", '' );
-        if( ! file_name.length )
-            return;
-
-        if( lbl.is( ":visible" ) ){
-            lbl.text( file_name );
-            btn.text( "Выбрать" );
-        }else
-            btn.text( file_name );
-    }).change();
-
-});
-$( window ).resize(function(){
-    $( ".file_upload input" ).triggerHandler( "change" );
-});

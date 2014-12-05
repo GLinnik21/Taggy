@@ -48,7 +48,7 @@ namespace PriceRecognizer
                 pumaPage.EnableSpeller = false;
                 pumaPage.RecognizeTables = true;
                 pumaPage.Language = PumaLanguage.Russian;
-
+                //pumaPage.AutoRotateImage = true;
                 toReturn = pumaPage.RecognizeToString();
             }
 

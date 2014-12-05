@@ -11,7 +11,7 @@
                     Выбрать</button>
                 <div>
                     Файл не выбран</div>
-                <input type="file" name="file" id="file"> 
+                <input type="file" name="file" id="file">
             </div>
             </br> <span class="percent2"></span>
             <input type="hidden" id="latitude" name="latitude" />
@@ -25,8 +25,7 @@
                 <option value="RUB">Российский рубль</option>
                 <option value="AUD">Австралийский доллар</option>
             </select>
-            <div class="progress2" style="background: #B4F5B4; height: 20px; border-radius: 3px;
-                width: 0">
+            <div class="progress2" style="background: #B4F5B4; height: 20px; border-radius: 3px; width: 0">
             </div>
             <hr />
             <button type="button" id="loading-button" data-loading-text="Загрузка..." class="btn btn-primary"
@@ -43,12 +42,14 @@
     <div id="results" class="panel-body">
         <p id="price">
         </p>
-        <p id="priceConverted">
-        </p>
+        <div class="alert alert-success" role="alert" id="priceConverted">
+        </div>
+        <div class="alert alert-danger" role="alert" id="message">
+        </div>
         <img id="image" class="img-responsive" /><br />
-        <pre id="message"></pre>
     </div>
 </div>
 @section scripts {
     <script src="/Scripts/todo.js"></script>
+    <script src="/Scripts/inputStyle.js"></script>
 }
