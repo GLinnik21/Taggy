@@ -4,12 +4,12 @@
 <dict>
 	<key>PreferenceSpecifiers</key>
 	<array>
-        <dict>
-            <key>FooterText</key>
-            <string>copyright</string>
-            <key>Type</key>
-            <string>PSGroupSpecifier</string>
-        </dict>
+		<dict>
+			<key>FooterText</key>
+			<string>copyright</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
 		<dict>
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
@@ -18,7 +18,7 @@
 			<key>Key</key>
 			<string>version</string>
 			<key>DefaultValue</key>
-			<string>0.4.1(Beta)</string>
+			<string>0.4.2(Beta)</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>

@@ -23,14 +23,12 @@
 			<string>app_info</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
-            <key>FooterText</key>
-            <string>copyright</string>
-            <key>Type</key>
-            <string>PSGroupSpecifier</string>
+			<key>FooterText</key>
+			<string>copyright</string>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<string>0.4.1(Beta)</string>
+			<string>0.4.2(Beta)</string>
 			<key>Key</key>
 			<string>version</string>
 			<key>Title</key>
