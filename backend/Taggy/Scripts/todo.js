@@ -75,6 +75,7 @@ function convert() {
         if ($('#price').html().length > 1)
             if (data) {
                 $("#priceConverted").hide();
+                $("#message").hide();
                 $("#priceConverted").html(null);
                 //var to = $('#currency option:selected').val(); // во что
                 var from = curr; // получать из еще одного списка
@@ -108,8 +109,6 @@ function convert() {
                     $('#priceConverted').show();
                 }
                 $("#priceConverted").show();
-
-                if ($("#priceConverted") == "") $("#priceConverted").hide();
             }
         if ($("#price").html().length < 1) {
             $("#priceConverted").hide();
