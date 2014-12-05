@@ -142,6 +142,11 @@ namespace Taggy
             {
                 recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);
                 recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
+
+                if (recognition == "") {
+                    recognition = PriceRecognizer.PriceRecognizer.ParseImageAnotherWay(bitmap);
+                    recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
+                }
             }
             catch (Exception ex) {
                 isOk = false;

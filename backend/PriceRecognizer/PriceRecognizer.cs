@@ -11,6 +11,32 @@ namespace PriceRecognizer
 {
     public static class PriceRecognizer
     {
+        public static Bitmap GrayScale(Bitmap b)
+        {
+            Bitmap Bmp = b;
+            int rgb;
+            Color c;
+            int height =0;
+            int width = 0;
+            try{
+            height = Bmp.Height;
+                 width = Bmp.Width;}
+            catch(Exception e)
+            {
+            }
+            for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
+                {
+                    c = Bmp.GetPixel(x, y); //  white 255 255 255 black 0 0 0
+                    if (c.R < 130 && c.G < 130 && c.B < 130)
+                    {
+                        rgb = (int)((c.R + c.G + c.B) / 3); Bmp.SetPixel(x, y, Color.FromArgb(0, 0, 0));
+                    }
+                    else Bmp.SetPixel(x, y, Color.FromArgb(255, 255, 255));
+                }
+            return Bmp;
+        }
+
         public static Bitmap ToBlackAndWhite(Bitmap b)
         {
             var bmp = b;
@@ -40,8 +66,7 @@ namespace PriceRecognizer
         public static string ParseImage(Bitmap bitmap)
         {
             string toReturn = "";
-            //PumaPage pumaPage = new PumaPage(ToBlackAndWhite(bitmap));
-            PumaPage pumaPage = new PumaPage(bitmap);
+            PumaPage pumaPage = new PumaPage(ToBlackAndWhite(bitmap));
             using (pumaPage)
             {
                 pumaPage.FileFormat = PumaFileFormat.TxtAscii;
@@ -54,6 +79,24 @@ namespace PriceRecognizer
 
             return toReturn;
         }
+
+        public static string ParseImageAnotherWay(Bitmap bitmap)
+        {
+            string toReturn = "";
+            PumaPage pumaPage = new PumaPage(GrayScale(bitmap));
+            using (pumaPage)
+            {
+                pumaPage.FileFormat = PumaFileFormat.TxtAscii;
+                pumaPage.EnableSpeller = false;
+                pumaPage.RecognizeTables = true;
+                pumaPage.Language = PumaLanguage.Russian;
+                //pumaPage.AutoRotateImage = true;
+                toReturn = pumaPage.RecognizeToString();
+            }
+
+            return toReturn;
+        }
+
 
         public static bool ContainsSymbols(string s) //!!!!!!
         {
@@ -69,7 +112,7 @@ namespace PriceRecognizer
         {
             HashSet<char> alowedChars = new HashSet<char>()
             { // '; = 3
-                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '(', ')', 'о', 'О', '.', ',', ' ', 'o', 'O', '`', Convert.ToChar("'"), ';', 'б'
+                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '(', ')', 'о', 'О', '.', ',', ' ', 'o', 'O', '`', Convert.ToChar("'"), ';', 'б', 'Ч'
             };
             string toRecognize = "";
             string newRec = "";
@@ -99,6 +142,11 @@ namespace PriceRecognizer
                     c++;
                     newRec += "0";
                 }
+                if (c == 0 && toRecognize[i] == 'Ч')
+                {
+                    c++;
+                    newRec += "4";
+                }
                 if (i < toRecognize.Length - 1 && i > 0)
                 if (c == 0 && toRecognize[i] == Convert.ToChar("'") && Char.IsDigit(toRecognize[i - 1]) && Char.IsDigit(toRecognize[i + 1]))
                 {
@@ -112,7 +160,7 @@ namespace PriceRecognizer
                     c++;
                 }
                 if (i < toRecognize.Length - 1 && i > 0)
-                if (c == 0 && toRecognize[i] == 'б' && Char.IsDigit(toRecognize[i - 1]) && Char.IsDigit(toRecognize[i + 1]))
+                if (c == 0 && toRecognize[i] == 'б' )
                 {
                     c++;
                     newRec += 6;
