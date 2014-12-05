@@ -40,8 +40,8 @@ namespace PriceRecognizer
         public static string ParseImage(Bitmap bitmap)
         {
             string toReturn = "";
-            PumaPage pumaPage = new PumaPage(ToBlackAndWhite(bitmap));
-
+            //PumaPage pumaPage = new PumaPage(ToBlackAndWhite(bitmap));
+            PumaPage pumaPage = new PumaPage(bitmap);
             using (pumaPage)
             {
                 pumaPage.FileFormat = PumaFileFormat.TxtAscii;
