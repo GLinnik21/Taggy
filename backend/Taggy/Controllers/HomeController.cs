@@ -133,6 +133,7 @@ namespace Taggy
 
         private JsonResult ConvertBitmap(Bitmap bitmap)
         {
+            Bitmap sourceBitmap = bitmap;
             bool isOk = true;
             string message = "";
             string recognition = "";
@@ -140,11 +141,11 @@ namespace Taggy
             string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables ["REMOTE_ADDR"];
             try
             {
-                recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);
+                recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap,1);
                 recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
 
                 if (recognition == "") {
-                    recognition = PriceRecognizer.PriceRecognizer.ParseImageAnotherWay(bitmap);
+                    recognition = PriceRecognizer.PriceRecognizer.ParseImage(sourceBitmap,2);
                     recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
                 }
             }

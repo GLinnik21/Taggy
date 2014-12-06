@@ -63,41 +63,41 @@ namespace PriceRecognizer
             return bmp;
         }
 
-        public static string ParseImage(Bitmap bitmap)
+        public static string ParseImage(Bitmap bitmap, int way)
         {
             string toReturn = "";
-            PumaPage pumaPage = new PumaPage(ToBlackAndWhite(bitmap));
-            using (pumaPage)
+            PumaPage pumaPage;
+            if (way == 1)
             {
-                pumaPage.FileFormat = PumaFileFormat.TxtAscii;
-                pumaPage.EnableSpeller = false;
-                pumaPage.RecognizeTables = true;
-                pumaPage.Language = PumaLanguage.Russian;
-                //pumaPage.AutoRotateImage = true;
-                toReturn = pumaPage.RecognizeToString();
+                pumaPage = new PumaPage(ToBlackAndWhite(bitmap));
+                using (pumaPage)
+                {
+                    pumaPage.FileFormat = PumaFileFormat.TxtAscii;
+                    pumaPage.EnableSpeller = false;
+                    pumaPage.RecognizeTables = true;
+                    pumaPage.Language = PumaLanguage.Russian;
+                    //pumaPage.AutoRotateImage = true;
+                    toReturn = pumaPage.RecognizeToString();
+                }
+            }
+            if (way == 2)
+            {
+                Bitmap source = GrayScale(bitmap);
+                pumaPage = new PumaPage(source);
+                using (pumaPage)
+                {
+                    pumaPage.FileFormat = PumaFileFormat.TxtAscii;
+                    pumaPage.EnableSpeller = false;
+                    pumaPage.RecognizeTables = true;
+                    pumaPage.Language = PumaLanguage.Russian;
+                    //pumaPage.AutoRotateImage = true;
+                    toReturn = pumaPage.RecognizeToString();
+                }
+
             }
 
             return toReturn;
         }
-
-        public static string ParseImageAnotherWay(Bitmap bitmap)
-        {
-            string toReturn = "";
-            PumaPage pumaPage = new PumaPage(GrayScale(bitmap));
-            using (pumaPage)
-            {
-                pumaPage.FileFormat = PumaFileFormat.TxtAscii;
-                pumaPage.EnableSpeller = false;
-                pumaPage.RecognizeTables = true;
-                pumaPage.Language = PumaLanguage.Russian;
-                //pumaPage.AutoRotateImage = true;
-                toReturn = pumaPage.RecognizeToString();
-            }
-
-            return toReturn;
-        }
-
-
         public static bool ContainsSymbols(string s) //!!!!!!
         {
             for (int i = 0; i < s.Length; i++)
