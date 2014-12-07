@@ -1,4 +1,5 @@
-﻿$('#getting-location').html('Получение текущей позиции...');
+﻿$("#inGroup").hide();
+$('#getting-location').html('Получение текущей позиции...');
 $.getJSON("http://ip-api.com/json", function (data) {
     if (data) {
         $('#latitude').val(data.lat);
@@ -67,6 +68,7 @@ $('#loading-button').on('click', function () {
                     } else {
                         $('#price').hide();
                         $('#message').show();
+                        $('#inGroup').show();
                         $("#priceConverted").hide();
                     }
                 }
@@ -92,16 +94,15 @@ function convert() {
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].From == from) {
                         FROMrate = data[i].Rate; // рубль относительно доллара
-                        if (to == from) 
-                        {
-							TOrate = FROMrate;
+                        if (to == from) {
+                            TOrate = FROMrate;
                         }
                         continue;
                     }
                     if (data[i].From == to) {
                         TOrate = data[i].Rate; // евро относительно доллара
                         continue;
-                    }		
+                    }
                 }
 
                 var r = +TOrate / +FROMrate;
@@ -119,12 +120,17 @@ function convert() {
                     $('#priceConverted').show();
                 }
                 $("#priceConverted").show();
+                $("#inGroup").hide();
+                $("#priceToConvert").val(null);
             }
+
         if ($("#price").html().length == 0) {
             $("#priceConverted").hide();
             $('#message').html('Не удалось распознать ценник');
             $('#message').show();
+            $('#inGroup').show();
         }
+
     });
 }
 function getsymbol() {
@@ -142,3 +148,15 @@ function getsymbol() {
         }
     });
 }
+
+$('#priceToConvert').focusout(function () {
+    $("#price").html($("#priceToConvert").val());
+    convert();
+});
+
+// В собитии подверждения возможна ошибка, проверить на устройстве
+$('#priceToConvert').submit(function () {
+    $("#price").html($("#priceToConvert").val());
+    convert();
+    return false;
+});
