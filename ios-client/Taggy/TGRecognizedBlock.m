@@ -72,6 +72,11 @@
         CGRect rect = CGRectMake(or.origin.x, height - or.origin.y,
                                  or.size.width, -or.size.height);
         CGContextStrokeRect(context, rect);
+
+        NSAttributedString *string = [[NSAttributedString alloc] initWithString:block.text attributes:@{
+            NSForegroundColorAttributeName: [UIColor redColor]
+        }];
+        [string drawAtPoint:(CGPoint){CGRectGetMidX(rect), CGRectGetMaxY(rect) + 2}];
     }
 
     UIGraphicsPopContext();

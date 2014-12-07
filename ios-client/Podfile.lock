@@ -10,17 +10,18 @@ PODS:
     - ARAnalytics/CoreIOS
     - YandexMobileMetrica
   - FlurrySDK (5.4.0):
-    - FlurrySDK/FlurrySDK
+    - FlurrySDK/FlurrySDK (= 5.4.0)
   - FlurrySDK/FlurrySDK (5.4.0)
   - FMDB (2.2):
-    - FMDB/standard
+    - FMDB/standard (= 2.2)
   - FMDB/common (2.2)
   - FMDB/standard (2.2):
     - FMDB/common
   - GoogleAnalytics-iOS-SDK (3.10):
-    - GoogleAnalytics-iOS-SDK/Core
+    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
   - GoogleAnalytics-iOS-SDK/Core (3.10)
-  - InAppSettingsKit (2.2.2)
+  - GPUImage (0.1.6)
+  - InAppSettingsKit (2.3.1)
   - KSCrash/Recording (0.0.3)
   - KSCrash/Reporting/Filters/AppleFmt (0.0.3):
     - KSCrash/Recording
@@ -28,11 +29,11 @@ PODS:
   - KSCrash/Reporting/Filters/Base (0.0.3):
     - KSCrash/Recording
   - protobuf-c (0.15)
-  - Realm (0.87.4):
-    - Realm/Headers
-  - Realm/Headers (0.87.4)
+  - Realm (0.88.0):
+    - Realm/Headers (= 0.88.0)
+  - Realm/Headers (0.88.0)
   - SVProgressHUD (HEAD based on 1.1)
-  - TesseractOCRiOS (3.1.1)
+  - TesseractOCRiOS (3.4.0)
   - YandexMobileMetrica (1.6.1):
     - FMDB (= 2.2.0)
     - KSCrash/Recording (~> 0.0.3)
@@ -45,10 +46,11 @@ DEPENDENCIES:
   - ARAnalytics/YandexMobileMetrica
   - FlurrySDK (~> 5.4.0)
   - GoogleAnalytics-iOS-SDK (~> 3.10)
-  - InAppSettingsKit (~> 2.1)
-  - Realm (~> 0.87.4)
+  - GPUImage (~> 0.1.6)
+  - InAppSettingsKit (~> 2.3)
+  - Realm (~> 0.88)
   - SVProgressHUD (HEAD)
-  - TesseractOCRiOS (= 3.1.1)
+  - TesseractOCRiOS (~> 3.1)
   - YandexMobileMetrica (~> 1.6.1)
 
 SPEC CHECKSUMS:
@@ -56,12 +58,13 @@ SPEC CHECKSUMS:
   FlurrySDK: bed9e5598353f867508d164795a451e3ada92cb6
   FMDB: f6f4511ad1e9ace38e9b6f4d83c2cddaabf98ea6
   GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
-  InAppSettingsKit: cd8ffa4266fb5c4778af8bda8aa9bf08b6733fd4
+  GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
+  InAppSettingsKit: c4eb758abf9d71a3b7847a80ceebf02ce4299113
   KSCrash: c0a693b2d83ced5c15a40d4e916833c655475e6a
   protobuf-c: 0177b8dbc4afc4ec5d01e868b3e25a7400b98ca0
-  Realm: 17d0d9c94b38d15223fa3e806ead0e0562765e46
+  Realm: 56fd06bf4e97da2829f864e2bca229a060825c61
   SVProgressHUD: 6e281683bfd31a22eb6a6401933f714c0b26fc63
-  TesseractOCRiOS: 1f1b4c4c7b8cff6f46ca3a7492317f6eda595fc7
+  TesseractOCRiOS: b2bdfc2c1041114ce146d2086d2376cfae17ff26
   YandexMobileMetrica: d570b4182c091523c02510654d0af4cd8b95631f
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.35.0

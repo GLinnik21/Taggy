@@ -35,6 +35,20 @@
                               @(12): @(17050),
                               @(13): @(3150),
                               @(14): @(26300),
+                              @(15): @(26350),
+                              @(16): @(26350),
+                              @(17): @(26350),
+                              @(18): @(81000),
+                              @(19): @(81000),
+                              @(20): @(81000),
+                              @(21): @(55200),
+                              @(22): @(55200),
+                              @(23): @(55200),
+                              @(24): @(26350),
+                              @(25): @(26350),
+                              @(26): @(26350),
+                              @(27): @(14800),
+                              @(28): @(26350),
                               };
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -215,6 +229,160 @@
 #else
     [self measureBlock:^{
         [[self class] testImageIndex:14];
+    }];
+#endif
+}
+
+- (void)testImage15
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:15]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:15];
+    }];
+#endif
+}
+
+- (void)testImage16
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:16]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:16];
+    }];
+#endif
+}
+
+- (void)testImage17
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:17]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:17];
+    }];
+#endif
+}
+
+- (void)testImage18
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:18]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:18];
+    }];
+#endif
+}
+
+- (void)testImage19
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:19]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:19];
+    }];
+#endif
+}
+
+- (void)testImage20
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:20]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:20];
+    }];
+#endif
+}
+
+- (void)testImage21
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:21]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:21];
+    }];
+#endif
+}
+
+- (void)testImage22
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:22]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:22];
+    }];
+#endif
+}
+
+- (void)testImage23
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:23]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:23];
+    }];
+#endif
+}
+
+- (void)testImage24
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:24]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:24];
+    }];
+#endif
+}
+
+- (void)testImage25
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:25]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:25];
+    }];
+#endif
+}
+
+- (void)testImage26
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:26]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:26];
+    }];
+#endif
+}
+
+- (void)testImage27
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:27]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:27];
+    }];
+#endif
+}
+
+- (void)testImage28
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:28]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:28];
     }];
 #endif
 }
