@@ -32,7 +32,8 @@ PODS:
   - Realm (0.88.0):
     - Realm/Headers (= 0.88.0)
   - Realm/Headers (0.88.0)
-  - TesseractOCRiOS (3.1.1)
+  - SVProgressHUD (HEAD based on 1.1)
+  - TesseractOCRiOS (3.4.0)
   - YandexMobileMetrica (1.6.1):
     - FMDB (= 2.2.0)
     - KSCrash/Recording (~> 0.0.3)
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - GPUImage (~> 0.1.6)
   - InAppSettingsKit (~> 2.3)
   - Realm (~> 0.88)
+  - SVProgressHUD (HEAD)
   - TesseractOCRiOS (~> 3.1)
   - YandexMobileMetrica (~> 1.6.1)
 
@@ -61,7 +63,8 @@ SPEC CHECKSUMS:
   KSCrash: c0a693b2d83ced5c15a40d4e916833c655475e6a
   protobuf-c: 0177b8dbc4afc4ec5d01e868b3e25a7400b98ca0
   Realm: 56fd06bf4e97da2829f864e2bca229a060825c61
-  TesseractOCRiOS: 1f1b4c4c7b8cff6f46ca3a7492317f6eda595fc7
+  SVProgressHUD: 6e281683bfd31a22eb6a6401933f714c0b26fc63
+  TesseractOCRiOS: b2bdfc2c1041114ce146d2086d2376cfae17ff26
   YandexMobileMetrica: d570b4182c091523c02510654d0af4cd8b95631f
 
 COCOAPODS: 0.35.0

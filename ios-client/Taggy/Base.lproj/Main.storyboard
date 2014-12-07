@@ -45,7 +45,7 @@
                                 <state key="normal" title="Take a photo" backgroundImage="PhotoButton.png"/>
                                 <state key="highlighted" backgroundImage="PhotoButtonP.png"/>
                                 <connections>
-                                    <action selector="takePhoto" destination="G5l-i6-tbZ" eventType="touchUpInside" id="Psg-NP-HvE"/>
+                                    <action selector="takePhoto" destination="G5l-i6-tbZ" eventType="touchUpInside" id="ERe-hf-LmY"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pVN-hc-EWd">
@@ -519,7 +519,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="abE-Ai-gbW" firstAttribute="leading" secondItem="qdU-an-REs" secondAttribute="leadingMargin" constant="-16" id="Ef6-dl-f2x"/>
                             <constraint firstAttribute="centerX" secondItem="abE-Ai-gbW" secondAttribute="centerX" id="FWo-L0-nbL"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="abE-Ai-gbW" secondAttribute="trailing" constant="-16" id="Jjc-e4-foQ"/>
                             <constraint firstAttribute="centerX" secondItem="XcD-fy-All" secondAttribute="centerX" id="Xbl-IH-aI1"/>
                             <constraint firstAttribute="centerY" secondItem="abE-Ai-gbW" secondAttribute="centerY" id="YgR-wi-7PE"/>
                             <constraint firstItem="XcD-fy-All" firstAttribute="width" secondItem="qdU-an-REs" secondAttribute="width" id="cLy-O8-Bft"/>

@@ -9,6 +9,7 @@ pod 'TesseractOCRiOS', '~> 3.1'
 pod 'GPUImage', '~> 0.1.6'
 pod 'InAppSettingsKit', '~> 2.3'
 pod 'Realm', '~> 0.88'
+pod 'SVProgressHUD', :head
 
 pod 'FlurrySDK', '~> 5.4.0'
 pod 'GoogleAnalytics-iOS-SDK', '~> 3.10'
