@@ -31,6 +31,7 @@ PODS:
   - Realm (0.87.4):
     - Realm/Headers
   - Realm/Headers (0.87.4)
+  - SVProgressHUD (HEAD based on 1.1)
   - TesseractOCRiOS (3.1.1)
   - YandexMobileMetrica (1.6.1):
     - FMDB (= 2.2.0)
@@ -46,6 +47,7 @@ DEPENDENCIES:
   - GoogleAnalytics-iOS-SDK (~> 3.10)
   - InAppSettingsKit (~> 2.1)
   - Realm (~> 0.87.4)
+  - SVProgressHUD (HEAD)
   - TesseractOCRiOS (= 3.1.1)
   - YandexMobileMetrica (~> 1.6.1)
 
@@ -58,6 +60,7 @@ SPEC CHECKSUMS:
   KSCrash: c0a693b2d83ced5c15a40d4e916833c655475e6a
   protobuf-c: 0177b8dbc4afc4ec5d01e868b3e25a7400b98ca0
   Realm: 17d0d9c94b38d15223fa3e806ead0e0562765e46
+  SVProgressHUD: 6e281683bfd31a22eb6a6401933f714c0b26fc63
   TesseractOCRiOS: 1f1b4c4c7b8cff6f46ca3a7492317f6eda595fc7
   YandexMobileMetrica: d570b4182c091523c02510654d0af4cd8b95631f
 

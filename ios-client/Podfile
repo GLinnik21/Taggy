@@ -8,6 +8,7 @@ target "Taggy" do
 pod 'TesseractOCRiOS', '3.1.1'
 pod 'InAppSettingsKit', '~> 2.1'
 pod 'Realm', '~> 0.87.4'
+pod 'SVProgressHUD', :head
 
 pod 'FlurrySDK', '~> 5.4.0'
 pod 'GoogleAnalytics-iOS-SDK', '~> 3.10'
