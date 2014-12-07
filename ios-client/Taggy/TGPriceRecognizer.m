@@ -87,9 +87,9 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 - (void)setImage:(UIImage *)image
 {
     if (_image != image) {
-        _image = [[self class] imageAfterPreprocessingImage:image];
+        _image = [TGCommon imageWithImage:image scaledToSizeWithSameAspectRatio:CGSizeMake(600, 600)];
 
-        self.tesseract.image = _image;
+        self.tesseract.image = [[self class] imageAfterPreprocessingImage:image];
     }
 }
 
