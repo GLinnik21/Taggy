@@ -12,6 +12,7 @@
 #import "TGViewController.h"
 #import "TGImageCell.h"
 #import "TGDataManager.h"
+#import "SVProgressHUD.h"
 
 @interface TGPhotoCaptureViewController() <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -49,6 +50,9 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    [SVProgressHUD setForegroundColor:[UIColor orangeColor]];
+    [SVProgressHUD setRingThickness:3];
+    [SVProgressHUD show];
     if (picker == self.takePhotoPicker) {
         [ARAnalytics event:@"Photo takken"];
     }
@@ -59,6 +63,7 @@
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 
     [TGDataManager recognizeImage:image withCallback:^(TGPriceImage *priceImage) {
+        [SVProgressHUD dismiss];
         [[[UIAlertView alloc] initWithTitle:@"Распознанные цены"
                                     message:priceImage.prices.description
                                    delegate:nil
@@ -82,6 +87,11 @@
     }
 
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 @end

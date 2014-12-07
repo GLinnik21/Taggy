@@ -5,18 +5,8 @@
 	<key>PreferenceSpecifiers</key>
 	<array>
 		<dict>
-			<key>DefaultValue</key>
-			<true/>
-			<key>Key</key>
-			<string>enabled_preference</string>
-			<key>Title</key>
-			<string>Автоматическое обновление</string>
-			<key>Type</key>
-			<string>PSToggleSwitchSpecifier</string>
-		</dict>
-		<dict>
-			<key>Title</key>
-			<string>Информация о приложении</string>
+			<key>FooterText</key>
+			<string>copyright</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -24,11 +14,11 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
-			<string>Версия</string>
+			<string>version</string>
 			<key>Key</key>
 			<string>version</string>
 			<key>DefaultValue</key>
-			<string>0.4.1(Beta)</string>
+			<string>0.4.2(Beta)</string>
 		</dict>
 	</array>
 	<key>StringsTable</key>
