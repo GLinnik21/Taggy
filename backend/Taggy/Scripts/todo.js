@@ -77,7 +77,7 @@ $('#loading-button').on('click', function () {
 
 function convert() {
     $.getJSON("/GetRates", function (data) {
-        if ($('#price').html().length > 1)
+        if ($('#price').html().length > 0)
             if (data) {
                 $("#priceConverted").hide();
                 $("#message").hide();
@@ -88,15 +88,20 @@ function convert() {
                 var FROMrate;
                 var TOrate;
                 var toConvert = $("#price").html(); // заменить
+
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].From == from) {
                         FROMrate = data[i].Rate; // рубль относительно доллара
+                        if (to == from) 
+                        {
+							TOrate = FROMrate;
+                        }
                         continue;
                     }
                     if (data[i].From == to) {
                         TOrate = data[i].Rate; // евро относительно доллара
                         continue;
-                    }
+                    }		
                 }
 
                 var r = +TOrate / +FROMrate;
@@ -115,7 +120,7 @@ function convert() {
                 }
                 $("#priceConverted").show();
             }
-        if ($("#price").html().length < 1) {
+        if ($("#price").html().length == 0) {
             $("#priceConverted").hide();
             $('#message').html('Не удалось распознать ценник');
             $('#message').show();
