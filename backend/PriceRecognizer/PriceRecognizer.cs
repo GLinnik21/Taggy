@@ -77,7 +77,7 @@ namespace PriceRecognizer
                     pumaPage.RecognizeTables = true;
                     pumaPage.Language = PumaLanguage.Russian;
                     //pumaPage.AutoRotateImage = true;
-                    toReturn = pumaPage.RecognizeToString();
+                    toReturn = DeleteAllSpecialSymbols(pumaPage.RecognizeToString());
                 }
             }
             if (way == 2)
@@ -91,13 +91,30 @@ namespace PriceRecognizer
                     pumaPage.RecognizeTables = true;
                     pumaPage.Language = PumaLanguage.Russian;
                     //pumaPage.AutoRotateImage = true;
-                    toReturn = pumaPage.RecognizeToString();
+                    toReturn = DeleteAllSpecialSymbols(pumaPage.RecognizeToString());
                 }
 
             }
 
             return toReturn;
         }
+
+        public static string DeleteAllSpecialSymbols(string s)
+        {
+            string toReturn = "";
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '\r' || s[i] == '\n' || s[i] == '\t')
+                {
+                    i++;
+                    toReturn += " ";
+                }
+                else
+                    toReturn += s[i];
+            }
+            return toReturn;
+        }
+
         public static bool ContainsSymbols(string s) //!!!!!!
         {
             for (int i = 0; i < s.Length; i++)
@@ -198,9 +215,9 @@ namespace PriceRecognizer
             }
             toRecognize = "";
 
-            for (int i = 0; i < newRec.Length; i++)
+            for (int i = 0; i < newRec.Length; i++) // здесь терялась точка
             {
-                if (Char.IsDigit(newRec[i]) )
+                if (Char.IsDigit(newRec[i]) || newRec[i] == '.' || newRec[i] == ',')
                     toRecognize += newRec[i];
                 else
                     toRecognize += ' ';
@@ -239,7 +256,7 @@ namespace PriceRecognizer
                 {
                     toRemove.Add(str);
                 }
-                else if (str[0] == '0' || str[str.Length - 1] != '0')
+                else if (str[0] == '0' ) //|| str[str.Length - 1] != '0'
                 {
                     toRemove.Add(str);
                 } // else if (splited.Count > 1)

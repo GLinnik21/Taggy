@@ -7,7 +7,7 @@ $.getJSON("http://ip-api.com/json", function (data) {
         $('#country-code').val(data.countryCode);
         $('#country-name').val(data.country);
         $('#self-ip').val(data.query);
-        $('#getting-location').html('Ваша страна: ' + $('#country-name').val() + '(' + $('#country-code').val() + ')');
+        $('#getting-location').html('Текущая страна: ' + $('#country-name').val() + '(' + $('#country-code').val() + ')');
     } else {
         $('#getting-location').html('Не удалось получить позицию.');
     }
@@ -107,9 +107,16 @@ function convert() {
 
                 var r = +TOrate / +FROMrate;
                 var prices = [];
-                prices = toConvert.split(' ');
+                var source = "";//= toConvert;
+                for (var i=0; i< toConvert.length;i++)
+                {
+                	if (toConvert[i] == ',') source += ".";
+                	else {source += toConvert[i];}
+                }
+
+                prices = source.split(' ');
                 for (var i = 0; i < prices.length; i++) {
-                    prices[i] = prices[i] + " " + symbol + " ----- >>>>>" + (prices[i] / +r).toFixed(3) + " " + toSymbol + " </br>";
+                    prices[i] = prices[i] + " " + symbol + " ----- >>>>> " + (prices[i] / +r).toFixed(2) + " " + toSymbol + " </br>";
                 }
                 $("#price").hide();
                 $('#priceConverted').hide();

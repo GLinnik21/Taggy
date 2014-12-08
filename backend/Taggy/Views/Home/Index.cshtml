@@ -13,6 +13,7 @@
                     Файл не выбран</div>
                 <input type="file" name="file" id="file">
             </div>
+
             </br> <span class="percent2"></span>
             <input type="hidden" id="latitude" name="latitude" />
             <input type="hidden" id="longitude" name="longitude" />
@@ -26,8 +27,8 @@
                 <option value="AUD">Австралийский доллар</option>
                 <option value="BYR">Белорусский рубль</option>
             </select>
-            <script type='text/javascript'>
 
+            <script type='text/javascript'>
                 function sorted(id) {
                     for (var c = document.getElementById("currency"), b = c.options, a = 0; a < b.length; )
                         if (b[a + 1] && b[a].text > b[a + 1].text) { c.insertBefore(b[a + 1], b[a]); a = a >= 1 ? a - 1 : a + 1 } else a++;
@@ -35,6 +36,7 @@
                 };
                 sorted("foo");
             </script>
+
             <div class="progress2" style="background: #B4F5B4; height: 20px; border-radius: 3px;
                 width: 0">
             </div>
