@@ -144,10 +144,10 @@ namespace Taggy
                 recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap,1);
                 recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
 
-               /* if (recognition == "") {
+                if (recognition == "") {
                     recognition = PriceRecognizer.PriceRecognizer.ParseImage(sourceBitmap,2);
                     recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
-                }*/
+                }
             }
             catch (Exception ex) {
                 isOk = false;
