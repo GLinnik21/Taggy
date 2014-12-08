@@ -149,14 +149,7 @@ function getsymbol() {
     });
 }
 
-$('#priceToConvert').focusout(function () {
+$('#priceToConvert').change(function () {
     $("#price").html($("#priceToConvert").val());
     convert();
-});
-
-// В собитии подверждения возможна ошибка, проверить на устройстве
-$('#priceToConvert').submit(function () {
-    $("#price").html($("#priceToConvert").val());
-    convert();
-    return false;
 });
