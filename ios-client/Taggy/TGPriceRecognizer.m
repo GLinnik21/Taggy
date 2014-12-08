@@ -69,6 +69,7 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 {
     GPUImageAverageLuminanceThresholdFilter *filter = [[GPUImageAverageLuminanceThresholdFilter alloc] init];
     //filter.thresholdMultiplier = 1.1;
+    filter.thresholdMultiplier = 0.5;
 
     [filter forceProcessingAtSizeRespectingAspectRatio:size];
 

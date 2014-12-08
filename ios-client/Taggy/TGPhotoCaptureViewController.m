@@ -13,6 +13,7 @@
 #import "TGImageCell.h"
 #import "TGDataManager.h"
 #import "SVProgressHUD.h"
+#import "TGRecognizedViewController.h"
 
 @interface TGPhotoCaptureViewController() <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -25,6 +26,10 @@
 @end
 
 @implementation TGPhotoCaptureViewController
+
+-(void)viewDidDisappear:(BOOL)animated{
+    [SVProgressHUD dismiss];
+}
 
 - (IBAction)takePhoto
 {
@@ -50,9 +55,10 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+   /*TGRecognizedViewController *recognized = [[TGRecognizedViewController alloc] initWithNibName:@"recognizedViewController" bundle:nil];*/
+    
     [SVProgressHUD setForegroundColor:[UIColor orangeColor]];
-    [SVProgressHUD setRingThickness:3];
-    [SVProgressHUD show];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"recognizing", @"Recognizing")];
     if (picker == self.takePhotoPicker) {
         [ARAnalytics event:@"Photo takken"];
     }
@@ -63,12 +69,20 @@
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 
     [TGDataManager recognizeImage:image withCallback:^(TGPriceImage *priceImage) {
-        [SVProgressHUD dismiss];
-        [[[UIAlertView alloc] initWithTitle:@"Распознанные цены"
+        if (!priceImage || !priceImage.prices.count){
+            [SVProgressHUD setForegroundColor:[UIColor redColor]];
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"recognizing_fail", @"Failed")];
+        }
+        else{
+            [SVProgressHUD setForegroundColor:[UIColor greenColor]];
+            [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"recognized", @"Recognized")];
+            //[self.navigationController presentModalViewController:recognized animated:YES];
+        }
+        /*[[[UIAlertView alloc] initWithTitle:@"Распознанные цены"
                                     message:priceImage.prices.description
                                    delegate:nil
                           cancelButtonTitle:@"ОК"
-                          otherButtonTitles:nil]show];
+                          otherButtonTitles:nil]show];*/
 
         [self.imageview setImage:priceImage.image];
     }];

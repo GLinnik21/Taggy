@@ -10,15 +10,15 @@ PODS:
     - ARAnalytics/CoreIOS
     - YandexMobileMetrica
   - FlurrySDK (5.4.0):
-    - FlurrySDK/FlurrySDK (= 5.4.0)
+    - FlurrySDK/FlurrySDK
   - FlurrySDK/FlurrySDK (5.4.0)
   - FMDB (2.2):
-    - FMDB/standard (= 2.2)
+    - FMDB/standard
   - FMDB/common (2.2)
   - FMDB/standard (2.2):
     - FMDB/common
   - GoogleAnalytics-iOS-SDK (3.10):
-    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
+    - GoogleAnalytics-iOS-SDK/Core
   - GoogleAnalytics-iOS-SDK/Core (3.10)
   - GPUImage (0.1.6)
   - InAppSettingsKit (2.3.1)
@@ -30,7 +30,7 @@ PODS:
     - KSCrash/Recording
   - protobuf-c (0.15)
   - Realm (0.88.0):
-    - Realm/Headers (= 0.88.0)
+    - Realm/Headers
   - Realm/Headers (0.88.0)
   - SVProgressHUD (HEAD based on 1.1)
   - TesseractOCRiOS (3.4.0)
@@ -67,4 +67,4 @@ SPEC CHECKSUMS:
   TesseractOCRiOS: b2bdfc2c1041114ce146d2086d2376cfae17ff26
   YandexMobileMetrica: d570b4182c091523c02510654d0af4cd8b95631f
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.34.4
