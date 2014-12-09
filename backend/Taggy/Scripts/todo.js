@@ -116,7 +116,7 @@ function convert() {
 
                 prices = source.split(' ');
                 for (var i = 0; i < prices.length; i++) {
-                    prices[i] = prices[i] + " " + symbol + " ----- >>>>> " + (prices[i] / +r).toFixed(2) + " " + toSymbol + " </br>";
+                    prices[i] = prices[i] + " " + symbol + "      - >     " + (prices[i] / +r).toFixed(2) + " " + toSymbol + " </br>";
                 }
                 $("#price").hide();
                 $('#priceConverted').hide();
