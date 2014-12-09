@@ -36,8 +36,7 @@
 
     TGRecognizedPrice *firstPrice = self.detail.prices.firstObject;
 
-    self.navigationItem.title =
-        [NSString stringWithFormat:@"%.2f (%@)", firstPrice.value, [self.detail localizedCaptureDate]];
+    //self.navigationItem.title = [NSString stringWithFormat:@"%.2f (%@)", firstPrice.value, [self.detail localizedCaptureDate]];
 
     self.targetPriceDetailLabel.text = [firstPrice formattedConvertedPrice];
     self.sourcePriceDetailLabel.text = [firstPrice formattedSourcePrice];

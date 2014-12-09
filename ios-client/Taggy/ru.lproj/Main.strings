@@ -9,7 +9,7 @@
 "2by-fz-iZf.title" = "Сканер";
 
 /* Class = "IBUITableViewSection"; footerTitle = "Automatic currency update after the first Internet connection"; ObjectID = "3HT-b0-TJV"; */
-"3HT-b0-TJV.footerTitle" = "Автоматическое обновление валют после первого подключения к Интерету";
+"3HT-b0-TJV.footerTitle" = "Автоматическое обновление валют при первом подключении к Интерету";
 
 /* Class = "IBUITableViewSection"; headerTitle = "General"; ObjectID = "3HT-b0-TJV"; */
 "3HT-b0-TJV.headerTitle" = "Основные";
@@ -97,3 +97,6 @@
 
 /* Class = "IBUITabBarItem"; title = "Settings"; ObjectID = "zTU-fO-yMG"; */
 "zTU-fO-yMG.title" = "Настройки";
+
+/* Class = "IBUINavigationItem"; title = "Result"; ObjectID = "zu5-gE-ALQ"; */
+"zu5-gE-ALQ.title" = "Результат";

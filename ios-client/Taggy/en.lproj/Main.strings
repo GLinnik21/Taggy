@@ -92,8 +92,11 @@
 /* Class = "IBUILabel"; text = "Detail"; ObjectID = "tMO-KG-Ubi"; */
 "tMO-KG-Ubi.text" = "Detail";
 
-/* Class = "IBUIButton"; normalTitle = "Tap to tag"; ObjectID = "vIe-cy-7uO"; */
+/* Class = "IBUIButton"; normalTitle = "Take a photo"; ObjectID = "vIe-cy-7uO"; */
 "vIe-cy-7uO.normalTitle" = "Take a photo";
 
 /* Class = "IBUITabBarItem"; title = "Settings"; ObjectID = "zTU-fO-yMG"; */
 "zTU-fO-yMG.title" = "Settings";
+
+/* Class = "IBUINavigationItem"; title = "Result"; ObjectID = "zu5-gE-ALQ"; */
+"zu5-gE-ALQ.title" = "Result";

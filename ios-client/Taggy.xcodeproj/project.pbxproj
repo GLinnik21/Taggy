@@ -149,7 +149,6 @@
 		ED0820391A24D5A40044BD6D /* scan@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan@3x.png"; sourceTree = "<group>"; };
 		ED08203A1A24D5A40044BD6D /* set@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "set@3x.png"; sourceTree = "<group>"; };
 		ED0820441A24DE8D0044BD6D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		ED24F18D1A35B72E00E651EB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		ED2DE36719FCF8C4008C69F2 /* PhotoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhotoButton.png; sourceTree = "<group>"; };
 		ED2DE36819FCF8C4008C69F2 /* PhotoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoButton@2x.png"; sourceTree = "<group>"; };
 		ED2DE36B19FCFA8E008C69F2 /* PhotoButtonP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhotoButtonP.png; sourceTree = "<group>"; };
@@ -172,6 +171,7 @@
 		ED7CAD421A29EEDB00AAF192 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		EDA7E2D41A35DB9B00641F18 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EDA7E2D61A35DBA100641F18 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EDA7E2D81A36FD9200641F18 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -644,7 +644,7 @@
 			children = (
 				ED077A1D19F93FE300B203CB /* Base */,
 				ED7CAD401A29E1B400AAF192 /* ru */,
-				ED24F18D1A35B72E00E651EB /* en */,
+				EDA7E2D81A36FD9200641F18 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

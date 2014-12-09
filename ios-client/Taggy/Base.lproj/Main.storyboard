@@ -243,7 +243,7 @@
             </objects>
             <point key="canvasLocation" x="141" y="-1344"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Result-->
         <scene sceneID="Cr0-1I-sPr">
             <objects>
                 <viewController id="nlV-8a-42T" customClass="TGDetailViewController" sceneMemberID="viewController">
@@ -333,7 +333,7 @@
                             <constraint firstAttribute="bottomMargin" secondItem="aee-PX-Bcx" secondAttribute="bottom" constant="3" id="poh-rI-Cpv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="zu5-gE-ALQ"/>
+                    <navigationItem key="navigationItem" title="Result" id="zu5-gE-ALQ"/>
                     <connections>
                         <outlet property="contentView" destination="Ro4-E5-HKr" id="C0K-d6-Cgz"/>
                         <outlet property="imageView" destination="7po-xN-aY2" id="tGd-3q-gEn"/>

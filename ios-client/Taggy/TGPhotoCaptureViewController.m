@@ -84,10 +84,10 @@
                           cancelButtonTitle:@"ОК"
                           otherButtonTitles:nil]show];*/
 
-        [self.imageview setImage:priceImage.image];
+        //[self.imageview setImage:priceImage.image];
     }];
 
-    [self.imageview setImage:image];
+    //[self.imageview setImage:image];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
