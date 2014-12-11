@@ -18,12 +18,22 @@
   <body>
     <div class="container">
       <div class="header">
-        <ul class="nav nav-pills pull-right">
-          @Html.MenuLink("Конвертер", "Index", "Home")
+    
+       <div class="bs-component">
+       <div class="navbar navbar-default">
+       <div class="navbar-header">
+       <a class="navbar-brand" href="#">Taggy - Конвертер цен</a>
+       </div>
+
+       <div class="navbar-collapse collapse navbar-responsive-collapse">
+       <ul class="nav navbar-nav navbar-right">
+       @Html.MenuLink("Конвертер", "Index", "Home")
           @Html.MenuLink("Рекомендации","Information","Home")
           @Html.MenuLink("Об авторе", "About", "Home")
-        </ul>
-        <h3 class="text-muted">Taggy - Конвертер цен</h3>
+       </ul>
+       </div>
+       </div>
+       </div>
       </div>
 
       <div class="well">
