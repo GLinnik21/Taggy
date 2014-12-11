@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Wnc-nd-Cx3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Wnc-nd-Cx3">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -48,21 +48,11 @@
                                     <action selector="takePhoto" destination="G5l-i6-tbZ" eventType="touchUpInside" id="ERe-hf-LmY"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pVN-hc-EWd">
-                                <rect key="frame" x="16" y="140" width="288" height="288"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="pVN-hc-EWd" secondAttribute="height" multiplier="1:1" id="8ep-ua-Pj8"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerY" secondItem="pVN-hc-EWd" secondAttribute="centerY" id="4MH-kc-FzI"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="pVN-hc-EWd" secondAttribute="trailing" id="77Y-Vl-pmY"/>
                             <constraint firstAttribute="centerY" secondItem="vIe-cy-7uO" secondAttribute="centerY" id="FIk-pT-Lnk"/>
-                            <constraint firstAttribute="centerX" secondItem="pVN-hc-EWd" secondAttribute="centerX" id="XIA-az-6OW"/>
                             <constraint firstAttribute="centerX" secondItem="vIe-cy-7uO" secondAttribute="centerX" id="Yxb-Wz-ksS"/>
-                            <constraint firstItem="pVN-hc-EWd" firstAttribute="leading" secondItem="lIJ-kn-CEM" secondAttribute="leadingMargin" id="c6U-tS-auP"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="Scanner" image="scan.png" id="VpX-Fe-AWi"/>
@@ -79,49 +69,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="imageview" destination="pVN-hc-EWd" id="bkU-4h-hnc"/>
                         <outlet property="takePhotoButton" destination="vIe-cy-7uO" id="Zdz-RO-wWV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JLx-bl-ZQA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="530" y="-623"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="bLM-Fi-awU">
-            <objects>
-                <navigationController id="0sI-f6-yTs" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="RqT-TG-Rof">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="uZv-2a-bdW" kind="relationship" relationship="rootViewController" id="KDZ-ca-aaL"/>
-                        <segue destination="G5l-i6-tbZ" kind="modal" identifier="recognized" id="VRM-kr-0Nh"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="u6u-gz-Tfr" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="924" y="-623"/>
-        </scene>
-        <!--Recognized View Controller-->
-        <scene sceneID="tkP-e9-e2J">
-            <objects>
-                <viewController id="uZv-2a-bdW" customClass="TGRecognizedViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="R3d-PI-IDV"/>
-                        <viewControllerLayoutGuide type="bottom" id="rbb-U1-xS4"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Lgm-qP-AqI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="j1P-rx-rwp"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="beE-wo-FMs" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1318" y="-623"/>
         </scene>
         <!--Results-->
         <scene sceneID="G5w-Yh-xCf">
@@ -246,7 +199,7 @@
         <!--Result-->
         <scene sceneID="Cr0-1I-sPr">
             <objects>
-                <viewController id="nlV-8a-42T" customClass="TGDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="nlV-8a-42T" customClass="TGDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mBE-oU-58b"/>
                         <viewControllerLayoutGuide type="bottom" id="qWT-CX-KbP"/>
@@ -261,7 +214,7 @@
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ro4-E5-HKr">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="565"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7po-xN-aY2">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7po-xN-aY2">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="7po-xN-aY2" secondAttribute="height" multiplier="1:1" id="qUt-75-wgt"/>
@@ -653,8 +606,5 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="VRM-kr-0Nh"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
 </document>
