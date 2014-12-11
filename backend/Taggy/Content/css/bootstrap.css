@@ -6379,9 +6379,11 @@ button.close {
 .file_upload{
     border: 1px solid #ccc;
     border-radius: 3px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
     transition: box-shadow 0.1s linear
 }
 .file_upload.focus{
+    box-shadow: 0 0 5px rgba(0,30,255,0.4)
 }
 .file_upload > button{
     background: #dd4814;
@@ -6389,14 +6391,18 @@ button.close {
     border: 1px solid rgba(0,0,0,0.1);
     border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
     border-radius: 2px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
     color: #fff;
+    text-shadow: #6200bd 0 -1px 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis
 }
 .file_upload:hover > button{
     background: #dd4814;
+    text-shadow: #5d00b3 0 -1px 0
 }
 .file_upload:active > button{
     background: #dd4814;
+    box-shadow: 0 0 3px rgba(0,0,0,0.3) inset
 }
