@@ -57,7 +57,6 @@
 		ED2DE36A19FCF8C4008C69F2 /* PhotoButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2DE36819FCF8C4008C69F2 /* PhotoButton@2x.png */; };
 		ED2DE36D19FCFA8E008C69F2 /* PhotoButtonP.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2DE36B19FCFA8E008C69F2 /* PhotoButtonP.png */; };
 		ED2DE36E19FCFA8E008C69F2 /* PhotoButtonP@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED2DE36C19FCFA8E008C69F2 /* PhotoButtonP@2x.png */; };
-		ED5DD18E1A34F95C00565A38 /* TGRecognizedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED5DD18D1A34F95C00565A38 /* TGRecognizedViewController.m */; };
 		ED6C079119FAE3570000770D /* retina.png in Resources */ = {isa = PBXBuildFile; fileRef = ED6C079019FAE3570000770D /* retina.png */; };
 		ED715FDC1A0927DD00F81CAF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED715FDB1A0927DD00F81CAF /* Settings.bundle */; };
 		ED7C11071A069F220037C843 /* choose.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7C11051A069F220037C843 /* choose.png */; };
@@ -153,8 +152,6 @@
 		ED2DE36819FCF8C4008C69F2 /* PhotoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoButton@2x.png"; sourceTree = "<group>"; };
 		ED2DE36B19FCFA8E008C69F2 /* PhotoButtonP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhotoButtonP.png; sourceTree = "<group>"; };
 		ED2DE36C19FCFA8E008C69F2 /* PhotoButtonP@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoButtonP@2x.png"; sourceTree = "<group>"; };
-		ED5DD18C1A34F95C00565A38 /* TGRecognizedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGRecognizedViewController.h; sourceTree = "<group>"; };
-		ED5DD18D1A34F95C00565A38 /* TGRecognizedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGRecognizedViewController.m; sourceTree = "<group>"; };
 		ED6C079019FAE3570000770D /* retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retina.png; sourceTree = "<group>"; };
 		ED715FDB1A0927DD00F81CAF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		ED7C11051A069F220037C843 /* choose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = choose.png; sourceTree = "<group>"; };
@@ -237,8 +234,6 @@
 				ED077A6319F940F700B203CB /* TGDetailViewController.m */,
 				ED077A6719F940F700B203CB /* TGPhotoCaptureViewController.h */,
 				ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */,
-				ED5DD18C1A34F95C00565A38 /* TGRecognizedViewController.h */,
-				ED5DD18D1A34F95C00565A38 /* TGRecognizedViewController.m */,
 				ED7CAD341A2924DB00AAF192 /* TGCountryCurrencyController.h */,
 				ED7CAD351A2924DB00AAF192 /* TGCountryCurrencyController.m */,
 				ED7CAD371A29255300AAF192 /* TGTransferenceCurrencyController.h */,
@@ -598,7 +593,6 @@
 				ED7CAD361A2924DB00AAF192 /* TGCountryCurrencyController.m in Sources */,
 				ED077A6F19F940F700B203CB /* TGPhotoCaptureViewController.m in Sources */,
 				ED077A6C19F940F700B203CB /* TGDetailViewController.m in Sources */,
-				ED5DD18E1A34F95C00565A38 /* TGRecognizedViewController.m in Sources */,
 				41A9D04B1A022F6500922CBC /* TGPriceRecognizer.m in Sources */,
 				ED7CAD3C1A292C9C00AAF192 /* TGCurrencySettingsController.m in Sources */,
 				41A76FB81A05226900176A14 /* TGCurrency.m in Sources */,

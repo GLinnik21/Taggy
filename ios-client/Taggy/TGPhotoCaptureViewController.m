@@ -13,11 +13,10 @@
 #import "TGImageCell.h"
 #import "TGDataManager.h"
 #import "SVProgressHUD.h"
-#import "TGRecognizedViewController.h"
+#import "TGDetailViewController.h"
 
 @interface TGPhotoCaptureViewController() <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (nonatomic, weak) IBOutlet UIImageView *imageview;
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
 
 @property (nonatomic, weak) UIImagePickerController *takePhotoPicker;
@@ -33,13 +32,15 @@
 
 - (IBAction)takePhoto
 {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
-    [self presentViewController:picker animated:YES completion:NULL];
-    self.takePhotoPicker = picker;
+    if ([[UIDevice currentDevice].model containsString:@"Simulator"] == NO) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+        [self presentViewController:picker animated:YES completion:NULL];
+        self.takePhotoPicker = picker;
 
-    [ARAnalytics event:@"Take photo"];
+        [ARAnalytics event:@"Take photo"];
+    }
 }
 
 - (IBAction)chooseExisting
@@ -69,25 +70,23 @@
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 
     [TGDataManager recognizeImage:image withCallback:^(TGPriceImage *priceImage) {
-        if (!priceImage || !priceImage.prices.count){
+        if (priceImage.prices.count == 0){
             [SVProgressHUD setForegroundColor:[UIColor redColor]];
             [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"recognizing_fail", @"Failed")];
         }
-        else{
+        else {
             [SVProgressHUD setForegroundColor:[UIColor greenColor]];
             [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"recognized", @"Recognized")];
-            //[self.navigationController presentModalViewController:recognized animated:YES];
-        }
-        /*[[[UIAlertView alloc] initWithTitle:@"Распознанные цены"
-                                    message:priceImage.prices.description
-                                   delegate:nil
-                          cancelButtonTitle:@"ОК"
-                          otherButtonTitles:nil]show];*/
 
-        //[self.imageview setImage:priceImage.image];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            TGDetailViewController *viewController =
+            [storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+            viewController.detail = priceImage;
+
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
     }];
 
-    //[self.imageview setImage:image];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 

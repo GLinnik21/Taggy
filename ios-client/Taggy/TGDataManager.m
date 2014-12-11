@@ -87,9 +87,20 @@
     [realm commitWriteTransaction];
 }
 
++ (NSOperationQueue *)sharedQueue
+{
+    static NSOperationQueue *queue = nil;
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        queue = [[NSOperationQueue alloc] init];
+    });
+    return queue;
+}
+
 + (void)recognizeImage:(UIImage *)image withCallback:(void (^)(TGPriceImage *priceImage))callback
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+    [[[self class] sharedQueue] addOperationWithBlock:^{
         TGPriceRecognizer *recognizer = [[TGPriceRecognizer alloc] init];
         recognizer.image = image;
         [recognizer recognize];
@@ -98,33 +109,34 @@
         item.image = [recognizer debugImage];
         item.captureDate = [NSDate date];
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            RLMRealm *realm = [RLMRealm defaultRealm];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            if (recognizer.recognizedPrices.count > 0) {
+                RLMRealm *realm = [RLMRealm defaultRealm];
 
-            [realm beginWriteTransaction];
+                [realm beginWriteTransaction];
 
-            for (TGRecognizedBlock *block in recognizer.recognizedPrices)
-            {
-                TGRecognizedPrice *price = [[TGRecognizedPrice alloc] init];
-                price.value = [[block number] floatValue];
-                price.confidence = block.confidence;
-                price.rectString = [NSValue valueWithCGRect:block.region].description;
-                price.sourceCurrency = [TGCurrency currencyForCode:@"BYR"]; //TODO: fix hardcode
-                price.defaultCurrency = [[self class] defaultCurrency];
+                for (TGRecognizedBlock *block in recognizer.recognizedPrices)
+                {
+                    TGRecognizedPrice *price = [[TGRecognizedPrice alloc] init];
+                    price.value = [[block number] floatValue];
+                    price.confidence = block.confidence;
+                    price.rectString = [NSValue valueWithCGRect:block.region].description;
+                    price.sourceCurrency = [TGCurrency currencyForCode:@"BYR"]; //TODO: fix hardcode
+                    price.defaultCurrency = [[self class] defaultCurrency];
 
-                [item.prices addObject:price];
+                    [item.prices addObject:price];
+                }
+                [realm addObject:item];
+                
+                [realm commitWriteTransaction];
             }
-            [realm addObject:item];
-            
-            [realm commitWriteTransaction];
 
             if (callback != nil) {
-                    callback(item);
+                callback(item);
             }
-        });
-        
-        [ARAnalytics event:@"Converted"];
-    });
+            [ARAnalytics event:@"Converted"];
+        }];
+    }];
 }
 
 + (TGCurrency *)defaultCurrency
