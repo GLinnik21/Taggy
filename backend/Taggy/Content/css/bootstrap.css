@@ -6337,6 +6337,13 @@ button.close {
     display: none !important;
   }
 }
+<<<<<<< HEAD
+ .country-list {
+border-color: #428bca;
+ border-width: 2px;
+ color: #000000;
+ background-color: #fff;
+=======
 .navbar-default .badge {
   background-color: #fff;
   color: #dd4814;
@@ -6409,4 +6416,5 @@ button.close {
 .file_upload:active > button{
     background: #dd4814;
     box-shadow: 0 0 3px rgba(0,0,0,0.3) inset
+>>>>>>> origin/Reverse
 }
