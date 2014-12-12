@@ -69,18 +69,18 @@ namespace Taggy
             return ConvertBitmap(bitmap);
         }
 
-        public ActionResult GetSymbols() // change name
+        public ActionResult GetSymbols() // Возвращает все станы, используемые в них национальные валюты и их символы
         {
             List<object> list = new List<object> ();
-            using (var reader = System.IO.File.OpenText (Server.MapPath ("~/Countries.txt"))) //EUR € IT
+            using (var reader = System.IO.File.OpenText (Server.MapPath ("~/Countries.txt"))) //EUR € IT // Открытие файла с символами на сервере, получение пути к файлу
             {
                 string rstring = reader.ReadLine ();
                 while (rstring != null) 
                 {
-                    string[] splited = rstring.Split (' '); // Regex didn`t work
+                    string[] splited = rstring.Split (' '); // Регуляное выражение не работало
                     if (splited.Length > 0) 
                     {
-                        list.Add (new {
+                        list.Add (new { // Формирование объекта для возвращения
                             Currency = splited[0],
                             Symbol = splited[1],
                             CountryCode = splited[2]
@@ -91,18 +91,18 @@ namespace Taggy
                 JsonResult toReturn = new JsonResult ();
                 toReturn.Data = list.ToArray ();
                 toReturn.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-                return toReturn;
+                return toReturn; // Возвращение результата
             }
 
             return new JsonResult ();
         }
-        public ActionResult GetRates()
+        public ActionResult GetRates() // Возвращение курсов валют относительно доллара
         {
             List<object> rateList = new List<object> ();
-            using (var reader = System.IO.File.OpenText(Server.MapPath("~/Rates.txt"))) 
+            using (var reader = System.IO.File.OpenText(Server.MapPath("~/Rates.txt")))  // Аналогично открытие файла
             {
                 string rstring = reader.ReadLine ();
-                Regex r = new Regex (@"(?<to>[A-Z]{3})\t(?<ratehigh>\d+)\.(?<ratelow>\S+)\t(?<from>[A-Z]{3})"); // OK
+                Regex r = new Regex (@"(?<to>[A-Z]{3})\t(?<ratehigh>\d+)\.(?<ratelow>\S+)\t(?<from>[A-Z]{3})"); // OK Регярное выражение получения названия валюты, курса
 
                 while (rstring != null) 
                 {
@@ -113,7 +113,7 @@ namespace Taggy
                         {
                             foreach (Match match in collection) 
                             {
-                                rateList.Add (new {
+                                rateList.Add (new { // Формирование объектов для возвращения
                                     To = match.Groups ["to"].Value, 
                                     From = match.Groups ["from"].Value,
                                     Rate = match.Groups ["ratehigh"].Value + /*System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator*/ "." + match.Groups ["ratelow"].Value
@@ -128,7 +128,7 @@ namespace Taggy
 
             toReturn.Data = rateList.ToArray();
             toReturn.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            return toReturn;
+            return toReturn; // Возвращение JSON строки
         }
 
         private JsonResult ConvertBitmap(Bitmap bitmap)
@@ -141,8 +141,8 @@ namespace Taggy
             string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables ["REMOTE_ADDR"];
             try
             {
-                recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap,1);
-                recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
+                recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap,1); // В строку возвращается распознанный текст
+                recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition); // Отсеивание ненужных символов, на выходе - числа через пробел
             }
             catch (Exception ex) {
                 isOk = false;
@@ -166,7 +166,7 @@ namespace Taggy
             return rslt;
         }
             
-        static public string GetCountry(string ip)
+        static public string GetCountry(string ip) // Не нужно,  выполняется в JavaScripte
         {
             string country = "";
             WebClient wclient = new WebClient ();
@@ -179,7 +179,7 @@ namespace Taggy
             }
             return country;
         }
-        static public string BitmapToBase64(System.Drawing.Bitmap bitmap)
+        static public string BitmapToBase64(System.Drawing.Bitmap bitmap) // Преобразование изобаржения в строку base 64
         {
             var stream = new MemoryStream();
             bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);

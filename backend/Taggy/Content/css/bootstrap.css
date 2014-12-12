@@ -3764,7 +3764,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
   color: #fff;
-  background-color: #337ab7;
+  background-color: #428bca;
 }
 .nav-stacked > li {
   float: none;
@@ -6330,6 +6330,21 @@ button.close {
     display: none !important;
   }
 }
+ .country-list {
+border-color: #428bca;
+ border-width: 2px;
+ color: #000000;
+ background-color: #fff;
+
+.navbar-default .badge {
+  background-color: #fff;
+  color: #dd4814;
+}
+.navbar-inverse .badge {
+  background-color: #fff;
+  color: #772953;
+}
+
   .file_upload{
     position: relative;
     overflow: hidden;
