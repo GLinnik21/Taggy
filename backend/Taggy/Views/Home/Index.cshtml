@@ -1,65 +1,67 @@
 ﻿<div class="panel panel-info">
     <div class="panel-heading">
-        <h3 class="panel-title">
-            Загрузите фотографию с ценником</h3>
+        <h3 class="panel-title">  Загрузите фотографию с ценником</h3>
     </div>
     <div class="panel-body">
         <form class="form" method="post" style="text-align: center;" enctype="multipart/form-data">
-        <div>
-            <div class="file_upload">
-                <button type="button">
-                    Выбрать</button>
-                <div>
-                    Изображение не выбрано</div>
-                <input type="file" name="file" id="file">
-            </div>
+            <div>
+                <div class="file_upload">
+                    <button type="button">
+                        Выбрать
+                    </button>
+                    <div>
+                        Изображение не выбрано
+                    </div>
+                    <input type="file" name="file" id="file">
+                </div>
 
-            </br> <span class="percent2"></span>
-            <input type="hidden" id="latitude" name="latitude" />
-            <input type="hidden" id="longitude" name="longitude" />
-            <input type="hidden" id="country-code" name="country-code" />
-            <input type="hidden" id="country-name" name="country-name" />
-            <input type="hidden" id="self-ip" name="self-ip" />
-            <select id="currency" class="country-list">
-                <option value="USD">Доллар США</option>
-                <option value="EUR">Евро</option>
-                <option value="RUB">Российский рубль</option>
-                <option value="AUD">Австралийский доллар</option>
-                <option value="BYR">Белорусский рубль</option>
-            </select>
+                </br> <span class="percent2"></span>
+                <input type="hidden" id="latitude" name="latitude" />
+                <input type="hidden" id="longitude" name="longitude" />
+                <input type="hidden" id="country-code" name="country-code" />
+                <input type="hidden" id="country-name" name="country-name" />
+                <input type="hidden" id="self-ip" name="self-ip" />
+                <select id="currency" class="country-list">
+                    <option value="USD">Доллар США</option>
+                    <option value="EUR">Евро</option>
+                    <option value="RUB">Российский рубль</option>
+                    <option value="AUD">Австралийский доллар</option>
+                    <option value="BYR">Белорусский рубль</option>
+                </select>
 
-            <script type='text/javascript'>
-                function sorted(id) {
-                    for (var c = document.getElementById("currency"), b = c.options, a = 0; a < b.length; )
-                        if (b[a + 1] && b[a].text > b[a + 1].text) { c.insertBefore(b[a + 1], b[a]); a = a >= 1 ? a - 1 : a + 1 } else a++;
-                    b[0].selected = true
-                };
-                sorted("foo");
-            </script>
+                <script type='text/javascript'>
+                    function sorted(id) {
+                        for (var c = document.getElementById("currency"), b = c.options, a = 0; a < b.length;)
+                            if (b[a + 1] && b[a].text > b[a + 1].text) { c.insertBefore(b[a + 1], b[a]); a = a >= 1 ? a - 1 : a + 1 } else a++;
+                        b[0].selected = true
+                    };
+                    sorted("foo");
+                </script>
 
-            <div class="progress2" style="background: #B4F5B4; height: 20px; border-radius: 3px;
+                <div class="progress2" style="background: #B4F5B4; height: 20px; border-radius: 3px;
                 width: 0">
-            </div>
-            <hr />
-            <button type="button" id="loading-button" data-loading-text="Загрузка..." class="btn btn-primary"
-                autocomplete="off">
-                Распознать</button>
+                </div>
+                <hr />
+                <button type="button" id="loading-button" data-loading-text="Загрузка..." class="btn btn-primary"
+                        autocomplete="off">
+                    Распознать
+                </button>
         </form>
     </div>
 </div>
 <div id="results-panel" class="panel panel-success">
     <div class="panel-heading">
-        <h3 class="panel-title">
-            Результат</h3>
+        <h3 class="panel-title"> Результат </h3>
     </div>
+
     <div id="results" class="panel-body">
         <p id="price">
         </p>
-         <div class="input-group" id="inGroup">
-  		<span class="input-group-addon"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span></span>
-  		<input type="text" class="form-control" placeholder="What price should we convert?" id="priceToConvert">
-		</div>
-		</br>
+        <div class="input-group" id="inGroup">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span></span>
+            <input type="text" class="form-control" placeholder="What price should we convert?" id="priceToConvert">
+        </div>
+        </br>
         <div class="alert alert-success" role="alert" id="priceConverted">
         </div>
         <div class="alert alert-danger" role="alert" id="message">

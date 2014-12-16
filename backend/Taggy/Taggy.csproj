@@ -165,10 +165,12 @@
     <Content Include="Views\Home\Information.cshtml" />
     <Content Include="Scripts\geo-min.js" />
     <Content Include="Scripts\geo.js" />
-    <Content Include="Content\InfoImage.png" />
     <Content Include="Scripts\todo.js" />
-    <Content Include="Content\nex.jpg" />
     <Content Include="Scripts\inputStyle.js" />
+    <Content Include="Content\ImageAndroid.jpg" />
+    <Content Include="Content\ImageWP.jpg" />
+    <Content Include="Content\ImageAndroid.png" />
+    <Content Include="Content\ImageWP.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
