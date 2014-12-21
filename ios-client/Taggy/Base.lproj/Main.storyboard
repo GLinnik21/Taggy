@@ -63,14 +63,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <state key="normal" backgroundImage="choose.png"/>
                                 <connections>
-                                    <action selector="chooseExisting" destination="G5l-i6-tbZ" eventType="touchUpInside" id="A93-KZ-dTN"/>
+                                    <action selector="chooseExisting" destination="G5l-i6-tbZ" eventType="touchUpInside" id="G7n-OZ-8yB"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="takePhotoButton" destination="vIe-cy-7uO" id="Zdz-RO-wWV"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JLx-bl-ZQA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -214,7 +211,7 @@
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ro4-E5-HKr">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="565"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7po-xN-aY2">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7po-xN-aY2">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="7po-xN-aY2" secondAttribute="height" multiplier="1:1" id="qUt-75-wgt"/>
