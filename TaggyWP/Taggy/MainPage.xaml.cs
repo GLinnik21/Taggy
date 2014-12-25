@@ -24,9 +24,12 @@ namespace Taggy
 {
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
-    /// </summary>
+    /// </summary>    
+    
     public sealed partial class MainPage : Page
     {
+        BitmapImage image;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -74,6 +77,7 @@ namespace Taggy
                 BitmapImage bitmapImage = new BitmapImage();
 
                 bitmapImage.SetSource(fileStream);
+                image = bitmapImage;
                 MyImage.Source = bitmapImage;
 
             }
