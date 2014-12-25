@@ -100,16 +100,19 @@
 
 + (void)recognizeImage:(UIImage *)image withCallback:(void (^)(TGPriceImage *priceImage))callback
 {
+    TGPriceRecognizer *recognizer = [[TGPriceRecognizer alloc] init];
+    recognizer.image = image;
+    __weak typeof(self) weakSelf = self;
     [[[self class] sharedQueue] addOperationWithBlock:^{
-        TGPriceRecognizer *recognizer = [[TGPriceRecognizer alloc] init];
-        recognizer.image = image;
+        
         [recognizer recognize];
-
-        TGPriceImage *item = [[TGPriceImage alloc] init];
-        item.image = [recognizer debugImage];
-        item.captureDate = [NSDate date];
-
+        
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            TGPriceImage *item = [[TGPriceImage alloc] init];
+            item.image = [recognizer debugImage];
+            item.captureDate = [NSDate date];
+            
             if (recognizer.recognizedPrices.count > 0) {
                 RLMRealm *realm = [RLMRealm defaultRealm];
 
@@ -122,7 +125,7 @@
                     price.confidence = block.confidence;
                     price.rectString = [NSValue valueWithCGRect:block.region].description;
                     price.sourceCurrency = [TGCurrency currencyForCode:@"BYR"]; //TODO: fix hardcode
-                    price.defaultCurrency = [[self class] defaultCurrency];
+                    price.defaultCurrency = [[strongSelf class] defaultCurrency];
 
                     [item.prices addObject:price];
                 }

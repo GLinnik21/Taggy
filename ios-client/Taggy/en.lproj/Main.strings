@@ -8,35 +8,14 @@
 /* Class = "IBUINavigationController"; title = "Scanner"; ObjectID = "2by-fz-iZf"; */
 "2by-fz-iZf.title" = "Scanner";
 
-/* Class = "IBUITableViewSection"; footerTitle = "Automatic currency update after the first Internet connection"; ObjectID = "3HT-b0-TJV"; */
-"3HT-b0-TJV.footerTitle" = "Automatic currency update after the first Internet connection";
-
-/* Class = "IBUITableViewSection"; headerTitle = "General"; ObjectID = "3HT-b0-TJV"; */
-"3HT-b0-TJV.headerTitle" = "General";
-
 /* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "8nw-R2-dam"; */
 "8nw-R2-dam.title" = "Back";
-
-/* Class = "IBUITableViewSection"; footerTitle = "Learn more about our app"; ObjectID = "JyL-Zf-TnE"; */
-"JyL-Zf-TnE.footerTitle" = "Learn more about our app";
-
-/* Class = "IBUITableViewSection"; headerTitle = "More"; ObjectID = "JyL-Zf-TnE"; */
-"JyL-Zf-TnE.headerTitle" = "More";
-
-/* Class = "IBUILabel"; text = "Auto-update"; ObjectID = "MT0-zA-Ul4"; */
-"MT0-zA-Ul4.text" = "Auto-update";
 
 /* Class = "IBUITabBarItem"; title = "Results"; ObjectID = "Nna-ET-djC"; */
 "Nna-ET-djC.title" = "Results";
 
-/* Class = "IBUILabel"; text = "Choose the currency"; ObjectID = "OKV-cc-vA5"; */
-"OKV-cc-vA5.text" = "Choose the currency";
-
 /* Class = "IBUILabel"; text = "-"; ObjectID = "OLE-Wj-jQW"; */
 "OLE-Wj-jQW.text" = "-";
-
-/* Class = "IBUILabel"; text = "About"; ObjectID = "PDW-2r-ky5"; */
-"PDW-2r-ky5.text" = "About";
 
 /* Class = "IBUITabBarItem"; title = "Results"; ObjectID = "PVV-W9-UJQ"; */
 "PVV-W9-UJQ.title" = "Results";
@@ -53,44 +32,17 @@
 /* Class = "IBUINavigationItem"; title = "Results"; ObjectID = "XX7-In-ySs"; */
 "XX7-In-ySs.title" = "Results";
 
-/* Class = "IBUILabel"; text = "Choose the currency of your country"; ObjectID = "XcD-fy-All"; */
-"XcD-fy-All.text" = "Choose the currency of your country";
-
-/* Class = "IBUILabel"; text = "Currency of your country"; ObjectID = "YIv-HJ-x5X"; */
-"YIv-HJ-x5X.text" = "Currency of your country";
-
-/* Class = "IBUINavigationItem"; title = "Currency"; ObjectID = "aeM-67-X0L"; */
-"aeM-67-X0L.title" = "Currency";
-
-/* Class = "IBUILabel"; text = "Currency for transference\n"; ObjectID = "awR-sO-Lhv"; */
-"awR-sO-Lhv.text" = "Currency for transference\n";
-
 /* Class = "IBUILabel"; text = "Label"; ObjectID = "b0B-0G-4ij"; */
 "b0B-0G-4ij.text" = "Label";
 
 /* Class = "IBUILabel"; text = "Label"; ObjectID = "dFn-mR-FxZ"; */
 "dFn-mR-FxZ.text" = "Label";
 
-/* Class = "IBUILabel"; text = "Detail"; ObjectID = "dS9-UP-zDi"; */
-"dS9-UP-zDi.text" = "Detail";
-
-/* Class = "IBUINavigationItem"; title = "Currency"; ObjectID = "daQ-hd-IPT"; */
-"daQ-hd-IPT.title" = "Currency";
-
-/* Class = "IBUITableViewSection"; headerTitle = "Currency"; ObjectID = "edt-WT-X4s"; */
-"edt-WT-X4s.headerTitle" = "Currency";
-
-/* Class = "IBUINavigationItem"; title = "About"; ObjectID = "g2T-pH-H2Q"; */
-"g2T-pH-H2Q.title" = "About";
-
-/* Class = "IBUINavigationItem"; title = "Settings"; ObjectID = "iv6-oY-4jP"; */
-"iv6-oY-4jP.title" = "Settings";
+/* Class = "IBUINavigationItem"; title = "Settings"; ObjectID = "g2T-pH-H2Q"; */
+"g2T-pH-H2Q.title" = "Settings";
 
 /* Class = "IBUITabBarItem"; title = "Scanner"; ObjectID = "k91-Bn-oGz"; */
 "k91-Bn-oGz.title" = "Scanner";
-
-/* Class = "IBUILabel"; text = "Detail"; ObjectID = "tMO-KG-Ubi"; */
-"tMO-KG-Ubi.text" = "Detail";
 
 /* Class = "IBUIButton"; normalTitle = "Take a photo"; ObjectID = "vIe-cy-7uO"; */
 "vIe-cy-7uO.normalTitle" = "Take a photo";

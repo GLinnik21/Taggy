@@ -80,11 +80,8 @@
 /* Class = "IBUITableViewSection"; headerTitle = "Currency"; ObjectID = "edt-WT-X4s"; */
 "edt-WT-X4s.headerTitle" = "Валюта";
 
-/* Class = "IBUINavigationItem"; title = "About"; ObjectID = "g2T-pH-H2Q"; */
-"g2T-pH-H2Q.title" = "О приложении";
-
-/* Class = "IBUINavigationItem"; title = "Settings"; ObjectID = "iv6-oY-4jP"; */
-"iv6-oY-4jP.title" = "Настройки";
+/* Class = "IBUINavigationItem"; title = "Settings"; ObjectID = "g2T-pH-H2Q"; */
+"zTU-fO-yMG.title" = "Настройки";
 
 /* Class = "IBUITabBarItem"; title = "Scanner"; ObjectID = "k91-Bn-oGz"; */
 "k91-Bn-oGz.title" = "Сканер";

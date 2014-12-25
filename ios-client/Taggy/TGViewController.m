@@ -63,7 +63,8 @@ static NSString *const kTGImageCellId = @"ImageCell";
         self.tableView.backgroundView = messageLabel;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.navigationItem.rightBarButtonItem = nil;
-    }else{
+    }
+    else {
         self.tableView.backgroundView = nil;
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
         self.tableView.backgroundColor = nil;
