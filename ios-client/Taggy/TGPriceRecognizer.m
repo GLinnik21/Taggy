@@ -8,13 +8,15 @@
 
 #import "TGPriceRecognizer.h"
 #import "TGCommon.h"
-#import <TesseractOCR/Tesseract.h>
+#import <TesseractOCR/TesseractOCR.h>
 #import <CoreImage/CoreImage.h>
 #import <ARAnalytics/ARAnalytics.h>
 #import <GPUImage/GPUImage.h>
 #import "UIImage+FixOrientation.h"
 
 static NSString *const kTGNumberRegexPattern = @"([0-9]*|[0-9]+[,.])([,.][0-9]+|[0-9]+)";
+
+static NSTimeInterval const kTGMaxRecognitionTime = 3.0;
 
 static CGFloat const kTGMinimalBlockConfidence = 10.0f;
 static CGFloat const kTGMinimalBlockHeight = 20.0f;
@@ -23,12 +25,12 @@ static NSUInteger const kTGMaximumPriceLength = 10;
 static CGFloat const kTGMinimumPriceValue = 10.0f;
 static NSUInteger const kTGMaximumPricesCount = 4;
 
-@interface TGPriceRecognizer()
+@interface TGPriceRecognizer() <G8TesseractDelegate>
 
 @property (nonatomic, strong) NSArray *recognizedBlocks;
 @property (nonatomic, strong) NSArray *recognizedPrices;
 
-@property (nonatomic, strong) Tesseract *tesseract;
+@property (nonatomic, strong) G8Tesseract *tesseract;
 @property (nonatomic, strong) NSArray *wellRecognizedBlocks;
 
 @end
@@ -44,32 +46,34 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 {
     self = [super init];
     if (self != nil) {
-        _tesseract = [[Tesseract alloc] initWithLanguage:language];
+        _tesseract = [[G8Tesseract alloc] initWithLanguage:language];
+        _tesseract.delegate = self;
 
-        NSDictionary *params = @{
-            //@"textord_noise_normratio": @"5",
-            @"textord_heavy_nr": @"1",
-            //@"textord_projection_scale": @"0.25",
-            //@"tessedit_minimal_rejection": @"1",
-            @"textord_parallel_baselines": @"0",
-            @"tessedit_char_whitelist": @"0123456789,.-",
-            //@"tessedit_char_blacklist": @"@#%^&*{}_\\/",
-            @"classify_bln_numeric_mode": @"6",
-            //@"matcher_avg_noise_size": @"22",
-        };
+        [_tesseract setVariablesFromDictionary:@{
+            //kG8ParamTextordNoiseNormratio: @"5",
+            kG8ParamTextordHeavyNr : @"1",
+            //kG8ParamTesseditMinimalRejection : @"1",
+            kG8ParamTextordParallelBaselines : @"0",
+            kG8ParamClassifyBlnNumericMode : @"6",
+            kG8ParamMatcherAvgNoiseSize : @"22",
+        }];
 
-        for (NSString *key in params.allKeys) {
-            [_tesseract setVariableValue:params[key] forKey:key];
-        }
+        //_tesseract.charWhitelist = @"0123456789,.-";
+        _tesseract.pageSegmentationMode = G8PageSegmentationModeSparseText;
+        _tesseract.maximumRecognitionTime = kTGMaxRecognitionTime;
     }
     return self;
 }
 
 + (UIImage *)binarizeImage:(UIImage *)sourceImage andResize:(CGSize)size
 {
-    GPUImageAverageLuminanceThresholdFilter *filter = [[GPUImageAverageLuminanceThresholdFilter alloc] init];
-    //filter.thresholdMultiplier = 1.1;
-    filter.thresholdMultiplier = 0.5;
+    //GPUImageContrastFilter *filter = [[GPUImageContrastFilter alloc] init];
+    //filter.contrast = 4.0;
+    GPUImageLuminanceThresholdFilter *filter = [[GPUImageLuminanceThresholdFilter alloc] init];
+    filter.threshold = 0.5f;
+    //GPUImageAverageLuminanceThresholdFilter *filter = [[GPUImageAverageLuminanceThresholdFilter alloc] init];
+    //GPUImageAdaptiveThresholdFilter *filter = [[GPUImageAdaptiveThresholdFilter alloc] init];
+    //filter.thresholdMultiplier = 1.0;
 
     [filter forceProcessingAtSizeRespectingAspectRatio:size];
 
@@ -77,20 +81,34 @@ static NSUInteger const kTGMaximumPricesCount = 4;
     return resultImage;
 }
 
-+ (UIImage *)imageAfterPreprocessingImage:(UIImage *)image
+- (UIImage *)thresholdedImageForTesseract:(G8Tesseract *)tesseract sourceImage:(UIImage *)sourceImage
 {
-    image = [image fixOrientation];
-    image = [[self class] binarizeImage:image andResize:CGSizeMake(600, 600)];
+    sourceImage = [sourceImage fixOrientation];
+    sourceImage = [[self class] binarizeImage:sourceImage andResize:CGSizeMake(700, 700)];
 
-    return image;
+    return sourceImage;
+}
+
+- (void)progressImageRecognitionForTesseract:(G8Tesseract *)tesseract
+{
+    if (tesseract == self.tesseract) {
+        __weak __typeof(self) weakSelf = self;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+
+            if (strongSelf.progressBlock != nil) {
+                strongSelf.progressBlock(tesseract.progress / 100.0f);
+            }
+        });
+    }
 }
 
 - (void)setImage:(UIImage *)image
 {
     if (_image != image) {
-        _image = [TGCommon imageWithImage:image scaledToSizeWithSameAspectRatio:CGSizeMake(600, 600)];
+        _image = [TGCommon imageWithImage:image scaledToSizeWithSameAspectRatio:CGSizeMake(700, 700)];
 
-        self.tesseract.image = [[self class] imageAfterPreprocessingImage:image];
+        self.tesseract.image = image;
     }
 }
 
@@ -113,9 +131,13 @@ static NSUInteger const kTGMaximumPricesCount = 4;
         [self clear];
 
         [self.tesseract recognize];
-        self.recognizedBlocks = [TGRecognizedBlock blocksFromRecognitionArray:self.tesseract.getConfidenceByWord];
-        self.wellRecognizedBlocks = self.recognizedBlocks;
 
+        NSArray *blocks = [self.tesseract confidencesByIteratorLevel:G8PageIteratorLevelSymbol];
+        self.recognizedBlocks = [TGRecognizedBlock blocksFromRecognitionArray:blocks];
+        self.wellRecognizedBlocks = self.recognizedBlocks;
+        UIImage *tresholdedWords = [self.tesseract imageWithBlocks:blocks
+                                                          drawText:YES
+                                                       thresholded:YES];
 
         //[self removeBadRecognizedBlocks];
         [self splitBlocks];

@@ -85,6 +85,8 @@
 
             [self.navigationController pushViewController:viewController animated:YES];
         }
+    } progress:^(CGFloat progress) {
+        [SVProgressHUD showProgress:progress status:NSLocalizedString(@"recognizing", @"Recognizing")];
     }];
 
     [self dismissViewControllerAnimated:YES completion:NULL];

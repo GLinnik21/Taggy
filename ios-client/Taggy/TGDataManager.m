@@ -98,18 +98,22 @@
     return queue;
 }
 
-+ (void)recognizeImage:(UIImage *)image withCallback:(void (^)(TGPriceImage *priceImage))callback
++ (void)recognizeImage:(UIImage *)image
+          withCallback:(void (^)(TGPriceImage *priceImage))callback
+              progress:(void (^)(CGFloat progress))progress
 {
+    TGPriceRecognizer *recognizer = [[TGPriceRecognizer alloc] init];
+    recognizer.progressBlock = progress;
+    recognizer.image = image;
+
     [[[self class] sharedQueue] addOperationWithBlock:^{
-        TGPriceRecognizer *recognizer = [[TGPriceRecognizer alloc] init];
-        recognizer.image = image;
         [recognizer recognize];
 
-        TGPriceImage *item = [[TGPriceImage alloc] init];
-        item.image = [recognizer debugImage];
-        item.captureDate = [NSDate date];
-
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            TGPriceImage *item = [[TGPriceImage alloc] init];
+            item.image = [recognizer debugImage];
+            item.captureDate = [NSDate date];
+
             if (recognizer.recognizedPrices.count > 0) {
                 RLMRealm *realm = [RLMRealm defaultRealm];
 
