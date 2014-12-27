@@ -17,6 +17,7 @@
 - (void)viewDidLoad
 {
     self.delegate = self;
+
 }
 
 - (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController *)sender

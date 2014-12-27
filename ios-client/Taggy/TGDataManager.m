@@ -105,11 +105,14 @@
     TGPriceRecognizer *recognizer = [[TGPriceRecognizer alloc] init];
     recognizer.progressBlock = progress;
     recognizer.image = image;
-
+    
+    __weak typeof(self) weakSelf = self;
     [[[self class] sharedQueue] addOperationWithBlock:^{
+        
         [recognizer recognize];
-
+        
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            __strong typeof(weakSelf) strongSelf = weakSelf;
             TGPriceImage *item = [[TGPriceImage alloc] init];
             item.image = [recognizer debugImage];
             item.captureDate = [NSDate date];
@@ -126,7 +129,7 @@
                     price.confidence = block.confidence;
                     price.rectString = [NSValue valueWithCGRect:block.region].description;
                     price.sourceCurrency = [TGCurrency currencyForCode:@"BYR"]; //TODO: fix hardcode
-                    price.defaultCurrency = [[self class] defaultCurrency];
+                    price.defaultCurrency = [[strongSelf class] defaultCurrency];
 
                     [item.prices addObject:price];
                 }
