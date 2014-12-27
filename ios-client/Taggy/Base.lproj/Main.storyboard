@@ -365,7 +365,6 @@
         <!--Settings-->
         <scene sceneID="r35-VZ-erc">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bjb-2R-ZxR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="3cO-Fa-bmB" customClass="IASKAppSettingsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Xg8-fM-kQT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -379,6 +378,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="g2T-pH-H2Q"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bjb-2R-ZxR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="141" y="93"/>
         </scene>

@@ -16,7 +16,7 @@
             <key>DefaultValue</key>
             <string>YES</string>
             <key>Key</key>
-            <string>toggleSwitch</string>
+            <string>auto_update</string>
             <key>Title</key>
             <string>auto_update</string>
             <key>Type</key>
@@ -30,7 +30,7 @@
         </dict>
         <dict>
             <key>DefaultValue</key>
-            <string>0</string>
+            <string>2</string>
             <key>Key</key>
             <string>country</string>
             <key>Title</key>
@@ -55,16 +55,16 @@
             <string>PSMultiValueSpecifier</string>
             <key>Values</key>
             <array>
-                <string>0</string>
                 <string>1</string>
                 <string>2</string>
                 <string>3</string>
                 <string>4</string>
+                <string>5</string>
             </array>
         </dict>
         <dict>
             <key>DefaultValue</key>
-            <string>0</string>
+            <string>1</string>
             <key>Key</key>
             <string>transf</string>
             <key>Title</key>
@@ -89,11 +89,11 @@
             <string>PSMultiValueSpecifier</string>
             <key>Values</key>
             <array>
-                <string>0</string>
                 <string>1</string>
                 <string>2</string>
                 <string>3</string>
                 <string>4</string>
+                <string>5</string>
             </array>
         </dict>
         <dict>
