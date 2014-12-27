@@ -28,6 +28,7 @@ PODS:
     - KSCrash/Reporting/Filters/Base
   - KSCrash/Reporting/Filters/Base (0.0.3):
     - KSCrash/Recording
+  - Masonry (0.5.3)
   - protobuf-c (0.15)
   - Realm (0.89.1):
     - Realm/Headers
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - GoogleAnalytics-iOS-SDK (~> 3.10)
   - GPUImage (~> 0.1.6)
   - InAppSettingsKit (~> 2.3)
+  - Masonry (~> 0.5.3)
   - Realm (~> 0.88)
   - SVProgressHUD (HEAD)
   - TesseractOCRiOS (HEAD)
@@ -61,6 +63,7 @@ SPEC CHECKSUMS:
   GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
   InAppSettingsKit: c870cb6095a85656ff4df42845af5c26eede4c8d
   KSCrash: c0a693b2d83ced5c15a40d4e916833c655475e6a
+  Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
   protobuf-c: 0177b8dbc4afc4ec5d01e868b3e25a7400b98ca0
   Realm: 20b0bd13983d64fd22afeb47489729fd71b6b5c6
   SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438

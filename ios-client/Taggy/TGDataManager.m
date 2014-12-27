@@ -31,7 +31,7 @@
         price.value = 4.53;
         price.sourceCurrency = nil;
         price.defaultCurrency = [TGCurrency currencyForCode:@"BYR"];
-        price.rectString = @"";
+        price.rect = CGRectZero;
         [item.prices addObject:price];
 
         [realm addObject:item];
@@ -45,7 +45,7 @@
         price.value = 110;
         price.sourceCurrency = [TGCurrency currencyForCode:@"RUB"];
         price.defaultCurrency = [TGCurrency currencyForCode:@"BYR"];
-        price.rectString = @"";
+        price.rect = CGRectZero;
         [item.prices addObject:price];
 
         [realm addObject:item];
@@ -59,7 +59,7 @@
         price.value = 24.99;
         price.sourceCurrency = [TGCurrency currencyForCode:@"EUR"];
         price.defaultCurrency = [TGCurrency currencyForCode:@"BYR"];
-        price.rectString = @"";
+        price.rect = CGRectZero;
         [item.prices addObject:price];
 
         [realm addObject:item];
@@ -114,7 +114,7 @@
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             __strong typeof(weakSelf) strongSelf = weakSelf;
             TGPriceImage *item = [[TGPriceImage alloc] init];
-            item.image = [recognizer debugImage];
+            item.image = recognizer.image;
             item.captureDate = [NSDate date];
 
             if (recognizer.recognizedPrices.count > 0) {
@@ -127,7 +127,8 @@
                     TGRecognizedPrice *price = [[TGRecognizedPrice alloc] init];
                     price.value = [[block number] floatValue];
                     price.confidence = block.confidence;
-                    price.rectString = [NSValue valueWithCGRect:block.region].description;
+
+                    price.rect = block.region;
                     price.sourceCurrency = [TGCurrency currencyForCode:@"BYR"]; //TODO: fix hardcode
                     price.defaultCurrency = [[strongSelf class] defaultCurrency];
 
