@@ -49,7 +49,29 @@ static NSString *const kTGImageCellId = @"ImageCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [TGDataManager recognizedImagesCount];
+    NSLog(@"Rows: %ld", (long)[TGDataManager recognizedImagesCount]);
+    if ([TGDataManager recognizedImagesCount] == 0) {
+        self.tableView.backgroundColor = [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1];
+        UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
+        messageLabel.text = NSLocalizedString(@"no_results", @"No results");
+        messageLabel.textColor = [UIColor colorWithRed:(203/255.0) green:(203/255.0) blue:(203/255.0) alpha:1];
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = NSTextAlignmentCenter;
+        messageLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
+        [messageLabel sizeToFit];
+        
+        self.tableView.backgroundView = messageLabel;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+    else {
+        self.tableView.backgroundView = nil;
+        self.navigationItem.rightBarButtonItem = self.editButtonItem;
+        self.tableView.backgroundColor = nil;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        return [TGDataManager recognizedImagesCount];
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

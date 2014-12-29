@@ -17,6 +17,8 @@
 + (TGPriceImage *)recognizedImageAtIndex:(NSInteger)index;
 + (void)removeRecognizedImage:(TGPriceImage *)recognizedImage;
 
-+ (void)recognizeImage:(UIImage *)image withCallback:(void (^)(TGPriceImage *priceImage))callback;
++ (void)recognizeImage:(UIImage *)image
+          withCallback:(void (^)(TGPriceImage *priceImage))callback
+              progress:(void (^)(CGFloat progress))progress;
 
 @end

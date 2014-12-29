@@ -5,11 +5,12 @@ platform :ios, "7.0"
 
 target "Taggy" do
 
-pod 'TesseractOCRiOS', '~> 3.1'
+pod 'TesseractOCRiOS', :head
 pod 'GPUImage', '~> 0.1.6'
 pod 'InAppSettingsKit', '~> 2.3'
 pod 'Realm', '~> 0.88'
 pod 'SVProgressHUD', :head
+pod 'Masonry', '~> 0.5.3'
 
 pod 'FlurrySDK', '~> 5.4.0'
 pod 'GoogleAnalytics-iOS-SDK', '~> 3.10'

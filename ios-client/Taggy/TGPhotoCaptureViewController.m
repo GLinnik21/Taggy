@@ -13,10 +13,10 @@
 #import "TGImageCell.h"
 #import "TGDataManager.h"
 #import "SVProgressHUD.h"
+#import "TGDetailViewController.h"
 
 @interface TGPhotoCaptureViewController() <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (nonatomic, weak) IBOutlet UIImageView *imageview;
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
 
 @property (nonatomic, weak) UIImagePickerController *takePhotoPicker;
@@ -26,15 +26,21 @@
 
 @implementation TGPhotoCaptureViewController
 
+-(void)viewDidDisappear:(BOOL)animated{
+    [SVProgressHUD dismiss];
+}
+
 - (IBAction)takePhoto
 {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
-    [self presentViewController:picker animated:YES completion:NULL];
-    self.takePhotoPicker = picker;
+    if ([[UIDevice currentDevice].model containsString:@"Simulator"] == NO) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+        [self presentViewController:picker animated:YES completion:NULL];
+        self.takePhotoPicker = picker;
 
-    [ARAnalytics event:@"Take photo"];
+        [ARAnalytics event:@"Take photo"];
+    }
 }
 
 - (IBAction)chooseExisting
@@ -50,9 +56,10 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+   /*TGRecognizedViewController *recognized = [[TGRecognizedViewController alloc] initWithNibName:@"recognizedViewController" bundle:nil];*/
+    
     [SVProgressHUD setForegroundColor:[UIColor orangeColor]];
-    [SVProgressHUD setRingThickness:3];
-    [SVProgressHUD show];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"recognizing", @"Recognizing")];
     if (picker == self.takePhotoPicker) {
         [ARAnalytics event:@"Photo takken"];
     }
@@ -63,17 +70,25 @@
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 
     [TGDataManager recognizeImage:image withCallback:^(TGPriceImage *priceImage) {
-        [SVProgressHUD dismiss];
-        [[[UIAlertView alloc] initWithTitle:@"Распознанные цены"
-                                    message:priceImage.prices.description
-                                   delegate:nil
-                          cancelButtonTitle:@"ОК"
-                          otherButtonTitles:nil]show];
+        if (priceImage.prices.count == 0){
+            [SVProgressHUD setForegroundColor:[UIColor redColor]];
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"recognizing_fail", @"Failed")];
+        }
+        else {
+            [SVProgressHUD setForegroundColor:[UIColor greenColor]];
+            [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"recognized", @"Recognized")];
 
-        [self.imageview setImage:priceImage.image];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            TGDetailViewController *viewController =
+            [storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+            viewController.detail = priceImage;
+
+            [self.navigationController pushViewController:viewController animated:YES];
+        }
+    } progress:^(CGFloat progress) {
+        [SVProgressHUD showProgress:progress status:NSLocalizedString(@"recognizing", @"Recognizing")];
     }];
 
-    [self.imageview setImage:image];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 

@@ -31,7 +31,7 @@
         price.value = 4.53;
         price.sourceCurrency = nil;
         price.defaultCurrency = [TGCurrency currencyForCode:@"BYR"];
-        price.rectString = @"";
+        price.rect = CGRectZero;
         [item.prices addObject:price];
 
         [realm addObject:item];
@@ -45,7 +45,7 @@
         price.value = 110;
         price.sourceCurrency = [TGCurrency currencyForCode:@"RUB"];
         price.defaultCurrency = [TGCurrency currencyForCode:@"BYR"];
-        price.rectString = @"";
+        price.rect = CGRectZero;
         [item.prices addObject:price];
 
         [realm addObject:item];
@@ -59,7 +59,7 @@
         price.value = 24.99;
         price.sourceCurrency = [TGCurrency currencyForCode:@"EUR"];
         price.defaultCurrency = [TGCurrency currencyForCode:@"BYR"];
-        price.rectString = @"";
+        price.rect = CGRectZero;
         [item.prices addObject:price];
 
         [realm addObject:item];
@@ -87,44 +87,64 @@
     [realm commitWriteTransaction];
 }
 
-+ (void)recognizeImage:(UIImage *)image withCallback:(void (^)(TGPriceImage *priceImage))callback
++ (NSOperationQueue *)sharedQueue
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        TGPriceRecognizer *recognizer = [[TGPriceRecognizer alloc] init];
-        recognizer.image = image;
+    static NSOperationQueue *queue = nil;
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        queue = [[NSOperationQueue alloc] init];
+    });
+    return queue;
+}
+
++ (void)recognizeImage:(UIImage *)image
+          withCallback:(void (^)(TGPriceImage *priceImage))callback
+              progress:(void (^)(CGFloat progress))progress
+{
+    TGPriceRecognizer *recognizer = [[TGPriceRecognizer alloc] init];
+    recognizer.progressBlock = progress;
+    recognizer.image = image;
+    
+    __weak typeof(self) weakSelf = self;
+    [[[self class] sharedQueue] addOperationWithBlock:^{
+        
         [recognizer recognize];
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            TGPriceImage *item = [[TGPriceImage alloc] init];
+            item.image = recognizer.image;
+            item.captureDate = [NSDate date];
 
-        TGPriceImage *item = [[TGPriceImage alloc] init];
-        item.image = [recognizer debugImage];
-        item.captureDate = [NSDate date];
+            if (recognizer.recognizedPrices.count > 0) {
+                RLMRealm *realm = [RLMRealm defaultRealm];
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            RLMRealm *realm = [RLMRealm defaultRealm];
+                [realm beginWriteTransaction];
 
-            [realm beginWriteTransaction];
+                for (TGRecognizedBlock *block in recognizer.recognizedPrices)
+                {
+                    TGRecognizedPrice *price = [[TGRecognizedPrice alloc] init];
+                    price.value = [[block number] floatValue];
+                    price.confidence = block.confidence;
 
-            for (TGRecognizedBlock *block in recognizer.recognizedPrices)
-            {
-                TGRecognizedPrice *price = [[TGRecognizedPrice alloc] init];
-                price.value = [[block number] floatValue];
-                price.confidence = block.confidence;
-                price.rectString = [NSValue valueWithCGRect:block.region].description;
-                price.sourceCurrency = [TGCurrency currencyForCode:@"BYR"]; //TODO: fix hardcode
-                price.defaultCurrency = [[self class] defaultCurrency];
+                    price.rect = block.region;
+                    price.sourceCurrency = [TGCurrency currencyForCode:@"BYR"]; //TODO: fix hardcode
+                    price.defaultCurrency = [[strongSelf class] defaultCurrency];
 
-                [item.prices addObject:price];
+                    [item.prices addObject:price];
+                }
+                [realm addObject:item];
+                
+                [realm commitWriteTransaction];
             }
-            [realm addObject:item];
-            
-            [realm commitWriteTransaction];
 
             if (callback != nil) {
-                    callback(item);
+                callback(item);
             }
-        });
-        
-        [ARAnalytics event:@"Converted"];
-    });
+            [ARAnalytics event:@"Converted"];
+        }];
+    }];
 }
 
 + (TGCurrency *)defaultCurrency

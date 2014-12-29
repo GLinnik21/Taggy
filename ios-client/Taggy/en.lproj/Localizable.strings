@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Taggy
+
+  Created by Gleb Linkin on 08/12/14.
+  Copyright (c) 2014 Gleb Linkin. All rights reserved.
+*/
+
+"recognizing" = "Recognizing";
+"recognizing_fail" = "Failed";
+"recognized" = "Recognized";
+"no_results" = "There is no results";
+"Settings" = "Settings";

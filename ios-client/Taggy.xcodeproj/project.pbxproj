@@ -62,9 +62,7 @@
 		ED7C11071A069F220037C843 /* choose.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7C11051A069F220037C843 /* choose.png */; };
 		ED7C11081A069F220037C843 /* choose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = ED7C11061A069F220037C843 /* choose@2x.png */; };
 		ED7CAD331A28B95B00AAF192 /* TGSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7CAD311A28B95A00AAF192 /* TGSettingsViewController.m */; };
-		ED7CAD361A2924DB00AAF192 /* TGCountryCurrencyController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7CAD351A2924DB00AAF192 /* TGCountryCurrencyController.m */; };
-		ED7CAD391A29255300AAF192 /* TGTransferenceCurrencyController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7CAD381A29255300AAF192 /* TGTransferenceCurrencyController.m */; };
-		ED7CAD3C1A292C9C00AAF192 /* TGCurrencySettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7CAD3B1A292C9C00AAF192 /* TGCurrencySettingsController.m */; };
+		EDA7E2D31A35DB9B00641F18 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EDA7E2D51A35DB9B00641F18 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -157,15 +155,11 @@
 		ED7C11061A069F220037C843 /* choose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "choose@2x.png"; sourceTree = "<group>"; };
 		ED7CAD311A28B95A00AAF192 /* TGSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGSettingsViewController.m; sourceTree = "<group>"; };
 		ED7CAD321A28B95B00AAF192 /* TGSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGSettingsViewController.h; sourceTree = "<group>"; };
-		ED7CAD341A2924DB00AAF192 /* TGCountryCurrencyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGCountryCurrencyController.h; sourceTree = "<group>"; };
-		ED7CAD351A2924DB00AAF192 /* TGCountryCurrencyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGCountryCurrencyController.m; sourceTree = "<group>"; };
-		ED7CAD371A29255300AAF192 /* TGTransferenceCurrencyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGTransferenceCurrencyController.h; sourceTree = "<group>"; };
-		ED7CAD381A29255300AAF192 /* TGTransferenceCurrencyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGTransferenceCurrencyController.m; sourceTree = "<group>"; };
-		ED7CAD3A1A292C9C00AAF192 /* TGCurrencySettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGCurrencySettingsController.h; sourceTree = "<group>"; };
-		ED7CAD3B1A292C9C00AAF192 /* TGCurrencySettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGCurrencySettingsController.m; sourceTree = "<group>"; };
-		ED7CAD3E1A29E1A600AAF192 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		ED7CAD401A29E1B400AAF192 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		ED7CAD421A29EEDB00AAF192 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		EDA7E2D41A35DB9B00641F18 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EDA7E2D61A35DBA100641F18 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EDD593821A4CB834004BCFC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,8 +215,6 @@
 		41A9D04D1A038B5800922CBC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				ED7CAD3A1A292C9C00AAF192 /* TGCurrencySettingsController.h */,
-				ED7CAD3B1A292C9C00AAF192 /* TGCurrencySettingsController.m */,
 				ED7CAD321A28B95B00AAF192 /* TGSettingsViewController.h */,
 				ED7CAD311A28B95A00AAF192 /* TGSettingsViewController.m */,
 				ED077A1919F93FE300B203CB /* TGViewController.h */,
@@ -231,10 +223,6 @@
 				ED077A6319F940F700B203CB /* TGDetailViewController.m */,
 				ED077A6719F940F700B203CB /* TGPhotoCaptureViewController.h */,
 				ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */,
-				ED7CAD341A2924DB00AAF192 /* TGCountryCurrencyController.h */,
-				ED7CAD351A2924DB00AAF192 /* TGCountryCurrencyController.m */,
-				ED7CAD371A29255300AAF192 /* TGTransferenceCurrencyController.h */,
-				ED7CAD381A29255300AAF192 /* TGTransferenceCurrencyController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -355,6 +343,7 @@
 				ED077A1319F93FE300B203CB /* Info.plist */,
 				ED077A1419F93FE300B203CB /* main.m */,
 				ED715FDB1A0927DD00F81CAF /* Settings.bundle */,
+				EDA7E2D51A35DB9B00641F18 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -470,6 +459,7 @@
 					};
 					ED077A2719F93FE300B203CB = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = D53HEE7TTR;
 						TestTargetID = ED077A0E19F93FE300B203CB;
 					};
 				};
@@ -509,6 +499,7 @@
 				ED077A5719F9405E00B203CB /* Taggy2.png in Resources */,
 				ED077A5519F9405E00B203CB /* set@2x.png in Resources */,
 				ED08203C1A24D5A40044BD6D /* PhotoButton@3x.png in Resources */,
+				EDA7E2D31A35DB9B00641F18 /* Localizable.strings in Resources */,
 				ED077A5A19F9405E00B203CB /* VASAG.png in Resources */,
 				ED08203B1A24D5A40044BD6D /* choose@3x.png in Resources */,
 				ED2DE36919FCF8C4008C69F2 /* PhotoButton.png in Resources */,
@@ -584,11 +575,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED7CAD361A2924DB00AAF192 /* TGCountryCurrencyController.m in Sources */,
 				ED077A6F19F940F700B203CB /* TGPhotoCaptureViewController.m in Sources */,
 				ED077A6C19F940F700B203CB /* TGDetailViewController.m in Sources */,
 				41A9D04B1A022F6500922CBC /* TGPriceRecognizer.m in Sources */,
-				ED7CAD3C1A292C9C00AAF192 /* TGCurrencySettingsController.m in Sources */,
 				41A76FB81A05226900176A14 /* TGCurrency.m in Sources */,
 				41A76FC51A05A43600176A14 /* TGDataManager.m in Sources */,
 				ED077A1B19F93FE300B203CB /* TGViewController.m in Sources */,
@@ -596,7 +585,6 @@
 				4106C4691A10A642004790DB /* TGMigrationManager.m in Sources */,
 				41DF52141A3486C70060C7FF /* UIImage+FixOrientation.m in Sources */,
 				ED7CAD331A28B95B00AAF192 /* TGSettingsViewController.m in Sources */,
-				ED7CAD391A29255300AAF192 /* TGTransferenceCurrencyController.m in Sources */,
 				41A76FBE1A05343800176A14 /* TGRecognizedPrice.m in Sources */,
 				41A76FBB1A05335100176A14 /* TGPriceImage.m in Sources */,
 				ED077A1519F93FE300B203CB /* main.m in Sources */,
@@ -631,8 +619,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				ED077A1D19F93FE300B203CB /* Base */,
-				ED7CAD3E1A29E1A600AAF192 /* en */,
 				ED7CAD401A29E1B400AAF192 /* ru */,
+				EDD593821A4CB834004BCFC8 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -645,6 +633,15 @@
 				ED7CAD421A29EEDB00AAF192 /* ru */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		EDA7E2D51A35DB9B00641F18 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EDA7E2D41A35DB9B00641F18 /* ru */,
+				EDA7E2D61A35DBA100641F18 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -10,6 +10,23 @@
 
 @implementation TGRecognizedPrice
 
++ (NSArray *)ignoredProperties
+{
+    return @[@"rect"];
+}
+
+- (CGRect)rect
+{
+    NSValue *rectValue = [NSKeyedUnarchiver unarchiveObjectWithData:self.rectData];
+    return [rectValue CGRectValue];
+}
+
+- (void)setRect:(CGRect)rect
+{
+    NSValue *rectValue = [NSValue valueWithCGRect:rect];
+    self.rectData = [NSKeyedArchiver archivedDataWithRootObject:rectValue];
+}
+
 - (CGFloat)convertedPrice
 {
     CGFloat sourceRate = 1.0f;
@@ -41,6 +58,40 @@
 - (NSString *)formattedConvertedPrice
 {
     return [NSString stringWithFormat:@"%.2f %@", [self convertedPrice], [self currencyName:self.defaultCurrency]];
+}
+
++ (UIImage *)drawPrices:(NSArray *)prices onImage:(UIImage *)image
+{
+    CGFloat width = image.size.width;
+    CGFloat height = image.size.height;
+
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(width, height), YES, 0.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIGraphicsPushContext(context);
+
+    [image drawInRect:CGRectMake(0, 0, width, height)];
+
+    CGContextSetLineWidth(context, 2.0f);
+    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
+
+    for (TGRecognizedPrice *price in prices) {
+        CGRect or = price.rect;
+        CGRect rect = CGRectMake(or.origin.x, or.origin.y,
+                                 or.size.width, or.size.height);
+        CGContextStrokeRect(context, rect);
+
+        NSString *value = [NSString stringWithFormat:@"%.00f", price.value];
+        NSAttributedString *string = [[NSAttributedString alloc] initWithString:value attributes:@{
+            NSForegroundColorAttributeName: [UIColor redColor]
+        }];
+        [string drawAtPoint:(CGPoint){CGRectGetMidX(rect), CGRectGetMaxY(rect) + 2}];
+    }
+    
+    UIGraphicsPopContext();
+    UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return outputImage;
 }
 
 @end
