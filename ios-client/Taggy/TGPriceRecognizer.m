@@ -69,10 +69,10 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 {
     //GPUImageContrastFilter *filter = [[GPUImageContrastFilter alloc] init];
     //filter.contrast = 4.0;
-    GPUImageLuminanceThresholdFilter *filter = [[GPUImageLuminanceThresholdFilter alloc] init];
-    filter.threshold = 0.5f;
+    //GPUImageLuminanceThresholdFilter *filter = [[GPUImageLuminanceThresholdFilter alloc] init];
+    //filter.threshold = 0.5f;
     //GPUImageAverageLuminanceThresholdFilter *filter = [[GPUImageAverageLuminanceThresholdFilter alloc] init];
-    //GPUImageAdaptiveThresholdFilter *filter = [[GPUImageAdaptiveThresholdFilter alloc] init];
+    GPUImageAdaptiveThresholdFilter *filter = [[GPUImageAdaptiveThresholdFilter alloc] init];
     //filter.thresholdMultiplier = 1.0;
 
     [filter forceProcessingAtSizeRespectingAspectRatio:size];
@@ -81,10 +81,10 @@ static NSUInteger const kTGMaximumPricesCount = 4;
     return resultImage;
 }
 
-- (UIImage *)thresholdedImageForTesseract:(G8Tesseract *)tesseract sourceImage:(UIImage *)sourceImage
+- (UIImage *)preprocessedImageForTesseract:(G8Tesseract *)tesseract sourceImage:(UIImage *)sourceImage
 {
     sourceImage = [sourceImage fixOrientation];
-    sourceImage = [[self class] binarizeImage:sourceImage andResize:CGSizeMake(700, 700)];
+    sourceImage = [[self class] binarizeImage:sourceImage andResize:CGSizeMake(800, 800)];
 
     return sourceImage;
 }
