@@ -56,8 +56,6 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-   /*TGRecognizedViewController *recognized = [[TGRecognizedViewController alloc] initWithNibName:@"recognizedViewController" bundle:nil];*/
-    
     [SVProgressHUD setForegroundColor:[UIColor orangeColor]];
     [SVProgressHUD showWithStatus:NSLocalizedString(@"recognizing", @"Recognizing")];
     if (picker == self.takePhotoPicker) {

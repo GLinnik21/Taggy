@@ -135,18 +135,18 @@ static NSUInteger const kTGMaximumPricesCount = 4;
         NSArray *blocks = [self.tesseract confidencesByIteratorLevel:G8PageIteratorLevelSymbol];
         self.recognizedBlocks = [TGRecognizedBlock blocksFromRecognitionArray:blocks];
         self.wellRecognizedBlocks = self.recognizedBlocks;
-        UIImage *tresholdedWords = [self.tesseract imageWithBlocks:blocks
-                                                          drawText:YES
-                                                       thresholded:YES];
+        //UIImage *tresholdedWords = [self.tesseract imageWithBlocks:blocks
+        //                                                  drawText:YES
+        //                                               thresholded:YES];
 
         //[self removeBadRecognizedBlocks];
         [self splitBlocks];
         //[self removeSmallBlocks];
         [self sortBlocks];
-        [self takeFirst:INT_MAX];
+        //[self takeFirst:INT_MAX];
         [self joinBlocks];
         [self removeBadPrices];
-        [self belarusOptimization];
+        //[self belarusOptimization];
         [self sortBlocks];
         [self takeFirst:kTGMaximumPricesCount];
 

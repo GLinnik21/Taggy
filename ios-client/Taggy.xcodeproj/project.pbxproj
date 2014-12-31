@@ -144,7 +144,6 @@
 		ED0820381A24D5A40044BD6D /* res@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "res@3x.png"; sourceTree = "<group>"; };
 		ED0820391A24D5A40044BD6D /* scan@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan@3x.png"; sourceTree = "<group>"; };
 		ED08203A1A24D5A40044BD6D /* set@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "set@3x.png"; sourceTree = "<group>"; };
-		ED0820441A24DE8D0044BD6D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		ED2DE36719FCF8C4008C69F2 /* PhotoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhotoButton.png; sourceTree = "<group>"; };
 		ED2DE36819FCF8C4008C69F2 /* PhotoButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PhotoButton@2x.png"; sourceTree = "<group>"; };
 		ED2DE36B19FCFA8E008C69F2 /* PhotoButtonP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PhotoButtonP.png; sourceTree = "<group>"; };
@@ -157,6 +156,7 @@
 		ED7CAD321A28B95B00AAF192 /* TGSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGSettingsViewController.h; sourceTree = "<group>"; };
 		ED7CAD401A29E1B400AAF192 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		ED7CAD421A29EEDB00AAF192 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		ED9E18D81A516A3E00506598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		EDA7E2D41A35DB9B00641F18 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EDA7E2D61A35DBA100641F18 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EDD593821A4CB834004BCFC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
@@ -629,8 +629,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				ED077A2219F93FE300B203CB /* Base */,
-				ED0820441A24DE8D0044BD6D /* en */,
 				ED7CAD421A29EEDB00AAF192 /* ru */,
+				ED9E18D81A516A3E00506598 /* en */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -735,7 +735,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "cb353e45-bd92-43bd-98b1-fb2c0ddc587a";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -752,7 +752,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "cb353e45-bd92-43bd-98b1-fb2c0ddc587a";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -40,16 +40,15 @@ static NSString *const kTGImageCellId = @"ImageCell";
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
 
     [self.tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"Rows: %ld", (long)[TGDataManager recognizedImagesCount]);
     if ([TGDataManager recognizedImagesCount] == 0) {
         self.tableView.backgroundColor = [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1];
         UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -69,9 +68,9 @@ static NSString *const kTGImageCellId = @"ImageCell";
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
         self.tableView.backgroundColor = nil;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        return [TGDataManager recognizedImagesCount];
     }
-    return 0;
+    
+    return [TGDataManager recognizedImagesCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

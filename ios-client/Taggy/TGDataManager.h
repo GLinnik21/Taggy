@@ -21,4 +21,7 @@
           withCallback:(void (^)(TGPriceImage *priceImage))callback
               progress:(void (^)(CGFloat progress))progress;
 
++ (TGCurrency *)sourceCurrency;
++ (TGCurrency *)transferCurrency;
+
 @end

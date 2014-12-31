@@ -9,5 +9,7 @@
 "recognizing" = "Recognizing";
 "recognizing_fail" = "Failed";
 "recognized" = "Recognized";
-"no_results" = "Here is no any results yet";
+"no_results" = "There are no results yet";
 "Settings" = "Settings";
+"Privacy" = "Privacy";
+"Open in Settings app" = "Open in “Settings” app";

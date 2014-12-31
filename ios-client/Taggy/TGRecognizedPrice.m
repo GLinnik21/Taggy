@@ -7,6 +7,7 @@
 //
 
 #import "TGRecognizedPrice.h"
+#import "TGDataManager.h"
 
 @implementation TGRecognizedPrice
 
@@ -27,6 +28,11 @@
     self.rectData = [NSKeyedArchiver archivedDataWithRootObject:rectValue];
 }
 
+- (TGCurrency *)targetCurency
+{
+    return [TGDataManager transferCurrency];
+}
+
 - (CGFloat)convertedPrice
 {
     CGFloat sourceRate = 1.0f;
@@ -35,8 +41,8 @@
     if (self.sourceCurrency != nil) {
         sourceRate = self.sourceCurrency.value;
     }
-    if (self.defaultCurrency != nil) {
-        targetRate = self.defaultCurrency.value;
+    if ([self targetCurency] != nil) {
+        targetRate = [self targetCurency].value;
     }
 
     return self.value * sourceRate / targetRate;
@@ -57,7 +63,7 @@
 
 - (NSString *)formattedConvertedPrice
 {
-    return [NSString stringWithFormat:@"%.2f %@", [self convertedPrice], [self currencyName:self.defaultCurrency]];
+    return [NSString stringWithFormat:@"%.2f %@", [self convertedPrice], [self currencyName:[self targetCurency]]];
 }
 
 + (UIImage *)drawPrices:(NSArray *)prices onImage:(UIImage *)image
