@@ -47,8 +47,5 @@
 /* Class = "IBUIButton"; normalTitle = "Take a photo"; ObjectID = "vIe-cy-7uO"; */
 "vIe-cy-7uO.normalTitle" = "Take a photo";
 
-/* Class = "IBUITabBarItem"; title = "Settings"; ObjectID = "zTU-fO-yMG"; */
-"zTU-fO-yMG.title" = "Settings";
-
 /* Class = "IBUINavigationItem"; title = "Result"; ObjectID = "zu5-gE-ALQ"; */
 "zu5-gE-ALQ.title" = "Result";

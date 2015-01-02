@@ -16,7 +16,7 @@
             <key>DefaultValue</key>
             <string>YES</string>
             <key>Key</key>
-            <string>toggleSwitch</string>
+            <string>auto_update</string>
             <key>Title</key>
             <string>auto_update</string>
             <key>Type</key>
