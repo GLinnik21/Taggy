@@ -8,7 +8,7 @@
 			<key>DefaultValue</key>
 			<string>YES</string>
 			<key>Key</key>
-			<string>toggleSwitch</string>
+			<string>auto_update</string>
 			<key>Title</key>
 			<string>auto_update</string>
 			<key>Type</key>
@@ -47,11 +47,11 @@
 			<string>PSMultiValueSpecifier</string>
 			<key>Values</key>
 			<array>
-                <string>USD</string>
-                <string>BYR</string>
-                <string>RUB</string>
-                <string>EUR</string>
-                <string>AUD</string>
+				<string>USD</string>
+				<string>BYR</string>
+				<string>RUB</string>
+				<string>EUR</string>
+				<string>AUD</string>
 			</array>
 		</dict>
 		<dict>
@@ -81,11 +81,11 @@
 			<string>PSMultiValueSpecifier</string>
 			<key>Values</key>
 			<array>
-                <string>USD</string>
-                <string>BYR</string>
-                <string>RUB</string>
-                <string>EUR</string>
-                <string>AUD</string>
+				<string>USD</string>
+				<string>BYR</string>
+				<string>RUB</string>
+				<string>EUR</string>
+				<string>AUD</string>
 			</array>
 		</dict>
 		<dict>
