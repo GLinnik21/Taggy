@@ -216,7 +216,11 @@
         <scene sceneID="k1H-jQ-bza">
             <objects>
                 <navigationController id="6yL-bV-xYj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Results" image="res.png" id="Nna-ET-djC"/>
+                    <tabBarItem key="tabBarItem" title="Results" image="res.png" id="Nna-ET-djC">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="resP.png"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ihK-KZ-qTK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -227,7 +231,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o4Z-R7-kJq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-282" y="-1334"/>
+            <point key="canvasLocation" x="-282" y="-1344"/>
         </scene>
         <!--Custom Tab Bar Controller-->
         <scene sceneID="d7H-zO-dd8">
@@ -255,7 +259,11 @@
         <scene sceneID="NU9-O0-6o0">
             <objects>
                 <navigationController id="qqd-m7-avg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="set.png" id="zTU-fO-yMG"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="set.png" id="zTU-fO-yMG">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="setP.png"/>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="G3m-v9-dIe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -295,8 +303,10 @@
         <image name="PhotoButtonP.png" width="303" height="303"/>
         <image name="choose.png" width="25" height="25"/>
         <image name="res.png" width="30" height="30"/>
+        <image name="resP.png" width="30" height="30"/>
         <image name="scan.png" width="30" height="30"/>
         <image name="set.png" width="30" height="30"/>
+        <image name="setP.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
