@@ -11,7 +11,7 @@
         <scene sceneID="fhS-ME-pqw">
             <objects>
                 <navigationController title="Scanner" id="2by-fz-iZf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Scanner" image="scan.png" id="k91-Bn-oGz"/>
+                    <tabBarItem key="tabBarItem" title="Scanner" image="scan" id="k91-Bn-oGz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="C5P-8P-SdW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -42,7 +42,7 @@
                                     <constraint firstAttribute="width" secondItem="vIe-cy-7uO" secondAttribute="height" multiplier="1:1" id="VP9-h9-NTj"/>
                                 </constraints>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="228" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Take a photo" backgroundImage="PhotoButton.png"/>
+                                <state key="normal" title="Take a photo" backgroundImage="PhotoButton"/>
                                 <state key="highlighted" backgroundImage="PhotoButtonP.png"/>
                                 <connections>
                                     <action selector="takePhoto" destination="G5l-i6-tbZ" eventType="touchUpInside" id="ERe-hf-LmY"/>
@@ -55,13 +55,12 @@
                             <constraint firstAttribute="centerX" secondItem="vIe-cy-7uO" secondAttribute="centerX" id="Yxb-Wz-ksS"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" tag="1" title="Scanner" image="scan.png" id="VpX-Fe-AWi"/>
                     <navigationItem key="navigationItem" title="Scanner" id="1HU-ub-24H">
-                        <barButtonItem key="rightBarButtonItem" image="15723B66-338C-4BFB-83E2-68F368A21A45" style="plain" id="BcQ-qd-1wG">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="BcQ-qd-1wG">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LMM-Ox-1Ry">
                                 <rect key="frame" x="279" y="9" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <state key="normal" backgroundImage="choose.png"/>
+                                <state key="normal" backgroundImage="choose"/>
                                 <connections>
                                     <action selector="chooseExisting" destination="G5l-i6-tbZ" eventType="touchUpInside" id="G7n-OZ-8yB"/>
                                 </connections>
@@ -180,7 +179,6 @@
                             <constraint firstAttribute="bottomMargin" secondItem="E0o-Em-koR" secondAttribute="bottom" constant="3" id="ffd-Nn-4f5"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Results" image="res.png" id="PVV-W9-UJQ"/>
                     <navigationItem key="navigationItem" title="Results" id="XX7-In-ySs">
                         <barButtonItem key="backBarButtonItem" title="Back" id="8nw-R2-dam"/>
                     </navigationItem>
@@ -216,7 +214,7 @@
         <scene sceneID="k1H-jQ-bza">
             <objects>
                 <navigationController id="6yL-bV-xYj" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Results" image="res.png" id="Nna-ET-djC">
+                    <tabBarItem key="tabBarItem" title="Results" image="res" id="Nna-ET-djC">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="resP.png"/>
                         </userDefinedRuntimeAttributes>
@@ -259,7 +257,7 @@
         <scene sceneID="NU9-O0-6o0">
             <objects>
                 <navigationController id="qqd-m7-avg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="set.png" id="zTU-fO-yMG">
+                    <tabBarItem key="tabBarItem" title="Settings" image="set" id="zTU-fO-yMG">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="setP.png"/>
                         </userDefinedRuntimeAttributes>
@@ -298,14 +296,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="15723B66-338C-4BFB-83E2-68F368A21A45" width="30" height="30"/>
-        <image name="PhotoButton.png" width="303" height="303"/>
+        <image name="PhotoButton" width="303" height="303"/>
         <image name="PhotoButtonP.png" width="303" height="303"/>
-        <image name="choose.png" width="25" height="25"/>
-        <image name="res.png" width="30" height="30"/>
+        <image name="choose" width="25" height="25"/>
+        <image name="res" width="30" height="30"/>
         <image name="resP.png" width="30" height="30"/>
-        <image name="scan.png" width="30" height="30"/>
-        <image name="set.png" width="30" height="30"/>
+        <image name="scan" width="30" height="30"/>
+        <image name="set" width="30" height="30"/>
         <image name="setP.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
