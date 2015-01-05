@@ -11,8 +11,8 @@
 #import <ARAnalytics/ARAnalytics.h>
 #import "TGImageCell.h"
 #import "TGDataManager.h"
+#import "TGCurrencyManager.h"
 #import "TGDetailViewController.h"
-#import "Reachability.h"
 #import "SVProgressHUD.h"
 
 static NSString *const kTGImageCellId = @"ImageCell";
@@ -22,7 +22,6 @@ static NSString *const kTGImageCellId = @"ImageCell";
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (nonatomic, strong) Reachability *apiReachable;
 
 @end
 
@@ -38,8 +37,8 @@ static NSString *const kTGImageCellId = @"ImageCell";
     [refreshControl addTarget:self action:@selector(updateCurrency) forControlEvents:UIControlEventValueChanged];
     [refreshControl setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
 
-    [self setupRefreshControl];
     self.refreshControl = refreshControl;
+    [self setupRefreshControl];
 }
 
 - (void)setupRefreshControl
@@ -65,38 +64,36 @@ static NSString *const kTGImageCellId = @"ImageCell";
 
 - (void)updateCurrency
 {
-    self.apiReachable = [Reachability reachabilityWithHostname:@"www.taggy.by"];
-
     __weak __typeof(self) weakSelf = self;
-    self.apiReachable.reachableBlock = ^(Reachability *reach) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            __strong __typeof(weakSelf) strongSelf = weakSelf;
+    [TGCurrencyManager updateWithCallback:^(TGCurrencyUpdateResult result) {
+        __strong __typeof(weakSelf) strongSelf = weakSelf;
 
-            if (strongSelf.refreshControl != nil) {
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:[NSDate date] forKey:@"last_update"];
-                [defaults synchronize];
+        if (result == TGCurrencyUpdateResultSuccess) {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:[NSDate date] forKey:@"last_update"];
+            [defaults synchronize];
 
-                [strongSelf setupRefreshControl];
-                
-                [strongSelf.refreshControl endRefreshing];
-            }
-        });
-    };
-    
-    self.apiReachable.unreachableBlock = ^(Reachability *reach) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf setupRefreshControl];
 
+            [strongSelf.refreshControl endRefreshing];
+        }
+        else {
             [strongSelf.refreshControl endRefreshing];
             [SVProgressHUD setForegroundColor:[UIColor grayColor]];
             [SVProgressHUD setInfoImage:[UIImage imageNamed:@"internet"]];
             [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
-            [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"NoInternet", @"No Internet connection")];
-        });
-    };
-    
-    [self.apiReachable startNotifier];
+
+
+            if (result == TGCurrencyUpdateResultNoInternet) {
+                [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"NoInternet", @"No Internet connection")];
+            }
+            else if (result == TGCurrencyUpdateResultServerError) {
+                [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"ServerError", @"Server-side error")];
+            }
+        }
+    }];
+
+
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
