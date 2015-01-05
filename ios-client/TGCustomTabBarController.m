@@ -14,6 +14,8 @@
     [super viewDidLoad];
     
     [[UITabBar appearance] setTintColor:[UIColor orangeColor]];
+    
+    self.selectedIndex = 1;
 }
 
 @end

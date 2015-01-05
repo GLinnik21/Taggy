@@ -30,7 +30,7 @@
         </dict>
         <dict>
             <key>DefaultValue</key>
-            <string>2</string>
+            <string>BYR</string>
             <key>Key</key>
             <string>country</string>
             <key>Title</key>
@@ -55,16 +55,16 @@
             <string>PSMultiValueSpecifier</string>
             <key>Values</key>
             <array>
-                <string>1</string>
-                <string>2</string>
-                <string>3</string>
-                <string>4</string>
-                <string>5</string>
+                <string>USD</string>
+                <string>BYR</string>
+                <string>RUB</string>
+                <string>EUR</string>
+                <string>AUD</string>
             </array>
         </dict>
         <dict>
             <key>DefaultValue</key>
-            <string>1</string>
+            <string>USD</string>
             <key>Key</key>
             <string>transf</string>
             <key>Title</key>
@@ -89,11 +89,11 @@
             <string>PSMultiValueSpecifier</string>
             <key>Values</key>
             <array>
-                <string>1</string>
-                <string>2</string>
-                <string>3</string>
-                <string>4</string>
-                <string>5</string>
+                <string>USD</string>
+                <string>BYR</string>
+                <string>RUB</string>
+                <string>EUR</string>
+                <string>AUD</string>
             </array>
         </dict>
         <dict>

@@ -133,8 +133,8 @@
                                                    CGAffineTransformScale(CGAffineTransformIdentity,
                                                                           item.image.size.width, item.image.size.height));
                     price.rect = rect;
-                    price.sourceCurrency = [TGCurrency currencyForCode:@"BYR"]; //TODO: fix hardcode
-                    price.defaultCurrency = [[strongSelf class] defaultCurrency];
+                    price.sourceCurrency = [[strongSelf class] sourceCurrency];
+                    price.defaultCurrency = [[strongSelf class] transferCurrency];
 
                     [item.prices addObject:price];
                 }
@@ -151,9 +151,27 @@
     }];
 }
 
-+ (TGCurrency *)defaultCurrency
++ (TGCurrency *)sourceCurrency
 {
-    return nil;
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *code = [defaults valueForKey:@"country"];
+    if (code == nil) {
+        code = @"BYR";
+    }
+    if ([code isEqualToString:@"USD"]) {
+        return nil;
+    }
+    return [TGCurrency currencyForCode:code];
+}
+
++ (TGCurrency *)transferCurrency
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *code = [defaults valueForKey:@"transf"];
+    if (code == nil || [code isEqualToString:@"USD"]) {
+        return nil;
+    }
+    return [TGCurrency currencyForCode:code];
 }
 
 @end

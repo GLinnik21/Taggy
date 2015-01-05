@@ -30,6 +30,7 @@ PODS:
     - KSCrash/Recording
   - Masonry (0.5.3)
   - protobuf-c (0.15)
+  - Reachability (3.2)
   - Realm (0.89.1):
     - Realm/Headers (= 0.89.1)
   - Realm/Headers (0.89.1)
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - GPUImage (~> 0.1.6)
   - InAppSettingsKit (~> 2.3)
   - Masonry (~> 0.5.3)
+  - Reachability
   - Realm (~> 0.88)
   - SVProgressHUD (HEAD)
   - TesseractOCRiOS (HEAD)
@@ -65,6 +67,7 @@ SPEC CHECKSUMS:
   KSCrash: c0a693b2d83ced5c15a40d4e916833c655475e6a
   Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
   protobuf-c: 0177b8dbc4afc4ec5d01e868b3e25a7400b98ca0
+  Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
   Realm: 20b0bd13983d64fd22afeb47489729fd71b6b5c6
   SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
   TesseractOCRiOS: b2bdfc2c1041114ce146d2086d2376cfae17ff26

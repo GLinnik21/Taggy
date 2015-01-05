@@ -12,10 +12,16 @@
 #import "TGImageCell.h"
 #import "TGDataManager.h"
 #import "TGDetailViewController.h"
+#import "Reachability.h"
+#import "SVProgressHUD.h"
 
 static NSString *const kTGImageCellId = @"ImageCell";
 
 @interface TGViewController () <UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+{
+    UIRefreshControl *refreshControl;
+    Reachability *internetReachableFoo;
+}
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
@@ -27,6 +33,46 @@ static NSString *const kTGImageCellId = @"ImageCell";
 {
     [super viewDidLoad];
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(update_currency) forControlEvents:UIControlEventValueChanged];
+    [refreshControl setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
+}
+
+- (void)update_currency
+{
+    internetReachableFoo = [Reachability reachabilityWithHostname:@"www.taggy.by"];
+    
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (refreshControl) {
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"MMM d, h:m a"];
+                NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
+                NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor]
+                                                                            forKey:NSForegroundColorAttributeName];
+                NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+                refreshControl.attributedTitle = attributedTitle;
+                
+                [refreshControl endRefreshing];
+            }
+        });
+    };
+    
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [refreshControl endRefreshing];
+            [SVProgressHUD setForegroundColor:[UIColor grayColor]];
+            [SVProgressHUD setInfoImage:[UIImage imageNamed:@"internet"]];
+            [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
+            [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"no_internet", @"No Internet connection")];
+        });
+    };
+    
+    [internetReachableFoo startNotifier];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -40,16 +86,22 @@ static NSString *const kTGImageCellId = @"ImageCell";
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
 
     [self.tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"Rows: %ld", (long)[TGDataManager recognizedImagesCount]);
+    if ([TGDataManager recognizedImagesCount] == 0) {
+        [refreshControl removeFromSuperview];
+    } else
+    {
+        [self.tableView addSubview:refreshControl];
+    }
+    
     if ([TGDataManager recognizedImagesCount] == 0) {
         self.tableView.backgroundColor = [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1];
         UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -69,9 +121,9 @@ static NSString *const kTGImageCellId = @"ImageCell";
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
         self.tableView.backgroundColor = nil;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        return [TGDataManager recognizedImagesCount];
     }
-    return 0;
+    
+    return [TGDataManager recognizedImagesCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
