@@ -37,6 +37,13 @@ static NSString *const kTGImageCellId = @"ImageCell";
     refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(update_currency) forControlEvents:UIControlEventValueChanged];
     [refreshControl setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *title = [defaults objectForKey:@"last_update"];
+    
+    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor] forKey:NSForegroundColorAttributeName];
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+    refreshControl.attributedTitle = attributedTitle;
 }
 
 - (void)update_currency
@@ -51,6 +58,9 @@ static NSString *const kTGImageCellId = @"ImageCell";
                 NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                 [formatter setDateFormat:@"MMM d, h:m a"];
                 NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:title forKey:@"last_update"];
+                [defaults synchronize];
                 NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor]
                                                                             forKey:NSForegroundColorAttributeName];
                 NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
