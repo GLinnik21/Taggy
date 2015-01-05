@@ -68,8 +68,8 @@
 
     for (TGRecognizedBlock *block in recognizedBlocks) {
         CGRect or = block.region;
-        CGRect rect = CGRectMake(or.origin.x, or.origin.y,
-                                 or.size.width, or.size.height);
+        CGRect rect = CGRectMake(or.origin.x * width, or.origin.y * height,
+                                 or.size.width * width, or.size.height * height);
         CGContextStrokeRect(context, rect);
 
         NSAttributedString *string = [[NSAttributedString alloc] initWithString:block.text attributes:@{

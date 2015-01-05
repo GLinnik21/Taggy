@@ -17,7 +17,6 @@
 - (void)viewDidLoad
 {
     self.delegate = self;
-
 }
 
 - (IBAction)switchAction:(UISwitch *)sender

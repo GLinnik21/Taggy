@@ -11,6 +11,7 @@
 		4106C4661A109D4A004790DB /* currency.json in Resources */ = {isa = PBXBuildFile; fileRef = 4106C4651A109D4A004790DB /* currency.json */; };
 		4106C4691A10A642004790DB /* TGMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4106C4681A10A642004790DB /* TGMigrationManager.m */; };
 		410C200619FE745B0082C66C /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 410C200519FE745B0082C66C /* tessdata */; };
+		413373F11A51C4EE0085B564 /* TGPriceViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 413373F01A51C4EE0085B564 /* TGPriceViewCell.m */; };
 		419876F919FFBAE500EA58DF /* testImages in Resources */ = {isa = PBXBuildFile; fileRef = 419876F819FFBAE500EA58DF /* testImages */; };
 		41A76FB81A05226900176A14 /* TGCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A76FB71A05226900176A14 /* TGCurrency.m */; };
 		41A76FBB1A05335100176A14 /* TGPriceImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A76FBA1A05335100176A14 /* TGPriceImage.m */; };
@@ -61,6 +62,8 @@
 		4106C4671A10A642004790DB /* TGMigrationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGMigrationManager.h; sourceTree = "<group>"; };
 		4106C4681A10A642004790DB /* TGMigrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGMigrationManager.m; sourceTree = "<group>"; };
 		410C200519FE745B0082C66C /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		413373EF1A51C4EE0085B564 /* TGPriceViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGPriceViewCell.h; sourceTree = "<group>"; };
+		413373F01A51C4EE0085B564 /* TGPriceViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGPriceViewCell.m; sourceTree = "<group>"; };
 		419876F819FFBAE500EA58DF /* testImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = testImages; sourceTree = "<group>"; };
 		41A76FB61A05226900176A14 /* TGCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGCurrency.h; sourceTree = "<group>"; };
 		41A76FB71A05226900176A14 /* TGCurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGCurrency.m; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 			children = (
 				ED077A6419F940F700B203CB /* TGImageCell.h */,
 				ED077A6519F940F700B203CB /* TGImageCell.m */,
+				413373EF1A51C4EE0085B564 /* TGPriceViewCell.h */,
+				413373F01A51C4EE0085B564 /* TGPriceViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -496,6 +501,7 @@
 				ED077A1819F93FE300B203CB /* TGAppDelegate.m in Sources */,
 				4106C4691A10A642004790DB /* TGMigrationManager.m in Sources */,
 				41DF52141A3486C70060C7FF /* UIImage+FixOrientation.m in Sources */,
+				413373F11A51C4EE0085B564 /* TGPriceViewCell.m in Sources */,
 				ED7CAD331A28B95B00AAF192 /* TGSettingsViewController.m in Sources */,
 				41A76FBE1A05343800176A14 /* TGRecognizedPrice.m in Sources */,
 				41A76FBB1A05335100176A14 /* TGPriceImage.m in Sources */,
@@ -658,8 +664,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = Taggy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

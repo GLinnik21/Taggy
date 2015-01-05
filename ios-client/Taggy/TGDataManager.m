@@ -128,7 +128,11 @@
                     price.value = [[block number] floatValue];
                     price.confidence = block.confidence;
 
-                    price.rect = block.region;
+                    CGRect rect =
+                        CGRectApplyAffineTransform(block.region,
+                                                   CGAffineTransformScale(CGAffineTransformIdentity,
+                                                                          item.image.size.width, item.image.size.height));
+                    price.rect = rect;
                     price.sourceCurrency = [[strongSelf class] sourceCurrency];
                     price.defaultCurrency = [[strongSelf class] transferCurrency];
 
