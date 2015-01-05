@@ -8,8 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, TGCurrencyUpdateResult) {
+    TGCurrencyUpdateResultSuccess,
+    TGCurrencyUpdateResultNoInternet,
+    TGCurrencyUpdateResultServerError,
+};
+
+typedef void(^TGCurrencyUpdateCallback)(TGCurrencyUpdateResult result);
+
 @interface TGCurrencyManager : NSObject
 
-+ (void)update;
++ (void)updateWithCallback:(TGCurrencyUpdateCallback)callback;
 
 @end

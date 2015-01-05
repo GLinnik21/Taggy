@@ -27,7 +27,7 @@
 
     [TGMigrationManager migrate];
     
-    [TGCurrencyManager update];
+    [TGCurrencyManager updateWithCallback:nil];
     [TGDataManager fillSample];
 
     return YES;
