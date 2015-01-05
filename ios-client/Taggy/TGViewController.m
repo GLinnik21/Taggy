@@ -60,6 +60,12 @@ static NSString *const kTGImageCellId = @"ImageCell";
             [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
         self.refreshControl.attributedTitle = attributedTitle;
     }
+    
+  /*  NSDateFormatter *dateformater =[[NSDateFormatter alloc] init];
+    [dateformater setLocale:[NSLocale currentLocale]];
+    [dateformater setDateStyle:NSDateFormatterLongStyle];//set current locale
+    [dateformater setTimeStyle:NSDateFormatterShortStyle];
+    NSLog(@"%@", [dateformater stringFromDate:[NSDate date]]); */
 }
 
 - (void)updateCurrency
@@ -92,8 +98,6 @@ static NSString *const kTGImageCellId = @"ImageCell";
             }
         }
     }];
-
-
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
