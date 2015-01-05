@@ -13,5 +13,5 @@
 "Settings" = "Settings";
 "Privacy" = "Privacy";
 "Open in Settings app" = "Open in “Settings” app";
-"no_internet" = "Check your Internet connection";
-
+"NoInternet" = "Check your Internet connection";
+"LastUpdate" = "Last update: %@";

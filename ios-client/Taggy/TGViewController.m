@@ -18,12 +18,11 @@
 static NSString *const kTGImageCellId = @"ImageCell";
 
 @interface TGViewController () <UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
-{
-    UIRefreshControl *refreshControl;
-    Reachability *internetReachableFoo;
-}
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
+
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) Reachability *apiReachable;
 
 @end
 
@@ -32,57 +31,72 @@ static NSString *const kTGImageCellId = @"ImageCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    refreshControl = [[UIRefreshControl alloc] init];
-    [refreshControl addTarget:self action:@selector(update_currency) forControlEvents:UIControlEventValueChanged];
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(updateCurrency) forControlEvents:UIControlEventValueChanged];
     [refreshControl setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *title = [defaults objectForKey:@"last_update"];
-    
-    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor] forKey:NSForegroundColorAttributeName];
-    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
-    refreshControl.attributedTitle = attributedTitle;
+
+    [self setupRefreshControl];
+    self.refreshControl = refreshControl;
 }
 
-- (void)update_currency
+- (void)setupRefreshControl
 {
-    internetReachableFoo = [Reachability reachabilityWithHostname:@"www.taggy.by"];
-    
-    internetReachableFoo.reachableBlock = ^(Reachability*reach)
-    {
-        // Update the UI on the main thread
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDate *updateDate = [defaults objectForKey:@"last_update"];
+    if (updateDate != nil) {
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        NSString *format =
+            [NSDateFormatter dateFormatFromTemplate:@"MMM d, h:m a" options:0 locale:[NSLocale currentLocale]];
+        [formatter setDateFormat:format];
+        NSString *dateString = [formatter stringFromDate:updateDate];
+
+        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), dateString];
+
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor]
+                                                                    forKey:NSForegroundColorAttributeName];
+        NSAttributedString *attributedTitle =
+            [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        self.refreshControl.attributedTitle = attributedTitle;
+    }
+}
+
+- (void)updateCurrency
+{
+    self.apiReachable = [Reachability reachabilityWithHostname:@"www.taggy.by"];
+
+    __weak __typeof(self) weakSelf = self;
+    self.apiReachable.reachableBlock = ^(Reachability *reach) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (refreshControl) {
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateFormat:@"MMM d, h:m a"];
-                NSString *title = [NSString stringWithFormat:@"Last update: %@", [formatter stringFromDate:[NSDate date]]];
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+
+            if (strongSelf.refreshControl != nil) {
                 NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:title forKey:@"last_update"];
+                [defaults setObject:[NSDate date] forKey:@"last_update"];
                 [defaults synchronize];
-                NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor]
-                                                                            forKey:NSForegroundColorAttributeName];
-                NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
-                refreshControl.attributedTitle = attributedTitle;
+
+                [strongSelf setupRefreshControl];
                 
-                [refreshControl endRefreshing];
+                [strongSelf.refreshControl endRefreshing];
             }
         });
     };
     
-    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
-    {
+    self.apiReachable.unreachableBlock = ^(Reachability *reach) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [refreshControl endRefreshing];
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+
+            [strongSelf.refreshControl endRefreshing];
             [SVProgressHUD setForegroundColor:[UIColor grayColor]];
             [SVProgressHUD setInfoImage:[UIImage imageNamed:@"internet"]];
             [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
-            [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"no_internet", @"No Internet connection")];
+            [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"NoInternet", @"No Internet connection")];
         });
     };
     
-    [internetReachableFoo startNotifier];
+    [self.apiReachable startNotifier];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -106,10 +120,10 @@ static NSString *const kTGImageCellId = @"ImageCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([TGDataManager recognizedImagesCount] == 0) {
-        [refreshControl removeFromSuperview];
+        [self.refreshControl removeFromSuperview];
     } else
     {
-        [self.tableView addSubview:refreshControl];
+        [self.tableView addSubview:self.refreshControl];
     }
     
     if ([TGDataManager recognizedImagesCount] == 0) {
