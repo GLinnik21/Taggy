@@ -44,6 +44,12 @@ static NSString *const kTGImageCellId = @"ImageCell";
     NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor] forKey:NSForegroundColorAttributeName];
     NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
     refreshControl.attributedTitle = attributedTitle;
+    
+  /*  NSDateFormatter *dateformater =[[NSDateFormatter alloc] init];
+    [dateformater setLocale:[NSLocale currentLocale]];
+    [dateformater setDateStyle:NSDateFormatterLongStyle];//set current locale
+    [dateformater setTimeStyle:NSDateFormatterShortStyle];
+    NSLog(@"%@", [dateformater stringFromDate:[NSDate date]]); */
 }
 
 - (void)update_currency
@@ -65,8 +71,9 @@ static NSString *const kTGImageCellId = @"ImageCell";
                                                                             forKey:NSForegroundColorAttributeName];
                 NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
                 refreshControl.attributedTitle = attributedTitle;
-                
                 [refreshControl endRefreshing];
+                
+                [internetReachableFoo stopNotifier];
             }
         });
     };
@@ -74,15 +81,16 @@ static NSString *const kTGImageCellId = @"ImageCell";
     internetReachableFoo.unreachableBlock = ^(Reachability*reach)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [refreshControl endRefreshing];
             [SVProgressHUD setForegroundColor:[UIColor grayColor]];
             [SVProgressHUD setInfoImage:[UIImage imageNamed:@"internet"]];
             [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
             [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"no_internet", @"No Internet connection")];
+            [refreshControl endRefreshing];
+            
+            [internetReachableFoo stopNotifier];
         });
     };
-    
-    [internetReachableFoo startNotifier];
+   [internetReachableFoo startNotifier];
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
