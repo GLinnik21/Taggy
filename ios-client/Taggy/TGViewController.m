@@ -47,8 +47,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
     NSDate *updateDate = [defaults objectForKey:@"last_update"];
     if (updateDate != nil) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        NSString *format =
-            [NSDateFormatter dateFormatFromTemplate:@"MMM d, h:m a" options:0 locale:[NSLocale currentLocale]];
+        NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM d, h:m a" options:0 locale:[NSLocale currentLocale]];
         [formatter setDateFormat:format];
         NSString *dateString = [formatter stringFromDate:updateDate];
 
@@ -60,12 +59,6 @@ static NSString *const kTGImageCellId = @"ImageCell";
             [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
         self.refreshControl.attributedTitle = attributedTitle;
     }
-    
-  /*  NSDateFormatter *dateformater =[[NSDateFormatter alloc] init];
-    [dateformater setLocale:[NSLocale currentLocale]];
-    [dateformater setDateStyle:NSDateFormatterLongStyle];//set current locale
-    [dateformater setTimeStyle:NSDateFormatterShortStyle];
-    NSLog(@"%@", [dateformater stringFromDate:[NSDate date]]); */
 }
 
 - (void)updateCurrency
@@ -86,14 +79,15 @@ static NSString *const kTGImageCellId = @"ImageCell";
         else {
             [strongSelf.refreshControl endRefreshing];
             [SVProgressHUD setForegroundColor:[UIColor grayColor]];
-            [SVProgressHUD setInfoImage:[UIImage imageNamed:@"internet"]];
             [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
 
 
             if (result == TGCurrencyUpdateResultNoInternet) {
+                [SVProgressHUD setInfoImage:[UIImage imageNamed:@"internet"]];
                 [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"NoInternet", @"No Internet connection")];
             }
             else if (result == TGCurrencyUpdateResultServerError) {
+                [SVProgressHUD setInfoImage:[UIImage imageNamed:@"server"]];
                 [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"ServerError", @"Server-side error")];
             }
         }
