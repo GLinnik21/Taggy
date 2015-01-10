@@ -9,6 +9,7 @@
 #import "TGDataManager.h"
 #import "TGPriceRecognizer.h"
 #import "TGPriceImage.h"
+#import "TGSettingsManager.h"
 #import <ARAnalytics/ARAnalytics.h>
 
 @implementation TGDataManager
@@ -162,8 +163,7 @@
 
 + (TGCurrency *)sourceCurrency
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *code = [defaults valueForKey:@"country"];
+    NSString *code = [TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey];
     if (code == nil) {
         code = @"BYR";
     }
@@ -175,8 +175,7 @@
 
 + (TGCurrency *)transferCurrency
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *code = [defaults valueForKey:@"transf"];
+    NSString *code = [TGSettingsManager objectForKey:kTGSettingsTargetCurrencyKey];
     if (code == nil || [code isEqualToString:@"USD"]) {
         return nil;
     }

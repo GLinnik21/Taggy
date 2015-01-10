@@ -13,6 +13,7 @@
 #import "TGDataManager.h"
 #import "TGCurrencyManager.h"
 #import "TGDetailViewController.h"
+#import "TGSettingsManager.h"
 #import "SVProgressHUD.h"
 
 static NSString *const kTGImageCellId = @"ImageCell";
@@ -43,8 +44,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
 
 - (void)setupRefreshControl
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDate *updateDate = [defaults objectForKey:@"last_update"];
+    NSDate *updateDate = [TGSettingsManager objectForKey:kTGSettingsLastUpdateKey];
     if (updateDate != nil) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         NSString *format =
@@ -75,9 +75,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
         __strong __typeof(weakSelf) strongSelf = weakSelf;
 
         if (result == TGCurrencyUpdateResultSuccess) {
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:[NSDate date] forKey:@"last_update"];
-            [defaults synchronize];
+            [TGSettingsManager setObject:[NSDate date] forKey:kTGSettingsLastUpdateKey];
 
             [strongSelf setupRefreshControl];
 

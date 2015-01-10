@@ -11,6 +11,7 @@
 #import "TGDataManager.h"
 #import "TGCurrencyManager.h"
 #import "TGMigrationManager.h"
+#import "TGSettingsManager.h"
 
 @interface TGAppDelegate ()
 
@@ -35,6 +36,8 @@
 #endif
 
     [TGMigrationManager migrate];
+
+    [TGSettingsManager loadManager];
     
     [TGCurrencyManager updateWithCallback:nil];
 
