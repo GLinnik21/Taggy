@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class TGPriceImage;
+
 @interface TGImageCell : UITableViewCell
 
-@property (nonatomic, weak) IBOutlet UIImageView *cellImageView;
-@property (nonatomic, weak) IBOutlet UILabel *cellSourcePriceLabel;
-@property (nonatomic, weak) IBOutlet UILabel *cellConvertedPriceLabel;
+@property (nonatomic, strong) TGPriceImage *priceImage;
 
 @end
