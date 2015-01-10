@@ -75,16 +75,25 @@
 
 + (TGPriceImage *)recognizedImageAtIndex:(NSInteger)index
 {
-    return [TGPriceImage allObjects][index];
+    return [[TGPriceImage allObjects] sortedResultsUsingProperty:@"captureDate" ascending:NO][index];
 }
 
-+ (void)removeRecognizedImage:(TGPriceImage *)recognizedImage
++ (BOOL)removeRecognizedImage:(TGPriceImage *)recognizedImage
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
 
-    [realm beginWriteTransaction];
-    [realm deleteObject:recognizedImage];
-    [realm commitWriteTransaction];
+    BOOL success = YES;
+    @try {
+        [realm beginWriteTransaction];
+        [realm deleteObject:recognizedImage];
+        [realm commitWriteTransaction];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Can't delete object");
+        success = NO;
+    }
+
+    return success;
 }
 
 + (NSOperationQueue *)sharedQueue
