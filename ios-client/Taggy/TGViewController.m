@@ -105,7 +105,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
         [self.refreshControl removeFromSuperview];
     } else
     {
-        [self.tableView addSubview:self.refreshControl];
+        [self.tableView insertSubview:self.refreshControl atIndex:0];
     }
     
     if ([TGDataManager recognizedImagesCount] == 0) {
