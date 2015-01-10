@@ -12,6 +12,7 @@
 		4106C4691A10A642004790DB /* TGMigrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4106C4681A10A642004790DB /* TGMigrationManager.m */; };
 		410C200619FE745B0082C66C /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 410C200519FE745B0082C66C /* tessdata */; };
 		413373F11A51C4EE0085B564 /* TGPriceViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 413373F01A51C4EE0085B564 /* TGPriceViewCell.m */; };
+		413F033A1A617420000C194B /* TGSettingsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 413F03391A617420000C194B /* TGSettingsManager.m */; };
 		419876F919FFBAE500EA58DF /* testImages in Resources */ = {isa = PBXBuildFile; fileRef = 419876F819FFBAE500EA58DF /* testImages */; };
 		41A76FB81A05226900176A14 /* TGCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A76FB71A05226900176A14 /* TGCurrency.m */; };
 		41A76FBB1A05335100176A14 /* TGPriceImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A76FBA1A05335100176A14 /* TGPriceImage.m */; };
@@ -64,6 +65,8 @@
 		410C200519FE745B0082C66C /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		413373EF1A51C4EE0085B564 /* TGPriceViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGPriceViewCell.h; sourceTree = "<group>"; };
 		413373F01A51C4EE0085B564 /* TGPriceViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGPriceViewCell.m; sourceTree = "<group>"; };
+		413F03381A617420000C194B /* TGSettingsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGSettingsManager.h; sourceTree = "<group>"; };
+		413F03391A617420000C194B /* TGSettingsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGSettingsManager.m; sourceTree = "<group>"; };
 		419876F819FFBAE500EA58DF /* testImages */ = {isa = PBXFileReference; lastKnownFileType = folder; path = testImages; sourceTree = "<group>"; };
 		41A76FB61A05226900176A14 /* TGCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGCurrency.h; sourceTree = "<group>"; };
 		41A76FB71A05226900176A14 /* TGCurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGCurrency.m; sourceTree = "<group>"; };
@@ -233,6 +236,8 @@
 				41A76FC41A05A43600176A14 /* TGDataManager.m */,
 				4106C4671A10A642004790DB /* TGMigrationManager.h */,
 				4106C4681A10A642004790DB /* TGMigrationManager.m */,
+				413F03381A617420000C194B /* TGSettingsManager.h */,
+				413F03391A617420000C194B /* TGSettingsManager.m */,
 			);
 			name = Storage;
 			sourceTree = "<group>";
@@ -505,6 +510,7 @@
 				ED7CAD331A28B95B00AAF192 /* TGSettingsViewController.m in Sources */,
 				41A76FBE1A05343800176A14 /* TGRecognizedPrice.m in Sources */,
 				41A76FBB1A05335100176A14 /* TGPriceImage.m in Sources */,
+				413F033A1A617420000C194B /* TGSettingsManager.m in Sources */,
 				ED077A1519F93FE300B203CB /* main.m in Sources */,
 				ED077A7519F9448E00B203CB /* TGCustomTabBarController.m in Sources */,
 				41A9D0481A00F2A700922CBC /* TGRecognizedBlock.m in Sources */,

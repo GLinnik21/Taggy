@@ -9,6 +9,7 @@
 #import "TGDataManager.h"
 #import "TGPriceRecognizer.h"
 #import "TGPriceImage.h"
+#import "TGSettingsManager.h"
 #import <ARAnalytics/ARAnalytics.h>
 
 @implementation TGDataManager
@@ -75,16 +76,25 @@
 
 + (TGPriceImage *)recognizedImageAtIndex:(NSInteger)index
 {
-    return [TGPriceImage allObjects][index];
+    return [[TGPriceImage allObjects] sortedResultsUsingProperty:@"captureDate" ascending:NO][index];
 }
 
-+ (void)removeRecognizedImage:(TGPriceImage *)recognizedImage
++ (BOOL)removeRecognizedImage:(TGPriceImage *)recognizedImage
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
 
-    [realm beginWriteTransaction];
-    [realm deleteObject:recognizedImage];
-    [realm commitWriteTransaction];
+    BOOL success = YES;
+    @try {
+        [realm beginWriteTransaction];
+        [realm deleteObject:recognizedImage];
+        [realm commitWriteTransaction];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Can't delete object");
+        success = NO;
+    }
+
+    return success;
 }
 
 + (NSOperationQueue *)sharedQueue
@@ -153,8 +163,7 @@
 
 + (TGCurrency *)sourceCurrency
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *code = [defaults valueForKey:@"country"];
+    NSString *code = [TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey];
     if (code == nil) {
         code = @"BYR";
     }
@@ -166,8 +175,7 @@
 
 + (TGCurrency *)transferCurrency
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *code = [defaults valueForKey:@"transf"];
+    NSString *code = [TGSettingsManager objectForKey:kTGSettingsTargetCurrencyKey];
     if (code == nil || [code isEqualToString:@"USD"]) {
         return nil;
     }

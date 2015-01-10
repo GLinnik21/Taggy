@@ -13,6 +13,7 @@
 #import "TGDataManager.h"
 #import "TGCurrencyManager.h"
 #import "TGDetailViewController.h"
+#import "TGSettingsManager.h"
 #import "SVProgressHUD.h"
 
 static NSString *const kTGImageCellId = @"ImageCell";
@@ -43,8 +44,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
 
 - (void)setupRefreshControl
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDate *updateDate = [defaults objectForKey:@"last_update"];
+    NSDate *updateDate = [TGSettingsManager objectForKey:kTGSettingsLastUpdateKey];
     if (updateDate != nil) {
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM d, h:m a" options:0 locale:[NSLocale currentLocale]];
@@ -68,9 +68,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
         __strong __typeof(weakSelf) strongSelf = weakSelf;
 
         if (result == TGCurrencyUpdateResultSuccess) {
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:[NSDate date] forKey:@"last_update"];
-            [defaults synchronize];
+            [TGSettingsManager setObject:[NSDate date] forKey:kTGSettingsLastUpdateKey];
 
             [strongSelf setupRefreshControl];
 
@@ -148,26 +146,28 @@ static NSString *const kTGImageCellId = @"ImageCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TGImageCell *cell = [tableView dequeueReusableCellWithIdentifier:kTGImageCellId];
-    
-    TGPriceImage *item = [TGDataManager recognizedImageAtIndex:indexPath.row];
-    cell.cellImageView.image = item.thumbnail;
 
-    TGRecognizedPrice *firstPrice = item.prices.firstObject;
-    cell.cellSourcePriceLabel.text = [firstPrice formattedSourcePrice];
-    cell.cellConvertedPriceLabel.text = [firstPrice formattedConvertedPrice];
+    cell.priceImage = [TGDataManager recognizedImageAtIndex:indexPath.row];
     
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView
+        commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+        forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TGPriceImage *item = [TGDataManager recognizedImageAtIndex:indexPath.row];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        TGImageCell *imageCell = (TGImageCell *)[tableView cellForRowAtIndexPath:indexPath];
+        TGPriceImage *item = imageCell.priceImage;
 
-    [ARAnalytics event:@"Item been deleted"];
+        BOOL success = [TGDataManager removeRecognizedImage:item];
+        if (success) {
+            [ARAnalytics event:@"Item been deleted"];
 
-    [TGDataManager removeRecognizedImage:item];
-
-    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationLeft];
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                             withRowAnimation:UITableViewRowAnimationLeft];
+        }
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
