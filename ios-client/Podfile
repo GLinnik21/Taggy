@@ -12,6 +12,7 @@ pod 'Realm', '~> 0.88'
 pod 'SVProgressHUD', :head
 pod 'Masonry', '~> 0.5.3'
 pod 'Reachability'
+pod 'DateTools'
 
 pod 'FlurrySDK', '~> 5.4.0'
 pod 'GoogleAnalytics-iOS-SDK', '~> 3.10'

@@ -14,6 +14,7 @@
 #import "TGCurrencyManager.h"
 #import "TGDetailViewController.h"
 #import "SVProgressHUD.h"
+#import "NSDate+DateTools.h"
 
 static NSString *const kTGImageCellId = @"ImageCell";
 
@@ -38,27 +39,6 @@ static NSString *const kTGImageCellId = @"ImageCell";
     [refreshControl setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
 
     self.refreshControl = refreshControl;
-    [self setupRefreshControl];
-}
-
-- (void)setupRefreshControl
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDate *updateDate = [defaults objectForKey:@"last_update"];
-    if (updateDate != nil) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        NSString *format = [NSDateFormatter dateFormatFromTemplate:@"MMM d, h:m a" options:0 locale:[NSLocale currentLocale]];
-        [formatter setDateFormat:format];
-        NSString *dateString = [formatter stringFromDate:updateDate];
-
-        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), dateString];
-
-        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor]
-                                                                    forKey:NSForegroundColorAttributeName];
-        NSAttributedString *attributedTitle =
-            [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
-        self.refreshControl.attributedTitle = attributedTitle;
-    }
 }
 
 - (void)updateCurrency
@@ -72,7 +52,6 @@ static NSString *const kTGImageCellId = @"ImageCell";
             [defaults setObject:[NSDate date] forKey:@"last_update"];
             [defaults synchronize];
 
-            [strongSelf setupRefreshControl];
 
             [strongSelf.refreshControl endRefreshing];
         }
@@ -92,6 +71,15 @@ static NSString *const kTGImageCellId = @"ImageCell";
             }
         }
     }];
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDate *updateDate = [defaults objectForKey:@"last_update"];
+    NSString *title = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), updateDate.timeAgoSinceNow];
+    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor] forKey:NSForegroundColorAttributeName];
+    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+    self.refreshControl.attributedTitle = attributedTitle;
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
