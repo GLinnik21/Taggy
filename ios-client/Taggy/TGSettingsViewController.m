@@ -19,6 +19,17 @@
     self.delegate = self;
 }
 
+- (IBAction)switchAction:(UISwitch *)sender
+{
+    if(sender.isOn) {
+        sender.onTintColor = [UIColor redColor];
+        sender.thumbTintColor = [UIColor blackColor];
+        
+    } else {
+        sender.tintColor = [UIColor greenColor];
+    }
+}
+
 - (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController *)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];

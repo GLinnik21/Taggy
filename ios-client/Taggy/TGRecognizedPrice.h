@@ -18,15 +18,19 @@
 @property TGPriceImage *priceImage;
 
 @property CGFloat value;
-@property NSString *rectString;
+@property NSData *rectData;
 @property TGCurrency *sourceCurrency;
 @property TGCurrency *defaultCurrency;
 @property CGFloat confidence;
+
+@property CGRect rect;
 
 - (CGFloat)convertedPrice;
 
 - (NSString *)formattedSourcePrice;
 - (NSString *)formattedConvertedPrice;
+
++ (UIImage *)drawPrices:(NSArray *)prices onImage:(UIImage *)image;
 
 @end
 
