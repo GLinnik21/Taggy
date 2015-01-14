@@ -51,7 +51,6 @@ static NSString *const kTGImageCellId = @"ImageCell";
         if (result == TGCurrencyUpdateResultSuccess) {
             [TGSettingsManager setObject:[NSDate date] forKey:kTGSettingsLastUpdateKey];
 
-
             [strongSelf.refreshControl endRefreshing];
         }
         else {

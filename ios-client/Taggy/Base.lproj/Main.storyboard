@@ -56,6 +56,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Scanner" id="1HU-ub-24H">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="N30-N1-tOn">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="dfX-63-erb">
+                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="BcQ-qd-1wG">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LMM-Ox-1Ry">
                                 <rect key="frame" x="279" y="9" width="25" height="25"/>
@@ -181,6 +190,15 @@
                     </view>
                     <navigationItem key="navigationItem" title="Results" id="XX7-In-ySs">
                         <barButtonItem key="backBarButtonItem" title="Back" id="8nw-R2-dam"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="uj0-2J-QMg">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AWb-02-y4Y">
+                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
