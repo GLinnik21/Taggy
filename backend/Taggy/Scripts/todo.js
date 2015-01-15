@@ -1,4 +1,5 @@
-﻿$('#getting-location').html('Получение текущей позиции...');
+﻿$("#inGroup").hide();
+$('#getting-location').html('Получение текущей позиции...');
 $.getJSON("http://ip-api.com/json", function (data) {
     if (data) {
         $('#latitude').val(data.lat);
@@ -6,7 +7,7 @@ $.getJSON("http://ip-api.com/json", function (data) {
         $('#country-code').val(data.countryCode);
         $('#country-name').val(data.country);
         $('#self-ip').val(data.query);
-        $('#getting-location').html('Ваша страна: ' + $('#country-name').val() + '(' + $('#country-code').val() + ')');
+        $('#getting-location').html('Текущая страна: ' + $('#country-name').val() + '(' + $('#country-code').val() + ')');
     } else {
         $('#getting-location').html('Не удалось получить позицию.');
     }
@@ -67,6 +68,7 @@ $('#loading-button').on('click', function () {
                     } else {
                         $('#price').hide();
                         $('#message').show();
+                        $('#inGroup').show();
                         $("#priceConverted").hide();
                     }
                 }
@@ -77,7 +79,7 @@ $('#loading-button').on('click', function () {
 
 function convert() {
     $.getJSON("/GetRates", function (data) {
-        if ($('#price').html().length > 1)
+        if ($('#price').html().length > 0)
             if (data) {
                 $("#priceConverted").hide();
                 $("#message").hide();
@@ -88,9 +90,13 @@ function convert() {
                 var FROMrate;
                 var TOrate;
                 var toConvert = $("#price").html(); // заменить
+
                 for (var i = 0; i < data.length; i++) {
                     if (data[i].From == from) {
                         FROMrate = data[i].Rate; // рубль относительно доллара
+                        if (to == from) {
+                            TOrate = FROMrate;
+                        }
                         continue;
                     }
                     if (data[i].From == to) {
@@ -101,9 +107,16 @@ function convert() {
 
                 var r = +TOrate / +FROMrate;
                 var prices = [];
-                prices = toConvert.split(' ');
+                var source = "";//= toConvert;
+                for (var i=0; i< toConvert.length;i++)
+                {
+                	if (toConvert[i] == ',') source += ".";
+                	else {source += toConvert[i];}
+                }
+
+                prices = source.split(' ');
                 for (var i = 0; i < prices.length; i++) {
-                    prices[i] = prices[i] + " " + symbol + " ----- >>>>>" + (prices[i] / +r).toFixed(3) + " " + toSymbol + " </br>";
+                    prices[i] = prices[i] + " " + symbol + "      - >     " + (prices[i] / +r).toFixed(2) + " " + toSymbol + " </br>";
                 }
                 $("#price").hide();
                 $('#priceConverted').hide();
@@ -114,12 +127,17 @@ function convert() {
                     $('#priceConverted').show();
                 }
                 $("#priceConverted").show();
+                $("#inGroup").hide();
+                $("#priceToConvert").val(null);
             }
-        if ($("#price").html().length < 1) {
+
+        if ($("#price").html().length == 0) {
             $("#priceConverted").hide();
             $('#message').html('Не удалось распознать ценник');
             $('#message').show();
+            $('#inGroup').show();
         }
+
     });
 }
 function getsymbol() {
@@ -137,3 +155,8 @@ function getsymbol() {
         }
     });
 }
+
+$('#priceToConvert').change(function () {
+    $("#price").html($("#priceToConvert").val());
+    convert();
+});

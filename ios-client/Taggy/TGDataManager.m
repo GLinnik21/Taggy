@@ -9,6 +9,7 @@
 #import "TGDataManager.h"
 #import "TGPriceRecognizer.h"
 #import "TGPriceImage.h"
+#import "TGSettingsManager.h"
 #import <ARAnalytics/ARAnalytics.h>
 
 @implementation TGDataManager
@@ -75,16 +76,25 @@
 
 + (TGPriceImage *)recognizedImageAtIndex:(NSInteger)index
 {
-    return [TGPriceImage allObjects][index];
+    return [[TGPriceImage allObjects] sortedResultsUsingProperty:@"captureDate" ascending:NO][index];
 }
 
-+ (void)removeRecognizedImage:(TGPriceImage *)recognizedImage
++ (BOOL)removeRecognizedImage:(TGPriceImage *)recognizedImage
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
 
-    [realm beginWriteTransaction];
-    [realm deleteObject:recognizedImage];
-    [realm commitWriteTransaction];
+    BOOL success = YES;
+    @try {
+        [realm beginWriteTransaction];
+        [realm deleteObject:recognizedImage];
+        [realm commitWriteTransaction];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Can't delete object");
+        success = NO;
+    }
+
+    return success;
 }
 
 + (NSOperationQueue *)sharedQueue
@@ -128,9 +138,13 @@
                     price.value = [[block number] floatValue];
                     price.confidence = block.confidence;
 
-                    price.rect = block.region;
-                    price.sourceCurrency = [TGCurrency currencyForCode:@"BYR"]; //TODO: fix hardcode
-                    price.defaultCurrency = [[strongSelf class] defaultCurrency];
+                    CGRect rect =
+                        CGRectApplyAffineTransform(block.region,
+                                                   CGAffineTransformScale(CGAffineTransformIdentity,
+                                                                          item.image.size.width, item.image.size.height));
+                    price.rect = rect;
+                    price.sourceCurrency = [[strongSelf class] sourceCurrency];
+                    price.defaultCurrency = [[strongSelf class] transferCurrency];
 
                     [item.prices addObject:price];
                 }
@@ -147,9 +161,25 @@
     }];
 }
 
-+ (TGCurrency *)defaultCurrency
++ (TGCurrency *)sourceCurrency
 {
-    return nil;
+    NSString *code = [TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey];
+    if (code == nil) {
+        code = @"BYR";
+    }
+    if ([code isEqualToString:@"USD"]) {
+        return nil;
+    }
+    return [TGCurrency currencyForCode:code];
+}
+
++ (TGCurrency *)transferCurrency
+{
+    NSString *code = [TGSettingsManager objectForKey:kTGSettingsTargetCurrencyKey];
+    if (code == nil || [code isEqualToString:@"USD"]) {
+        return nil;
+    }
+    return [TGCurrency currencyForCode:code];
 }
 
 @end

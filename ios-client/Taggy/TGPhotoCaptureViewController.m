@@ -56,8 +56,7 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-   /*TGRecognizedViewController *recognized = [[TGRecognizedViewController alloc] initWithNibName:@"recognizedViewController" bundle:nil];*/
-    
+    [SVProgressHUD setBackgroundColor:[UIColor whiteColor]];
     [SVProgressHUD setForegroundColor:[UIColor orangeColor]];
     [SVProgressHUD showWithStatus:NSLocalizedString(@"recognizing", @"Recognizing")];
     if (picker == self.takePhotoPicker) {
@@ -71,10 +70,12 @@
 
     [TGDataManager recognizeImage:image withCallback:^(TGPriceImage *priceImage) {
         if (priceImage.prices.count == 0){
+            [SVProgressHUD setBackgroundColor:[UIColor whiteColor]];
             [SVProgressHUD setForegroundColor:[UIColor redColor]];
             [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"recognizing_fail", @"Failed")];
         }
         else {
+            [SVProgressHUD setBackgroundColor:[UIColor whiteColor]];
             [SVProgressHUD setForegroundColor:[UIColor greenColor]];
             [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"recognized", @"Recognized")];
 

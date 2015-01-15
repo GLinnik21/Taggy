@@ -15,10 +15,13 @@
 
 + (NSInteger)recognizedImagesCount;
 + (TGPriceImage *)recognizedImageAtIndex:(NSInteger)index;
-+ (void)removeRecognizedImage:(TGPriceImage *)recognizedImage;
++ (BOOL)removeRecognizedImage:(TGPriceImage *)recognizedImage;
 
 + (void)recognizeImage:(UIImage *)image
           withCallback:(void (^)(TGPriceImage *priceImage))callback
               progress:(void (^)(CGFloat progress))progress;
+
++ (TGCurrency *)sourceCurrency;
++ (TGCurrency *)transferCurrency;
 
 @end

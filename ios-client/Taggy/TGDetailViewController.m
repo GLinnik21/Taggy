@@ -8,6 +8,7 @@
 
 #import "TGDetailViewController.h"
 #import "TGPriceImage.h"
+#import "TGPriceViewCell.h"
 
 #import <Masonry/Masonry.h>
 
@@ -16,7 +17,8 @@
 @property (nonatomic, weak) UIScrollView *imageScrollView;
 @property (nonatomic, weak) UIImageView *imageView;
 
-@property (nonatomic, weak) UIScrollView *tableScrollView;
+@property (nonatomic, weak) UITableView *tableView;
+
 @property (nonatomic, weak) UILabel *sourcePriceDetailLabel;
 @property (nonatomic, weak) UILabel *targetPriceDetailLabel;
 
@@ -34,10 +36,11 @@
 
 - (void)configureViewController
 {
-    //self.edgesForExtendedLayout = UIRectEdgeBottom;
+    self.edgesForExtendedLayout = UIRectEdgeBottom;
 
     UIScrollView *imageScrollView = [[UIScrollView alloc] init];
     imageScrollView.clipsToBounds = YES;
+    imageScrollView.scrollEnabled = NO;
     [self.view addSubview:imageScrollView];
     [imageScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(self.view);
@@ -49,7 +52,7 @@
 
     UIImageView *imageView = [[UIImageView alloc] init];
     [self.imageScrollView addSubview:imageView];
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
     [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.lessThanOrEqualTo(self.imageScrollView);
     }];
@@ -64,6 +67,7 @@
         make.top.equalTo(self.imageScrollView.mas_bottom);
         make.bottom.equalTo(self.view);
     }];
+    self.tableView = tableView;
 }
 
 - (void)configureImageViewWithImage:(UIImage *)image;
@@ -85,26 +89,35 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self.tableView selectRowAtIndexPath:indexPath
+                                animated:animated
+                          scrollPosition:UITableViewScrollPositionTop];
+    [self tableView:self.tableView didSelectRowAtIndexPath:indexPath];
+}
+
 - (void)reloadData
 {
     if (self.detail == nil) {
         return;
     }
 
-    //self.navigationItem.title = [NSString stringWithFormat:@"%.2f (%@)", firstPrice.value, [self.detail localizedCaptureDate]];
-
     [self configureImageViewWithImage:self.detail.image];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CELL"];
+    static NSString *const kTGIdentifier = @"TGCELL";
+    TGPriceViewCell *cell = (TGPriceViewCell *)[tableView dequeueReusableCellWithIdentifier:kTGIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CELL"];
+        cell = [[TGPriceViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kTGIdentifier];
     }
 
     TGRecognizedPrice *price = self.detail.prices[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ -> %@", [price formattedSourcePrice], [price formattedConvertedPrice]];
+    cell.sourceValue = [price formattedSourcePrice];
+    cell.convertedValue = [price formattedConvertedPrice];
 
     return cell;
 }
@@ -113,7 +126,9 @@
 {
     TGRecognizedPrice *price = self.detail.prices[indexPath.row];
     self.imageView.image = [TGRecognizedPrice drawPrices:@[price] onImage:self.detail.image];
-    //[self.imageScrollView setContentOffset:price.rect.origin animated:YES];
+
+    /*CGRect rect = CGRectApplyAffineTransform(price.rect, CGAffineTransformTranslate(CGAffineTransformTranslate(CGAffineTransformIdentity, price.rect.size.width / 2, price.rect.size.height / 2), -self.imageScrollView.frame.size.width / 2, -self.imageScrollView.frame.size.height / 2));
+    [self.imageScrollView setContentOffset:rect.origin animated:YES];*/
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
