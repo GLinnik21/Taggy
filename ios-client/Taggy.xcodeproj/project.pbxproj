@@ -33,13 +33,11 @@
 		ED077A4B19F9405E00B203CB /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3A19F9405E00B203CB /* 2.png */; };
 		ED077A4C19F9405E00B203CB /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3B19F9405E00B203CB /* 3.png */; };
 		ED077A5019F9405E00B203CB /* res.textClipping in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3F19F9405E00B203CB /* res.textClipping */; };
-		ED077A5A19F9405E00B203CB /* VASAG.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A4919F9405E00B203CB /* VASAG.png */; };
 		ED077A6C19F940F700B203CB /* TGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A6319F940F700B203CB /* TGDetailViewController.m */; };
 		ED077A6D19F940F700B203CB /* TGImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A6519F940F700B203CB /* TGImageCell.m */; };
 		ED077A6E19F940F700B203CB /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED077A6619F940F700B203CB /* images.xcassets */; };
 		ED077A6F19F940F700B203CB /* TGPhotoCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */; };
 		ED077A7519F9448E00B203CB /* TGCustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A7419F9448E00B203CB /* TGCustomTabBarController.m */; };
-		ED6C079119FAE3570000770D /* retina.png in Resources */ = {isa = PBXBuildFile; fileRef = ED6C079019FAE3570000770D /* retina.png */; };
 		ED715FDC1A0927DD00F81CAF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED715FDB1A0927DD00F81CAF /* Settings.bundle */; };
 		ED7CAD331A28B95B00AAF192 /* TGSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7CAD311A28B95A00AAF192 /* TGSettingsViewController.m */; };
 		EDA7E2D31A35DB9B00641F18 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EDA7E2D51A35DB9B00641F18 /* Localizable.strings */; };
@@ -102,7 +100,6 @@
 		ED077A3A19F9405E00B203CB /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		ED077A3B19F9405E00B203CB /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		ED077A3F19F9405E00B203CB /* res.textClipping */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = res.textClipping; sourceTree = "<group>"; };
-		ED077A4919F9405E00B203CB /* VASAG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VASAG.png; sourceTree = "<group>"; };
 		ED077A6219F940F700B203CB /* TGDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGDetailViewController.h; sourceTree = "<group>"; };
 		ED077A6319F940F700B203CB /* TGDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGDetailViewController.m; sourceTree = "<group>"; };
 		ED077A6419F940F700B203CB /* TGImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGImageCell.h; sourceTree = "<group>"; };
@@ -112,7 +109,6 @@
 		ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGPhotoCaptureViewController.m; sourceTree = "<group>"; };
 		ED077A7319F9448E00B203CB /* TGCustomTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TGCustomTabBarController.h; path = ../TGCustomTabBarController.h; sourceTree = "<group>"; };
 		ED077A7419F9448E00B203CB /* TGCustomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TGCustomTabBarController.m; path = ../TGCustomTabBarController.m; sourceTree = "<group>"; };
-		ED6C079019FAE3570000770D /* retina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retina.png; sourceTree = "<group>"; };
 		ED715FDB1A0927DD00F81CAF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		ED7CAD311A28B95A00AAF192 /* TGSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGSettingsViewController.m; sourceTree = "<group>"; };
 		ED7CAD321A28B95B00AAF192 /* TGSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGSettingsViewController.h; sourceTree = "<group>"; };
@@ -336,12 +332,10 @@
 			isa = PBXGroup;
 			children = (
 				4106C4651A109D4A004790DB /* currency.json */,
-				ED6C079019FAE3570000770D /* retina.png */,
 				ED077A3919F9405E00B203CB /* 1.png */,
 				ED077A3A19F9405E00B203CB /* 2.png */,
 				ED077A3B19F9405E00B203CB /* 3.png */,
 				ED077A3F19F9405E00B203CB /* res.textClipping */,
-				ED077A4919F9405E00B203CB /* VASAG.png */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -437,11 +431,9 @@
 				ED077A6E19F940F700B203CB /* images.xcassets in Resources */,
 				ED077A4A19F9405E00B203CB /* 1.png in Resources */,
 				EDA7E2D31A35DB9B00641F18 /* Localizable.strings in Resources */,
-				ED077A5A19F9405E00B203CB /* VASAG.png in Resources */,
 				ED077A4B19F9405E00B203CB /* 2.png in Resources */,
 				ED077A4C19F9405E00B203CB /* 3.png in Resources */,
 				ED077A2319F93FE300B203CB /* LaunchScreen.xib in Resources */,
-				ED6C079119FAE3570000770D /* retina.png in Resources */,
 				4106C4661A109D4A004790DB /* currency.json in Resources */,
 				410C200619FE745B0082C66C /* tessdata in Resources */,
 				ED077A5019F9405E00B203CB /* res.textClipping in Resources */,
