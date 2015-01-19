@@ -32,6 +32,8 @@ static NSString *const kTGImageCellId = @"ImageCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.tableView.tableFooterView = [[UIView alloc] init];
 
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
@@ -80,14 +82,63 @@ static NSString *const kTGImageCellId = @"ImageCell";
     self.refreshControl.attributedTitle = attributedTitle;
 }
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+/*- (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
     if (editing) {
         [self.tableView setEditing:YES animated:YES];
+        UIBarButtonItem *deleteAllButton = [[UIBarButtonItem alloc]
+                                            initWithTitle:NSLocalizedString(@"delete_all", @"Delete all")
+                                            style:UIBarButtonItemStyleBordered
+                                            target:self
+                                            action:@selector(deleteAllAction:)];
+        self.navigationItem.leftBarButtonItem = deleteAllButton;
     }
     else {
         [self.tableView setEditing:NO animated:YES];
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+}*/
+
+- (void)setEditing:(BOOL)flag animated:(BOOL)animated
+{
+    [super setEditing:flag animated:animated];
+    if (flag == YES){
+        [self.tableView setEditing:YES animated:YES];
+        UIBarButtonItem *deleteAllButton = [[UIBarButtonItem alloc]
+                                            initWithTitle:NSLocalizedString(@"delete_all", @"Delete all")
+                                            style:UIBarButtonItemStyleBordered
+                                            target:self
+                                            action:@selector(deleteAllAction:)];
+        self.navigationItem.leftBarButtonItem = deleteAllButton;
+    }
+    else {
+        [self.tableView setEditing:NO animated:YES];
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+}
+
+
+-(void)deleteAllAction:(UIBarButtonItem *)sender{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"conf_question", nil)
+                                                             delegate:self
+                                                    cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel")
+                                               destructiveButtonTitle:NSLocalizedString(@"delete_all", @"Delete all")
+                                                    otherButtonTitles:nil];
+    
+    [actionSheet showInView:self.view];
+    [self.tableView reloadData];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+        [TGDataManager deleteAllObjects];
+        [self.tableView setEditing:NO animated:YES];
+        self.navigationItem.leftBarButtonItem = nil;
+        [self.tableView reloadData];
+    }else if(buttonIndex == 1){
+        [self.tableView setEditing:NO animated:YES];
+        self.navigationItem.leftBarButtonItem = nil;
     }
 }
 
@@ -101,7 +152,9 @@ static NSString *const kTGImageCellId = @"ImageCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([TGDataManager recognizedImagesCount] == 0) {
+        [self.tableView setEditing:NO animated:YES];
         [self.refreshControl removeFromSuperview];
+        self.navigationItem.leftBarButtonItem = nil;
     } else
     {
         [self.tableView insertSubview:self.refreshControl atIndex:0];
@@ -140,9 +193,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView
-        commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-        forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         TGImageCell *imageCell = (TGImageCell *)[tableView cellForRowAtIndexPath:indexPath];

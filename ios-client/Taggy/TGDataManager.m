@@ -97,6 +97,24 @@
     return success;
 }
 
++ (BOOL)deleteAllObjects
+{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    BOOL success = YES;
+    @try {
+        [realm beginWriteTransaction];
+        [realm deleteAllObjects];
+        [realm commitWriteTransaction];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Can't delete all objects");
+        success = NO;
+    }
+    
+    return success;
+}
+
 + (NSOperationQueue *)sharedQueue
 {
     static NSOperationQueue *queue = nil;
