@@ -34,6 +34,11 @@
     [self reloadData];
 }
 
+- (void)dismiss
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)configureViewController
 {
     self.edgesForExtendedLayout = UIRectEdgeBottom;
