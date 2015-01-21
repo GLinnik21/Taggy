@@ -93,8 +93,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
                                             target:self
                                             action:@selector(deleteAllAction:)];
         self.navigationItem.leftBarButtonItem = deleteAllButton;
-    }
-    else {
+    } else {
         [self.tableView setEditing:NO animated:YES];
         self.navigationItem.leftBarButtonItem = nil;
     }
@@ -117,6 +116,8 @@ static NSString *const kTGImageCellId = @"ImageCell";
         [TGDataManager deleteAllObjects];
         [self setEditing:NO animated:YES];
         [self.tableView reloadData];
+    } else {
+        [self setEditing:NO animated:YES];
     }
 }
 
@@ -130,7 +131,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([TGDataManager recognizedImagesCount] == 0) {
-        [self.tableView setEditing:NO animated:YES];
+        [self setEditing:NO animated:YES];
         [self.refreshControl removeFromSuperview];
         self.navigationItem.leftBarButtonItem = nil;
     }
