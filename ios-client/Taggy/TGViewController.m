@@ -19,7 +19,7 @@
 
 static NSString *const kTGImageCellId = @"ImageCell";
 
-@interface TGViewController () <UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface TGViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
@@ -32,11 +32,11 @@ static NSString *const kTGImageCellId = @"ImageCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.tableView.tableFooterView = [[UIView alloc] init];
 
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(updateCurrency) forControlEvents:UIControlEventValueChanged];
     [refreshControl setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
@@ -73,7 +73,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
     }];
 }
 
--(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDate *updateDate = [defaults objectForKey:@"last_update"];
     NSString *title = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), updateDate.timeAgoSinceNow];
@@ -82,28 +82,10 @@ static NSString *const kTGImageCellId = @"ImageCell";
     self.refreshControl.attributedTitle = attributedTitle;
 }
 
-/*- (void)setEditing:(BOOL)editing animated:(BOOL)animated
-{
-    [super setEditing:editing animated:animated];
-    if (editing) {
-        [self.tableView setEditing:YES animated:YES];
-        UIBarButtonItem *deleteAllButton = [[UIBarButtonItem alloc]
-                                            initWithTitle:NSLocalizedString(@"delete_all", @"Delete all")
-                                            style:UIBarButtonItemStyleBordered
-                                            target:self
-                                            action:@selector(deleteAllAction:)];
-        self.navigationItem.leftBarButtonItem = deleteAllButton;
-    }
-    else {
-        [self.tableView setEditing:NO animated:YES];
-        self.navigationItem.leftBarButtonItem = nil;
-    }
-}*/
-
 - (void)setEditing:(BOOL)flag animated:(BOOL)animated
 {
     [super setEditing:flag animated:animated];
-    if (flag == YES){
+    if (flag) {
         [self.tableView setEditing:YES animated:YES];
         UIBarButtonItem *deleteAllButton = [[UIBarButtonItem alloc]
                                             initWithTitle:NSLocalizedString(@"delete_all", @"Delete all")
@@ -119,26 +101,22 @@ static NSString *const kTGImageCellId = @"ImageCell";
 }
 
 
--(void)deleteAllAction:(UIBarButtonItem *)sender{
+- (void)deleteAllAction:(UIBarButtonItem *)sender{
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"conf_question", nil)
                                                              delegate:self
                                                     cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel")
                                                destructiveButtonTitle:NSLocalizedString(@"delete_all", @"Delete all")
                                                     otherButtonTitles:nil];
-    
+
     [actionSheet showInView:self.view];
     [self.tableView reloadData];
 }
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 0) {
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex != actionSheet.cancelButtonIndex) {
         [TGDataManager deleteAllObjects];
-        [self.tableView setEditing:NO animated:YES];
-        self.navigationItem.leftBarButtonItem = nil;
+        [self setEditing:NO animated:YES];
         [self.tableView reloadData];
-    }else if(buttonIndex == 1){
-        [self.tableView setEditing:NO animated:YES];
-        self.navigationItem.leftBarButtonItem = nil;
     }
 }
 
@@ -155,11 +133,11 @@ static NSString *const kTGImageCellId = @"ImageCell";
         [self.tableView setEditing:NO animated:YES];
         [self.refreshControl removeFromSuperview];
         self.navigationItem.leftBarButtonItem = nil;
-    } else
-    {
+    }
+    else {
         [self.tableView insertSubview:self.refreshControl atIndex:0];
     }
-    
+
     if ([TGDataManager recognizedImagesCount] == 0) {
         self.tableView.backgroundColor = [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1];
         UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -169,7 +147,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
         messageLabel.textAlignment = NSTextAlignmentCenter;
         messageLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
         [messageLabel sizeToFit];
-        
+
         self.tableView.backgroundView = messageLabel;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.navigationItem.rightBarButtonItem = nil;
@@ -180,7 +158,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
         self.tableView.backgroundColor = nil;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     }
-    
+
     return [TGDataManager recognizedImagesCount];
 }
 
@@ -189,7 +167,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
     TGImageCell *cell = [tableView dequeueReusableCellWithIdentifier:kTGImageCellId];
 
     cell.priceImage = [TGDataManager recognizedImageAtIndex:indexPath.row];
-    
+
     return cell;
 }
 
@@ -216,7 +194,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
         TGPriceImage *item = [TGDataManager recognizedImageAtIndex:indexPath.row];
 
         [ARAnalytics event:@"Item opened"];
-
+        
         [segue.destinationViewController setDetail:item];
     }
 }
