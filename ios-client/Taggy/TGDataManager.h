@@ -16,6 +16,7 @@
 + (NSInteger)recognizedImagesCount;
 + (TGPriceImage *)recognizedImageAtIndex:(NSInteger)index;
 + (BOOL)removeRecognizedImage:(TGPriceImage *)recognizedImage;
++ (BOOL)deleteAllObjects;
 
 + (void)recognizeImage:(UIImage *)image
           withCallback:(void (^)(TGPriceImage *priceImage))callback

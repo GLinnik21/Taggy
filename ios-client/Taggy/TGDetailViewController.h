@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) TGPriceImage *detail;
 
+- (void)dismiss;
+
 @end

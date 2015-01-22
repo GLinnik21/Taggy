@@ -11,15 +11,15 @@ PODS:
     - YandexMobileMetrica
   - DateTools (1.4.3)
   - FlurrySDK (5.4.0):
-    - FlurrySDK/FlurrySDK
+    - FlurrySDK/FlurrySDK (= 5.4.0)
   - FlurrySDK/FlurrySDK (5.4.0)
   - FMDB (2.2):
-    - FMDB/standard
+    - FMDB/standard (= 2.2)
   - FMDB/common (2.2)
   - FMDB/standard (2.2):
     - FMDB/common
   - GoogleAnalytics-iOS-SDK (3.10):
-    - GoogleAnalytics-iOS-SDK/Core
+    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
   - GoogleAnalytics-iOS-SDK/Core (3.10)
   - GPUImage (0.1.6)
   - InAppSettingsKit (2.3.3)
@@ -32,12 +32,12 @@ PODS:
   - Masonry (0.5.3)
   - protobuf-c (0.15)
   - Reachability (3.2)
-  - Realm (0.89.1):
-    - Realm/Headers
-  - Realm/Headers (0.89.1)
+  - Realm (0.90.0):
+    - Realm/Headers (= 0.90.0)
+  - Realm/Headers (0.90.0)
   - SVProgressHUD (HEAD based on 1.1.2)
   - TesseractOCRiOS (HEAD based on 3.4.0)
-  - YandexMobileMetrica (1.6.1):
+  - YandexMobileMetrica (1.6.2):
     - FMDB (= 2.2.0)
     - KSCrash/Recording (~> 0.0.3)
     - KSCrash/Reporting/Filters/AppleFmt (~> 0.0.3)
@@ -71,9 +71,9 @@ SPEC CHECKSUMS:
   Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
   protobuf-c: 0177b8dbc4afc4ec5d01e868b3e25a7400b98ca0
   Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
-  Realm: 20b0bd13983d64fd22afeb47489729fd71b6b5c6
+  Realm: a872d2e6e99da567b1e0d891a3a53bccb563fbed
   SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
   TesseractOCRiOS: b2bdfc2c1041114ce146d2086d2376cfae17ff26
-  YandexMobileMetrica: d570b4182c091523c02510654d0af4cd8b95631f
+  YandexMobileMetrica: 54642fd869c15fbdecc4c81131ed08fe98c1fddb
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.36.0.beta.1
