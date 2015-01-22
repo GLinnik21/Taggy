@@ -8,7 +8,7 @@
 
 #import "TGPriceRecognizer.h"
 #import "TGCommon.h"
-#import <TesseractOCR/TesseractOCR.h>
+#import <TesseractOCRiOS/TesseractOCR.h>
 #import <CoreImage/CoreImage.h>
 #import <ARAnalytics/ARAnalytics.h>
 #import <GPUImage/GPUImage.h>
@@ -132,7 +132,7 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 
         [self.tesseract recognize];
 
-        NSArray *blocks = [self.tesseract confidencesByIteratorLevel:G8PageIteratorLevelSymbol];
+        NSArray *blocks = [self.tesseract recognizedBlocksByIteratorLevel:G8PageIteratorLevelSymbol];
         self.recognizedBlocks = [TGRecognizedBlock blocksFromRecognitionArray:blocks];
         self.wellRecognizedBlocks = self.recognizedBlocks;
         //UIImage *tresholdedWords = [self.tesseract imageWithBlocks:blocks
