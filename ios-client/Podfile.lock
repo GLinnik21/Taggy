@@ -22,7 +22,7 @@ PODS:
     - GoogleAnalytics-iOS-SDK/Core (= 3.10)
   - GoogleAnalytics-iOS-SDK/Core (3.10)
   - GPUImage (0.1.6)
-  - InAppSettingsKit (2.3.4)
+  - InAppSettingsKit (2.3.3)
   - KSCrash/Recording (0.0.3)
   - KSCrash/Reporting/Filters/AppleFmt (0.0.3):
     - KSCrash/Recording
@@ -32,9 +32,9 @@ PODS:
   - Masonry (0.5.3)
   - protobuf-c (0.15)
   - Reachability (3.2)
-  - Realm (0.90.2):
-    - Realm/Headers (= 0.90.2)
-  - Realm/Headers (0.90.2)
+  - Realm (0.90.0):
+    - Realm/Headers (= 0.90.0)
+  - Realm/Headers (0.90.0)
   - SVProgressHUD (HEAD based on 1.1.2)
   - TesseractOCRiOS (HEAD based on 3.4.0)
   - YandexMobileMetrica (1.6.2):
@@ -66,12 +66,12 @@ SPEC CHECKSUMS:
   FMDB: f6f4511ad1e9ace38e9b6f4d83c2cddaabf98ea6
   GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
   GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
-  InAppSettingsKit: 578ef0eb1e64538ca92ad7b3874df32ec854ef1c
+  InAppSettingsKit: c870cb6095a85656ff4df42845af5c26eede4c8d
   KSCrash: c0a693b2d83ced5c15a40d4e916833c655475e6a
   Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
   protobuf-c: 0177b8dbc4afc4ec5d01e868b3e25a7400b98ca0
   Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
-  Realm: e5e2a23e34e1f8c00a1484c130a9d00c1394a2af
+  Realm: a872d2e6e99da567b1e0d891a3a53bccb563fbed
   SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
   TesseractOCRiOS: b2bdfc2c1041114ce146d2086d2376cfae17ff26
   YandexMobileMetrica: 54642fd869c15fbdecc4c81131ed08fe98c1fddb
