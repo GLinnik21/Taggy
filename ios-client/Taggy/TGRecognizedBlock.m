@@ -7,7 +7,7 @@
 //
 
 #import "TGRecognizedBlock.h"
-#import <TesseractOCRiOS/TesseractOCR.h>
+#import <TesseractOCR/TesseractOCR.h>
 
 @implementation TGRecognizedBlock
 

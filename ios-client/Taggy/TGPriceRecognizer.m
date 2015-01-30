@@ -8,7 +8,7 @@
 
 #import "TGPriceRecognizer.h"
 #import "TGCommon.h"
-#import <TesseractOCRiOS/TesseractOCR.h>
+#import <TesseractOCR/TesseractOCR.h>
 #import <CoreImage/CoreImage.h>
 #import <ARAnalytics/ARAnalytics.h>
 #import <GPUImage/GPUImage.h>
