@@ -96,12 +96,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sell" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="ThY-kv-kW8">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sell" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="ThY-kv-kW8">
                                 <rect key="frame" x="16" y="72" width="212" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="212" id="VKl-f7-VUu"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                                 <connections>
-                                    <action selector="sellEdititngDidBegin:" destination="YD1-K6-6Gg" eventType="editingDidBegin" id="kaJ-Zc-U9D"/>
+                                    <action selector="sellEditingDidBegin:" destination="YD1-K6-6Gg" eventType="editingDidBegin" id="2Ow-WF-dfG"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Nb-Hv-wEo">
@@ -113,10 +116,16 @@
                                     <action selector="sellAction:" destination="YD1-K6-6Gg" eventType="touchUpInside" id="yvG-rX-nQU"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Buy" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="qUs-UU-VkY">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Buy" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="qUs-UU-VkY">
                                 <rect key="frame" x="16" y="148" width="212" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="212" id="SJv-FC-rTy"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="buyEditingDidBegin:" destination="YD1-K6-6Gg" eventType="editingDidBegin" id="9rf-Rr-kOn"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCE-NP-o12">
                                 <rect key="frame" x="258" y="148" width="46" height="30"/>
@@ -124,19 +133,22 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="buyAction:" destination="YD1-K6-6Gg" eventType="touchDragInside" id="p8g-vv-Xrq"/>
+                                    <action selector="buyAction:" destination="YD1-K6-6Gg" eventType="touchUpInside" id="179-sb-RDC"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="RCE-NP-o12" firstAttribute="trailing" secondItem="3Nb-Hv-wEo" secondAttribute="trailing" id="2it-HE-5Xn"/>
-                            <constraint firstItem="3Nb-Hv-wEo" firstAttribute="trailing" secondItem="c2M-ke-WNb" secondAttribute="trailingMargin" id="LF4-rS-6yz"/>
-                            <constraint firstItem="RCE-NP-o12" firstAttribute="top" secondItem="3Nb-Hv-wEo" secondAttribute="bottom" constant="46" id="Nyj-MA-jlY"/>
-                            <constraint firstItem="3Nb-Hv-wEo" firstAttribute="trailing" secondItem="c2M-ke-WNb" secondAttribute="trailingMargin" id="RGh-3V-UkH"/>
-                            <constraint firstItem="RCE-NP-o12" firstAttribute="trailing" secondItem="c2M-ke-WNb" secondAttribute="trailingMargin" id="TPu-wi-8Dz"/>
-                            <constraint firstItem="3Nb-Hv-wEo" firstAttribute="top" secondItem="Zzh-Ne-4TN" secondAttribute="bottom" constant="8" id="ZhM-xx-bdi"/>
-                            <constraint firstItem="RCE-NP-o12" firstAttribute="trailing" secondItem="c2M-ke-WNb" secondAttribute="trailingMargin" id="yeo-Xd-zWp"/>
+                            <constraint firstItem="qUs-UU-VkY" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leadingMargin" id="C9A-fl-LGv"/>
+                            <constraint firstItem="3Nb-Hv-wEo" firstAttribute="leading" secondItem="ThY-kv-kW8" secondAttribute="trailing" constant="30" id="HgF-rW-Qc8"/>
+                            <constraint firstItem="RCE-NP-o12" firstAttribute="top" secondItem="3Nb-Hv-wEo" secondAttribute="bottom" constant="46" id="IOu-vM-reR"/>
+                            <constraint firstItem="3Nb-Hv-wEo" firstAttribute="top" secondItem="Zzh-Ne-4TN" secondAttribute="bottom" constant="8" id="QCH-qm-vBp"/>
+                            <constraint firstItem="RCE-NP-o12" firstAttribute="trailing" secondItem="c2M-ke-WNb" secondAttribute="trailingMargin" id="VhY-CX-2lG"/>
+                            <constraint firstItem="3Nb-Hv-wEo" firstAttribute="trailing" secondItem="c2M-ke-WNb" secondAttribute="trailingMargin" id="ca7-sH-qDE"/>
+                            <constraint firstItem="ThY-kv-kW8" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leadingMargin" id="pCN-j3-Crf"/>
+                            <constraint firstItem="qUs-UU-VkY" firstAttribute="top" secondItem="ThY-kv-kW8" secondAttribute="bottom" constant="46" id="q4d-rj-ot8"/>
+                            <constraint firstItem="ThY-kv-kW8" firstAttribute="top" secondItem="Zzh-Ne-4TN" secondAttribute="bottom" constant="8" id="qEa-5c-4vt"/>
+                            <constraint firstItem="RCE-NP-o12" firstAttribute="leading" secondItem="qUs-UU-VkY" secondAttribute="trailing" constant="30" id="vDV-fn-GYR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Converter" id="aUd-YP-JUG"/>
