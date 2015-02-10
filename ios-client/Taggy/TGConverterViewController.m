@@ -72,8 +72,8 @@
             make.top.equalTo(self.sellPickerView);
             
         }];
-        self.checkSell = false;
         self.checkBuy = false;
+        self.checkSell = true;
         [self.buyPickerView removeFromSuperview];
     }
     [self.sellTextField resignFirstResponder];
@@ -106,8 +106,8 @@
             make.top.equalTo(self.buyPickerView);
             
         }];
+        self.checkBuy = true;
         self.checkSell = false;
-        self.checkBuy = false;
         [self.sellPickerView removeFromSuperview];
     }
     [self.sellTextField resignFirstResponder];
@@ -115,9 +115,9 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
-    if (pickerView = self.sellPickerView) {
+    if (pickerView == self.sellPickerView) {
         [self.sellButton setTitle:[self.dataSource objectAtIndex:row] forState:UIControlStateNormal];
-    }else if (pickerView = self.buyPickerView){
+    }else if (pickerView == self.buyPickerView){
         [self.buyButton setTitle:[self.dataSource objectAtIndex:row] forState:UIControlStateNormal];
     }
     
