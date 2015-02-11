@@ -81,10 +81,20 @@
 
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
             TGDetailViewController *viewController =
-            [storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+                [storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
             viewController.detail = priceImage;
 
-            [self.navigationController pushViewController:viewController animated:YES];
+            UINavigationController *navigationController =
+                [[UINavigationController alloc] initWithRootViewController:viewController];
+
+            UIBarButtonItem *dismissButton =
+                [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                              target:viewController
+                                                              action:@selector(dismiss)];
+            viewController.navigationItem.rightBarButtonItem = dismissButton;
+            [viewController.navigationItem.rightBarButtonItem setTintColor:[UIColor orangeColor]];
+
+            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
         }
     } progress:^(CGFloat progress) {
         [SVProgressHUD showProgress:progress status:NSLocalizedString(@"recognizing", @"Recognizing")];

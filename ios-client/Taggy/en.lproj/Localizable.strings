@@ -16,3 +16,6 @@
 "NoInternet" = "Check your Internet connection";
 "ServerError" = "Server Error";
 "LastUpdate" = "Last update: %@";
+"delete_all" = "Delete all";
+"conf_question" = "Do you really want to delete all results?";
+"cancel" = "Cancel";
