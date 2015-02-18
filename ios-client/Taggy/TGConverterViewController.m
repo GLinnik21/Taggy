@@ -9,13 +9,15 @@
 #import "TGConverterViewController.h"
 #import <Masonry/Masonry.h>
 
+#import "TGCurrency.h"
+
 @interface TGConverterViewController ()
 
 @property (strong, nonatomic) NSArray *dataSource;
 @property (nonatomic, retain) UIPickerView *sellPickerView;
-@property (nonatomic, assign) bool *checkSell;
+@property (nonatomic, assign) BOOL checkSell;
 @property (nonatomic, retain) UIPickerView *buyPickerView;
-@property (nonatomic, assign) bool *checkBuy;
+@property (nonatomic, assign) BOOL checkBuy;
 
 @end
 
@@ -23,20 +25,28 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.dataSource = [NSArray arrayWithObjects:
-                       @"USD",
-                       @"BYR",
-                       @"RUB",
-                       @"EUR",
-                       @"AUD", nil];
-    UIToolbar *toolBar= [[UIToolbar alloc] init];
-    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+
+    self.dataSource = @[
+        @"USD",
+        @"BYR",
+        @"RUB",
+        @"EUR",
+        @"AUD"
+    ];
+
+    UIToolbar *toolBar = [[UIToolbar alloc] init];
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                               target:self
+                                                                               action:nil];
     
-    UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(sellTextFieldEndEditing:)];
+    UIBarButtonItem *barButtonDone =
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                      target:self
+                                                      action:@selector(sellTextFieldEndEditing:)];
     [barButtonDone setTintColor:[UIColor orangeColor]];
     [toolBar sizeToFit];
     
-    [toolBar setItems:@[flexSpace, barButtonDone] animated:YES];
+    [toolBar setItems:@[ flexSpace, barButtonDone ] animated:YES];
     self.sellTextField.inputAccessoryView = toolBar;
     self.buyTextField.inputAccessoryView = toolBar;
     self.sellTextField.keyboardType = UIKeyboardTypeDecimalPad;
@@ -49,68 +59,84 @@
 }
 
 - (IBAction)sellAction:(id)sender {
-    if (self.checkSell == false) {
+    if (self.checkSell == NO) {
         [self.sellButton setTitle:@"Changing..." forState:UIControlStateNormal];
+        UIView *pickerViewRoot = [[UIView alloc] init];
+
         self.sellPickerView = [[UIPickerView alloc] init];
-        [self.sellPickerView setDelegate:self];
+        self.sellPickerView.delegate = self;
         self.sellPickerView.showsSelectionIndicator = YES;
-        UIToolbar *toolBar= [[UIToolbar alloc] init];
+
+        UIToolbar *toolBar = [[UIToolbar alloc] init];
         UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
         
         UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(changeSellCurrency:)];
         
         [toolBar setItems:@[flexSpace, barButtonDone] animated:YES];
-        [toolBar sizeToFit];
         
-        [self.view insertSubview:self.sellPickerView atIndex:0];
-        [self.sellPickerView insertSubview:toolBar atIndex:10];
-        [self.sellPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.view addSubview:pickerViewRoot];
+        [pickerViewRoot addSubview:self.sellPickerView];
+        [pickerViewRoot addSubview:toolBar];
+
+        [pickerViewRoot mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(self.view);
-            make.height.equalTo(self.view).multipliedBy(0.45);
+            make.height.equalTo(self.view).multipliedBy(0.45f);
             make.bottom.equalTo(self.view);
         }];
         [toolBar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(self.sellPickerView);
-            make.top.equalTo(self.sellPickerView);
-            
+            make.width.equalTo(pickerViewRoot);
+            make.top.equalTo(pickerViewRoot);
         }];
-        self.checkBuy = false;
-        self.checkSell = true;
-        [self.buyPickerView removeFromSuperview];
+        [self.sellPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(pickerViewRoot);
+            make.top.equalTo(toolBar.mas_bottom);
+            make.bottom.equalTo(pickerViewRoot);
+        }];
+        self.checkBuy = NO;
+        self.checkSell = YES;
+        [self.buyPickerView.superview removeFromSuperview];
     }
     [self.sellTextField resignFirstResponder];
     [self.buyTextField resignFirstResponder];
 }
 
 - (IBAction)buyAction:(id)sender {
-    if (self.checkBuy == false) {
+    if (self.checkBuy == NO) {
         [self.buyButton setTitle:@"Changing..." forState:UIControlStateNormal];
+        UIView *pickerViewRoot = [[UIView alloc] init];
+
         self.buyPickerView = [[UIPickerView alloc] init];
-        [self.buyPickerView setDelegate:self];
+        self.buyPickerView.delegate = self;
         self.buyPickerView.showsSelectionIndicator = YES;
-        UIToolbar *toolBar= [[UIToolbar alloc] init];
+
+        UIToolbar *toolBar = [[UIToolbar alloc] init];
         UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-        
-        UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(changeSellCurrency:)];
-        
+
+        UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(changeBuyCurrency:)];
+
         [toolBar setItems:@[flexSpace, barButtonDone] animated:YES];
-        [toolBar sizeToFit];
-        
-        [self.view insertSubview:self.buyPickerView atIndex:0];
-        [self.buyPickerView insertSubview:toolBar atIndex:10];
-        [self.buyPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
+
+        [self.view addSubview:pickerViewRoot];
+        [pickerViewRoot addSubview:self.buyPickerView];
+        [pickerViewRoot addSubview:toolBar];
+
+        [pickerViewRoot mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(self.view);
-            make.height.equalTo(self.view).multipliedBy(0.45);
+            make.height.equalTo(self.view).multipliedBy(0.45f);
             make.bottom.equalTo(self.view);
         }];
         [toolBar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(self.buyPickerView);
-            make.top.equalTo(self.buyPickerView);
-            
+            make.width.equalTo(pickerViewRoot);
+            make.top.equalTo(pickerViewRoot);
         }];
-        self.checkBuy = true;
-        self.checkSell = false;
-        [self.sellPickerView removeFromSuperview];
+        [self.sellPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.equalTo(pickerViewRoot);
+            make.top.equalTo(toolBar.mas_bottom);
+            make.bottom.equalTo(pickerViewRoot);
+        }];
+        self.checkBuy = YES;
+        self.checkSell = NO;
+        [self.sellPickerView.superview removeFromSuperview];
     }
     [self.sellTextField resignFirstResponder];
     [self.buyTextField resignFirstResponder];
@@ -119,7 +145,8 @@
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
     if (pickerView == self.sellPickerView) {
         [self.sellButton setTitle:[self.dataSource objectAtIndex:row] forState:UIControlStateNormal];
-    }else if (pickerView == self.buyPickerView){
+    }
+    else if (pickerView == self.buyPickerView) {
         [self.buyButton setTitle:[self.dataSource objectAtIndex:row] forState:UIControlStateNormal];
     }
     
@@ -147,30 +174,68 @@
     return sectionWidth;
 }
 
--(void)changeSellCurrency:(id)sender
+- (void)convertionExample
 {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.6];
-    CGAffineTransform transfrom = CGAffineTransformMakeTranslation(0, 200);
-    self.sellPickerView.transform = transfrom;
-    self.sellPickerView.alpha = self.sellPickerView.alpha * (-1) + 1;
-    [UIView commitAnimations];
-    self.checkSell = false;
-    self.checkBuy = false;
+    // TODO: Remove it
+    NSString *fromC = @"BYR";
+    NSString *toC = @"RUB";
+
+    TGCurrency *fromCurency = [TGCurrency currencyForCode:fromC];
+    TGCurrency *toCurency = [TGCurrency currencyForCode:toC];
+
+    CGFloat value = 100000.0f;
+
+    CGFloat rate = 1.0f;
+    if (fromCurency != nil) {
+        rate *= fromCurency.value;
+    }
+    if (toCurency != nil) {
+        rate /= toCurency.value;
+    }
+
+    CGFloat result = value * rate;
+    NSLog(@"Result: %f", result);
+}
+
+- (void)changeSellCurrency:(id)sender
+{
+    [self convertionExample];
+    [UIView animateWithDuration:0.6 animations:^{
+        CGAffineTransform transfrom = CGAffineTransformMakeTranslation(0, 200);
+        self.sellPickerView.superview.transform = transfrom;
+        self.sellPickerView.superview.alpha = 1.0f - self.sellPickerView.alpha;
+    }];
+    self.checkSell = NO;
+    self.checkBuy = NO;
     NSLog(@"Done");
 }
+
+- (void)changeBuyCurrency:(id)sender
+{
+    [UIView animateWithDuration:0.6 animations:^{
+        CGAffineTransform transfrom = CGAffineTransformMakeTranslation(0, 200);
+        self.buyPickerView.superview.transform = transfrom;
+        self.buyPickerView.superview.alpha = 1.0f - self.buyPickerView.alpha;
+    }];
+    self.checkSell = NO;
+    self.checkBuy = NO;
+    NSLog(@"Done");
+}
+
 - (IBAction)sellEditingDidBegin:(id)sender {
     [self.sellPickerView removeFromSuperview];
     [self.buyPickerView removeFromSuperview];
-    self.checkSell = false;
-    self.checkBuy = false;
+    self.checkSell = NO;
+    self.checkBuy = NO;
 }
+
 - (IBAction)buyEditingDidBegin:(id)sender {
     [self.sellPickerView removeFromSuperview];
     [self.buyPickerView removeFromSuperview];
-    self.checkSell = false;
-    self.checkBuy = false;
+    self.checkSell = NO;
+    self.checkBuy = NO;
 }
+
 - (void)sellTextFieldEndEditing: (id)sender {
     [self.sellTextField resignFirstResponder];
     [self.buyTextField resignFirstResponder];
