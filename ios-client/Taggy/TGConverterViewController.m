@@ -39,6 +39,8 @@
     [toolBar setItems:@[flexSpace, barButtonDone] animated:YES];
     self.sellTextField.inputAccessoryView = toolBar;
     self.buyTextField.inputAccessoryView = toolBar;
+    self.sellTextField.keyboardType = UIKeyboardTypeDecimalPad;
+    self.buyTextField.keyboardType = UIKeyboardTypeDecimalPad;
 }
 
 - (void)didReceiveMemoryWarning {
