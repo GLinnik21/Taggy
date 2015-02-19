@@ -129,6 +129,7 @@
     <Compile Include="AppStart\WebApiConfig.cs" />
     <Compile Include="Util\BootstrapExtensions.cs" />
     <Compile Include="Models\RecognitionData.cs" />
+    <Compile Include="Util\OtherExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -158,7 +159,6 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Scripts\jquery-2.1.1.js" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\binaryajax.js" />
     <Content Include="Scripts\exif.js" />
     <Content Include="Scripts\project1551.imageResizer.js" />
@@ -171,6 +171,22 @@
     <Content Include="Content\ImageWP.jpg" />
     <Content Include="Content\ImageAndroid.png" />
     <Content Include="Content\ImageWP.png" />
+    <Content Include="Views\Home\Converter.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Content\images\app_btn.png" />
+    <Content Include="Content\images\app_btn1.png" />
+    <Content Include="Content\images\bg.jpg" />
+    <Content Include="Content\images\bg1.png" />
+    <Content Include="Content\images\gp_btn.png" />
+    <Content Include="Content\images\gp_btn1.png" />
+    <Content Include="Content\images\pic1.png" />
+    <Content Include="Content\images\pic2.png" />
+    <Content Include="Content\images\pic3.png" />
+    <Content Include="Content\js\jquery.magnific-popup.js" />
+    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="Content\css\magnific-popup.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\style.mobile.css" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
@@ -180,6 +196,8 @@
     <Folder Include="Content\fonts\" />
     <Folder Include="Views\Home\" />
     <Folder Include="Util\" />
+    <Folder Include="Content\images\" />
+    <Folder Include="Content\js\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,75 +1,227 @@
-﻿<div class="panel panel-info">
-    <div class="panel-heading">
-        <h3 class="panel-title">  Загрузите фотографию с ценником</h3>
-    </div>
-    <div class="panel-body">
-        <form class="form" method="post" style="text-align: center;" enctype="multipart/form-data">
-            <div>
-                <div class="file_upload">
-                    <button type="button">
-                        Выбрать
-                    </button>
-                    <div>
-                        Изображение не выбрано
-                    </div>
-                    <input type="file" name="file" id="file">
-                </div>
-
-                </br> <span class="percent2"></span>
-                <input type="hidden" id="latitude" name="latitude" />
-                <input type="hidden" id="longitude" name="longitude" />
-                <input type="hidden" id="country-code" name="country-code" />
-                <input type="hidden" id="country-name" name="country-name" />
-                <input type="hidden" id="self-ip" name="self-ip" />
-                <select id="currency" class="country-list">
-                    <option value="USD">Доллар США</option>
-                    <option value="EUR">Евро</option>
-                    <option value="RUB">Российский рубль</option>
-                    <option value="AUD">Австралийский доллар</option>
-                    <option value="BYR">Белорусский рубль</option>
-                </select>
-
-                <script type='text/javascript'>
-                    function sorted(id) {
-                        for (var c = document.getElementById("currency"), b = c.options, a = 0; a < b.length;)
-                            if (b[a + 1] && b[a].text > b[a + 1].text) { c.insertBefore(b[a + 1], b[a]); a = a >= 1 ? a - 1 : a + 1 } else a++;
-                        b[0].selected = true
-                    };
-                    sorted("foo");
-                </script>
-
-                <div class="progress2" style="background: #B4F5B4; height: 20px; border-radius: 3px;
-                width: 0">
-                </div>
-                <hr />
-                <button type="button" id="loading-button" data-loading-text="Загрузка..." class="btn btn-primary"
-                        autocomplete="off">
-                    Распознать
-                </button>
-        </form>
-    </div>
-</div>
-<div id="results-panel" class="panel panel-success">
-    <div class="panel-heading">
-        <h3 class="panel-title"> Результат </h3>
-    </div>
-
-    <div id="results" class="panel-body">
-        <p id="price">
-        </p>
-        <div class="input-group" id="inGroup">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span></span>
-            <input type="text" class="form-control" placeholder="What price should we convert?" id="priceToConvert">
-        </div>
-        </br>
-        <div class="alert alert-success" role="alert" id="priceConverted">
-        </div>
-        <div class="alert alert-danger" role="alert" id="message">
-        </div>
-        <img id="image" class="img-responsive" /><br />
-    </div>
-</div>
-@section scripts {
-    <script src="/Scripts/todo.js"></script>
-    <script src="/Scripts/inputStyle.js"></script>
+﻿@{
+    Layout = null;
+	var style = "Content/css/style" + ViewBag.StylePostfix + ".css";
 }
+
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+   
+<html>
+<head>
+<title>Taggy</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="The free Golden-Gate Iphone web template, Andriod web template, Smartphone web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(
+hideURLbar, 0); }, false); sfunction hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href=@style rel="stylesheet" type="text/css" media="all" />
+<!-- start google fonts -->
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
+<!-- Add fancyBox main JS and CSS files -->
+<script src="Content/js/jquery.min.js" type="text/javascript"></script>
+<script src="Content/js/jquery.magnific-popup.js" type="text/javascript"></script>
+<link href="Content/css/magnific-popup.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="header_bg">
+<div class="wrap">
+	<div class="header">
+		<div class="header_left pull_left">	
+			<div class="header_text">
+				<h2>Taggy</h2>
+				<h3>Абсолютно новый<br /> способ перевода <br /> валют!</h3>
+			</div>	
+		</div>
+		<div class="header_right">	
+			<div class="iphone_pic">
+				<img src="Content/images/pic1.png" alt=""  align="" />
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+</div>
+<div class="top_grid_bg">
+<div class="wrap">
+	<div class="top_grid">
+	<div class="pull_left top_grid1">
+		<h3 class="style">Что такое Taggy?</h3>
+		<p>Проект состоит из 2-ух частей - мобильного приложения Taggy и веб-сайта. Мобильное приложение позволяет переводить цены с фотографии ценника в другие валюты с использованием веб-сайта для обновления курсов валют. Исходя из отсутствия подобных функций в приложениях на iOS, Android и Windows Phone, можно утверждать, что созданное нами приложение уникально и актуально в современном мультивалютном мире.</p>	
+				<div class="button">
+					<img src="Content/images/app_btn.png" alt=""/>
+				</div>		
+	</div>
+	<div class="pull_right top_grid2">
+		<h3 class="style">Как попробовать?</h3>
+		<p class="text">На веб-сайте есть возможность перевести цену с фотографии в режиме online  Мы пока не успели опубликовать Taggy в магазинах приложений, но для обладателей Windows Phone смартфонов (Windows Phone 8.1+) существует программа beta-тестирования. Для того чтобы принять в ней участие, оставьте нам свой e-mail, и мы отправим мав приглашение на beta-тестирование.</p>
+				<div class="clear"></div>
+				<div class="button">
+					<a href="http://www.windowsphone.com/s?appid=57be9098-3ddf-414b-998d-6d5769ff454f"><img src="Content/images/gp_btn.png" alt=""/> </a>
+				</div>			
+	</div>
+	<div class="clear"></div>
+	</div>
+</div>
+</div>
+<div class="mid_grid_bg">
+<div class="wrap">
+	<div class="mid_grid">
+		<div class="mid_grid1_of_1">
+			<h2>OCR</h2>
+			<p>В основе Taggy лежат движки оптического распознавния символов (OCR). В Taggy для iOS используется Tesseract OCR, для Windows Phone используется Microsoft OCR, а на веб сайте используется Puma.NET. Приимущество Tesseract OCR и Microsoft OCR перед Puma.NET - это то, что они постоянно поддерживаются со стороны их разработчиков и способны графически выделять то, что они распознали.</p>
+			<div class="read more">
+				<a href="#small-dialog" class="popup-with-zoom-anim btn">Подробнее..</a>
+			</div>
+		</div>
+		<div class="mid_grid1_of_2">
+			<div class="iphone_pic1">
+				<img src="Content/images/pic2.png" alt=""/>				
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+</div>
+<div class="btm_grid_bg">
+<div class="wrap">
+	<div class="btm_grid">
+		<h2>Всё что нужно сделать - это сфотографировать</h2>
+		<h3>Пока мы не опубликовали Taggy в магазинах приложений, Вы можете попробывать его на сайте <a href="http://taggy.by/">taggy.by</a></h3>
+		<div class="iphone_pic2">
+			<img src="Content/images/pic3.png" alt=""/>				
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+</div>	
+<div class="main_bg">
+<div class="wrap">
+	<div class="main">
+		<div class="span1_of_1">
+			<h2>Gold is gold.</h2>
+			<h2>What do you think?</h2>
+		</div>
+		<div class="span1_of_1">
+			<p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+		</div>
+		<div class="clear"></div>
+		<div class="read more">
+			<a href="#small-dialog" class="popup-with-zoom-anim btn1">Read more..</a>
+		</div>
+		<!-- start magnific-->
+    	<div id="small-dialog" class="mfp-hide">
+			<div class="pop_up">
+			 	<h2>OCR</h2>
+			 	<p>Оптическое распознавание символов (англ. optical character recognition, OCR) — механический или электронный перевод изображений рукописного, машинописного или печатного текста в текстовые данные — последовательность кодов, использующихся для представления символов в компьютере (например, в текстовом редакторе).<br/><a href="https://ru.wikipedia.org/wiki/Оптическое_распознавание_символов">(из Wikipedia)</a><br/>Сайты разработчиков изпользующихся OCR движков: <a href="https://github.com/gali8/Tesseract-OCR-iOS">Tesseract OCR</a>, <a href="http://blogs.windows.com/buildingapps/2014/09/18/microsoft-ocr-library-for-windows-runtime/">Microsoft OCR</a>.</p>
+  			</div>
+		</div>
+		<script>
+			$(document).ready(function() {
+				$('.popup-with-zoom-anim').magnificPopup({
+					type: 'inline',
+					fixedContentPos: false,
+					fixedBgPos: true,
+					overflowY: 'auto',
+					closeBtnInside: true,
+					preloader: false,
+					midClick: true,
+					removalDelay: 300,
+					mainClass: 'my-mfp-zoom-in'
+			});
+		});
+		</script>
+		<!-- end magnific-->
+	</div>
+</div>
+</div>
+<div class="footer_bg">
+<div class="wrap">
+	<div class="footer">
+		<div class="f_logo">
+			<a href=""><h2>Taggy</h2></a>
+			<span> новый способ перевода валют </span>
+		</div>
+		<div class="f_btn">
+			<ul>
+				<li><img src="Content/images/app_btn1.png"></li>
+				<li><a href="http://www.windowsphone.com/s?appid=57be9098-3ddf-414b-998d-6d5769ff454f"><img src="Content/images/gp_btn1.png"></a></li>
+			</ul>
+		</div>
+		<div class="f_nav">
+			<ul>
+				<li class="active"><a href="https://www.facebook.com/">Facebook</a></li>
+				<li class="active1"><a href="https://twitter.com/">Twitter</a></li>
+				<li><a class="popup-with-zoom-anim" href="#small-dialog1">Contact  Us</a></li>
+		<!-- start magnific-->
+    	<div id="small-dialog1" class="mfp-hide">
+			<div class="pop_up">
+			 	<h2>Contact Us</h2>
+			 	<form class="contact-form" method="post" action="contact-post.html">
+					<input name="userName" type="text" class="textbox" placeholder="name">
+					<input name="userEmail" type="text" class="textbox" placeholder="mail">
+					<input name="userPhone" type="text" class="textbox" placeholder="userphone">
+					<textarea name="userMsg" placeholder="name"> </textarea>
+					<input type="submit" value="Send Us">
+			    </form>
+  			</div>
+		</div>
+		<script>
+			$(document).ready(function() {
+				$('.popup-with-zoom-anim').magnificPopup({
+					type: 'inline',
+					fixedContentPos: false,
+					fixedBgPos: true,
+					overflowY: 'auto',
+					closeBtnInside: true,
+					preloader: false,
+					midClick: true,
+					removalDelay: 300,
+					mainClass: 'my-mfp-zoom-in'
+			});
+		});
+		</script>
+		<!-- end magnific-->
+		<li><a class="popup-with-zoom-anim" href="#small-dialog2">FAQ </a></li>
+		<!-- start magnific-->
+    	<div id="small-dialog2" class="mfp-hide">
+			<div class="pop_up">
+			 	<h2>FAQ</h2>
+				<p><a href="http://w3layouts.com/faqs/">1. What is W3layouts? </a></p>
+				<p><a href="http://w3layouts.com/faqs/">2. Is W3layouts Templates Really Free? </a></p>
+				<p><a href="http://w3layouts.com/faqs/">3. I want to Help W3layouts, How can i? </a></p>
+				<p><a href="http://w3layouts.com/faqs/">4. I want to remove w3layouts.com back link from footer. </a></p>
+  			</div>
+		</div>
+		<script>
+			$(document).ready(function() {
+				$('.popup-with-zoom-anim').magnificPopup({
+					type: 'inline',
+					fixedContentPos: false,
+					fixedBgPos: true,
+					overflowY: 'auto',
+					closeBtnInside: true,
+					preloader: false,
+					midClick: true,
+					removalDelay: 300,
+					mainClass: 'my-mfp-zoom-in'
+			});
+		});
+		</script>
+		<!-- end magnific-->
+		</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+</div>
+		<div class="copy-right">
+				<p>Copyright © 2015 V.A.S.A.G. Все права защищены • Template by <a href="http://w3layouts.com" target="_blank">w3layouts</a> </p>
+	 	 </div>
+</body>
+</html>
