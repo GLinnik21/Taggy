@@ -25,6 +25,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [self.sellButton setTitle:[defaults objectForKey:@"country"] forState:UIControlStateNormal];
+    [self.buyButton setTitle:[defaults objectForKey:@"transf"] forState:UIControlStateNormal];
 
     self.dataSource = @[
         @"USD",
@@ -48,19 +52,12 @@
     
     [toolBar setItems:@[ flexSpace, barButtonDone ] animated:YES];
     self.sellTextField.inputAccessoryView = toolBar;
-    self.buyTextField.inputAccessoryView = toolBar;
     self.sellTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    self.buyTextField.keyboardType = UIKeyboardTypeDecimalPad;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)sellAction:(id)sender {
     if (self.checkSell == NO) {
-        [self.sellButton setTitle:@"Changing..." forState:UIControlStateNormal];
+        [self.sellButton setTitle:@"USD" forState:UIControlStateNormal];
         UIView *pickerViewRoot = [[UIView alloc] init];
 
         self.sellPickerView = [[UIPickerView alloc] init];
@@ -102,7 +99,7 @@
 
 - (IBAction)buyAction:(id)sender {
     if (self.checkBuy == NO) {
-        [self.buyButton setTitle:@"Changing..." forState:UIControlStateNormal];
+        [self.buyButton setTitle:@"USD" forState:UIControlStateNormal];
         UIView *pickerViewRoot = [[UIView alloc] init];
 
         self.buyPickerView = [[UIPickerView alloc] init];
@@ -149,7 +146,7 @@
     else if (pickerView == self.buyPickerView) {
         [self.buyButton setTitle:[self.dataSource objectAtIndex:row] forState:UIControlStateNormal];
     }
-    
+    [self valueChanged];
 }
 
 // tell the picker how many rows are available for a given component
@@ -174,32 +171,8 @@
     return sectionWidth;
 }
 
-- (void)convertionExample
-{
-    // TODO: Remove it
-    NSString *fromC = @"BYR";
-    NSString *toC = @"RUB";
-
-    TGCurrency *fromCurency = [TGCurrency currencyForCode:fromC];
-    TGCurrency *toCurency = [TGCurrency currencyForCode:toC];
-
-    CGFloat value = 100000.0f;
-
-    CGFloat rate = 1.0f;
-    if (fromCurency != nil) {
-        rate *= fromCurency.value;
-    }
-    if (toCurency != nil) {
-        rate /= toCurency.value;
-    }
-
-    CGFloat result = value * rate;
-    NSLog(@"Result: %f", result);
-}
-
 - (void)changeSellCurrency:(id)sender
 {
-    [self convertionExample];
     [UIView animateWithDuration:0.6 animations:^{
         CGAffineTransform transfrom = CGAffineTransformMakeTranslation(0, 200);
         self.sellPickerView.superview.transform = transfrom;
@@ -229,16 +202,53 @@
     self.checkBuy = NO;
 }
 
-- (IBAction)buyEditingDidBegin:(id)sender {
-    [self.sellPickerView removeFromSuperview];
-    [self.buyPickerView removeFromSuperview];
-    self.checkSell = NO;
-    self.checkBuy = NO;
+- (void)valueChanged {
+    TGCurrency *fromCurency = [TGCurrency currencyForCode:self.sellButton.currentTitle];
+    TGCurrency *toCurency = [TGCurrency currencyForCode:self.buyButton.currentTitle];
+    
+    CGFloat value = (CGFloat)[self.sellTextField.text floatValue];
+    CGFloat rate = 1.0f;
+    
+    if (fromCurency != nil) {
+        rate *= fromCurency.value;
+    }
+    if (toCurency != nil) {
+        rate /= toCurency.value;
+    }
+    
+    CGFloat result = value * rate;
+
+    if ([self.buyButton.currentTitle  isEqual:@"BYR"]) {
+        if (result == 0.0f) {
+            self.buyTextField.text = nil;
+        }else{
+            self.buyTextField.text = [NSString stringWithFormat: @"%.0f", result];
+        }
+    }else{
+        if (result == 0.0f) {
+            self.buyTextField.text = nil;
+        }else{
+            self.buyTextField.text = [NSString stringWithFormat: @"%.2f", result];
+        }
+    }
+}
+
+- (IBAction)swapCurrencies:(id)sender {
+    NSString *sell;
+    NSString *buy;
+    sell = self.sellButton.currentTitle;
+    buy = self.buyButton.currentTitle;
+    [self.sellButton setTitle:buy forState:UIControlStateNormal];
+    [self.buyButton setTitle:sell forState:UIControlStateNormal];
+    [self valueChanged];
+}
+
+- (IBAction)sellEditingChanged:(id)sender {
+    [self valueChanged];
 }
 
 - (void)sellTextFieldEndEditing: (id)sender {
     [self.sellTextField resignFirstResponder];
-    [self.buyTextField resignFirstResponder];
 }
 
 @end

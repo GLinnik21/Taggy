@@ -104,6 +104,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
+                                    <action selector="sellEditingChanged:" destination="YD1-K6-6Gg" eventType="editingChanged" id="4hP-kx-HwB"/>
                                     <action selector="sellEditingDidBegin:" destination="YD1-K6-6Gg" eventType="editingDidBegin" id="2Ow-WF-dfG"/>
                                 </connections>
                             </textField>
@@ -119,7 +120,7 @@
                                     <action selector="sellAction:" destination="YD1-K6-6Gg" eventType="touchUpInside" id="yvG-rX-nQU"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Buy" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="qUs-UU-VkY">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Buy" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qUs-UU-VkY">
                                 <rect key="frame" x="16" y="148" width="212" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="212" id="SJv-FC-rTy"/>
@@ -151,6 +152,9 @@
                                 <state key="normal" image="change">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="swapCurrencies:" destination="YD1-K6-6Gg" eventType="touchUpInside" id="BfP-GZ-l2a"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
