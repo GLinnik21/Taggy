@@ -89,7 +89,7 @@
     else {
         [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(self.imageScrollView);
-            make.height.equalTo(self.imageView.mas_height).multipliedBy(1.0 / aspectRatio);
+            make.height.equalTo(self.imageView.mas_width).multipliedBy(1.0 / aspectRatio);
         }];
     }
 }
