@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Wnc-nd-Cx3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Wnc-nd-Cx3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -56,6 +56,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Scanner" id="1HU-ub-24H">
+                        <barButtonItem key="leftBarButtonItem" image="conv" style="plain" id="b6H-XS-i2r">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="zpf-Dd-x0S">
+                                <rect key="frame" x="16" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="conv">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="YD1-K6-6Gg" kind="push" id="dXZ-F2-Blp"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="BcQ-qd-1wG">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LMM-Ox-1Ry">
                                 <rect key="frame" x="279" y="9" width="25" height="25"/>
@@ -71,6 +83,110 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JLx-bl-ZQA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="530" y="-623"/>
+        </scene>
+        <!--Converter-->
+        <scene sceneID="xoz-N9-n1s">
+            <objects>
+                <viewController id="YD1-K6-6Gg" customClass="TGConverterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Zzh-Ne-4TN"/>
+                        <viewControllerLayoutGuide type="bottom" id="RID-RN-ACY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c2M-ke-WNb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Sell" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="ThY-kv-kW8">
+                                <rect key="frame" x="16" y="72" width="212" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="212" id="VKl-f7-VUu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="sellEditingChanged:" destination="YD1-K6-6Gg" eventType="editingChanged" id="4hP-kx-HwB"/>
+                                    <action selector="sellEditingDidBegin:" destination="YD1-K6-6Gg" eventType="editingDidBegin" id="2Ow-WF-dfG"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Nb-Hv-wEo">
+                                <rect key="frame" x="258" y="72" width="53" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="53" id="eWj-BF-Hx8"/>
+                                </constraints>
+                                <state key="normal" title="Choose">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sellAction:" destination="YD1-K6-6Gg" eventType="touchUpInside" id="yvG-rX-nQU"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Buy" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qUs-UU-VkY">
+                                <rect key="frame" x="16" y="148" width="212" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="212" id="SJv-FC-rTy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <action selector="buyEditingDidBegin:" destination="YD1-K6-6Gg" eventType="editingDidBegin" id="9rf-Rr-kOn"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCE-NP-o12">
+                                <rect key="frame" x="258" y="148" width="53" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="53" id="D7J-hn-psm"/>
+                                </constraints>
+                                <state key="normal" title="Choose">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buyAction:" destination="YD1-K6-6Gg" eventType="touchUpInside" id="179-sb-RDC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w2g-5A-J60">
+                                <rect key="frame" x="269" y="110" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6Ji-Bb-DGJ"/>
+                                    <constraint firstAttribute="width" constant="30" id="Hji-SN-GHd"/>
+                                </constraints>
+                                <state key="normal" image="change">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="swapCurrencies:" destination="YD1-K6-6Gg" eventType="touchUpInside" id="BfP-GZ-l2a"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RCE-NP-o12" firstAttribute="top" secondItem="w2g-5A-J60" secondAttribute="bottom" constant="8" id="4wz-qN-fV7"/>
+                            <constraint firstItem="qUs-UU-VkY" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leadingMargin" id="C9A-fl-LGv"/>
+                            <constraint firstItem="RCE-NP-o12" firstAttribute="centerX" secondItem="w2g-5A-J60" secondAttribute="centerX" id="GmL-l8-V7W"/>
+                            <constraint firstItem="3Nb-Hv-wEo" firstAttribute="leading" secondItem="ThY-kv-kW8" secondAttribute="trailing" constant="30" id="HgF-rW-Qc8"/>
+                            <constraint firstItem="RCE-NP-o12" firstAttribute="top" secondItem="3Nb-Hv-wEo" secondAttribute="bottom" constant="46" id="IOu-vM-reR"/>
+                            <constraint firstItem="3Nb-Hv-wEo" firstAttribute="top" secondItem="Zzh-Ne-4TN" secondAttribute="bottom" constant="8" id="QCH-qm-vBp"/>
+                            <constraint firstItem="RCE-NP-o12" firstAttribute="trailing" secondItem="c2M-ke-WNb" secondAttribute="trailingMargin" id="VhY-CX-2lG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="w2g-5A-J60" secondAttribute="trailing" constant="5" id="YJY-Z8-oeZ"/>
+                            <constraint firstItem="RCE-NP-o12" firstAttribute="centerX" secondItem="3Nb-Hv-wEo" secondAttribute="centerX" id="Yd8-tC-XwL"/>
+                            <constraint firstItem="3Nb-Hv-wEo" firstAttribute="trailing" secondItem="c2M-ke-WNb" secondAttribute="trailingMargin" id="ca7-sH-qDE"/>
+                            <constraint firstItem="ThY-kv-kW8" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leadingMargin" id="pCN-j3-Crf"/>
+                            <constraint firstItem="w2g-5A-J60" firstAttribute="top" secondItem="3Nb-Hv-wEo" secondAttribute="bottom" constant="8" id="piv-d4-aBL"/>
+                            <constraint firstItem="qUs-UU-VkY" firstAttribute="top" secondItem="ThY-kv-kW8" secondAttribute="bottom" constant="46" id="q4d-rj-ot8"/>
+                            <constraint firstItem="ThY-kv-kW8" firstAttribute="top" secondItem="Zzh-Ne-4TN" secondAttribute="bottom" constant="8" id="qEa-5c-4vt"/>
+                            <constraint firstItem="RCE-NP-o12" firstAttribute="leading" secondItem="qUs-UU-VkY" secondAttribute="trailing" constant="30" id="vDV-fn-GYR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Converter" id="aUd-YP-JUG"/>
+                    <connections>
+                        <outlet property="buyButton" destination="RCE-NP-o12" id="trT-yG-Xvr"/>
+                        <outlet property="buyTextField" destination="qUs-UU-VkY" id="J7t-oS-cMj"/>
+                        <outlet property="sellButton" destination="3Nb-Hv-wEo" id="P3I-XX-5zu"/>
+                        <outlet property="sellTextField" destination="ThY-kv-kW8" id="HmT-QX-idB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M9e-Gp-vWv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="925" y="-623"/>
         </scene>
         <!--Results-->
         <scene sceneID="G5w-Yh-xCf">
@@ -298,7 +414,9 @@
     <resources>
         <image name="PhotoButton" width="303" height="303"/>
         <image name="PhotoButtonP.png" width="303" height="303"/>
+        <image name="change" width="30" height="30"/>
         <image name="choose" width="25" height="25"/>
+        <image name="conv" width="30" height="30"/>
         <image name="res" width="30" height="30"/>
         <image name="resP.png" width="30" height="30"/>
         <image name="scan" width="30" height="30"/>

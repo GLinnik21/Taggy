@@ -58,3 +58,15 @@
 
 /* Class = "IBUINavigationItem"; title = "Result"; ObjectID = "zu5-gE-ALQ"; */
 "zu5-gE-ALQ.title" = "Результат";
+
+/* Class = "IBUIButton"; normalTitle = "Converter"; ObjectID = "37n-Cg-vve"; */
+"37n-Cg-vve.normalTitle" = "Конвертер";
+
+/* Class = "IBUINavigationItem"; title = "Converter"; ObjectID = "aUd-YP-JUG"; */
+"aUd-YP-JUG.title" = "Конвертер";
+
+/* Class = "IBUITextField"; placeholder = "Sell"; ObjectID = "ThY-kv-kW8"; */
+"ThY-kv-kW8.placeholder" = "Продажа";
+
+/* Class = "IBUITextField"; placeholder = "Buy"; ObjectID = "qUs-UU-VkY"; */
+"qUs-UU-VkY.placeholder" = "Покупка";

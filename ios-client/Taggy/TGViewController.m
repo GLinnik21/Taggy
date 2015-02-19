@@ -134,12 +134,6 @@ static NSString *const kTGImageCellId = @"ImageCell";
         [self setEditing:NO animated:YES];
         [self.refreshControl removeFromSuperview];
         self.navigationItem.leftBarButtonItem = nil;
-    }
-    else {
-        [self.tableView insertSubview:self.refreshControl atIndex:0];
-    }
-
-    if ([TGDataManager recognizedImagesCount] == 0) {
         self.tableView.backgroundColor = [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1];
         UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
         messageLabel.text = NSLocalizedString(@"no_results", @"No results");
@@ -158,6 +152,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
         self.tableView.backgroundColor = nil;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        [self.tableView insertSubview:self.refreshControl atIndex:0];
     }
 
     return [TGDataManager recognizedImagesCount];
