@@ -172,7 +172,6 @@
     <Content Include="Content\ImageAndroid.png" />
     <Content Include="Content\ImageWP.png" />
     <Content Include="Views\Home\Converter.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Content\images\app_btn.png" />
     <Content Include="Content\images\app_btn1.png" />
     <Content Include="Content\images\bg.jpg" />
@@ -187,6 +186,8 @@
     <Content Include="Content\css\magnific-popup.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\style.mobile.css" />
+    <Content Include="Views\Home\IndexMobile.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

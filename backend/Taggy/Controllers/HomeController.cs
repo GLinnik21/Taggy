@@ -18,12 +18,8 @@ namespace Taggy
         [HttpGet]
         public ActionResult Index()
         {
-            ViewBag.StylePostfix = "";
-            if (OtherExtensions.BrowserIsMobile ()) {
-                ViewBag.StylePostfix = ".mobile";
-            }
+            return OtherExtensions.BrowserIsMobile () ? View ("IndexMobile") : View ("Index");
 
-            return View();
         }
 
         [HttpGet]
