@@ -31,11 +31,12 @@
     [self.buyButton setTitle:[defaults objectForKey:@"transf"] forState:UIControlStateNormal];
 
     self.dataSource = @[
-        @"USD",
+        @"AUD",
         @"BYR",
-        @"RUB",
         @"EUR",
-        @"AUD"
+        @"GBP",
+        @"RUB",
+        @"USD"
     ];
 
     UIToolbar *toolBar = [[UIToolbar alloc] init];
@@ -57,7 +58,7 @@
 
 - (IBAction)sellAction:(id)sender {
     if (self.checkSell == NO) {
-        [self.sellButton setTitle:@"USD" forState:UIControlStateNormal];
+        [self.sellButton setTitle:@"AUD" forState:UIControlStateNormal];
         UIView *pickerViewRoot = [[UIView alloc] init];
 
         self.sellPickerView = [[UIPickerView alloc] init];
@@ -101,7 +102,7 @@
 
 - (IBAction)buyAction:(id)sender {
     if (self.checkBuy == NO) {
-        [self.buyButton setTitle:@"USD" forState:UIControlStateNormal];
+        [self.buyButton setTitle:@"AUD" forState:UIControlStateNormal];
         UIView *pickerViewRoot = [[UIView alloc] init];
 
         self.buyPickerView = [[UIPickerView alloc] init];
