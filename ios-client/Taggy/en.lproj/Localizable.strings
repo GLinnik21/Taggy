@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  Taggy
+
+  Created by Gleb Linkin on 08/12/14.
+  Copyright (c) 2014 Gleb Linkin. All rights reserved.
+*/
+
+"recognizing" = "Recognizing";
+"recognizing_fail" = "Failed";
+"recognized" = "Recognized";
+"no_results" = "There are no results yet";
+"Settings" = "Settings";
+"Privacy" = "Privacy";
+"Open in Settings app" = "Open in “Settings” app";
+"NoInternet" = "Check your Internet connection";
+"ServerError" = "Server Error";
+"LastUpdate" = "Last update: %@";
+"delete_all" = "Delete all";
+"conf_question" = "Do you really want to delete all results?";
+"cancel" = "Cancel";

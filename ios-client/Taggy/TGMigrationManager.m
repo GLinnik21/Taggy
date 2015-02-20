@@ -17,7 +17,9 @@
 
 + (void)migrate
 {
-    [RLMRealm setSchemaVersion:1 withMigrationBlock:^(RLMMigration *migration, NSUInteger oldSchemaVersion) {
+    [RLMRealm setSchemaVersion:2
+                forRealmAtPath:[RLMRealm defaultRealmPath]
+            withMigrationBlock:^(RLMMigration *migration, NSUInteger oldSchemaVersion) {
         if (oldSchemaVersion < 1) {
             [ARAnalytics startTimingEvent:@"Migration 0 > 1"];
 
@@ -31,6 +33,15 @@
             }];
 
             [ARAnalytics finishTimingEvent:@"Migration 0 > 1"];
+        }
+        if (oldSchemaVersion < 2) {
+            [ARAnalytics startTimingEvent:@"Migration 1 > 2"];
+
+            [migration enumerateObjects:[TGRecognizedPrice className] block:^(RLMObject *oldObject, RLMObject *newObject) {
+                newObject[@"rectData"] = [NSKeyedArchiver archivedDataWithRootObject:[NSValue valueWithCGRect:CGRectZero]];
+            }];
+
+            [ARAnalytics finishTimingEvent:@"Migration 1 > 2"];
         }
     }];
     [RLMRealm migrateRealmAtPath:[RLMRealm defaultRealmPath]];

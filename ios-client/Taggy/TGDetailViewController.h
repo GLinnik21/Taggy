@@ -12,6 +12,8 @@
 
 @interface TGDetailViewController : UIViewController
 
-@property (nonatomic, weak) TGPriceImage *detail;
+@property (nonatomic, strong) TGPriceImage *detail;
+
+- (void)dismiss;
 
 @end

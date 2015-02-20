@@ -7,6 +7,7 @@
 //
 
 #import "TGRecognizedBlock.h"
+#import <TesseractOCR/TesseractOCR.h>
 
 @implementation TGRecognizedBlock
 
@@ -35,25 +36,23 @@
             [NSValue valueWithCGRect:self.region]];
 }
 
-+ (TGRecognizedBlock *)blockFromDictionary:(NSDictionary *)dict
++ (TGRecognizedBlock *)blockFromG8Block:(G8RecognizedBlock *)block
 {
-    CGRect rect = [((NSValue *)dict[@"boundingbox"]) CGRectValue];
-    CGFloat confidence = [dict[@"confidence"] floatValue];
-    NSString *text = dict[@"text"];
-
-    return [[TGRecognizedBlock alloc] initWithRegion:rect confidence:confidence text:text];
+    return [[TGRecognizedBlock alloc] initWithRegion:block.boundingBox
+                                          confidence:block.confidence
+                                                text:block.text];
 }
 
 + (NSArray *)blocksFromRecognitionArray:(NSArray *)recognition
 {
     NSMutableArray *recognizedBlocks = [[NSMutableArray alloc] init];
-    for (NSDictionary *dict in recognition) {
-        [recognizedBlocks addObject:[TGRecognizedBlock blockFromDictionary:dict]];
+    for (G8RecognizedBlock *block in recognition) {
+        [recognizedBlocks addObject:[TGRecognizedBlock blockFromG8Block:block]];
     }
     return recognizedBlocks;
 }
 
-+ (UIImage *)drawBlocks:(NSArray*)recognizedBlocks onImage:(UIImage *)image
++ (UIImage *)drawBlocks:(NSArray *)recognizedBlocks onImage:(UIImage *)image
 {
     CGFloat width = image.size.width;
     CGFloat height = image.size.height;
@@ -69,9 +68,14 @@
 
     for (TGRecognizedBlock *block in recognizedBlocks) {
         CGRect or = block.region;
-        CGRect rect = CGRectMake(or.origin.x, height - or.origin.y,
-                                 or.size.width, -or.size.height);
+        CGRect rect = CGRectMake(or.origin.x * width, or.origin.y * height,
+                                 or.size.width * width, or.size.height * height);
         CGContextStrokeRect(context, rect);
+
+        NSAttributedString *string = [[NSAttributedString alloc] initWithString:block.text attributes:@{
+            NSForegroundColorAttributeName: [UIColor redColor]
+        }];
+        [string drawAtPoint:(CGPoint){CGRectGetMidX(rect), CGRectGetMaxY(rect) + 2}];
     }
 
     UIGraphicsPopContext();

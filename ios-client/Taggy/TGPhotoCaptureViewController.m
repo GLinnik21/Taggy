@@ -12,10 +12,11 @@
 #import "TGViewController.h"
 #import "TGImageCell.h"
 #import "TGDataManager.h"
+#import "SVProgressHUD.h"
+#import "TGDetailViewController.h"
 
 @interface TGPhotoCaptureViewController() <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (nonatomic, weak) IBOutlet UIImageView *imageview;
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
 
 @property (nonatomic, weak) UIImagePickerController *takePhotoPicker;
@@ -25,15 +26,21 @@
 
 @implementation TGPhotoCaptureViewController
 
+-(void)viewDidDisappear:(BOOL)animated{
+    [SVProgressHUD dismiss];
+}
+
 - (IBAction)takePhoto
 {
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
-    [self presentViewController:picker animated:YES completion:NULL];
-    self.takePhotoPicker = picker;
+    if ([[UIDevice currentDevice].model containsString:@"Simulator"] == NO) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+        [self presentViewController:picker animated:YES completion:NULL];
+        self.takePhotoPicker = picker;
 
-    [ARAnalytics event:@"Take photo"];
+        [ARAnalytics event:@"Take photo"];
+    }
 }
 
 - (IBAction)chooseExisting
@@ -49,6 +56,9 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    [SVProgressHUD setBackgroundColor:[UIColor whiteColor]];
+    [SVProgressHUD setForegroundColor:[UIColor orangeColor]];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"recognizing", @"Recognizing")];
     if (picker == self.takePhotoPicker) {
         [ARAnalytics event:@"Photo takken"];
     }
@@ -59,16 +69,37 @@
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
 
     [TGDataManager recognizeImage:image withCallback:^(TGPriceImage *priceImage) {
-        [[[UIAlertView alloc] initWithTitle:@"Распознанные цены"
-                                    message:priceImage.prices.description
-                                   delegate:nil
-                          cancelButtonTitle:@"ОК"
-                          otherButtonTitles:nil]show];
+        if (priceImage.prices.count == 0){
+            [SVProgressHUD setBackgroundColor:[UIColor whiteColor]];
+            [SVProgressHUD setForegroundColor:[UIColor redColor]];
+            [SVProgressHUD showErrorWithStatus:NSLocalizedString(@"recognizing_fail", @"Failed")];
+        }
+        else {
+            [SVProgressHUD setBackgroundColor:[UIColor whiteColor]];
+            [SVProgressHUD setForegroundColor:[UIColor greenColor]];
+            [SVProgressHUD showSuccessWithStatus:NSLocalizedString(@"recognized", @"Recognized")];
 
-        [self.imageview setImage:priceImage.image];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            TGDetailViewController *viewController =
+                [storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+            viewController.detail = priceImage;
+
+            UINavigationController *navigationController =
+                [[UINavigationController alloc] initWithRootViewController:viewController];
+
+            UIBarButtonItem *dismissButton =
+                [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                              target:viewController
+                                                              action:@selector(dismiss)];
+            viewController.navigationItem.rightBarButtonItem = dismissButton;
+            [viewController.navigationItem.rightBarButtonItem setTintColor:[UIColor orangeColor]];
+
+            [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+        }
+    } progress:^(CGFloat progress) {
+        [SVProgressHUD showProgress:progress status:NSLocalizedString(@"recognizing", @"Recognizing")];
     }];
 
-    [self.imageview setImage:image];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -82,6 +113,11 @@
     }
 
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
 @end

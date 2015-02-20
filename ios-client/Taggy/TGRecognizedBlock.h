@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+@class G8RecognizedBlock;
+
 @interface TGRecognizedBlock : NSObject
 
 @property (nonatomic, assign) CGRect region;
@@ -19,7 +21,7 @@
 
 - (NSNumber *)number;
 
-+ (TGRecognizedBlock *)blockFromDictionary:(NSDictionary *)dict;
++ (TGRecognizedBlock *)blockFromG8Block:(G8RecognizedBlock *)block;
 + (NSArray *)blocksFromRecognitionArray:(NSArray *)recognition;
 + (UIImage *)drawBlocks:(NSArray*)recognizedBlocks onImage:(UIImage *)image;
 

@@ -3,7 +3,7 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Taggy1.png",
+      "filename" : "Taggy.png",
       "scale" : "2x"
     },
     {
@@ -15,7 +15,7 @@
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Taggy2.png",
+      "filename" : "Taggy-1.png",
       "scale" : "2x"
     },
     {
@@ -27,13 +27,13 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Taggy3.png",
+      "filename" : "Taggy-2.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Taggy4.png",
+      "filename" : "Taggy-3.png",
       "scale" : "3x"
     },
     {

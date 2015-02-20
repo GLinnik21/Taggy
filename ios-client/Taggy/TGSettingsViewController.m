@@ -14,13 +14,9 @@
 
 @implementation TGSettingsViewController
 
-- (id)initWithCoder:(NSCoder *)aDecoder
+- (void)viewDidLoad
 {
-    self = [super initWithCoder:aDecoder];
-    if (self != nil) {
-        self.delegate = self;
-    }
-    return self;
+    self.delegate = self;
 }
 
 - (void)settingsViewControllerDidEnd:(IASKAppSettingsViewController *)sender

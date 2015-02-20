@@ -1,0 +1,60 @@
+
+/* Class = "IBUILabel"; text = "-"; ObjectID = "12F-CJ-c1l"; */
+"12F-CJ-c1l.text" = "-";
+
+/* Class = "IBUINavigationItem"; title = "Scanner"; ObjectID = "1HU-ub-24H"; */
+"1HU-ub-24H.title" = "Scanner";
+
+/* Class = "IBUINavigationController"; title = "Scanner"; ObjectID = "2by-fz-iZf"; */
+"2by-fz-iZf.title" = "Scanner";
+
+/* Class = "IBUIButton"; normalTitle = "Converter"; ObjectID = "37n-Cg-vve"; */
+"37n-Cg-vve.normalTitle" = "Converter";
+
+/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "3Nb-Hv-wEo"; */
+"3Nb-Hv-wEo.normalTitle" = "Button";
+
+/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "8nw-R2-dam"; */
+"8nw-R2-dam.title" = "Back";
+
+/* Class = "IBUIBarButtonItem"; title = "Item"; ObjectID = "BcQ-qd-1wG"; */
+"BcQ-qd-1wG.title" = "Item";
+
+/* Class = "IBUITabBarItem"; title = "Results"; ObjectID = "Nna-ET-djC"; */
+"Nna-ET-djC.title" = "Results";
+
+/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "RCE-NP-o12"; */
+"RCE-NP-o12.normalTitle" = "Button";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "SJM-Xi-DOG"; */
+"SJM-Xi-DOG.text" = "Label";
+
+/* Class = "IBUITextField"; placeholder = "Sell"; ObjectID = "ThY-kv-kW8"; */
+"ThY-kv-kW8.placeholder" = "Sell";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "VgM-kZ-GeX"; */
+"VgM-kZ-GeX.text" = "Label";
+
+/* Class = "IBUINavigationItem"; title = "Results"; ObjectID = "XX7-In-ySs"; */
+"XX7-In-ySs.title" = "Results";
+
+/* Class = "IBUINavigationItem"; title = "Converter"; ObjectID = "aUd-YP-JUG"; */
+"aUd-YP-JUG.title" = "Converter";
+
+/* Class = "IBUINavigationItem"; title = "Settings"; ObjectID = "g2T-pH-H2Q"; */
+"g2T-pH-H2Q.title" = "Settings";
+
+/* Class = "IBUITabBarItem"; title = "Scanner"; ObjectID = "k91-Bn-oGz"; */
+"k91-Bn-oGz.title" = "Scanner";
+
+/* Class = "IBUITextField"; placeholder = "Buy"; ObjectID = "qUs-UU-VkY"; */
+"qUs-UU-VkY.placeholder" = "Buy";
+
+/* Class = "IBUIButton"; normalTitle = "Take a photo"; ObjectID = "vIe-cy-7uO"; */
+"vIe-cy-7uO.normalTitle" = "Take a photo";
+
+/* Class = "IBUITabBarItem"; title = "Settings"; ObjectID = "zTU-fO-yMG"; */
+"zTU-fO-yMG.title" = "Settings";
+
+/* Class = "IBUINavigationItem"; title = "Result"; ObjectID = "zu5-gE-ALQ"; */
+"zu5-gE-ALQ.title" = "Result";

@@ -18,13 +18,33 @@ namespace Taggy
         [HttpGet]
         public ActionResult Index()
         {
+            ViewBag.StylePostfix = "";
+            if (OtherExtensions.BrowserIsMobile ()) {
+                ViewBag.StylePostfix = ".mobile";
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Converter()
+        {
+            ViewBag.StylePostfix = "";
+            if (OtherExtensions.BrowserIsMobile ()) {
+                ViewBag.StylePostfix = ".mobile";
+            }
+
             return View();
         }
 
         public ActionResult Information()
         {
-            Bitmap bitmap = new Bitmap (Server.MapPath("~/Content/InfoImage.png"));
-            ViewBag.InfoImage = BitmapToBase64 (bitmap);
+            Bitmap bitmap = new Bitmap (Server.MapPath("~/Content/ImageAndroid.jpg"));
+            ViewBag.InfoAndroid = BitmapToBase64 (bitmap);
+
+            bitmap = new Bitmap (Server.MapPath("~/Content/ImageWP.jpg"));
+            ViewBag.InfoWP = BitmapToBase64 (bitmap);
+
             return View ();
         }
         public ActionResult About()
@@ -33,7 +53,7 @@ namespace Taggy
         }
 
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase file)
+        public ActionResult Converter(HttpPostedFileBase file)
         {
             var Long = ViewBag.Long;
             var Lat = ViewBag.Lat;
@@ -51,7 +71,6 @@ namespace Taggy
                 price = new []{
                     "25000",
                 },
-                //ip = this.HttpContext.Request.UserHostAddress
                 ip = Request.ServerVariables["REMOTE_ADDR"]
             };
 			data = (RecognitionData) ConvertBitmap(bitmap).Data;
@@ -69,14 +88,41 @@ namespace Taggy
             var bitmap = new Bitmap(file.InputStream);
             return ConvertBitmap(bitmap);
         }
-            
-        public ActionResult Get()
+
+        public ActionResult GetSymbols() // Возвращает все станы, используемые в них национальные валюты и их символы
         {
-            List<object> rateList = new List<object> ();
-            using (var reader = System.IO.File.OpenText(Server.MapPath("~/Rates.txt"))) 
+            List<object> list = new List<object> ();
+            using (var reader = System.IO.File.OpenText (Server.MapPath ("~/Countries.txt"))) //EUR € IT // Открытие файла с символами на сервере, получение пути к файлу
             {
                 string rstring = reader.ReadLine ();
-                Regex r = new Regex (@"(?<to>[A-Z]{3})\t(?<ratehigh>\d+)\.(?<ratelow>\S+)\t(?<from>[A-Z]{3})"); // OK
+                while (rstring != null) 
+                {
+                    string[] splited = rstring.Split (' '); // Регуляное выражение не работало
+                    if (splited.Length > 0) 
+                    {
+                        list.Add (new { // Формирование объекта для возвращения
+                            Currency = splited[0],
+                            Symbol = splited[1],
+                            CountryCode = splited[2]
+                        });
+                    }
+                    rstring = reader.ReadLine ();
+                }
+                JsonResult toReturn = new JsonResult ();
+                toReturn.Data = list.ToArray ();
+                toReturn.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+                return toReturn; // Возвращение результата
+            }
+
+            return new JsonResult ();
+        }
+        public ActionResult GetRates() // Возвращение курсов валют относительно доллара
+        {
+            List<object> rateList = new List<object> ();
+            using (var reader = System.IO.File.OpenText(Server.MapPath("~/Rates.txt")))  // Аналогично открытие файла
+            {
+                string rstring = reader.ReadLine ();
+                Regex r = new Regex (@"(?<to>[A-Z]{3})\t(?<ratehigh>\d+)\.(?<ratelow>\S+)\t(?<from>[A-Z]{3})"); // OK Регярное выражение получения названия валюты, курса
 
                 while (rstring != null) 
                 {
@@ -87,7 +133,7 @@ namespace Taggy
                         {
                             foreach (Match match in collection) 
                             {
-                                rateList.Add (new {
+                                rateList.Add (new { // Формирование объектов для возвращения
                                     To = match.Groups ["to"].Value, 
                                     From = match.Groups ["from"].Value,
                                     Rate = match.Groups ["ratehigh"].Value + /*System.Globalization.NumberFormatInfo.CurrentInfo.NumberDecimalSeparator*/ "." + match.Groups ["ratelow"].Value
@@ -102,11 +148,12 @@ namespace Taggy
 
             toReturn.Data = rateList.ToArray();
             toReturn.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-            return toReturn;
+            return toReturn; // Возвращение JSON строки
         }
 
         private JsonResult ConvertBitmap(Bitmap bitmap)
         {
+            Bitmap sourceBitmap = bitmap;
             bool isOk = true;
             string message = "";
             string recognition = "";
@@ -114,9 +161,8 @@ namespace Taggy
             string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? Request.ServerVariables ["REMOTE_ADDR"];
             try
             {
-                recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap);
-                recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition);
-                rates = PriceRecognizer.RatesConverter.Exchange("BYR","USD",recognition);
+                recognition = PriceRecognizer.PriceRecognizer.ParseImage(bitmap,1); // В строку возвращается распознанный текст
+                recognition = PriceRecognizer.PriceRecognizer.RecognizePrice(recognition); // Отсеивание ненужных символов, на выходе - числа через пробел
             }
             catch (Exception ex) {
                 isOk = false;
@@ -128,8 +174,7 @@ namespace Taggy
                 ok = isOk, 
                 message = message,
                 price = new []{ 
-                    //recognition,
-                    rates,
+                    recognition,
                 },
                 position = new []{
                     "",
@@ -141,10 +186,9 @@ namespace Taggy
             return rslt;
         }
             
-        static public string GetCountry(string ip)
+        static public string GetCountry(string ip) // Не нужно,  выполняется в JavaScripte
         {
             string country = "";
-            //http://ru.smart-ip.net/geoip/87.252.227.29/auto
             WebClient wclient = new WebClient ();
             country = wclient.DownloadString (String.Format ("http://ip-api.com/json/{0}", ip));
             if (country != null) 
@@ -155,7 +199,7 @@ namespace Taggy
             }
             return country;
         }
-        static public string BitmapToBase64(System.Drawing.Bitmap bitmap)
+        static public string BitmapToBase64(System.Drawing.Bitmap bitmap) // Преобразование изобаржения в строку base 64
         {
             var stream = new MemoryStream();
             bitmap.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);

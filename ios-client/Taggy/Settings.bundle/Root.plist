@@ -6,17 +6,91 @@
 	<array>
 		<dict>
 			<key>DefaultValue</key>
-			<true/>
+			<string>YES</string>
 			<key>Key</key>
-			<string>enabled_preference</string>
+			<string>auto_update</string>
 			<key>Title</key>
-			<string>Автоматическое обновление</string>
+			<string>auto_update</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 		<dict>
 			<key>Title</key>
-			<string>Информация о приложении</string>
+			<string>CURRENCY</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string>BYR</string>
+			<key>Key</key>
+			<string>country</string>
+			<key>Title</key>
+			<string>currency_country</string>
+			<key>Titles</key>
+			<array>
+				<string>USD_l</string>
+				<string>BYR_l</string>
+				<string>RUB_l</string>
+				<string>EUR_l</string>
+				<string>AUD_l</string>
+			</array>
+			<key>ShortTitles</key>
+			<array>
+				<string>USD</string>
+				<string>BYR</string>
+				<string>RUB</string>
+				<string>EUR</string>
+				<string>AUD</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<string>USD</string>
+				<string>BYR</string>
+				<string>RUB</string>
+				<string>EUR</string>
+				<string>AUD</string>
+			</array>
+		</dict>
+		<dict>
+			<key>DefaultValue</key>
+			<string>USD</string>
+			<key>Key</key>
+			<string>transf</string>
+			<key>Title</key>
+			<string>currency_transf</string>
+			<key>Titles</key>
+			<array>
+				<string>USD_l</string>
+				<string>BYR_l</string>
+				<string>RUB_l</string>
+				<string>EUR_l</string>
+				<string>AUD_l</string>
+			</array>
+			<key>ShortTitles</key>
+			<array>
+				<string>USD</string>
+				<string>BYR</string>
+				<string>RUB</string>
+				<string>EUR</string>
+				<string>AUD</string>
+			</array>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Values</key>
+			<array>
+				<string>USD</string>
+				<string>BYR</string>
+				<string>RUB</string>
+				<string>EUR</string>
+				<string>AUD</string>
+			</array>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string>copyright</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 		</dict>
@@ -24,11 +98,11 @@
 			<key>Type</key>
 			<string>PSTitleValueSpecifier</string>
 			<key>Title</key>
-			<string>Версия</string>
+			<string>version</string>
 			<key>Key</key>
 			<string>version</string>
 			<key>DefaultValue</key>
-			<string>0.4.1(Beta)</string>
+			<string></string>
 		</dict>
 	</array>
 	<key>StringsTable</key>

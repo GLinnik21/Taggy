@@ -9,28 +9,35 @@ PODS:
   - ARAnalytics/YandexMobileMetrica (2.9.1):
     - ARAnalytics/CoreIOS
     - YandexMobileMetrica
+  - DateTools (1.4.3)
   - FlurrySDK (5.4.0):
-    - FlurrySDK/FlurrySDK
+    - FlurrySDK/FlurrySDK (= 5.4.0)
   - FlurrySDK/FlurrySDK (5.4.0)
   - FMDB (2.2):
-    - FMDB/standard
+    - FMDB/standard (= 2.2)
   - FMDB/common (2.2)
   - FMDB/standard (2.2):
     - FMDB/common
-  - GoogleAnalytics-iOS-SDK (3.10)
-  - InAppSettingsKit (2.2.2)
+  - GoogleAnalytics-iOS-SDK (3.10):
+    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
+  - GoogleAnalytics-iOS-SDK/Core (3.10)
+  - GPUImage (0.1.6)
+  - InAppSettingsKit (2.3.3)
   - KSCrash/Recording (0.0.3)
   - KSCrash/Reporting/Filters/AppleFmt (0.0.3):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
   - KSCrash/Reporting/Filters/Base (0.0.3):
     - KSCrash/Recording
+  - Masonry (0.5.3)
   - protobuf-c (0.15)
-  - Realm (0.87.4):
-    - Realm/Headers
-  - Realm/Headers (0.87.4)
-  - TesseractOCRiOS (2.3)
-  - YandexMobileMetrica (1.6.1):
+  - Reachability (3.2)
+  - Realm (0.90.0):
+    - Realm/Headers (= 0.90.0)
+  - Realm/Headers (0.90.0)
+  - SVProgressHUD (HEAD based on 1.1.2)
+  - TesseractOCRiOS (3.4.0)
+  - YandexMobileMetrica (1.6.2):
     - FMDB (= 2.2.0)
     - KSCrash/Recording (~> 0.0.3)
     - KSCrash/Reporting/Filters/AppleFmt (~> 0.0.3)
@@ -40,28 +47,43 @@ DEPENDENCIES:
   - ARAnalytics/Flurry
   - ARAnalytics/GoogleAnalytics
   - ARAnalytics/YandexMobileMetrica
+  - DateTools
   - FlurrySDK (~> 5.4.0)
   - GoogleAnalytics-iOS-SDK (~> 3.10)
-  - InAppSettingsKit (~> 2.1)
-  - Realm (~> 0.87.4)
-  - TesseractOCRiOS (from `https://github.com/BamX/Tesseract-OCR-iOS.git`, branch `working`)
+  - GPUImage (~> 0.1.6)
+  - InAppSettingsKit (~> 2.3)
+  - Masonry (~> 0.5.3)
+  - Reachability
+  - Realm (~> 0.88)
+  - SVProgressHUD (HEAD)
+  - TesseractOCRiOS (from `https://github.com/gali8/Tesseract-OCR-iOS.git`, commit `52761d5`)
   - YandexMobileMetrica (~> 1.6.1)
 
 EXTERNAL SOURCES:
   TesseractOCRiOS:
-    :branch: working
-    :git: https://github.com/BamX/Tesseract-OCR-iOS.git
+    :commit: 52761d5
+    :git: https://github.com/gali8/Tesseract-OCR-iOS.git
+
+CHECKOUT OPTIONS:
+  TesseractOCRiOS:
+    :commit: 52761d5
+    :git: https://github.com/gali8/Tesseract-OCR-iOS.git
 
 SPEC CHECKSUMS:
   ARAnalytics: a06e6d012b5999d8598ec9bacec45c8a8099f668
+  DateTools: 7c2d233ea2d4bda3a717d0cd5f58da926a5998d0
   FlurrySDK: bed9e5598353f867508d164795a451e3ada92cb6
   FMDB: f6f4511ad1e9ace38e9b6f4d83c2cddaabf98ea6
-  GoogleAnalytics-iOS-SDK: e5872d2acc120613d954320e206c7e3bc8357d7c
-  InAppSettingsKit: cd8ffa4266fb5c4778af8bda8aa9bf08b6733fd4
+  GoogleAnalytics-iOS-SDK: f422062075d9ccb1ea8d783fc5ba3829461e9502
+  GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
+  InAppSettingsKit: c870cb6095a85656ff4df42845af5c26eede4c8d
   KSCrash: c0a693b2d83ced5c15a40d4e916833c655475e6a
+  Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
   protobuf-c: 0177b8dbc4afc4ec5d01e868b3e25a7400b98ca0
-  Realm: 17d0d9c94b38d15223fa3e806ead0e0562765e46
-  TesseractOCRiOS: 02a1ea2c76f8329aa16ebd856259146b6ca92f43
-  YandexMobileMetrica: d570b4182c091523c02510654d0af4cd8b95631f
+  Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
+  Realm: a872d2e6e99da567b1e0d891a3a53bccb563fbed
+  SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
+  TesseractOCRiOS: 5be498d8fef7a37a38046a05670f9f34b9f042d2
+  YandexMobileMetrica: 54642fd869c15fbdecc4c81131ed08fe98c1fddb
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.36.0.beta.1

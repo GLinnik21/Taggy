@@ -9,6 +9,7 @@
 #import "TGDataManager.h"
 #import "TGPriceRecognizer.h"
 #import "TGPriceImage.h"
+#import "TGSettingsManager.h"
 #import <ARAnalytics/ARAnalytics.h>
 
 @implementation TGDataManager
@@ -31,7 +32,7 @@
         price.value = 4.53;
         price.sourceCurrency = nil;
         price.defaultCurrency = [TGCurrency currencyForCode:@"BYR"];
-        price.rectString = @"";
+        price.rect = CGRectZero;
         [item.prices addObject:price];
 
         [realm addObject:item];
@@ -45,7 +46,7 @@
         price.value = 110;
         price.sourceCurrency = [TGCurrency currencyForCode:@"RUB"];
         price.defaultCurrency = [TGCurrency currencyForCode:@"BYR"];
-        price.rectString = @"";
+        price.rect = CGRectZero;
         [item.prices addObject:price];
 
         [realm addObject:item];
@@ -59,7 +60,7 @@
         price.value = 24.99;
         price.sourceCurrency = [TGCurrency currencyForCode:@"EUR"];
         price.defaultCurrency = [TGCurrency currencyForCode:@"BYR"];
-        price.rectString = @"";
+        price.rect = CGRectZero;
         [item.prices addObject:price];
 
         [realm addObject:item];
@@ -75,61 +76,128 @@
 
 + (TGPriceImage *)recognizedImageAtIndex:(NSInteger)index
 {
-    return [TGPriceImage allObjects][index];
+    return [[TGPriceImage allObjects] sortedResultsUsingProperty:@"captureDate" ascending:NO][index];
 }
 
-+ (void)removeRecognizedImage:(TGPriceImage *)recognizedImage
++ (BOOL)removeRecognizedImage:(TGPriceImage *)recognizedImage
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
 
-    [realm beginWriteTransaction];
-    [realm deleteObject:recognizedImage];
-    [realm commitWriteTransaction];
+    BOOL success = YES;
+    @try {
+        [realm beginWriteTransaction];
+        [realm deleteObject:recognizedImage];
+        [realm commitWriteTransaction];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Can't delete object");
+        success = NO;
+    }
+
+    return success;
 }
 
-+ (void)recognizeImage:(UIImage *)image withCallback:(void (^)(TGPriceImage *priceImage))callback
++ (BOOL)deleteAllObjects
 {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        TGPriceRecognizer *recognizer = [[TGPriceRecognizer alloc] init];
-        recognizer.image = image;
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    BOOL success = YES;
+    @try {
+        [realm beginWriteTransaction];
+        [realm deleteAllObjects];
+        [realm commitWriteTransaction];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Can't delete all objects");
+        success = NO;
+    }
+    
+    return success;
+}
+
++ (NSOperationQueue *)sharedQueue
+{
+    static NSOperationQueue *queue = nil;
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        queue = [[NSOperationQueue alloc] init];
+    });
+    return queue;
+}
+
++ (void)recognizeImage:(UIImage *)image
+          withCallback:(void (^)(TGPriceImage *priceImage))callback
+              progress:(void (^)(CGFloat progress))progress
+{
+    TGPriceRecognizer *recognizer = [[TGPriceRecognizer alloc] init];
+    recognizer.progressBlock = progress;
+    recognizer.image = image;
+    
+    __weak typeof(self) weakSelf = self;
+    [[[self class] sharedQueue] addOperationWithBlock:^{
+        
         [recognizer recognize];
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            __strong typeof(weakSelf) strongSelf = weakSelf;
+            TGPriceImage *item = [[TGPriceImage alloc] init];
+            item.image = recognizer.image;
+            item.captureDate = [NSDate date];
 
-        TGPriceImage *item = [[TGPriceImage alloc] init];
-        item.image = [recognizer debugImage];
-        item.captureDate = [NSDate date];
+            if (recognizer.recognizedPrices.count > 0) {
+                RLMRealm *realm = [RLMRealm defaultRealm];
 
-        dispatch_async(dispatch_get_main_queue(), ^{
-            RLMRealm *realm = [RLMRealm defaultRealm];
+                [realm beginWriteTransaction];
 
-            [realm beginWriteTransaction];
+                for (TGRecognizedBlock *block in recognizer.recognizedPrices)
+                {
+                    TGRecognizedPrice *price = [[TGRecognizedPrice alloc] init];
+                    price.value = [[block number] floatValue];
+                    price.confidence = block.confidence;
 
-            for (TGRecognizedBlock *block in recognizer.recognizedPrices)
-            {
-                TGRecognizedPrice *price = [[TGRecognizedPrice alloc] init];
-                price.value = [[block number] floatValue];
-                price.confidence = block.confidence;
-                price.rectString = [NSValue valueWithCGRect:block.region].description;
-                price.sourceCurrency = [TGCurrency currencyForCode:@"BYR"]; //TODO: fix hardcode
-                price.defaultCurrency = [[self class] defaultCurrency];
+                    CGRect rect =
+                        CGRectApplyAffineTransform(block.region,
+                                                   CGAffineTransformScale(CGAffineTransformIdentity,
+                                                                          item.image.size.width, item.image.size.height));
+                    price.rect = rect;
+                    price.sourceCurrency = [[strongSelf class] sourceCurrency];
+                    price.defaultCurrency = [[strongSelf class] transferCurrency];
 
-                [item.prices addObject:price];
+                    [item.prices addObject:price];
+                }
+                [realm addObject:item];
+                
+                [realm commitWriteTransaction];
             }
-            [realm addObject:item];
-            
-            [realm commitWriteTransaction];
 
             if (callback != nil) {
-                    callback(item);
+                callback(item);
             }
-        });
-        
-        [ARAnalytics event:@"Converted"];
-    });
+            [ARAnalytics event:@"Converted"];
+        }];
+    }];
 }
 
-+ (TGCurrency *)defaultCurrency
++ (TGCurrency *)sourceCurrency
 {
-    return nil;
+    NSString *code = [TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey];
+    if (code == nil) {
+        code = @"BYR";
+    }
+    if ([code isEqualToString:@"USD"]) {
+        return nil;
+    }
+    return [TGCurrency currencyForCode:code];
+}
+
++ (TGCurrency *)transferCurrency
+{
+    NSString *code = [TGSettingsManager objectForKey:kTGSettingsTargetCurrencyKey];
+    if (code == nil || [code isEqualToString:@"USD"]) {
+        return nil;
+    }
+    return [TGCurrency currencyForCode:code];
 }
 
 @end
