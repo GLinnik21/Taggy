@@ -206,7 +206,11 @@
     TGCurrency *fromCurency = [TGCurrency currencyForCode:self.sellButton.currentTitle];
     TGCurrency *toCurency = [TGCurrency currencyForCode:self.buyButton.currentTitle];
     
-    CGFloat value = (CGFloat)[self.sellTextField.text floatValue];
+    NSString *digits = self.sellTextField.text;
+    NSCharacterSet *replase = [NSCharacterSet characterSetWithCharactersInString:@","];
+    digits = [[digits componentsSeparatedByCharactersInSet: replase] componentsJoinedByString: @"."];
+    
+    CGFloat value = (CGFloat)[digits floatValue];
     CGFloat rate = 1.0f;
     
     if (fromCurency != nil) {
