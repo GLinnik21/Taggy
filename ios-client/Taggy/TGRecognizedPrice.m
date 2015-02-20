@@ -63,6 +63,10 @@
 
 - (NSString *)formattedConvertedPrice
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([[defaults objectForKey:@"transf"]  isEqual:@"BYR"]) {
+        return [NSString stringWithFormat:@"%0.0f %@", [self convertedPrice], [self currencyName:[self targetCurency]]];
+    }
     return [NSString stringWithFormat:@"%.2f %@", [self convertedPrice], [self currencyName:[self targetCurency]]];
 }
 
