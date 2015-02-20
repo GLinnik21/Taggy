@@ -126,7 +126,7 @@
             make.width.equalTo(pickerViewRoot);
             make.top.equalTo(pickerViewRoot);
         }];
-        [self.sellPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.buyPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(pickerViewRoot);
             make.top.equalTo(toolBar.mas_bottom);
             make.bottom.equalTo(pickerViewRoot);
@@ -196,8 +196,8 @@
 }
 
 - (IBAction)sellEditingDidBegin:(id)sender {
-    [self.sellPickerView removeFromSuperview];
-    [self.buyPickerView removeFromSuperview];
+    [self.sellPickerView.superview removeFromSuperview];
+    [self.buyPickerView.superview removeFromSuperview];
     self.checkSell = NO;
     self.checkBuy = NO;
 }
