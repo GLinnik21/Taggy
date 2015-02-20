@@ -83,11 +83,13 @@
         [toolBar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(pickerViewRoot);
             make.top.equalTo(pickerViewRoot);
+            make.height.equalTo(pickerViewRoot).multipliedBy(0.15f);
         }];
         [self.sellPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(pickerViewRoot);
             make.top.equalTo(toolBar.mas_bottom);
             make.bottom.equalTo(pickerViewRoot);
+            make.center.equalTo(pickerViewRoot);
         }];
         self.checkBuy = NO;
         self.checkSell = YES;
@@ -125,11 +127,13 @@
         [toolBar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(pickerViewRoot);
             make.top.equalTo(pickerViewRoot);
+            make.height.equalTo(pickerViewRoot).multipliedBy(0.15f);
         }];
         [self.buyPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(pickerViewRoot);
             make.top.equalTo(toolBar.mas_bottom);
             make.bottom.equalTo(pickerViewRoot);
+            make.center.equalTo(pickerViewRoot);
         }];
         self.checkBuy = YES;
         self.checkSell = NO;
@@ -206,9 +210,7 @@
     TGCurrency *fromCurency = [TGCurrency currencyForCode:self.sellButton.currentTitle];
     TGCurrency *toCurency = [TGCurrency currencyForCode:self.buyButton.currentTitle];
     
-    NSString *digits = self.sellTextField.text;
-    NSCharacterSet *replase = [NSCharacterSet characterSetWithCharactersInString:@","];
-    digits = [[digits componentsSeparatedByCharactersInSet: replase] componentsJoinedByString: @"."];
+    NSString *digits = [self.sellTextField.text stringByReplacingOccurrencesOfString:@"," withString:@"."];
     
     CGFloat value = (CGFloat)[digits floatValue];
     CGFloat rate = 1.0f;
