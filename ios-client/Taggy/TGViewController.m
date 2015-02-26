@@ -76,10 +76,25 @@ static NSString *const kTGImageCellId = @"ImageCell";
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDate *updateDate = [defaults objectForKey:@"last_update"];
-    NSString *title = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), updateDate.timeAgoSinceNow];
+    NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:updateDate];
+    
+    if (seconds < 60) {
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor] forKey:NSForegroundColorAttributeName];
+        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"just_now", @"Just now")];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        self.refreshControl.attributedTitle = attributedTitle;
+    }else if (defaults != nil) {
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor] forKey:NSForegroundColorAttributeName];
+        NSString *never = [NSString stringWithFormat:NSLocalizedString(@"never", @"Never")];
+        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), never];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        self.refreshControl.attributedTitle = attributedTitle;
+    }else{
+        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), updateDate.timeAgoSinceNow];
     NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor] forKey:NSForegroundColorAttributeName];
     NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
-    self.refreshControl.attributedTitle = attributedTitle;
+        self.refreshControl.attributedTitle = attributedTitle;
+    }
 }
 
 - (void)setEditing:(BOOL)flag animated:(BOOL)animated

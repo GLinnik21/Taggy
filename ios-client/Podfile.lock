@@ -9,6 +9,7 @@ PODS:
   - ARAnalytics/YandexMobileMetrica (2.9.1):
     - ARAnalytics/CoreIOS
     - YandexMobileMetrica
+  - BEMSimpleLineGraph (3.3)
   - DateTools (1.4.3)
   - FlurrySDK (5.4.0):
     - FlurrySDK/FlurrySDK (= 5.4.0)
@@ -47,6 +48,7 @@ DEPENDENCIES:
   - ARAnalytics/Flurry
   - ARAnalytics/GoogleAnalytics
   - ARAnalytics/YandexMobileMetrica
+  - BEMSimpleLineGraph
   - DateTools
   - FlurrySDK (~> 5.4.0)
   - GoogleAnalytics-iOS-SDK (~> 3.10)
@@ -71,6 +73,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   ARAnalytics: a06e6d012b5999d8598ec9bacec45c8a8099f668
+  BEMSimpleLineGraph: 0ec77f0a2d3e8e448118bbb26963b72f94f1d618
   DateTools: 7c2d233ea2d4bda3a717d0cd5f58da926a5998d0
   FlurrySDK: bed9e5598353f867508d164795a451e3ada92cb6
   FMDB: f6f4511ad1e9ace38e9b6f4d83c2cddaabf98ea6

@@ -17,8 +17,6 @@
 
 @interface TGPhotoCaptureViewController() <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
-
 @property (nonatomic, weak) UIImagePickerController *takePhotoPicker;
 @property (nonatomic, weak) UIImagePickerController *chooseExistingPicker;
 
