@@ -3,7 +3,7 @@
 <h2>Actual currencies <i>(for 1 USD)</i>:</h2>
 <ul>
 	{% for rate in rates %}
-	<li><strong>{{rate}}</strong> : {{rates[rate]}}</li>
+	<li><strong>{{rate.name}}</strong> : {{rate.value}}</li>
 	{% endfor %}
 </ul> 
 {% endblock %}
