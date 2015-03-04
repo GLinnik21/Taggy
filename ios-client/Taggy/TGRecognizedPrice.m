@@ -35,17 +35,16 @@
 
 - (CGFloat)convertedPrice
 {
-    CGFloat sourceRate = 1.0f;
-    CGFloat targetRate = 1.0f;
+    CGFloat rate = 1.0f;
     
     if (self.sourceCurrency != nil) {
-        sourceRate = self.sourceCurrency.value;
+        rate *= self.sourceCurrency.value;
     }
     if ([self targetCurency] != nil) {
-        targetRate = [self targetCurency].value;
+        rate /= [self targetCurency].value;
     }
 
-    return self.value * sourceRate / targetRate;
+    return self.value * rate;
 }
 
 - (NSString *)currencyName:(TGCurrency *)currency
@@ -53,7 +52,7 @@
     if (currency == nil) {
         return @"USD";
     }
-    return currency.codeFrom;
+    return currency.code;
 }
 
 - (NSString *)formattedSourcePrice
@@ -64,7 +63,7 @@
 - (NSString *)formattedConvertedPrice
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if ([[defaults objectForKey:@"transf"]  isEqual:@"BYR"]) {
+    if ([[defaults objectForKey:@"transf"] isEqual:@"BYR"]) {
         return [NSString stringWithFormat:@"%0.0f %@", [self convertedPrice], [self currencyName:[self targetCurency]]];
     }
     return [NSString stringWithFormat:@"%.2f %@", [self convertedPrice], [self currencyName:[self targetCurency]]];
