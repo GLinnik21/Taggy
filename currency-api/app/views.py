@@ -25,10 +25,10 @@ def getTasks():
 @app.route('/rates/<string:rateIds>', methods=['GET'])
 #@auth.login_required
 def getTask(rateIds):
-	rates = models.Rate.query.all()
+	dbrates = dbRates()
 	resultRates = dict()
 	for rateId in rateIds.split('+'):
-		if not rateId in rates:
+		if not rateId in dbrates:
 			abort(404)
-		resultRates[rateId] = rates[rateId]
+		resultRates[rateId] = dbrates[rateId]
 	return jsonify(resultRates)
