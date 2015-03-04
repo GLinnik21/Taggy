@@ -14,12 +14,13 @@ result = simplejson.load(f)
 rates = result['rates']
 
 for rate in rates:
-	dbrate = models.Rate.query.filter(models.Rate.name == rate).first()
-	if dbrate:
-		dbrate.value = rates[rate]
-	else:
-		dbrate = models.Rate(name=rate, date=datetime.datetime.now(), value=rates[rate])
-		db.session.add(dbrate)
-	print rate,
+    date = datetime.datetime.now()
+    #round to minute
+    date += datetime.timedelta(seconds=30)
+    date -= datetime.timedelta(seconds=date.second, microseconds=date.microsecond)
+
+    dbrate = models.Rate(name=rate, date=date, value=rates[rate])
+    db.session.add(dbrate)
+    print rate,
 
 db.session.commit()
