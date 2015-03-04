@@ -1,10 +1,5 @@
 from flask import jsonify, abort, make_response, render_template
-from app import app, auth
-
-rates = {
-	'USD': 1.0,
-	'BYR': 15016.416667
-}
+from app import app, auth, db, models
 
 @app.errorhandler(404)
 def not_found(error):
@@ -13,15 +8,18 @@ def not_found(error):
 @app.route('/')
 @app.route('/index')
 def index():
+	rates = models.Rate.query.all()
 	return render_template('index.html', rates = rates)
 
 @app.route('/rates', methods=['GET'])
 def getTasks():
+	rates = models.Rate.query.all()
 	return jsonify(rates)
 
 @app.route('/rates/<string:rateIds>', methods=['GET'])
 #@auth.login_required
 def getTask(rateIds):
+	rates = models.Rate.query.all()
 	resultRates = dict()
 	for rateId in rateIds.split('+'):
 		if not rateId in rates:
