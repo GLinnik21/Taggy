@@ -13,7 +13,6 @@ def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
 @app.route('/')
-@app.route('/index')
 def index():
 	rates = models.Rate.query.order_by('name').all()
 	return render_template('index.html', rates = rates)
@@ -26,10 +25,10 @@ def getTasks():
 @app.route('/rates/<string:rateIds>', methods=['GET'])
 #@auth.login_required
 def getTask(rateIds):
-	rates = models.Rate.query.all()
+	dbrates = dbRates()
 	resultRates = dict()
 	for rateId in rateIds.split('+'):
-		if not rateId in rates:
+		if not rateId in dbrates:
 			abort(404)
-		resultRates[rateId] = rates[rateId]
+		resultRates[rateId] = dbrates[rateId]
 	return jsonify(resultRates)
