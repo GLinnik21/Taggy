@@ -13,7 +13,6 @@ def not_found(error):
     return make_response(jsonify({'error': 'Not found'}), 404)
 
 @app.route('/')
-@app.route('/index')
 def index():
 	rates = models.Rate.query.order_by('name').all()
 	return render_template('index.html', rates = rates)
