@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content%}
+<h2>Actual currencies <i>(for 1 USD)</i>:</h2>
+<ul>
+	{% for rate in rates %}
+	<li><strong>{{rate.name}}</strong> : <span title='{{rate.date}}'>{{rate.value}}</span></li>
+	{% endfor %}
+</ul> 
+{% endblock %}
