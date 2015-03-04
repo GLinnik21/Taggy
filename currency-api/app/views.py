@@ -1,4 +1,4 @@
-from flask import jsonify, abort, make_response
+from flask import jsonify, abort, make_response, render_template
 from app import app, auth
 
 rates = {
@@ -13,7 +13,7 @@ def not_found(error):
 @app.route('/')
 @app.route('/index')
 def index():
-	return "Taggy: Currency Converter - Curency DB"
+	return render_template('index.html', rates = rates)
 
 @app.route('/rates', methods=['GET'])
 def getTasks():
