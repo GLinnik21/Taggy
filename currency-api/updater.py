@@ -13,10 +13,7 @@ f = opener.open(request)
 result = simplejson.load(f)
 rates = result['rates']
 
-date = datetime.datetime.now()
-#round to minute
-date += datetime.timedelta(seconds=30)
-date -= datetime.timedelta(seconds=date.second, microseconds=date.microsecond)
+date = datetime.datetime.fromtimestamp(int(result['timestamp']))
 
 for rate in rates:
     dbrate = models.Rate(name=rate, date=date, value=rates[rate])
