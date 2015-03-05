@@ -39,13 +39,13 @@ def index():
     return render_template('index.html', rates = rates)
 
 @app.route('/rates', methods=['GET'])
-def getTasks():
+def getRates():
     rates = ratesToDict(latestRates());
     return jsonify(rates)
 
 @app.route('/rates/<string:rateIds>', methods=['GET'])
 #@auth.login_required
-def getTask(rateIds):
+def getRate(rateIds):
     rates = ratesToDict(latestRates())
     resultRates = dict()
     for rateId in rateIds.split('+'):
