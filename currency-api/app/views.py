@@ -41,7 +41,7 @@ def index():
 @app.route('/rates', methods=['GET'])
 def getTasks():
 	rates = ratesToDict(latestRates());
-	return jsonify(dbrates)
+	return jsonify(rates)
 
 @app.route('/rates/<string:rateIds>', methods=['GET'])
 #@auth.login_required
@@ -49,9 +49,9 @@ def getTask(rateIds):
 	rates = ratesToDict(latestRates())
 	resultRates = dict()
 	for rateId in rateIds.split('+'):
-		if not rateId in dbrates:
+		if not rateId in rates:
 			abort(404)
-		resultRates[rateId] = dbrates[rateId]
+		resultRates[rateId] = rates[rateId]
 	return jsonify(resultRates)
 
 @app.route('/history/<int:count>', methods=['GET'])
