@@ -4,10 +4,10 @@
 <h3>Actual currencies <i>(for 1 USD)</i></h3>
 
 <table class="table">
-	<tr><td>Currency</td><td>Rate</td></tr>
-	{% for rate in rates %}
-	<tr><td><strong>{{rate.name}}</strong></td><td>{{rate.value}}</td></tr>
-	{% endfor %}
+  <tr><td>Currency</td><td>Rate</td></tr>
+  {% for rate in rates %}
+  <tr><td><strong>{{rate.name}}</strong></td><td>{{rate.value}}</td></tr>
+  {% endfor %}
 </table>
 
 <span class="label label-warning">{{rates[0].date}}</span>
