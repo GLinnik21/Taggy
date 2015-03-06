@@ -14,9 +14,9 @@ result = simplejson.load(f)
 rates = result['rates']
 
 date = datetime.datetime.fromtimestamp(int(result['timestamp']))
-lastDate = models.Rate.query.order_by(models.Rate.date.desc()).first().date
+lastRate = models.Rate.query.order_by(models.Rate.date.desc()).first()
 
-if lastDate != date:
+if not lastRate or lastRate.date != date:
     for rate in rates:
         dbrate = models.Rate(name=rate, date=date, value=rates[rate])
         db.session.add(dbrate)
