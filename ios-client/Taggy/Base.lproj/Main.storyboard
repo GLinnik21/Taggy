@@ -263,7 +263,7 @@
                                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="product" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFo-cY-zNL">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tag" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nFo-cY-zNL">
                                                             <rect key="frame" x="130" y="37" width="93" height="12"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -309,8 +309,8 @@
                                         <connections>
                                             <outlet property="cellConvertedPriceLabel" destination="VgM-kZ-GeX" id="itI-lS-CJK"/>
                                             <outlet property="cellImageView" destination="ibE-7V-Cb4" id="lJL-eD-JSH"/>
-                                            <outlet property="cellProductLabel" destination="nFo-cY-zNL" id="rUh-sx-rtZ"/>
                                             <outlet property="cellSourcePriceLabel" destination="SJM-Xi-DOG" id="7QP-nP-Jnq"/>
+                                            <outlet property="cellTagLabel" destination="nFo-cY-zNL" id="JMe-jI-En0"/>
                                             <outlet property="cellTimeLabel" destination="66A-4B-O2C" id="G4s-3c-cGm"/>
                                             <segue destination="nlV-8a-42T" kind="push" identifier="SelectCell" id="fen-cT-SvR"/>
                                         </connections>

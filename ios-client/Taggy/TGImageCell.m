@@ -19,7 +19,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *cellSourcePriceLabel;
 @property (nonatomic, weak) IBOutlet UILabel *cellConvertedPriceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cellTimeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *cellProductLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cellTagLabel;
 
 @end
 
@@ -29,6 +29,8 @@
 {
     if (priceImage != _priceImage) {
         _priceImage = priceImage;
+        
+        self.cellTagLabel.text = priceImage.tag;
         
         self.cellImageView.image = priceImage.thumbnail;
         

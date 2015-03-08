@@ -83,7 +83,7 @@
     
     totalNumber = 0;
     
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 30; i++) {
         [self.arrayOfValues addObject:@([self getRandomInteger])]; // Random values for the graph
         [self.arrayOfDates addObject:[NSString stringWithFormat:@"%@", @(2000 + i)]]; // Dates for the X-Axis of the graph
         
@@ -107,7 +107,7 @@
     self.graphView.widthLine = 3.0;
     self.graphView.enableTouchReport = YES;
     self.graphView.enablePopUpReport = YES;
-    self.graphView.enableBezierCurve = YES;
+    self.graphView.enableBezierCurve = NO;
     self.graphView.enableYAxisLabel = YES;
     self.graphView.autoScaleYAxis = YES;
     self.graphView.alwaysDisplayDots = NO;
@@ -168,21 +168,23 @@
             make.height.equalTo(self.view).multipliedBy(0.45f);
             make.bottom.equalTo(self.view);
         }];
+        
         [toolBar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(pickerViewRoot);
-            make.top.equalTo(pickerViewRoot);
-            make.height.equalTo(pickerViewRoot).multipliedBy(0.15f);
+            make.top.equalTo(pickerViewRoot.mas_top);
         }];
         [self.sellPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(pickerViewRoot);
-            make.top.equalTo(toolBar.mas_bottom);
+            make.top.equalTo(toolBar);
             make.bottom.equalTo(pickerViewRoot);
             make.center.equalTo(pickerViewRoot);
         }];
+        
         self.checkBuy = NO;
         self.checkSell = YES;
         [self.buyPickerView.superview removeFromSuperview];
     }
+    
     [self.sellTextField resignFirstResponder];
     [self.buyTextField resignFirstResponder];
 }
@@ -216,12 +218,11 @@
         }];
         [toolBar mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(pickerViewRoot);
-            make.top.equalTo(pickerViewRoot);
-            make.height.equalTo(pickerViewRoot).multipliedBy(0.15f);
+            make.top.equalTo(pickerViewRoot.mas_top);
         }];
         [self.buyPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(pickerViewRoot);
-            make.top.equalTo(toolBar.mas_bottom);
+            make.top.equalTo(toolBar);
             make.bottom.equalTo(pickerViewRoot);
             make.center.equalTo(pickerViewRoot);
         }];

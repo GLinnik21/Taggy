@@ -83,7 +83,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
         NSString *title = [NSString stringWithFormat:NSLocalizedString(@"just_now", @"Just now")];
         NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
         self.refreshControl.attributedTitle = attributedTitle;
-    }else if (defaults != nil) {
+    }else if ([defaults objectForKey:@"last_update"] == nil) {
         NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor] forKey:NSForegroundColorAttributeName];
         NSString *never = [NSString stringWithFormat:NSLocalizedString(@"never", @"Never")];
         NSString *title = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), never];
