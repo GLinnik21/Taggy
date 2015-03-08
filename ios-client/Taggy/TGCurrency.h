@@ -11,9 +11,8 @@
 
 @interface TGCurrency : RLMObject
 
+@property NSString *code;
 @property NSDate *updateDate;
-@property NSString *codeFrom;
-@property NSString *codeTo;
 @property CGFloat value;
 
 + (TGCurrency *)currencyForCode:(NSString *)code;

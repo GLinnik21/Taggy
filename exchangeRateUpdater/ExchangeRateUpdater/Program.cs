@@ -12,11 +12,15 @@ namespace ExchangeRateUpdater
     {
         static void Main(string[] args)
         {
+            if (args.Length != 1) 
+            {
+                Console.WriteLine("Run: this.exe [directory with Rates.txt]");
+                return;
+            }
             string url = "http://rate-exchange.appspot.com/currency?from={0}&to=USD";
             WebClient wclient = new WebClient();
 
-            Console.Write("Please, select a directory to keep exchange rate: ");
-            string directoryPath = String.Format(Console.ReadLine());
+            string directoryPath = String.Format(args[0]);
             string[] currencyAbbreviations = { "AUD", "EUR", "AZN", "ALL", "DZD", "USD", "XCD", "AOA", "ANG", "ARS", "AMD", 
                                                   "AWG", "AFA", "BSD", "BDT", "BBD", "BHD", "BYR", "BZD", "XOF", "BMD", "BGL", 
                                                   "BOB", "BAM", "BWP", "BRR", "BIF", "BTN", "VUV", "GBP", "HUF", "VEB", "VND",
@@ -69,13 +73,10 @@ namespace ExchangeRateUpdater
 
                     catch (Exception e)
                     {
-
+                        Console.WriteLine("Error: " + e);
                     }
                 }
             }
-
-
-            Console.ReadKey();
         }
     }
 }

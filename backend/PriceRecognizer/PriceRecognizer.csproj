@@ -48,9 +48,18 @@
     <None Include="dibapi.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="tessdata\eng.DangAmbigs" />
+    <None Include="tessdata\eng.freq-dawg" />
+    <None Include="tessdata\eng.inttemp" />
+    <None Include="tessdata\eng.normproto" />
+    <None Include="tessdata\eng.pffmtable" />
+    <None Include="tessdata\eng.unicharset" />
+    <None Include="tessdata\eng.user-words" />
+    <None Include="tessdata\eng.word-dawg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Puma\" />
+    <Folder Include="tessdata\" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

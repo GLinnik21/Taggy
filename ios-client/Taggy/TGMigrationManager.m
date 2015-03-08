@@ -44,7 +44,14 @@
             [ARAnalytics finishTimingEvent:@"Migration 1 > 2"];
         }
         if (oldSchemaVersion < 3) {
-            [ARAnalytics event:@"Migration 2 > 3"];
+            [ARAnalytics startTimingEvent:@"Migration 2 > 3"];
+
+            [migration enumerateObjects:[TGCurrency className] block:^(RLMObject *oldObject, RLMObject *newObject) {
+                newObject[@"code"] = oldObject[@"codeFrom"];
+            }];
+
+            [ARAnalytics finishTimingEvent:@"Migration 2 > 3"];
+
         }
     }];
     [RLMRealm migrateRealmAtPath:[RLMRealm defaultRealmPath]];
