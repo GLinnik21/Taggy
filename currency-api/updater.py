@@ -13,13 +13,14 @@ f = opener.open(request)
 result = simplejson.load(f)
 rates = result['rates']
 
-for rate in rates:
-	dbrate = models.Rate.query.filter(models.Rate.name == rate).first()
-	if dbrate:
-		dbrate.value = rates[rate]
-	else:
-		dbrate = models.Rate(name=rate, date=datetime.datetime.now(), value=rates[rate])
-		db.session.add(dbrate)
-	print rate,
+date = datetime.datetime.fromtimestamp(int(result['timestamp']))
+lastRate = models.Rate.query.order_by(models.Rate.date.desc()).first()
 
-db.session.commit()
+if not lastRate or lastRate.date != date:
+    for rate in rates:
+        dbrate = models.Rate(name=rate, date=date, value=rates[rate])
+        db.session.add(dbrate)
+        print rate,
+    db.session.commit()
+else:
+    print 'Currency is up to date'
