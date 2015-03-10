@@ -91,6 +91,15 @@
                                                               action:@selector(dismiss)];
             viewController.navigationItem.rightBarButtonItem = dismissButton;
             [viewController.navigationItem.rightBarButtonItem setTintColor:[UIColor orangeColor]];
+            
+            UIBarButtonItem *tagButton =
+            [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                          target:viewController
+                                                          action:@selector(dismiss)];
+            
+            [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"tag"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+            
+            viewController.navigationItem.rightBarButtonItem = tagButton;
 
             [self.navigationController presentViewController:navigationController animated:YES completion:nil];
         }
