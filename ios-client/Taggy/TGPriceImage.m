@@ -20,6 +20,14 @@ static CGSize const kTGThumbnailSize = { 100.0f, 100.0f };
 
 @implementation TGPriceImage
 
++ (NSDictionary *)defaultPropertyValues
+{
+    return @{
+        @"tag" : @"",
+        @"locationData" : [NSData data],
+    };
+}
+
 - (NSString *)localizedCaptureDate
 {
     return [NSDateFormatter localizedStringFromDate:self.captureDate
