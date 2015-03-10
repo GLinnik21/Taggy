@@ -11,13 +11,14 @@
 #import <ARAnalytics/ARAnalytics.h>
 
 #import "TGCurrency.h"
+#import "TGPriceImage.h"
 #import "TGRecognizedPrice.h"
 
 @implementation TGMigrationManager
 
 + (void)migrate
 {
-    [RLMRealm setSchemaVersion:3
+    [RLMRealm setSchemaVersion:4
                 forRealmAtPath:[RLMRealm defaultRealmPath]
             withMigrationBlock:^(RLMMigration *migration, NSUInteger oldSchemaVersion) {
         if (oldSchemaVersion < 1) {
@@ -51,7 +52,17 @@
             }];
 
             [ARAnalytics finishTimingEvent:@"Migration 2 > 3"];
+        }
+                
+        if (oldSchemaVersion < 4) {
+            [ARAnalytics startTimingEvent:@"Migration 3 > 4"];
 
+            [migration enumerateObjects:[TGPriceImage className] block:^(RLMObject *oldObject, RLMObject *newObject) {
+                newObject[@"tag"] = @"";
+                newObject[@"locationData"] = [NSData data];
+            }];
+
+            [ARAnalytics finishTimingEvent:@"Migration 3 > 4"];
         }
     }];
     [RLMRealm migrateRealmAtPath:[RLMRealm defaultRealmPath]];
