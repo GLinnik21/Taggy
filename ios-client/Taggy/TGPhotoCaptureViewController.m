@@ -14,6 +14,8 @@
 #import "TGDataManager.h"
 #import "SVProgressHUD.h"
 #import "TGDetailViewController.h"
+#import <Realm/Realm.h>
+
 
 @interface TGPhotoCaptureViewController() <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -92,14 +94,14 @@
             viewController.navigationItem.rightBarButtonItem = dismissButton;
             [viewController.navigationItem.rightBarButtonItem setTintColor:[UIColor orangeColor]];
             
-            UIBarButtonItem *tagButton =
-            [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                          target:viewController
-                                                          action:@selector(dismiss)];
+            UIImage *tagImage = [UIImage imageNamed:@"tag"];
+            CGRect frameimg = CGRectMake(30, 30, tagImage.size.width, tagImage.size.height);
+            UIButton *tagButton = [[UIButton alloc] initWithFrame:frameimg];
+            [tagButton setBackgroundImage:tagImage forState:UIControlStateNormal];
+            [tagButton addTarget:self action:@selector(saveTag) forControlEvents:UIControlEventTouchUpInside];
             
-            [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[UIImage imageNamed:@"tag"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-            
-            viewController.navigationItem.rightBarButtonItem = tagButton;
+            UIBarButtonItem *tagBarButton =[[UIBarButtonItem alloc] initWithCustomView:tagButton];
+            viewController.navigationItem.leftBarButtonItem = tagBarButton;
 
             [self.navigationController presentViewController:navigationController animated:YES completion:nil];
         }
@@ -108,6 +110,23 @@
     }];
 
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+-(void)saveTag{
+    UIAlertView *tagSaveAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"save_tag", @"Save?")
+                                                          message:NSLocalizedString(@"save_tag_mess", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") otherButtonTitles:@"OK", nil];
+    tagSaveAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [tagSaveAlert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString *test = [[alertView textFieldAtIndex:0] text];
+    if (buttonIndex == 1) {
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+         //= test;
+        [realm commitWriteTransaction];
+    }
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
