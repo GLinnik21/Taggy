@@ -38,10 +38,10 @@
     CGFloat rate = 1.0f;
     
     if (self.sourceCurrency != nil) {
-        rate *= self.sourceCurrency.value;
+        rate /= self.sourceCurrency.value;
     }
     if ([self targetCurency] != nil) {
-        rate /= [self targetCurency].value;
+        rate *= [self targetCurency].value;
     }
 
     return self.value * rate;

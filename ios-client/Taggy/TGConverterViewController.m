@@ -307,10 +307,10 @@
     CGFloat rate = 1.0f;
     
     if (fromCurency != nil) {
-        rate *= fromCurency.value;
+        rate /= fromCurency.value;
     }
     if (toCurency != nil) {
-        rate /= toCurency.value;
+        rate *= toCurency.value;
     }
     
     CGFloat result = value * rate;
