@@ -571,7 +571,7 @@
                     </tableView>
                     <connections>
                         <outlet property="searchDisplayController" destination="tPz-oj-54y" id="XD9-l1-3P9"/>
-                        <outlet property="tableView" destination="M77-jw-AkY" id="8iq-l7-5I6"/>
+                        <outlet property="tableView" destination="M77-jw-AkY" id="v9y-v8-u0h"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Yx-Ga-iGU" userLabel="First Responder" sceneMemberID="firstResponder"/>

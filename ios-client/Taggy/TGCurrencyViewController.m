@@ -44,20 +44,13 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"SELF contains[cd] %@", //не ясно из чего брать
-                                    searchText];
-    
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@", searchText];
     self.searchResults = [self.codes filteredArrayUsingPredicate:resultPredicate];
 }
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller
-        shouldReloadTableForSearchString:(NSString *)searchString
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    NSInteger scopeIndex = self.searchDisplayController.searchBar.selectedScopeButtonIndex;
-    NSString *scope = [self.searchDisplayController.searchBar.scopeButtonTitles objectAtIndex:scopeIndex];
-
-    [self filterContentForSearchText:searchString scope:scope];
+    [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
     
     return YES;
 }
@@ -72,20 +65,23 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return self.searchResults.count;
-    }
-    else {
-        return self.codes.count;
+        return [self.searchResults count];
+        
+    } else {
+        return [self.codes count];
     }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Тут приходит другая таблица. И вообще, такой метод поиска деприкейтед в iOS 8. Поищите как это правильно делать в 8й оси.
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"currencyCell" forIndexPath:indexPath];
-   // NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
+    static NSString *cellID = @"cellID";
+    UITableViewCell *cell = [tableView dequeueReusableHeaderFooterViewWithIdentifier:cellID];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
+    }
+    
     if([self.checkedIndexPath isEqual:indexPath]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
@@ -93,13 +89,17 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
+   // NSDictionary *dict = [NSDictionary dictionaryWithObjects:self.codes forKeys:self.rates];
+    //NSLog(@"%@", dict);
+    
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         cell.textLabel.text = self.searchResults[indexPath.row];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", self.rates[indexPath.row]];
     }
     else {
         cell.textLabel.text = self.codes[indexPath.row];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", self.rates[indexPath.row]];
     }
-   // cell.detailTextLabel.text = self.rates[indexPath.row];
     
     return cell;
 }
@@ -116,7 +116,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     // Тут ключ должен быть в разных вьюхах разный.
-    [defaults setObject:[self.codes objectAtIndex:indexPath.row] forKey:@"country"];
+    [defaults setObject:cell.textLabel.text forKey:@"country"];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     self.checkedIndexPath = indexPath;
 }
