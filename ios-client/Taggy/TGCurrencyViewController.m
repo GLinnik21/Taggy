@@ -9,12 +9,14 @@
 #import "TGCurrencyViewController.h"
 #import "TGCurrency.h"
 
+#import "TGSettingsManager.h"
+
 @interface TGCurrencyViewController ()
 
 @property (nonatomic, retain) NSIndexPath *checkedIndexPath;
 
-@property (nonatomic, strong) NSMutableArray *codes;
-@property (nonatomic, strong) NSMutableArray *rates;
+@property (nonatomic, strong) NSArray *codes;
+@property (nonatomic, strong) NSMutableDictionary *rates;
 @property (nonatomic, copy) NSArray *searchResults;
 
 @end
@@ -25,30 +27,23 @@
 {
     [super viewDidLoad];
 
-    self.codes = [NSMutableArray array];
+    self.rates = [NSMutableDictionary dictionary];
     for (TGCurrency *currency in [TGCurrency allObjects]) {
-        [self.codes addObject:currency.code];
+        self.rates[currency.code] = @(currency.value);
     }
-    
-    self.rates = [NSMutableArray array];
-    for (TGCurrency *currency in [TGCurrency allObjects]) {
-        [self.rates addObject:@(currency.value)];
-    }
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.codes = [self.rates.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
+        return [obj1 compare:obj2];
+    }];
 }
 
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+- (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope
 {
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@", searchText];
     self.searchResults = [self.codes filteredArrayUsingPredicate:resultPredicate];
 }
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller
+        shouldReloadTableForSearchString:(NSString *)searchString
 {
     [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
     
@@ -57,48 +52,44 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return [self.searchResults count];
-        
-    } else {
-        return [self.codes count];
+    }
+    else {
+        return [self.rates count];
     }
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID = @"cellID";
     UITableViewCell *cell = [tableView dequeueReusableHeaderFooterViewWithIdentifier:cellID];
-    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
     }
-    
-    if([self.checkedIndexPath isEqual:indexPath]) {
+
+    NSString *rateId = nil;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        rateId = self.searchResults[indexPath.row];
+    }
+    else {
+        rateId = self.codes[indexPath.row];
+    }
+    NSNumber *rate = self.rates[rateId];
+
+    cell.textLabel.text = rateId;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f", rate.floatValue];
+
+    if ([[TGSettingsManager objectForKey:self.settingsKey] isEqualToString:rateId]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        if (tableView != self.searchDisplayController.searchResultsTableView) {
+            self.checkedIndexPath = indexPath;
+        }
     }
     else {
         cell.accessoryType = UITableViewCellAccessoryNone;
-    }
-    
-   // NSDictionary *dict = [NSDictionary dictionaryWithObjects:self.codes forKeys:self.rates];
-    //NSLog(@"%@", dict);
-    
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
-        cell.textLabel.text = self.searchResults[indexPath.row];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", self.rates[indexPath.row]];
-    }
-    else {
-        cell.textLabel.text = self.codes[indexPath.row];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", self.rates[indexPath.row]];
     }
     
     return cell;
@@ -109,16 +100,17 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (self.checkedIndexPath != nil) {
-        UITableViewCell *uncheckCell = [tableView cellForRowAtIndexPath:self.checkedIndexPath];
+        UITableViewCell *uncheckCell = [self.tableView cellForRowAtIndexPath:self.checkedIndexPath];
         uncheckCell.accessoryType = UITableViewCellAccessoryNone;
     }
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    // Тут ключ должен быть в разных вьюхах разный.
-    [defaults setObject:cell.textLabel.text forKey:@"country"];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+
+    [TGSettingsManager setObject:cell.textLabel.text forKey:self.settingsKey];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     self.checkedIndexPath = indexPath;
+
+    [self.searchDisplayController setActive:NO animated:YES];
 }
 
 @end

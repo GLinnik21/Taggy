@@ -10,4 +10,6 @@
 
 @interface TGCurrencyViewController : UITableViewController
 
+@property (nonatomic, copy) NSString *settingsKey;
+
 @end

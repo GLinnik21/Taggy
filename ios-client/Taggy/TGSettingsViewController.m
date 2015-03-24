@@ -10,6 +10,8 @@
 #import "TGCurrencyViewController.h"
 #import "TGViewController.h"
 
+#import "TGSettingsManager.h"
+
 @interface TGSettingsViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *sourceCurrencyCell;
@@ -62,11 +64,13 @@
     if (theCellClicked == self.sourceCurrencyCell) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         TGCurrencyViewController *currency = [storyboard instantiateViewControllerWithIdentifier:@"CurrenciesViewController"];
+        currency.settingsKey = kTGSettingsSourceCurrencyKey;
         [self.navigationController pushViewController:currency animated:YES];
     }
     if (theCellClicked == self.targetCurrencyCell) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
         TGCurrencyViewController *currency = [storyboard instantiateViewControllerWithIdentifier:@"CurrenciesViewController"];
+        currency.settingsKey = kTGSettingsTargetCurrencyKey;
         [self.navigationController pushViewController:currency animated:YES];
     }
     
