@@ -26,7 +26,10 @@
 
 @implementation TGPhotoCaptureViewController
 
--(void)viewDidDisappear:(BOOL)animated{
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
     [SVProgressHUD dismiss];
 }
 
