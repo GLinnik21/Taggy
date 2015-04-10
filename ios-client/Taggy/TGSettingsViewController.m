@@ -34,15 +34,15 @@
     self.versionLabel.text = [defaults objectForKey:@"version"];
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.sourceCurrencyLabel.text = [defaults objectForKey:@"country"];
     self.targetCurrencyLabel.text = [defaults objectForKey:@"transf"];
-    if (![defaults boolForKey:@"auto_update"]) {
-        [self.auto_updateSwitch setOn:NO animated:YES];
-    }else{
-        [self.auto_updateSwitch setOn:YES animated:YES];
-    }
+    
+    [self.auto_updateSwitch setOn:[defaults boolForKey:@"auto_update"] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
