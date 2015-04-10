@@ -14,6 +14,8 @@
 #import <GPUImage/GPUImage.h>
 #import "UIImage+FixOrientation.h"
 
+#import "TGSettingsManager.h"
+
 static NSString *const kTGNumberRegexPattern = @"([0-9]*|[0-9]+[,.])([,.][0-9]+|[0-9]+)";
 
 static NSTimeInterval const kTGMaxRecognitionTime = 3.0;
@@ -146,7 +148,11 @@ static NSUInteger const kTGMaximumPricesCount = 4;
         [self takeFirst:INT_MAX];
         [self joinBlocks];
         [self removeBadPrices];
-        [self belarusOptimization];
+
+        if ([[TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey] isEqual:@"BYR"]) {
+            [self belarusOptimization];
+        }
+
         [self sortBlocks];
         [self takeFirst:kTGMaximumPricesCount];
 

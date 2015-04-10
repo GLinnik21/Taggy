@@ -76,10 +76,25 @@ static NSString *const kTGImageCellId = @"ImageCell";
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDate *updateDate = [defaults objectForKey:@"last_update"];
-    NSString *title = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), updateDate.timeAgoSinceNow];
+    NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:updateDate];
+    
+    if (seconds < 60) {
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor] forKey:NSForegroundColorAttributeName];
+        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"just_now", @"Just now")];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        self.refreshControl.attributedTitle = attributedTitle;
+    }else if ([defaults objectForKey:@"last_update"] == nil) {
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor] forKey:NSForegroundColorAttributeName];
+        NSString *never = [NSString stringWithFormat:NSLocalizedString(@"never", @"Never")];
+        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), never];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        self.refreshControl.attributedTitle = attributedTitle;
+    }else{
+        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), updateDate.timeAgoSinceNow];
     NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor] forKey:NSForegroundColorAttributeName];
     NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
-    self.refreshControl.attributedTitle = attributedTitle;
+        self.refreshControl.attributedTitle = attributedTitle;
+    }
 }
 
 - (void)setEditing:(BOOL)flag animated:(BOOL)animated
@@ -134,12 +149,6 @@ static NSString *const kTGImageCellId = @"ImageCell";
         [self setEditing:NO animated:YES];
         [self.refreshControl removeFromSuperview];
         self.navigationItem.leftBarButtonItem = nil;
-    }
-    else {
-        [self.tableView insertSubview:self.refreshControl atIndex:0];
-    }
-
-    if ([TGDataManager recognizedImagesCount] == 0) {
         self.tableView.backgroundColor = [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1];
         UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
         messageLabel.text = NSLocalizedString(@"no_results", @"No results");
@@ -158,6 +167,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
         self.navigationItem.rightBarButtonItem = self.editButtonItem;
         self.tableView.backgroundColor = nil;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        [self.tableView insertSubview:self.refreshControl atIndex:0];
     }
 
     return [TGDataManager recognizedImagesCount];

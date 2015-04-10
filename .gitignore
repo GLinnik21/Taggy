@@ -197,3 +197,9 @@ FakesAssemblies/
 
 Rates.txt
 
+# Python Enviroment
+
+env/
+*.pyc
+app.db
+

@@ -19,3 +19,5 @@
 "delete_all" = "Delete all";
 "conf_question" = "Do you really want to delete all results?";
 "cancel" = "Cancel";
+"just_now" = "Just now";
+"never" = "Never";

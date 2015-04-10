@@ -21,6 +21,7 @@
 
 @property (nonatomic, weak) UILabel *sourcePriceDetailLabel;
 @property (nonatomic, weak) UILabel *targetPriceDetailLabel;
+@property (weak, nonatomic) IBOutlet UINavigationItem *resultNavigationBar;
 
 @end
 
@@ -30,6 +31,15 @@
 {
     [super viewDidLoad];
 
+    UIImage *tagImage = [UIImage imageNamed:@"tag"];
+    CGRect frameimg = CGRectMake(30, 30, tagImage.size.width, tagImage.size.height);
+    UIButton *tagButton = [[UIButton alloc] initWithFrame:frameimg];
+    [tagButton setBackgroundImage:tagImage forState:UIControlStateNormal];
+    [tagButton addTarget:self action:@selector(saveTag) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *tagBarButton =[[UIBarButtonItem alloc] initWithCustomView:tagButton];
+    self.resultNavigationBar.rightBarButtonItem = tagBarButton;
+    
     [self configureViewController];
     [self reloadData];
 }
@@ -89,13 +99,15 @@
     else {
         [self.imageView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.equalTo(self.imageScrollView);
-            make.height.equalTo(self.imageView.mas_height).multipliedBy(1.0 / aspectRatio);
+            make.height.equalTo(self.imageView.mas_width).multipliedBy(1.0 / aspectRatio);
         }];
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView selectRowAtIndexPath:indexPath
                                 animated:animated
@@ -139,6 +151,24 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.detail.prices.count;
+}
+
+
+-(void)saveTag{
+    UIAlertView *tagSaveAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"save_tag", @"Save?")
+                                                           message:NSLocalizedString(@"save_tag_mess", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") otherButtonTitles:@"OK", nil];
+    tagSaveAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [tagSaveAlert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSString *test = [[alertView textFieldAtIndex:0] text];
+    if (buttonIndex == 1) {
+        RLMRealm *realm = [RLMRealm defaultRealm];
+        [realm beginWriteTransaction];
+        self.detail.tag = test; // Так вот только надо сюда добавить показ алерта. Понятно, но получается кнопка сохранения тега будет и детаиле в результатах. Да, почему бы и нет) Возможность изменять результат. Ну или можно её включать только для результата распознания. Надо еще где-то показывать теги в детаиле. Да, наддо придумать им место.... Я отключаюсь? ок
+        [realm commitWriteTransaction];
+    }
 }
 
 @end

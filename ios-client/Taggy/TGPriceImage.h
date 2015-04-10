@@ -14,6 +14,9 @@
 @interface TGPriceImage : RLMObject
 
 @property NSDate *captureDate;
+@property NSString *tag;
+@property NSData *locationData;
+
 @property RLMArray<TGRecognizedPrice> *prices;
 
 @property (readonly) NSData *sourceImageData;

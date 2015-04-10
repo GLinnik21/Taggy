@@ -18,6 +18,18 @@ namespace Taggy
         [HttpGet]
         public ActionResult Index()
         {
+            return OtherExtensions.BrowserIsMobile () ? View ("IndexMobile") : View ("Index");
+
+        }
+
+        [HttpGet]
+        public ActionResult Converter()
+        {
+            ViewBag.StylePostfix = "";
+            if (OtherExtensions.BrowserIsMobile ()) {
+                ViewBag.StylePostfix = ".mobile";
+            }
+
             return View();
         }
 
@@ -37,7 +49,7 @@ namespace Taggy
         }
 
         [HttpPost]
-        public ActionResult Index(HttpPostedFileBase file)
+        public ActionResult Converter(HttpPostedFileBase file)
         {
             var Long = ViewBag.Long;
             var Lat = ViewBag.Lat;
