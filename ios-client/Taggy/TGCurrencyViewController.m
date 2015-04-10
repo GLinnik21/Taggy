@@ -14,6 +14,7 @@
 @interface TGCurrencyViewController ()
 
 @property (nonatomic, retain) NSIndexPath *checkedIndexPath;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSArray *codes;
 @property (nonatomic, strong) NSMutableDictionary *rates;
@@ -111,6 +112,13 @@
     self.checkedIndexPath = indexPath;
 
     [self.searchDisplayController setActive:NO animated:YES];
+}
+
+- (IBAction)addCurrency:(id)sender {
+    UIAlertView *tagSaveAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"save_tag", @"Save?")
+                                                           message:NSLocalizedString(@"save_tag_mess", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") otherButtonTitles:@"OK", nil];
+    tagSaveAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+    [tagSaveAlert show];
 }
 
 @end
