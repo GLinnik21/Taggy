@@ -23,7 +23,6 @@ PODS:
     - GoogleAnalytics-iOS-SDK/Core (= 3.10)
   - GoogleAnalytics-iOS-SDK/Core (3.10)
   - GPUImage (0.1.6)
-  - InAppSettingsKit (2.3.3)
   - KSCrash/Recording (0.0.3)
   - KSCrash/Reporting/Filters/AppleFmt (0.0.3):
     - KSCrash/Recording
@@ -53,7 +52,6 @@ DEPENDENCIES:
   - FlurrySDK (~> 5.4.0)
   - GoogleAnalytics-iOS-SDK (~> 3.10)
   - GPUImage (~> 0.1.6)
-  - InAppSettingsKit (~> 2.3)
   - Masonry (~> 0.5.3)
   - Reachability
   - Realm (~> 0.88)
@@ -69,7 +67,6 @@ SPEC CHECKSUMS:
   FMDB: 0678cab3b024ea6a2e6ea5dd91fc8eb9a296bf57
   GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
   GPUImage: 4675ce4a5370ca92fcea8623b2a08b8f0c51b940
-  InAppSettingsKit: 4c7de2320f6f252b0348ae9d3ea86048071094d6
   KSCrash: 8cb2d6e316c9c12b1444df232e650547be742494
   Masonry: 9f515466afe48632562342a40a1c224071a1a022
   protobuf-c: e7a40bc5d069f55f6d47d616ea532481b947b8d9
@@ -79,4 +76,4 @@ SPEC CHECKSUMS:
   TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
   YandexMobileMetrica: 0a57437e752dcd66d88d11710c89320a0df32802
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.36.0.beta.1
