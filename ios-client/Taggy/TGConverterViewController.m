@@ -59,7 +59,6 @@
     self.sellTextField.inputAccessoryView = toolBar;
     self.sellTextField.keyboardType = UIKeyboardTypeDecimalPad;
     
-    
     //Graph
     UIView* graphBG= [[UIView alloc] init];
     

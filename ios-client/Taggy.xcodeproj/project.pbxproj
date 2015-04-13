@@ -32,7 +32,6 @@
 		ED077A4A19F9405E00B203CB /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3919F9405E00B203CB /* 1.png */; };
 		ED077A4B19F9405E00B203CB /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3A19F9405E00B203CB /* 2.png */; };
 		ED077A4C19F9405E00B203CB /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3B19F9405E00B203CB /* 3.png */; };
-		ED077A5019F9405E00B203CB /* res.textClipping in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3F19F9405E00B203CB /* res.textClipping */; };
 		ED077A6C19F940F700B203CB /* TGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A6319F940F700B203CB /* TGDetailViewController.m */; };
 		ED077A6D19F940F700B203CB /* TGImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A6519F940F700B203CB /* TGImageCell.m */; };
 		ED077A6E19F940F700B203CB /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED077A6619F940F700B203CB /* images.xcassets */; };
@@ -101,7 +100,6 @@
 		ED077A3919F9405E00B203CB /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		ED077A3A19F9405E00B203CB /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		ED077A3B19F9405E00B203CB /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
-		ED077A3F19F9405E00B203CB /* res.textClipping */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = res.textClipping; sourceTree = "<group>"; };
 		ED077A6219F940F700B203CB /* TGDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGDetailViewController.h; sourceTree = "<group>"; };
 		ED077A6319F940F700B203CB /* TGDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGDetailViewController.m; sourceTree = "<group>"; };
 		ED077A6419F940F700B203CB /* TGImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGImageCell.h; sourceTree = "<group>"; };
@@ -345,7 +343,6 @@
 				ED077A3919F9405E00B203CB /* 1.png */,
 				ED077A3A19F9405E00B203CB /* 2.png */,
 				ED077A3B19F9405E00B203CB /* 3.png */,
-				ED077A3F19F9405E00B203CB /* res.textClipping */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -446,7 +443,6 @@
 				ED077A2319F93FE300B203CB /* LaunchScreen.xib in Resources */,
 				4106C4661A109D4A004790DB /* currency.json in Resources */,
 				410C200619FE745B0082C66C /* tessdata in Resources */,
-				ED077A5019F9405E00B203CB /* res.textClipping in Resources */,
 				ED715FDC1A0927DD00F81CAF /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

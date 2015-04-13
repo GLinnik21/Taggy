@@ -38,8 +38,10 @@
     [TGMigrationManager migrate];
 
     [TGSettingsManager loadManager];
-    
-    [TGCurrencyManager updateWithCallback:nil];
+
+    if ([[TGSettingsManager objectForKey:kTGSettingsAutoUpdateKey] boolValue]) {
+        [TGCurrencyManager updateWithCallback:nil];
+    }
 
 #ifdef DEBUG
     [TGDataManager fillSample];

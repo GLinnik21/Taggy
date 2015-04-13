@@ -45,7 +45,10 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller
         shouldReloadTableForSearchString:(NSString *)searchString
 {
-    [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    NSInteger scopeIndex = self.searchDisplayController.searchBar.selectedScopeButtonIndex;
+    NSString *scope = self.searchDisplayController.searchBar.scopeButtonTitles[scopeIndex];
+
+    [self filterContentForSearchText:searchString scope:scope];
     
     return YES;
 }
@@ -55,10 +58,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [self.searchResults count];
+        return self.searchResults.count;
     }
     else {
-        return [self.rates count];
+        return self.rates.count;
     }
 }
 
