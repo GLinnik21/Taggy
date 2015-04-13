@@ -16,7 +16,7 @@
 
 #import "TGSettingsManager.h"
 
-static NSString *const kTGNumberRegexPattern = @"([0-9]*|[0-9]+[,.])([,.][0-9]+|[0-9]+)";
+static NSString *const kTGNumberRegexPattern = @"(([0-9]*|[0-9]+[,.])([,.][0-9]+|[0-9]+)|[,.])";
 
 static NSTimeInterval const kTGMaxRecognitionTime = 3.0;
 
@@ -146,6 +146,10 @@ static NSUInteger const kTGMaximumPricesCount = 4;
         //[self removeSmallBlocks];
         [self sortBlocks];
         [self takeFirst:INT_MAX];
+        if ([[TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey] isEqual:@"BYR"] == NO) {
+            [self fixDots];
+            [self joinDots];
+        }
         [self joinBlocks];
         [self removeBadPrices];
 
@@ -242,6 +246,67 @@ static NSUInteger const kTGMaximumPricesCount = 4;
     self.wellRecognizedBlocks = newBlocks;
 }
 
+- (void)fixDots
+{
+    for (TGRecognizedBlock *block in self.wellRecognizedBlocks) {
+        if ([block.text isEqualToString:@","]) {
+            block.text = @".";
+        }
+    }
+}
+
+- (void)joinDots
+{
+    BOOL anyFound = NO;
+    do {
+        anyFound = NO;
+        NSMutableArray *newGoodWords = [[NSMutableArray alloc] initWithArray:self.wellRecognizedBlocks];
+        for (TGRecognizedBlock *block in self.wellRecognizedBlocks) {
+            if ([newGoodWords containsObject:block] == NO) continue;
+            for (TGRecognizedBlock *exBlock in self.wellRecognizedBlocks) {
+                if ([newGoodWords containsObject:exBlock] == NO) continue;
+                if (block == exBlock) continue;
+                if ([exBlock.text isEqualToString:@"."] == NO) continue;
+
+                CGFloat leftDistDelta = ABS(CGRectGetMinX(block.region) - CGRectGetMaxX(exBlock.region));
+                CGFloat rightDistDelta = ABS(CGRectGetMaxX(block.region) - CGRectGetMinX(exBlock.region));
+                CGFloat confDelta = ABS(block.confidence - exBlock.confidence);
+
+                if (confDelta > kTGMaximalConfidenceDelta) continue;
+
+                CGFloat maxHDelta = MIN(CGRectGetHeight(block.region), CGRectGetHeight(exBlock.region)) * 0.85;
+                if (leftDistDelta < maxHDelta && rightDistDelta < maxHDelta) continue;
+
+                TGRecognizedBlock *unionedResult = nil;
+                if (leftDistDelta < maxHDelta) {
+                    NSLog(@"new word: %@ + %@", exBlock.text, block.text);
+                    unionedResult =
+                    [[TGRecognizedBlock alloc] initWithRegion:CGRectUnion(exBlock.region, block.region)
+                                                   confidence:MIN(exBlock.confidence, block.confidence)
+                                                         text:[exBlock.text stringByAppendingString:block.text]];
+                }
+                else if (rightDistDelta < maxHDelta) {
+                    NSLog(@"new word: %@ + %@", block.text, exBlock.text);
+                    unionedResult =
+                    [[TGRecognizedBlock alloc] initWithRegion:CGRectUnion(exBlock.region, block.region)
+                                                   confidence:MIN(exBlock.confidence, block.confidence)
+                                                         text:[block.text stringByAppendingString:exBlock.text]];
+                }
+
+                if (unionedResult != nil) {
+                    [newGoodWords removeObject:block];
+                    [newGoodWords removeObject:exBlock];
+                    [newGoodWords addObject:unionedResult];
+
+                    anyFound = YES;
+                    break;
+                }
+            }
+        }
+        self.wellRecognizedBlocks = newGoodWords;
+    } while (anyFound);
+}
+
 - (void)joinBlocks
 {
     BOOL anyFound = NO;
@@ -263,9 +328,9 @@ static NSUInteger const kTGMaximumPricesCount = 4;
                 if (confDelta > kTGMaximalConfidenceDelta) continue;
 
                 CGFloat maxVDelta = (CGRectGetHeight(block.region) + CGRectGetHeight(exBlock.region)) * 0.5;
-                if (topDelta > maxVDelta || bottomDelta > maxVDelta) continue;
-
                 CGFloat maxHDelta = MIN(CGRectGetHeight(block.region), CGRectGetHeight(exBlock.region)) * 0.85;
+
+                if (topDelta > maxVDelta || bottomDelta > maxVDelta) continue;
                 if (leftDistDelta < maxHDelta && rightDistDelta < maxHDelta) continue;
 
                 TGRecognizedBlock *unionedResult = nil;
