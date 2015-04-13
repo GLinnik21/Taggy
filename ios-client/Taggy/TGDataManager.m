@@ -107,7 +107,7 @@
     BOOL success = YES;
     @try {
         [realm beginWriteTransaction];
-        [realm deleteAllObjects];
+        [realm deleteObjects:[TGPriceImage allObjects]];
         [realm commitWriteTransaction];
     }
     @catch (NSException *exception) {

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TGCurrencyViewController : UITableViewController
+@interface TGCurrencyViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, copy) NSString *settingsKey;
 
