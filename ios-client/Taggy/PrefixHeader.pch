@@ -1,0 +1,22 @@
+//
+//  PrefixHeader.pch
+//  Taggy
+//
+//  Created by Nikolay Volosatov on 13.04.15.
+//  Copyright (c) 2015 Gleb Linkin. All rights reserved.
+//
+
+#ifndef Taggy_PrefixHeader_pch
+#define Taggy_PrefixHeader_pch
+
+#define LOG_LEVEL_DEF ddLogLevel
+
+#import <CocoaLumberjack/CocoaLumberjack.h>
+
+#ifdef DEBUG
+static const DDLogLevel ddLogLevel = DDLogLevelDebug;
+#else
+static const DDLogLevel ddLogLevel = DDLogLevelWarning;
+#endif
+
+#endif

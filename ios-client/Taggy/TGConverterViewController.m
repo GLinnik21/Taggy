@@ -59,7 +59,6 @@
     self.sellTextField.inputAccessoryView = toolBar;
     self.sellTextField.keyboardType = UIKeyboardTypeDecimalPad;
     
-    
     //Graph
     UIView* graphBG= [[UIView alloc] init];
     
@@ -275,7 +274,7 @@
     }];
     self.checkSell = NO;
     self.checkBuy = NO;
-    NSLog(@"Done");
+    DDLogInfo(@"Sell: Done");
 }
 
 - (void)changeBuyCurrency:(id)sender
@@ -287,7 +286,7 @@
     }];
     self.checkSell = NO;
     self.checkBuy = NO;
-    NSLog(@"Done");
+    DDLogInfo(@"Buy: Done");
 }
 
 - (IBAction)sellEditingDidBegin:(id)sender {

@@ -32,7 +32,6 @@
 		ED077A4A19F9405E00B203CB /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3919F9405E00B203CB /* 1.png */; };
 		ED077A4B19F9405E00B203CB /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3A19F9405E00B203CB /* 2.png */; };
 		ED077A4C19F9405E00B203CB /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3B19F9405E00B203CB /* 3.png */; };
-		ED077A5019F9405E00B203CB /* res.textClipping in Resources */ = {isa = PBXBuildFile; fileRef = ED077A3F19F9405E00B203CB /* res.textClipping */; };
 		ED077A6C19F940F700B203CB /* TGDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A6319F940F700B203CB /* TGDetailViewController.m */; };
 		ED077A6D19F940F700B203CB /* TGImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A6519F940F700B203CB /* TGImageCell.m */; };
 		ED077A6E19F940F700B203CB /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED077A6619F940F700B203CB /* images.xcassets */; };
@@ -82,6 +81,7 @@
 		41A9D0471A00F2A700922CBC /* TGRecognizedBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGRecognizedBlock.m; sourceTree = "<group>"; };
 		41A9D0491A022F6400922CBC /* TGPriceRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGPriceRecognizer.h; sourceTree = "<group>"; };
 		41A9D04A1A022F6500922CBC /* TGPriceRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGPriceRecognizer.m; sourceTree = "<group>"; };
+		41CC86F11ADC552F005D7C28 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		41DF52121A3486C70060C7FF /* UIImage+FixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixOrientation.h"; sourceTree = "<group>"; };
 		41DF52131A3486C70060C7FF /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixOrientation.m"; sourceTree = "<group>"; };
 		4A072264AC63C331560A9A6C /* Pods-Taggy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taggy/Pods-Taggy.debug.xcconfig"; sourceTree = "<group>"; };
@@ -101,7 +101,6 @@
 		ED077A3919F9405E00B203CB /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		ED077A3A19F9405E00B203CB /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
 		ED077A3B19F9405E00B203CB /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
-		ED077A3F19F9405E00B203CB /* res.textClipping */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = res.textClipping; sourceTree = "<group>"; };
 		ED077A6219F940F700B203CB /* TGDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGDetailViewController.h; sourceTree = "<group>"; };
 		ED077A6319F940F700B203CB /* TGDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGDetailViewController.m; sourceTree = "<group>"; };
 		ED077A6419F940F700B203CB /* TGImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGImageCell.h; sourceTree = "<group>"; };
@@ -316,6 +315,7 @@
 				ED077A1419F93FE300B203CB /* main.m */,
 				ED715FDB1A0927DD00F81CAF /* Settings.bundle */,
 				EDA7E2D51A35DB9B00641F18 /* Localizable.strings */,
+				41CC86F11ADC552F005D7C28 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -345,7 +345,6 @@
 				ED077A3919F9405E00B203CB /* 1.png */,
 				ED077A3A19F9405E00B203CB /* 2.png */,
 				ED077A3B19F9405E00B203CB /* 3.png */,
-				ED077A3F19F9405E00B203CB /* res.textClipping */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -446,7 +445,6 @@
 				ED077A2319F93FE300B203CB /* LaunchScreen.xib in Resources */,
 				4106C4661A109D4A004790DB /* currency.json in Resources */,
 				410C200619FE745B0082C66C /* tessdata in Resources */,
-				ED077A5019F9405E00B203CB /* res.textClipping in Resources */,
 				ED715FDC1A0927DD00F81CAF /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -659,6 +657,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREFIX_HEADER = Taggy/PrefixHeader.pch;
 				INFOPLIST_FILE = Taggy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -676,6 +675,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREFIX_HEADER = Taggy/PrefixHeader.pch;
 				INFOPLIST_FILE = Taggy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

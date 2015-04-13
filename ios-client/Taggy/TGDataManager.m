@@ -93,7 +93,7 @@
         [realm commitWriteTransaction];
     }
     @catch (NSException *exception) {
-        NSLog(@"Can't delete object");
+        DDLogError(@"Can't delete object");
         success = NO;
     }
 
@@ -111,7 +111,7 @@
         [realm commitWriteTransaction];
     }
     @catch (NSException *exception) {
-        NSLog(@"Can't delete all objects");
+        DDLogError(@"Can't delete all objects");
         success = NO;
     }
     
