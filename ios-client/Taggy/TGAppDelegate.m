@@ -39,6 +39,7 @@
 
     [TGSettingsManager loadManager];
 
+    [TGCurrencyManager initCurrencies];
     if ([[TGSettingsManager objectForKey:kTGSettingsAutoUpdateKey] boolValue]) {
         [TGCurrencyManager updateWithCallback:nil];
     }

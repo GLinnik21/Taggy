@@ -6,7 +6,7 @@
 	<array>
 		<dict>
 			<key>DefaultValue</key>
-			<string>YES</string>
+			<string>NO</string>
 			<key>Key</key>
 			<string>auto_update</string>
 			<key>Title</key>
@@ -29,32 +29,32 @@
 			<string>currency_country</string>
 			<key>Titles</key>
 			<array>
-                <string>AUD_l</string>
-                <string>BYR_l</string>
-                <string>EUR_l</string>
-                <string>GBP_l</string>
-                <string>RUB_l</string>
-                <string>USD_l</string>
+				<string>AUD_l</string>
+				<string>BYR_l</string>
+				<string>EUR_l</string>
+				<string>GBP_l</string>
+				<string>RUB_l</string>
+				<string>USD_l</string>
 			</array>
 			<key>ShortTitles</key>
 			<array>
-                <string>AUD</string>
-                <string>BYR</string>
-                <string>EUR</string>
-                <string>GBP</string>
-                <string>RUB</string>
-                <string>USD</string>
+				<string>AUD</string>
+				<string>BYR</string>
+				<string>EUR</string>
+				<string>GBP</string>
+				<string>RUB</string>
+				<string>USD</string>
 			</array>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Values</key>
 			<array>
-                <string>AUD</string>
-                <string>BYR</string>
-                <string>EUR</string>
-                <string>GBP</string>
-                <string>RUB</string>
-                <string>USD</string>
+				<string>AUD</string>
+				<string>BYR</string>
+				<string>EUR</string>
+				<string>GBP</string>
+				<string>RUB</string>
+				<string>USD</string>
 			</array>
 		</dict>
 		<dict>
@@ -66,32 +66,32 @@
 			<string>currency_transf</string>
 			<key>Titles</key>
 			<array>
-                <string>AUD_l</string>
-                <string>BYR_l</string>
-                <string>EUR_l</string>
-                <string>GBP_l</string>
-                <string>RUB_l</string>
-                <string>USD_l</string>
+				<string>AUD_l</string>
+				<string>BYR_l</string>
+				<string>EUR_l</string>
+				<string>GBP_l</string>
+				<string>RUB_l</string>
+				<string>USD_l</string>
 			</array>
 			<key>ShortTitles</key>
 			<array>
-                <string>AUD</string>
-                <string>BYR</string>
-                <string>EUR</string>
-                <string>GBP</string>
-                <string>RUB</string>
-                <string>USD</string>
+				<string>AUD</string>
+				<string>BYR</string>
+				<string>EUR</string>
+				<string>GBP</string>
+				<string>RUB</string>
+				<string>USD</string>
 			</array>
 			<key>Type</key>
 			<string>PSMultiValueSpecifier</string>
 			<key>Values</key>
 			<array>
-                <string>AUD</string>
-                <string>BYR</string>
-                <string>EUR</string>
-                <string>GBP</string>
-                <string>RUB</string>
-                <string>USD</string>
+				<string>AUD</string>
+				<string>BYR</string>
+				<string>EUR</string>
+				<string>GBP</string>
+				<string>RUB</string>
+				<string>USD</string>
 			</array>
 		</dict>
 		<dict>
