@@ -161,13 +161,12 @@ static NSUInteger const kTGMaximumPricesCount = 4;
         [self takeFirst:kTGMaximumPricesCount];
 
         [self formatPrices];
-        NSLog(@"Prices: %@", self.recognizedPrices);
+        DDLogInfo(@"Prices: %@", self.recognizedPrices);
 
-        [ARAnalytics event:@"Image recognized"
-            withProperties:@{@"count": @(self.recognizedPrices.count)}];
+        [ARAnalytics event:@"Image recognized"];
     }
     @catch (NSException *exception) {
-        NSLog(@"Exception: %@", exception.description);
+        DDLogError(@"Exception: %@", exception.description);
 
         [ARAnalytics error:[NSError errorWithDomain:@"Tesseract"
                                                code:NSExecutableRuntimeMismatchError
@@ -279,18 +278,18 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 
                 TGRecognizedBlock *unionedResult = nil;
                 if (leftDistDelta < maxHDelta) {
-                    NSLog(@"new word: %@ + %@", exBlock.text, block.text);
+                    DDLogVerbose(@"new word: %@ + %@", exBlock.text, block.text);
                     unionedResult =
-                    [[TGRecognizedBlock alloc] initWithRegion:CGRectUnion(exBlock.region, block.region)
-                                                   confidence:MIN(exBlock.confidence, block.confidence)
-                                                         text:[exBlock.text stringByAppendingString:block.text]];
+                        [[TGRecognizedBlock alloc] initWithRegion:CGRectUnion(exBlock.region, block.region)
+                                                       confidence:MIN(exBlock.confidence, block.confidence)
+                                                             text:[exBlock.text stringByAppendingString:block.text]];
                 }
                 else if (rightDistDelta < maxHDelta) {
-                    NSLog(@"new word: %@ + %@", block.text, exBlock.text);
+                    DDLogVerbose(@"new word: %@ + %@", block.text, exBlock.text);
                     unionedResult =
-                    [[TGRecognizedBlock alloc] initWithRegion:CGRectUnion(exBlock.region, block.region)
-                                                   confidence:MIN(exBlock.confidence, block.confidence)
-                                                         text:[block.text stringByAppendingString:exBlock.text]];
+                        [[TGRecognizedBlock alloc] initWithRegion:CGRectUnion(exBlock.region, block.region)
+                                                       confidence:MIN(exBlock.confidence, block.confidence)
+                                                             text:[block.text stringByAppendingString:exBlock.text]];
                 }
 
                 if (unionedResult != nil) {
@@ -335,14 +334,14 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 
                 TGRecognizedBlock *unionedResult = nil;
                 if (leftDistDelta < maxHDelta) {
-                    NSLog(@"new word: %@ + %@", exBlock.text, block.text);
+                    DDLogVerbose(@"new word: %@ + %@", exBlock.text, block.text);
                     unionedResult =
                         [[TGRecognizedBlock alloc] initWithRegion:CGRectUnion(exBlock.region, block.region)
                                                        confidence:MIN(exBlock.confidence, block.confidence)
                                                              text:[exBlock.text stringByAppendingString:block.text]];
                 }
                 else if (rightDistDelta < maxHDelta) {
-                    NSLog(@"new word: %@ + %@", block.text, exBlock.text);
+                    DDLogVerbose(@"new word: %@ + %@", block.text, exBlock.text);
                     unionedResult =
                         [[TGRecognizedBlock alloc] initWithRegion:CGRectUnion(exBlock.region, block.region)
                                                        confidence:MIN(exBlock.confidence, block.confidence)

@@ -274,7 +274,7 @@
     }];
     self.checkSell = NO;
     self.checkBuy = NO;
-    NSLog(@"Done");
+    DDLogInfo(@"Sell: Done");
 }
 
 - (void)changeBuyCurrency:(id)sender
@@ -286,7 +286,7 @@
     }];
     self.checkSell = NO;
     self.checkBuy = NO;
-    NSLog(@"Done");
+    DDLogInfo(@"Buy: Done");
 }
 
 - (IBAction)sellEditingDidBegin:(id)sender {

@@ -78,7 +78,7 @@ static NSString *const kTGCurrencyLink = @"http://api.taggy.by/rates";
             currencyRates = [NSJSONSerialization JSONObjectWithStream:inputStream options:0 error:error];
         }
         @catch (NSException *exception) {
-            NSLog(@"Error parsing JSON");
+            DDLogError(@"Error parsing JSON");
         }
 
         if (*error == nil) {

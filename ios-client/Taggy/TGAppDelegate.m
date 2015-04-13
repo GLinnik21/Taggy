@@ -19,7 +19,9 @@
 
 @implementation TGAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
 #ifdef DEBUG
     [ARAnalytics setupWithAnalytics:@{
