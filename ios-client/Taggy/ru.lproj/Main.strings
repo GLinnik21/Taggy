@@ -125,3 +125,5 @@
 /* Class = "UINavigationItem"; title = "Currencies"; ObjectID = "gQW-8X-8Ly"; */
 "gQW-8X-8Ly.title" = "Валюты";
 
+/* Class = "UILabel"; text = "Represented rates and the actual rates may differ."; ObjectID = "o35-K3-2W4"; */
+"o35-K3-2W4.text" = "Представленные и действительные валюты могут отличаться.";

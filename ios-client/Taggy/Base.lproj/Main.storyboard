@@ -178,16 +178,25 @@
                                     <segment title="1y"/>
                                 </segments>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Represented rates and the actual rates may differ." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o35-K3-2W4">
+                                <rect key="frame" x="16" y="503" width="288" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ThY-kv-kW8" firstAttribute="top" secondItem="Zzh-Ne-4TN" secondAttribute="bottom" constant="8" id="0GH-CK-Mda"/>
                             <constraint firstItem="w2g-5A-J60" firstAttribute="top" secondItem="3Nb-Hv-wEo" secondAttribute="bottom" constant="8" id="16y-Np-ecD"/>
                             <constraint firstItem="qUs-UU-VkY" firstAttribute="top" secondItem="ThY-kv-kW8" secondAttribute="bottom" constant="46" id="2Jw-Os-xO8"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="o35-K3-2W4" secondAttribute="bottom" constant="48" id="3kn-O5-8Oe"/>
                             <constraint firstItem="qAl-2V-vBL" firstAttribute="trailing" secondItem="c2M-ke-WNb" secondAttribute="trailingMargin" id="5Aa-Z5-d45"/>
                             <constraint firstItem="RCE-NP-o12" firstAttribute="top" secondItem="w2g-5A-J60" secondAttribute="bottom" constant="8" id="8Lc-U4-BeE"/>
+                            <constraint firstItem="o35-K3-2W4" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leadingMargin" id="915-F4-q8b"/>
                             <constraint firstItem="qUs-UU-VkY" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leadingMargin" id="Cdi-IF-QP4"/>
                             <constraint firstItem="RID-RN-ACY" firstAttribute="top" secondItem="dBL-dU-f1a" secondAttribute="bottom" constant="16" id="EEf-WC-TXd"/>
+                            <constraint firstItem="o35-K3-2W4" firstAttribute="trailing" secondItem="c2M-ke-WNb" secondAttribute="trailingMargin" id="M8e-Hh-fXO"/>
                             <constraint firstItem="RCE-NP-o12" firstAttribute="trailing" secondItem="c2M-ke-WNb" secondAttribute="trailingMargin" id="NLr-QS-GW5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="w2g-5A-J60" secondAttribute="trailing" constant="1" id="NPR-sB-4Au"/>
                             <constraint firstItem="qAl-2V-vBL" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leadingMargin" id="Nxh-Qv-IgI"/>
@@ -196,6 +205,7 @@
                             <constraint firstItem="3Nb-Hv-wEo" firstAttribute="top" secondItem="Zzh-Ne-4TN" secondAttribute="bottom" constant="8" id="UfH-1A-VBr"/>
                             <constraint firstItem="ThY-kv-kW8" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leadingMargin" id="VAq-T4-Tdx"/>
                             <constraint firstItem="w2g-5A-J60" firstAttribute="top" secondItem="3Nb-Hv-wEo" secondAttribute="bottom" constant="8" id="WY8-Jh-XAT"/>
+                            <constraint firstItem="o35-K3-2W4" firstAttribute="top" secondItem="dBL-dU-f1a" secondAttribute="bottom" id="esj-RW-taF"/>
                             <constraint firstItem="RCE-NP-o12" firstAttribute="top" secondItem="w2g-5A-J60" secondAttribute="bottom" constant="8" id="p6h-fL-p2m"/>
                             <constraint firstItem="dBL-dU-f1a" firstAttribute="top" secondItem="qAl-2V-vBL" secondAttribute="bottom" constant="16" id="qck-7k-XPH"/>
                             <constraint firstItem="dBL-dU-f1a" firstAttribute="trailing" secondItem="c2M-ke-WNb" secondAttribute="trailingMargin" id="s2R-ew-uED"/>
