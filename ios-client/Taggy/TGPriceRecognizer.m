@@ -58,6 +58,8 @@ static NSUInteger const kTGMaximumPricesCount = 4;
             kG8ParamTextordParallelBaselines : @"0",
             kG8ParamClassifyBlnNumericMode : @"6",
             kG8ParamMatcherAvgNoiseSize : @"22",
+            kG8ParamNumericPunctuation : @",.",
+            kG8ParamTestPt : @"1",
         }];
 
         //_tesseract.charWhitelist = @"0123456789,.-";
@@ -69,24 +71,43 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 
 + (UIImage *)binarizeImage:(UIImage *)sourceImage andResize:(CGSize)size
 {
-    //GPUImageContrastFilter *filter = [[GPUImageContrastFilter alloc] init];
-    //filter.contrast = 4.0;
-    GPUImageLuminanceThresholdFilter *filter = [[GPUImageLuminanceThresholdFilter alloc] init];
-    filter.threshold = 0.5f;
-    //GPUImageAverageLuminanceThresholdFilter *filter = [[GPUImageAverageLuminanceThresholdFilter alloc] init];
-    //GPUImageAdaptiveThresholdFilter *filter = [[GPUImageAdaptiveThresholdFilter alloc] init];
-    //filter.thresholdMultiplier = 1.0;
+    GPUImageFilterGroup *group = [[GPUImageFilterGroup alloc] init];
 
-    [filter forceProcessingAtSizeRespectingAspectRatio:size];
+    /*GPUImageContrastFilter *contrast = [[GPUImageContrastFilter alloc] init];
+    contrast.contrast = 2.0;
+    [group addFilter:contrast];*/
 
-    UIImage *resultImage = [filter imageByFilteringImage:sourceImage];
+    GPUImageLuminanceThresholdFilter *threshold = [[GPUImageLuminanceThresholdFilter alloc] init];
+    threshold.threshold = 0.5f;
+    //GPUImageAverageLuminanceThresholdFilter *threshold = [[GPUImageAverageLuminanceThresholdFilter alloc] init];
+    //GPUImageAdaptiveThresholdFilter *threshold = [[GPUImageAdaptiveThresholdFilter alloc] init];
+    //threshold.thresholdMultiplier = 1.0;
+    [group addFilter:threshold];
+
+    GPUImageLanczosResamplingFilter *resample = [[GPUImageLanczosResamplingFilter alloc] init];
+    resample.originalImageSize = sourceImage.size;
+    [resample forceProcessingAtSizeRespectingAspectRatio:size];
+    [group addFilter:resample];
+
+    //[contrast addTarget:threshold];
+    [threshold addTarget:resample];
+
+    [group setInitialFilters:@[ threshold ]];
+    [group setTerminalFilter:resample];
+
+    GPUImagePicture *stillImage = [[GPUImagePicture alloc] initWithImage:sourceImage];
+    [group useNextFrameForImageCapture];
+    [stillImage addTarget:group];
+    [stillImage processImage];
+
+    UIImage *resultImage = [group imageFromCurrentFramebufferWithOrientation:sourceImage.imageOrientation];
     return resultImage;
 }
 
 - (UIImage *)preprocessedImageForTesseract:(G8Tesseract *)tesseract sourceImage:(UIImage *)sourceImage
 {
     sourceImage = [sourceImage fixOrientation];
-    sourceImage = [[self class] binarizeImage:sourceImage andResize:CGSizeMake(700, 700)];
+    sourceImage = [[self class] binarizeImage:sourceImage andResize:CGSizeMake(800, 800)];
 
     return sourceImage;
 }
@@ -108,7 +129,7 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 - (void)setImage:(UIImage *)image
 {
     if (_image != image) {
-        _image = [TGCommon imageWithImage:image scaledToSizeWithSameAspectRatio:CGSizeMake(700, 700)];
+        _image = [TGCommon imageWithImage:image scaledToSizeWithSameAspectRatio:CGSizeMake(800, 800)];
 
         self.tesseract.image = image;
     }
@@ -134,12 +155,12 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 
         [self.tesseract recognize];
 
-        NSArray *blocks = [self.tesseract recognizedBlocksByIteratorLevel:G8PageIteratorLevelSymbol];
+        NSArray *blocks = [self.tesseract recognizedBlocksByIteratorLevel:G8PageIteratorLevelWord];
         self.recognizedBlocks = [TGRecognizedBlock blocksFromRecognitionArray:blocks];
         self.wellRecognizedBlocks = self.recognizedBlocks;
-        //UIImage *tresholdedWords = [self.tesseract imageWithBlocks:blocks
-        //                                                  drawText:YES
-        //                                               thresholded:YES];
+        /*UIImage *tresholdedWords = [self.tesseract imageWithBlocks:blocks
+                                                          drawText:YES
+                                                       thresholded:YES];*/
 
         //[self removeBadRecognizedBlocks];
         [self splitBlocks];
