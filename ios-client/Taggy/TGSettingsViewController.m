@@ -29,25 +29,34 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    self.versionLabel.text = [defaults objectForKey:@"version"];
+
+    self.versionLabel.text = [[TGSettingsManager objectForKey:kTGSettingsVersionKey] description];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    self.sourceCurrencyLabel.text = [defaults objectForKey:@"country"];
-    self.targetCurrencyLabel.text = [defaults objectForKey:@"transf"];
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    self.privacyCell.hidden = [currSysVer compare:@"8.0" options:NSNumericSearch] != NSOrderedDescending;
+
+    self.sourceCurrencyLabel.text = [[TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey] description];
+    self.targetCurrencyLabel.text = [[TGSettingsManager objectForKey:kTGSettingsTargetCurrencyKey] description];
     
-    [self.auto_updateSwitch setOn:[defaults boolForKey:@"auto_update"] animated:YES];
+    [self.auto_updateSwitch setOn:[[TGSettingsManager objectForKey:kTGSettingsAutoUpdateKey] boolValue]
+                         animated:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0 && indexPath.section == 0) {
+        NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+        if ([currSysVer compare:@"8.0" options:NSNumericSearch] != NSOrderedDescending) {
+            return 0.0;
+        }
+    }
+
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -56,88 +65,34 @@
     if (theCellClicked == self.siteCell) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://taggy.by"]];
     }
+
     if (theCellClicked == self.privacyCell) {
         if (&UIApplicationOpenSettingsURLString != NULL) {
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
         }
     }
+
     if (theCellClicked == self.sourceCurrencyCell) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-        TGCurrencyViewController *currency = [storyboard instantiateViewControllerWithIdentifier:@"CurrenciesViewController"];
+        TGCurrencyViewController *currency =
+            [storyboard instantiateViewControllerWithIdentifier:@"CurrenciesViewController"];
         currency.settingsKey = kTGSettingsSourceCurrencyKey;
         [self.navigationController pushViewController:currency animated:YES];
     }
+
     if (theCellClicked == self.targetCurrencyCell) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-        TGCurrencyViewController *currency = [storyboard instantiateViewControllerWithIdentifier:@"CurrenciesViewController"];
+        TGCurrencyViewController *currency =
+            [storyboard instantiateViewControllerWithIdentifier:@"CurrenciesViewController"];
         currency.settingsKey = kTGSettingsTargetCurrencyKey;
         [self.navigationController pushViewController:currency animated:YES];
     }
-    
 }
 
 - (IBAction)auto_updateSwitchAction:(id)sender {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    if (![defaults boolForKey:@"auto_update"]) {
-        [defaults setBool:YES forKey:@"auto_update"];
-    }else{
-        [defaults setBool:NO forKey:@"auto_update"];
-    }
+    BOOL autoUpdate = [[TGSettingsManager objectForKey:kTGSettingsAutoUpdateKey] boolValue];
+    autoUpdate = autoUpdate == NO;
+    [TGSettingsManager setObject:@(autoUpdate) forKey:kTGSettingsAutoUpdateKey];
 }
-
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
-    return cell;
-}
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

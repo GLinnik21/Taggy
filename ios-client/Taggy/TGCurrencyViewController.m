@@ -14,6 +14,7 @@
 @interface TGCurrencyViewController ()
 
 @property (nonatomic, retain) NSIndexPath *checkedIndexPath;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSArray *codes;
 @property (nonatomic, strong) NSMutableDictionary *rates;
@@ -45,7 +46,10 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller
         shouldReloadTableForSearchString:(NSString *)searchString
 {
-    [self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    NSInteger scopeIndex = self.searchDisplayController.searchBar.selectedScopeButtonIndex;
+    NSString *scope = self.searchDisplayController.searchBar.scopeButtonTitles[scopeIndex];
+
+    [self filterContentForSearchText:searchString scope:scope];
     
     return YES;
 }
@@ -55,10 +59,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        return [self.searchResults count];
+        return self.searchResults.count;
     }
     else {
-        return [self.rates count];
+        return self.rates.count;
     }
 }
 
@@ -111,6 +115,13 @@
     self.checkedIndexPath = indexPath;
 
     [self.searchDisplayController setActive:NO animated:YES];
+}
+
+- (IBAction)addCurrency:(id)sender {
+    UIAlertView *tagSaveAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"save_tag", @"Save?")
+                                                           message:NSLocalizedString(@"save_tag_mess", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") otherButtonTitles:@"OK", nil];
+    tagSaveAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+    [tagSaveAlert show];
 }
 
 @end

@@ -21,3 +21,5 @@
 "cancel" = "Cancel";
 "just_now" = "Just now";
 "never" = "Never";
+"save_tag" = "Save tag?";
+"save_tag_mess" = "Enter the name of the tag to save it:";

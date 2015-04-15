@@ -153,15 +153,16 @@
     return self.detail.prices.count;
 }
 
-
--(void)saveTag{
+-(void)saveTag
+{
     UIAlertView *tagSaveAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"save_tag", @"Save?")
                                                            message:NSLocalizedString(@"save_tag_mess", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") otherButtonTitles:@"OK", nil];
     tagSaveAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [tagSaveAlert show];
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     NSString *test = [[alertView textFieldAtIndex:0] text];
     if (buttonIndex == 1) {
         RLMRealm *realm = [RLMRealm defaultRealm];

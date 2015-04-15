@@ -122,9 +122,8 @@
 /* Class = "UITableViewSection"; footerTitle = "Copyright © 2015 V.A.S.A.G. All rights reserved."; ObjectID = "Uuj-3f-c3s"; */
 "Uuj-3f-c3s.footerTitle" = "Copyright © 2015 V.A.S.A.G. Все права защищены.";
 
-/* Class = "UINavigationItem"; title = "Currency"; ObjectID = "dkw-Ac-CJt"; */
-"dkw-Ac-CJt.title" = "Валюта";
+/* Class = "UINavigationItem"; title = "Currencies"; ObjectID = "gQW-8X-8Ly"; */
+"gQW-8X-8Ly.title" = "Валюты";
 
-/* Class = "UINavigationItem"; title = "Currency"; ObjectID = "grf-3e-z2N"; */
-"grf-3e-z2N.title" = "Валюта";
-
+/* Class = "UILabel"; text = "Represented rates and the actual rates may differ."; ObjectID = "o35-K3-2W4"; */
+"o35-K3-2W4.text" = "Представленные и действительные валюты могут отличаться.";

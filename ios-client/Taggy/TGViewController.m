@@ -79,20 +79,28 @@ static NSString *const kTGImageCellId = @"ImageCell";
     NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:updateDate];
     
     if (seconds < 60) {
-        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor] forKey:NSForegroundColorAttributeName];
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor]
+                                                                    forKey:NSForegroundColorAttributeName];
         NSString *title = [NSString stringWithFormat:NSLocalizedString(@"just_now", @"Just now")];
-        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title
+                                                                              attributes:attrsDictionary];
         self.refreshControl.attributedTitle = attributedTitle;
-    }else if ([defaults objectForKey:@"last_update"] == nil) {
-        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor] forKey:NSForegroundColorAttributeName];
+    }
+    else if ([defaults objectForKey:@"last_update"] == nil) {
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor]
+                                                                    forKey:NSForegroundColorAttributeName];
         NSString *never = [NSString stringWithFormat:NSLocalizedString(@"never", @"Never")];
         NSString *title = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), never];
-        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title
+                                                                              attributes:attrsDictionary];
         self.refreshControl.attributedTitle = attributedTitle;
-    }else{
+    }
+    else {
         NSString *title = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), updateDate.timeAgoSinceNow];
-    NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor] forKey:NSForegroundColorAttributeName];
-    NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attrsDictionary];
+        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor]
+                                                                    forKey:NSForegroundColorAttributeName];
+        NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title
+                                                                              attributes:attrsDictionary];
         self.refreshControl.attributedTitle = attributedTitle;
     }
 }

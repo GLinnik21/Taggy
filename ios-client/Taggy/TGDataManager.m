@@ -93,7 +93,7 @@
         [realm commitWriteTransaction];
     }
     @catch (NSException *exception) {
-        NSLog(@"Can't delete object");
+        DDLogError(@"Can't delete object");
         success = NO;
     }
 
@@ -107,11 +107,11 @@
     BOOL success = YES;
     @try {
         [realm beginWriteTransaction];
-        [realm deleteAllObjects];
+        [realm deleteObjects:[TGPriceImage allObjects]];
         [realm commitWriteTransaction];
     }
     @catch (NSException *exception) {
-        NSLog(@"Can't delete all objects");
+        DDLogError(@"Can't delete all objects");
         success = NO;
     }
     

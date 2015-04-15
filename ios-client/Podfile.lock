@@ -9,8 +9,15 @@ PODS:
   - ARAnalytics/YandexMobileMetrica (2.9.1):
     - ARAnalytics/CoreIOS
     - YandexMobileMetrica
-  - BEMSimpleLineGraph (3.3)
-  - DateTools (1.4.3)
+  - CocoaLumberjack (2.0.0):
+    - CocoaLumberjack/Default (= 2.0.0)
+    - CocoaLumberjack/Extensions (= 2.0.0)
+  - CocoaLumberjack/Core (2.0.0)
+  - CocoaLumberjack/Default (2.0.0):
+    - CocoaLumberjack/Core
+  - CocoaLumberjack/Extensions (2.0.0):
+    - CocoaLumberjack/Default
+  - DateTools (1.5.0)
   - FlurrySDK (5.4.0):
     - FlurrySDK/FlurrySDK (= 5.4.0)
   - FlurrySDK/FlurrySDK (5.4.0)
@@ -23,20 +30,19 @@ PODS:
     - GoogleAnalytics-iOS-SDK/Core (= 3.10)
   - GoogleAnalytics-iOS-SDK/Core (3.10)
   - GPUImage (0.1.6)
-  - InAppSettingsKit (2.3.3)
   - KSCrash/Recording (0.0.3)
   - KSCrash/Reporting/Filters/AppleFmt (0.0.3):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
   - KSCrash/Reporting/Filters/Base (0.0.3):
     - KSCrash/Recording
-  - Masonry (0.5.3)
+  - Masonry (0.6.1)
   - protobuf-c (0.15)
   - Reachability (3.2)
-  - Realm (0.90.0):
-    - Realm/Headers (= 0.90.0)
-  - Realm/Headers (0.90.0)
-  - SVProgressHUD (HEAD based on 1.1.3)
+  - Realm (0.91.1):
+    - Realm/Headers (= 0.91.1)
+  - Realm/Headers (0.91.1)
+  - SVProgressHUD (1.1.3)
   - TesseractOCRiOS (4.0.0)
   - YandexMobileMetrica (1.6.2):
     - FMDB (= 2.2.0)
@@ -48,33 +54,31 @@ DEPENDENCIES:
   - ARAnalytics/Flurry
   - ARAnalytics/GoogleAnalytics
   - ARAnalytics/YandexMobileMetrica
-  - BEMSimpleLineGraph
-  - DateTools
+  - CocoaLumberjack (~> 2.0.0)
+  - DateTools (~> 1.5.0)
   - FlurrySDK (~> 5.4.0)
   - GoogleAnalytics-iOS-SDK (~> 3.10)
   - GPUImage (~> 0.1.6)
-  - InAppSettingsKit (~> 2.3)
-  - Masonry (~> 0.5.3)
-  - Reachability
-  - Realm (~> 0.88)
-  - SVProgressHUD (HEAD)
+  - Masonry (~> 0.6.1)
+  - Reachability (~> 3.2)
+  - Realm (~> 0.91.1)
+  - SVProgressHUD (~> 1.1.3)
   - TesseractOCRiOS (~> 4.0)
-  - YandexMobileMetrica (~> 1.6.1)
+  - YandexMobileMetrica (~> 1.6.2)
 
 SPEC CHECKSUMS:
   ARAnalytics: e00f739e2bc994ce096a3e494295950e33b057ce
-  BEMSimpleLineGraph: 7fc92cd65a5f91640f6624b11be96fe1f3d7f1cf
-  DateTools: c3d055af2c4d039c1791b5bffb1444ad1db32219
+  CocoaLumberjack: a6f77d987d65dc7ba86b0f84db7d0b9084f77bcb
+  DateTools: b93a2c2017747329c6077c7d7e8a75106e23d0d7
   FlurrySDK: 7f929b68dea38ce735979fb039229f62c0b697b5
   FMDB: 0678cab3b024ea6a2e6ea5dd91fc8eb9a296bf57
   GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
   GPUImage: 4675ce4a5370ca92fcea8623b2a08b8f0c51b940
-  InAppSettingsKit: 4c7de2320f6f252b0348ae9d3ea86048071094d6
   KSCrash: 8cb2d6e316c9c12b1444df232e650547be742494
-  Masonry: 9f515466afe48632562342a40a1c224071a1a022
+  Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
   protobuf-c: e7a40bc5d069f55f6d47d616ea532481b947b8d9
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  Realm: af13ffcec5c52e5308509d755842491e9575a957
+  Realm: b9c1fd9defa26aa7276ce938a8df52ec81f24528
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
   YandexMobileMetrica: 0a57437e752dcd66d88d11710c89320a0df32802

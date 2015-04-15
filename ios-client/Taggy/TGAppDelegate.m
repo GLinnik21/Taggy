@@ -19,7 +19,9 @@
 
 @implementation TGAppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
 
 #ifdef DEBUG
     [ARAnalytics setupWithAnalytics:@{
@@ -38,8 +40,11 @@
     [TGMigrationManager migrate];
 
     [TGSettingsManager loadManager];
-    
-    [TGCurrencyManager updateWithCallback:nil];
+
+    [TGCurrencyManager initCurrencies];
+    if ([[TGSettingsManager objectForKey:kTGSettingsAutoUpdateKey] boolValue]) {
+        [TGCurrencyManager updateWithCallback:nil];
+    }
 
 #ifdef DEBUG
     [TGDataManager fillSample];
