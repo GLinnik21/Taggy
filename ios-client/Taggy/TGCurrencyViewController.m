@@ -39,8 +39,17 @@
 
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope
 {
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF contains[c] %@", searchText];
-    self.searchResults = [self.codes filteredArrayUsingPredicate:resultPredicate];
+    NSString *lowerSearchString = [searchText lowercaseString];
+    NSMutableArray *results = [NSMutableArray array];
+
+    for (NSString *code in self.codes) {
+        NSString *fullName = [[self fullNameForCode:code] lowercaseString];
+        if ([fullName containsString:lowerSearchString]) {
+            [results addObject:code];
+        }
+    }
+
+    self.searchResults = [results copy];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller
@@ -52,6 +61,11 @@
     [self filterContentForSearchText:searchString scope:scope];
     
     return YES;
+}
+
+- (NSString *)fullNameForCode:(NSString *)code
+{
+    return [NSString stringWithFormat:@"%@ (%@)", NSLocalizedString(code, nil), code];
 }
 
 #pragma mark - Table view data source
@@ -83,7 +97,7 @@
     }
     NSNumber *rate = self.rates[rateId];
 
-    cell.textLabel.text = rateId;
+    cell.textLabel.text = [self fullNameForCode:rateId];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f", rate.floatValue];
 
     if ([[TGSettingsManager objectForKey:self.settingsKey] isEqualToString:rateId]) {
@@ -110,18 +124,14 @@
 
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
-    [TGSettingsManager setObject:cell.textLabel.text forKey:self.settingsKey];
+    NSString *fullName = cell.textLabel.text;
+    NSString *code = [fullName substringWithRange:NSMakeRange(fullName.length - 4, 3)];
+    
+    [TGSettingsManager setObject:code forKey:self.settingsKey];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     self.checkedIndexPath = indexPath;
 
     [self.searchDisplayController setActive:NO animated:YES];
-}
-
-- (IBAction)addCurrency:(id)sender {
-    UIAlertView *tagSaveAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"save_tag", @"Save?")
-                                                           message:NSLocalizedString(@"save_tag_mess", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") otherButtonTitles:@"OK", nil];
-    tagSaveAlert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-    [tagSaveAlert show];
 }
 
 @end
