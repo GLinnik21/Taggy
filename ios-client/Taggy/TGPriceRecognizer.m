@@ -63,6 +63,7 @@ static NSUInteger const kTGMaximumPricesCount = 4;
         }];
 
         //_tesseract.charWhitelist = @"0123456789,.-";
+        _tesseract.charBlacklist = @"|:?+=_{}[]%!@#^&*шШВвОобБтТ";
         _tesseract.pageSegmentationMode = G8PageSegmentationModeSparseText;
         _tesseract.maximumRecognitionTime = kTGMaxRecognitionTime;
     }
@@ -158,6 +159,7 @@ static NSUInteger const kTGMaximumPricesCount = 4;
         NSArray *blocks = [self.tesseract recognizedBlocksByIteratorLevel:G8PageIteratorLevelWord];
         self.recognizedBlocks = [TGRecognizedBlock blocksFromRecognitionArray:blocks];
         self.wellRecognizedBlocks = self.recognizedBlocks;
+
         /*UIImage *tresholdedWords = [self.tesseract imageWithBlocks:blocks
                                                           drawText:YES
                                                        thresholded:YES];*/
@@ -169,7 +171,7 @@ static NSUInteger const kTGMaximumPricesCount = 4;
         [self takeFirst:INT_MAX];
         if ([[TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey] isEqual:@"BYR"] == NO) {
             [self fixDots];
-            [self joinDots];
+            //[self joinDots];
         }
         [self joinBlocks];
         [self removeBadPrices];
