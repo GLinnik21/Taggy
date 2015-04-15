@@ -1,60 +1,159 @@
 
-/* Class = "IBUILabel"; text = "-"; ObjectID = "12F-CJ-c1l"; */
+/* Class = "UILabel"; text = "-"; ObjectID = "12F-CJ-c1l"; */
 "12F-CJ-c1l.text" = "-";
 
-/* Class = "IBUINavigationItem"; title = "Scanner"; ObjectID = "1HU-ub-24H"; */
+/* Class = "UINavigationItem"; title = "Scanner"; ObjectID = "1HU-ub-24H"; */
 "1HU-ub-24H.title" = "Scanner";
 
-/* Class = "IBUINavigationController"; title = "Scanner"; ObjectID = "2by-fz-iZf"; */
+/* Class = "UILabel"; text = "Currency of your country"; ObjectID = "2Nr-cv-ike"; */
+"2Nr-cv-ike.text" = "Currency of your country";
+
+/* Class = "UINavigationController"; title = "Scanner"; ObjectID = "2by-fz-iZf"; */
 "2by-fz-iZf.title" = "Scanner";
 
-/* Class = "IBUIButton"; normalTitle = "Converter"; ObjectID = "37n-Cg-vve"; */
-"37n-Cg-vve.normalTitle" = "Converter";
+/* Class = "UIButton"; normalTitle = "XXX"; ObjectID = "3Nb-Hv-wEo"; */
+"3Nb-Hv-wEo.normalTitle" = "XXX";
 
-/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "3Nb-Hv-wEo"; */
-"3Nb-Hv-wEo.normalTitle" = "Button";
+/* Class = "UILabel"; text = "Currency for transference\n"; ObjectID = "5ff-tQ-o6N"; */
+"5ff-tQ-o6N.text" = "Currency for transference\n";
 
-/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "8nw-R2-dam"; */
+/* Class = "UITableViewSection"; headerTitle = "Currency"; ObjectID = "65N-fs-2DA"; */
+"65N-fs-2DA.headerTitle" = "Currency";
+
+/* Class = "UILabel"; text = "time"; ObjectID = "66A-4B-O2C"; */
+"66A-4B-O2C.text" = "time";
+
+/* Class = "UILabel"; text = "Taggy.by"; ObjectID = "6Va-i9-fAd"; */
+"6Va-i9-fAd.text" = "Taggy.by";
+
+/* Class = "UILabel"; text = "Auto-update"; ObjectID = "8Ky-6p-JpV"; */
+"8Ky-6p-JpV.text" = "Auto-update";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "8nw-R2-dam"; */
 "8nw-R2-dam.title" = "Back";
 
-/* Class = "IBUIBarButtonItem"; title = "Item"; ObjectID = "BcQ-qd-1wG"; */
+/* Class = "UILabel"; text = "Detail"; ObjectID = "9Jx-m8-QqW"; */
+"9Jx-m8-QqW.text" = "Detail";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "BcQ-qd-1wG"; */
 "BcQ-qd-1wG.title" = "Item";
 
-/* Class = "IBUITabBarItem"; title = "Results"; ObjectID = "Nna-ET-djC"; */
+/* Class = "UITableViewSection"; footerTitle = "Learn more about our app"; ObjectID = "Exj-Dv-Hjc"; */
+"Exj-Dv-Hjc.footerTitle" = "Learn more about our app";
+
+/* Class = "UITableViewSection"; headerTitle = "More"; ObjectID = "Exj-Dv-Hjc"; */
+"Exj-Dv-Hjc.headerTitle" = "More";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "IGR-t0-xwS"; */
+"IGR-t0-xwS.text" = "Title";
+
+/* Class = "UITabBarItem"; title = "Results"; ObjectID = "Nna-ET-djC"; */
 "Nna-ET-djC.title" = "Results";
 
-/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "RCE-NP-o12"; */
-"RCE-NP-o12.normalTitle" = "Button";
+/* Class = "UITableViewSection"; footerTitle = "Automatic currency update after the first Internet connection"; ObjectID = "O6e-xe-Reh"; */
+"O6e-xe-Reh.footerTitle" = "Automatic currency update after the first Internet connection";
 
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "SJM-Xi-DOG"; */
+/* Class = "UITableViewSection"; headerTitle = "General"; ObjectID = "O6e-xe-Reh"; */
+"O6e-xe-Reh.headerTitle" = "General";
+
+/* Class = "UIButton"; normalTitle = "XXX"; ObjectID = "RCE-NP-o12"; */
+"RCE-NP-o12.normalTitle" = "XXX";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "RDV-hl-lwE"; */
+"RDV-hl-lwE.text" = "Detail";
+
+/* Class = "UINavigationItem"; title = "About"; ObjectID = "S55-aI-Mh3"; */
+"S55-aI-Mh3.title" = "About";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "SJM-Xi-DOG"; */
 "SJM-Xi-DOG.text" = "Label";
 
-/* Class = "IBUITextField"; placeholder = "Sell"; ObjectID = "ThY-kv-kW8"; */
+/* Class = "UITableViewSection"; footerTitle = "Visit our website for more information"; ObjectID = "SmV-jS-Fyt"; */
+"SmV-jS-Fyt.footerTitle" = "Visit our website for more information";
+
+/* Class = "UITableViewSection"; headerTitle = "More"; ObjectID = "SmV-jS-Fyt"; */
+"SmV-jS-Fyt.headerTitle" = "More";
+
+/* Class = "UITextField"; placeholder = "Sell"; ObjectID = "ThY-kv-kW8"; */
 "ThY-kv-kW8.placeholder" = "Sell";
 
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "VgM-kZ-GeX"; */
+/* Class = "UITableViewSection"; footerTitle = "Copyright © 2015 V.A.S.A.G. All rights reserved."; ObjectID = "Uuj-3f-c3s"; */
+"Uuj-3f-c3s.footerTitle" = "Copyright © 2015 V.A.S.A.G. All rights reserved.";
+
+/* Class = "UITableViewSection"; headerTitle = "Application information"; ObjectID = "Uuj-3f-c3s"; */
+"Uuj-3f-c3s.headerTitle" = "Application information";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "VgM-kZ-GeX"; */
 "VgM-kZ-GeX.text" = "Label";
 
-/* Class = "IBUINavigationItem"; title = "Results"; ObjectID = "XX7-In-ySs"; */
+/* Class = "UINavigationItem"; title = "Results"; ObjectID = "XX7-In-ySs"; */
 "XX7-In-ySs.title" = "Results";
 
-/* Class = "IBUINavigationItem"; title = "Converter"; ObjectID = "aUd-YP-JUG"; */
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "ZeP-mJ-pFo"; */
+"ZeP-mJ-pFo.title" = "Settings";
+
+/* Class = "UINavigationItem"; title = "Converter"; ObjectID = "aUd-YP-JUG"; */
 "aUd-YP-JUG.title" = "Converter";
 
-/* Class = "IBUINavigationItem"; title = "Settings"; ObjectID = "g2T-pH-H2Q"; */
+/* Class = "UILabel"; text = "Detail"; ObjectID = "cj8-bj-HyA"; */
+"cj8-bj-HyA.text" = "Detail";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "g2T-pH-H2Q"; */
 "g2T-pH-H2Q.title" = "Settings";
 
-/* Class = "IBUITabBarItem"; title = "Scanner"; ObjectID = "k91-Bn-oGz"; */
+/* Class = "UILabel"; text = "Open in \"Settings\""; ObjectID = "gL0-X8-6O0"; */
+"gL0-X8-6O0.text" = "Open in \"Settings\"";
+
+/* Class = "UINavigationItem"; title = "Currencies"; ObjectID = "gQW-8X-8Ly"; */
+"gQW-8X-8Ly.title" = "Currencies";
+
+/* Class = "UITabBarItem"; title = "Scanner"; ObjectID = "k91-Bn-oGz"; */
 "k91-Bn-oGz.title" = "Scanner";
 
-/* Class = "IBUITextField"; placeholder = "Buy"; ObjectID = "qUs-UU-VkY"; */
+/* Class = "UILabel"; text = "tag"; ObjectID = "nFo-cY-zNL"; */
+"nFo-cY-zNL.text" = "tag";
+
+/* Class = "UILabel"; text = "Version"; ObjectID = "nhg-bW-z3Q"; */
+"nhg-bW-z3Q.text" = "Version";
+
+/* Class = "UILabel"; text = "Represented rates and the actual rates may differ."; ObjectID = "o35-K3-2W4"; */
+"o35-K3-2W4.text" = "Represented rates and the actual rates may differ.";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "pmk-Bt-tJn"; */
+"pmk-Bt-tJn.text" = "About";
+
+/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[0] = "1d"; ObjectID = "qAl-2V-vBL"; */
+"qAl-2V-vBL.segmentTitles[0]" = "1d";
+
+/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[1] = "1w"; ObjectID = "qAl-2V-vBL"; */
+"qAl-2V-vBL.segmentTitles[1]" = "1w";
+
+/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[2] = "1m"; ObjectID = "qAl-2V-vBL"; */
+"qAl-2V-vBL.segmentTitles[2]" = "1m";
+
+/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[3] = "3m"; ObjectID = "qAl-2V-vBL"; */
+"qAl-2V-vBL.segmentTitles[3]" = "3m";
+
+/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[4] = "6m"; ObjectID = "qAl-2V-vBL"; */
+"qAl-2V-vBL.segmentTitles[4]" = "6m";
+
+/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[5] = "1y"; ObjectID = "qAl-2V-vBL"; */
+"qAl-2V-vBL.segmentTitles[5]" = "1y";
+
+/* Class = "UITextField"; placeholder = "Buy"; ObjectID = "qUs-UU-VkY"; */
 "qUs-UU-VkY.placeholder" = "Buy";
 
-/* Class = "IBUIButton"; normalTitle = "Take a photo"; ObjectID = "vIe-cy-7uO"; */
+/* Class = "UIButton"; normalTitle = "Take a photo"; ObjectID = "vIe-cy-7uO"; */
 "vIe-cy-7uO.normalTitle" = "Take a photo";
 
-/* Class = "IBUITabBarItem"; title = "Settings"; ObjectID = "zTU-fO-yMG"; */
+/* Class = "UILabel"; text = "Detail"; ObjectID = "ysM-f3-4pR"; */
+"ysM-f3-4pR.text" = "Detail";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "zTU-fO-yMG"; */
 "zTU-fO-yMG.title" = "Settings";
 
-/* Class = "IBUINavigationItem"; title = "Result"; ObjectID = "zu5-gE-ALQ"; */
+/* Class = "UILabel"; text = "Privacy"; ObjectID = "zt4-PU-GA5"; */
+"zt4-PU-GA5.text" = "Privacy";
+
+/* Class = "UINavigationItem"; title = "Result"; ObjectID = "zu5-gE-ALQ"; */
 "zu5-gE-ALQ.title" = "Result";

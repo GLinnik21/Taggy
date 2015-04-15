@@ -27,6 +27,7 @@
         item = [[TGPriceImage alloc] init];
         item.captureDate = [NSDate date];
         item.image = [UIImage imageNamed:@"1"];
+        item.tag = @"Vogel";
 
         price = [[TGRecognizedPrice alloc] init];
         price.value = 4.53;
@@ -41,7 +42,8 @@
         item = [[TGPriceImage alloc] init];
         item.captureDate = [NSDate date];
         item.image = [UIImage imageNamed:@"2"];
-
+        item.tag = @"Пивас";
+        
         price = [[TGRecognizedPrice alloc] init];
         price.value = 110;
         price.sourceCurrency = [TGCurrency currencyForCode:@"RUB"];
@@ -55,7 +57,8 @@
         item = [[TGPriceImage alloc] init];
         item.captureDate = [NSDate date];
         item.image = [UIImage imageNamed:@"3"];
-
+        item.tag = @"Памперсы";
+        
         price = [[TGRecognizedPrice alloc] init];
         price.value = 24.99;
         price.sourceCurrency = [TGCurrency currencyForCode:@"EUR"];
@@ -90,7 +93,7 @@
         [realm commitWriteTransaction];
     }
     @catch (NSException *exception) {
-        NSLog(@"Can't delete object");
+        DDLogError(@"Can't delete object");
         success = NO;
     }
 
@@ -104,11 +107,11 @@
     BOOL success = YES;
     @try {
         [realm beginWriteTransaction];
-        [realm deleteAllObjects];
+        [realm deleteObjects:[TGPriceImage allObjects]];
         [realm commitWriteTransaction];
     }
     @catch (NSException *exception) {
-        NSLog(@"Can't delete all objects");
+        DDLogError(@"Can't delete all objects");
         success = NO;
     }
     

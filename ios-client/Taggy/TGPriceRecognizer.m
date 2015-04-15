@@ -14,7 +14,9 @@
 #import <GPUImage/GPUImage.h>
 #import "UIImage+FixOrientation.h"
 
-static NSString *const kTGNumberRegexPattern = @"([0-9]*|[0-9]+[,.])([,.][0-9]+|[0-9]+)";
+#import "TGSettingsManager.h"
+
+static NSString *const kTGNumberRegexPattern = @"(([0-9]*|[0-9]+[,.])([,.][0-9]+|[0-9]+)|[,.])";
 
 static NSTimeInterval const kTGMaxRecognitionTime = 3.0;
 
@@ -56,9 +58,12 @@ static NSUInteger const kTGMaximumPricesCount = 4;
             kG8ParamTextordParallelBaselines : @"0",
             kG8ParamClassifyBlnNumericMode : @"6",
             kG8ParamMatcherAvgNoiseSize : @"22",
+            kG8ParamNumericPunctuation : @",.",
+            kG8ParamTestPt : @"1",
         }];
 
         //_tesseract.charWhitelist = @"0123456789,.-";
+        _tesseract.charBlacklist = @"|:?+=_{}[]%!@#^&*шШВвОобБтТ";
         _tesseract.pageSegmentationMode = G8PageSegmentationModeSparseText;
         _tesseract.maximumRecognitionTime = kTGMaxRecognitionTime;
     }
@@ -67,24 +72,43 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 
 + (UIImage *)binarizeImage:(UIImage *)sourceImage andResize:(CGSize)size
 {
-    //GPUImageContrastFilter *filter = [[GPUImageContrastFilter alloc] init];
-    //filter.contrast = 4.0;
-    GPUImageLuminanceThresholdFilter *filter = [[GPUImageLuminanceThresholdFilter alloc] init];
-    filter.threshold = 0.5f;
-    //GPUImageAverageLuminanceThresholdFilter *filter = [[GPUImageAverageLuminanceThresholdFilter alloc] init];
-    //GPUImageAdaptiveThresholdFilter *filter = [[GPUImageAdaptiveThresholdFilter alloc] init];
-    //filter.thresholdMultiplier = 1.0;
+    GPUImageFilterGroup *group = [[GPUImageFilterGroup alloc] init];
 
-    [filter forceProcessingAtSizeRespectingAspectRatio:size];
+    /*GPUImageContrastFilter *contrast = [[GPUImageContrastFilter alloc] init];
+    contrast.contrast = 2.0;
+    [group addFilter:contrast];*/
 
-    UIImage *resultImage = [filter imageByFilteringImage:sourceImage];
+    GPUImageLuminanceThresholdFilter *threshold = [[GPUImageLuminanceThresholdFilter alloc] init];
+    threshold.threshold = 0.5f;
+    //GPUImageAverageLuminanceThresholdFilter *threshold = [[GPUImageAverageLuminanceThresholdFilter alloc] init];
+    //GPUImageAdaptiveThresholdFilter *threshold = [[GPUImageAdaptiveThresholdFilter alloc] init];
+    //threshold.thresholdMultiplier = 1.0;
+    [group addFilter:threshold];
+
+    GPUImageLanczosResamplingFilter *resample = [[GPUImageLanczosResamplingFilter alloc] init];
+    resample.originalImageSize = sourceImage.size;
+    [resample forceProcessingAtSizeRespectingAspectRatio:size];
+    [group addFilter:resample];
+
+    //[contrast addTarget:threshold];
+    [threshold addTarget:resample];
+
+    [group setInitialFilters:@[ threshold ]];
+    [group setTerminalFilter:resample];
+
+    GPUImagePicture *stillImage = [[GPUImagePicture alloc] initWithImage:sourceImage];
+    [group useNextFrameForImageCapture];
+    [stillImage addTarget:group];
+    [stillImage processImage];
+
+    UIImage *resultImage = [group imageFromCurrentFramebufferWithOrientation:sourceImage.imageOrientation];
     return resultImage;
 }
 
 - (UIImage *)preprocessedImageForTesseract:(G8Tesseract *)tesseract sourceImage:(UIImage *)sourceImage
 {
     sourceImage = [sourceImage fixOrientation];
-    sourceImage = [[self class] binarizeImage:sourceImage andResize:CGSizeMake(700, 700)];
+    sourceImage = [[self class] binarizeImage:sourceImage andResize:CGSizeMake(800, 800)];
 
     return sourceImage;
 }
@@ -106,7 +130,7 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 - (void)setImage:(UIImage *)image
 {
     if (_image != image) {
-        _image = [TGCommon imageWithImage:image scaledToSizeWithSameAspectRatio:CGSizeMake(700, 700)];
+        _image = [TGCommon imageWithImage:image scaledToSizeWithSameAspectRatio:CGSizeMake(800, 800)];
 
         self.tesseract.image = image;
     }
@@ -132,32 +156,40 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 
         [self.tesseract recognize];
 
-        NSArray *blocks = [self.tesseract recognizedBlocksByIteratorLevel:G8PageIteratorLevelSymbol];
+        NSArray *blocks = [self.tesseract recognizedBlocksByIteratorLevel:G8PageIteratorLevelWord];
         self.recognizedBlocks = [TGRecognizedBlock blocksFromRecognitionArray:blocks];
         self.wellRecognizedBlocks = self.recognizedBlocks;
-        //UIImage *tresholdedWords = [self.tesseract imageWithBlocks:blocks
-        //                                                  drawText:YES
-        //                                               thresholded:YES];
+
+        /*UIImage *tresholdedWords = [self.tesseract imageWithBlocks:blocks
+                                                          drawText:YES
+                                                       thresholded:YES];*/
 
         //[self removeBadRecognizedBlocks];
         [self splitBlocks];
         //[self removeSmallBlocks];
         [self sortBlocks];
         [self takeFirst:INT_MAX];
+        if ([[TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey] isEqual:@"BYR"] == NO) {
+            [self fixDots];
+            //[self joinDots];
+        }
         [self joinBlocks];
         [self removeBadPrices];
-        [self belarusOptimization];
+
+        if ([[TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey] isEqual:@"BYR"]) {
+            [self belarusOptimization];
+        }
+
         [self sortBlocks];
         [self takeFirst:kTGMaximumPricesCount];
 
         [self formatPrices];
-        NSLog(@"Prices: %@", self.recognizedPrices);
+        DDLogInfo(@"Prices: %@", self.recognizedPrices);
 
-        [ARAnalytics event:@"Image recognized"
-            withProperties:@{@"count": @(self.recognizedPrices.count)}];
+        [ARAnalytics event:@"Image recognized"];
     }
     @catch (NSException *exception) {
-        NSLog(@"Exception: %@", exception.description);
+        DDLogError(@"Exception: %@", exception.description);
 
         [ARAnalytics error:[NSError errorWithDomain:@"Tesseract"
                                                code:NSExecutableRuntimeMismatchError
@@ -236,6 +268,67 @@ static NSUInteger const kTGMaximumPricesCount = 4;
     self.wellRecognizedBlocks = newBlocks;
 }
 
+- (void)fixDots
+{
+    for (TGRecognizedBlock *block in self.wellRecognizedBlocks) {
+        if ([block.text isEqualToString:@","]) {
+            block.text = @".";
+        }
+    }
+}
+
+- (void)joinDots
+{
+    BOOL anyFound = NO;
+    do {
+        anyFound = NO;
+        NSMutableArray *newGoodWords = [[NSMutableArray alloc] initWithArray:self.wellRecognizedBlocks];
+        for (TGRecognizedBlock *block in self.wellRecognizedBlocks) {
+            if ([newGoodWords containsObject:block] == NO) continue;
+            for (TGRecognizedBlock *exBlock in self.wellRecognizedBlocks) {
+                if ([newGoodWords containsObject:exBlock] == NO) continue;
+                if (block == exBlock) continue;
+                if ([exBlock.text isEqualToString:@"."] == NO) continue;
+
+                CGFloat leftDistDelta = ABS(CGRectGetMinX(block.region) - CGRectGetMaxX(exBlock.region));
+                CGFloat rightDistDelta = ABS(CGRectGetMaxX(block.region) - CGRectGetMinX(exBlock.region));
+                CGFloat confDelta = ABS(block.confidence - exBlock.confidence);
+
+                if (confDelta > kTGMaximalConfidenceDelta) continue;
+
+                CGFloat maxHDelta = MIN(CGRectGetHeight(block.region), CGRectGetHeight(exBlock.region)) * 0.85;
+                if (leftDistDelta < maxHDelta && rightDistDelta < maxHDelta) continue;
+
+                TGRecognizedBlock *unionedResult = nil;
+                if (leftDistDelta < maxHDelta) {
+                    DDLogVerbose(@"new word: %@ + %@", exBlock.text, block.text);
+                    unionedResult =
+                        [[TGRecognizedBlock alloc] initWithRegion:CGRectUnion(exBlock.region, block.region)
+                                                       confidence:MIN(exBlock.confidence, block.confidence)
+                                                             text:[exBlock.text stringByAppendingString:block.text]];
+                }
+                else if (rightDistDelta < maxHDelta) {
+                    DDLogVerbose(@"new word: %@ + %@", block.text, exBlock.text);
+                    unionedResult =
+                        [[TGRecognizedBlock alloc] initWithRegion:CGRectUnion(exBlock.region, block.region)
+                                                       confidence:MIN(exBlock.confidence, block.confidence)
+                                                             text:[block.text stringByAppendingString:exBlock.text]];
+                }
+
+                if (unionedResult != nil) {
+                    [newGoodWords removeObject:block];
+                    [newGoodWords removeObject:exBlock];
+                    [newGoodWords addObject:unionedResult];
+
+                    anyFound = YES;
+                    break;
+                }
+            }
+        }
+        self.wellRecognizedBlocks = newGoodWords;
+    } while (anyFound);
+}
+
 - (void)joinBlocks
 {
     BOOL anyFound = NO;
@@ -257,21 +350,21 @@ static NSUInteger const kTGMaximumPricesCount = 4;
                 if (confDelta > kTGMaximalConfidenceDelta) continue;
 
                 CGFloat maxVDelta = (CGRectGetHeight(block.region) + CGRectGetHeight(exBlock.region)) * 0.5;
-                if (topDelta > maxVDelta || bottomDelta > maxVDelta) continue;
-
                 CGFloat maxHDelta = MIN(CGRectGetHeight(block.region), CGRectGetHeight(exBlock.region)) * 0.85;
+
+                if (topDelta > maxVDelta || bottomDelta > maxVDelta) continue;
                 if (leftDistDelta < maxHDelta && rightDistDelta < maxHDelta) continue;
 
                 TGRecognizedBlock *unionedResult = nil;
                 if (leftDistDelta < maxHDelta) {
-                    NSLog(@"new word: %@ + %@", exBlock.text, block.text);
+                    DDLogVerbose(@"new word: %@ + %@", exBlock.text, block.text);
                     unionedResult =
                         [[TGRecognizedBlock alloc] initWithRegion:CGRectUnion(exBlock.region, block.region)
                                                        confidence:MIN(exBlock.confidence, block.confidence)
                                                              text:[exBlock.text stringByAppendingString:block.text]];
                 }
                 else if (rightDistDelta < maxHDelta) {
-                    NSLog(@"new word: %@ + %@", block.text, exBlock.text);
+                    DDLogVerbose(@"new word: %@ + %@", block.text, exBlock.text);
                     unionedResult =
                         [[TGRecognizedBlock alloc] initWithRegion:CGRectUnion(exBlock.region, block.region)
                                                        confidence:MIN(exBlock.confidence, block.confidence)

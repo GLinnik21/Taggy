@@ -49,6 +49,9 @@
                               @(26): @(26350),
                               @(27): @(14800),
                               @(28): @(26350),
+                              @(29): @(59.99),
+                              @(30): @(399.99),
+                              @(31): @(59.99),
                               };
 
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -60,7 +63,9 @@
     NSArray *blocks = [TGPriceRecognizer recognizeImage:image];
 
     for (TGRecognizedBlock *block in blocks) {
-        if ([[block number] isEqualToNumber:images[@(index)]]) {
+        CGFloat value = [block number].floatValue;
+        CGFloat expectedValue = [images[@(index)] floatValue];
+        if (ABS(expectedValue - value) < FLT_EPSILON) {
             return true;
         }
     }
@@ -383,6 +388,39 @@
 #else
     [self measureBlock:^{
         [[self class] testImageIndex:28];
+    }];
+#endif
+}
+
+- (void)testImage29
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:29]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:29];
+    }];
+#endif
+}
+
+- (void)testImage30
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:30]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:30];
+    }];
+#endif
+}
+
+- (void)testImage31
+{
+#ifdef TEST_VALUES
+    XCTAssert([[self class] testImageIndex:31]);
+#else
+    [self measureBlock:^{
+        [[self class] testImageIndex:31];
     }];
 #endif
 }

@@ -11,17 +11,29 @@
 #import <Reachability/Reachability.h>
 #import "TGCurrency.h"
 
-static NSString *const kTGCurrencyLink = @"http://taggy.by/GetRates";
+static NSString *const kTGCurrencyLink = @"http://api.taggy.by/rates";
 
 @implementation TGCurrencyManager
 
++ (void)initCurrencies
+{
+    if ([TGCurrency allObjects].count == 0) {
+        [[self class] updateWithCallback:nil offline:YES];
+    }
+}
+
 + (void)updateWithCallback:(TGCurrencyUpdateCallback)callback
+{
+    [[self class] updateWithCallback:callback offline:NO];
+}
+
++ (void)updateWithCallback:(TGCurrencyUpdateCallback)callback offline:(BOOL)offline
 {
     NSError *error = nil;
     NSURL *URL = [NSURL URLWithString:kTGCurrencyLink];
     Reachability *apiReachable = [Reachability reachabilityWithHostname:URL.host];
 
-    if ([apiReachable isReachable]) {
+    if (offline == NO && [apiReachable isReachable]) {
         [self updateFromURL:URL error:&error];
 
         if (error != nil) {
@@ -59,29 +71,25 @@ static NSString *const kTGCurrencyLink = @"http://taggy.by/GetRates";
     NSData *currencyData = [NSData dataWithContentsOfURL:URL options:0 error:error];
 
     if (*error == nil) {
-        NSArray *currencyRates = nil;
+        NSDictionary *currencyRates = nil;
         @try {
             NSInputStream *inputStream = [NSInputStream inputStreamWithData:currencyData];
             [inputStream open];
             currencyRates = [NSJSONSerialization JSONObjectWithStream:inputStream options:0 error:error];
         }
         @catch (NSException *exception) {
-            NSLog(@"Error parsing JSON");
+            DDLogError(@"Error parsing JSON");
         }
 
         if (*error == nil) {
             NSDate *nowDate = [NSDate date];
             RLMRealm *realm = [RLMRealm defaultRealm];
 
-            for (NSDictionary *currency in currencyRates) {
-                NSString *codeFrom = currency[@"From"];
-                NSString *codeTo = currency[@"To"];
-                CGFloat rate = [currency[@"Rate"] floatValue];
+            for (NSString *code in currencyRates) {
+                CGFloat rate = [currencyRates[code] floatValue];
 
                 [realm transactionWithBlock:^{
-                    RLMResults *existsRates =
-                        [TGCurrency objectsWhere:@"codeFrom == %@ && codeTo == %@", codeFrom, codeTo];
-                    TGCurrency *tgCurrency = existsRates.firstObject;
+                    TGCurrency *tgCurrency = [TGCurrency currencyForCode:code];
 
                     if (tgCurrency != nil) {
                         tgCurrency.value = rate;
@@ -90,8 +98,7 @@ static NSString *const kTGCurrencyLink = @"http://taggy.by/GetRates";
                     else {
                         tgCurrency = [[TGCurrency alloc] init];
 
-                        tgCurrency.codeFrom = codeFrom;
-                        tgCurrency.codeTo = codeTo;
+                        tgCurrency.code = code;
                         tgCurrency.value = rate;
                         tgCurrency.updateDate = nowDate;
                         

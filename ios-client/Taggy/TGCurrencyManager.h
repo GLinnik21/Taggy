@@ -18,6 +18,7 @@ typedef void(^TGCurrencyUpdateCallback)(TGCurrencyUpdateResult result);
 
 @interface TGCurrencyManager : NSObject
 
++ (void)initCurrencies;
 + (void)updateWithCallback:(TGCurrencyUpdateCallback)callback;
 
 @end

@@ -14,10 +14,10 @@
 #import "TGDataManager.h"
 #import "SVProgressHUD.h"
 #import "TGDetailViewController.h"
+#import <Realm/Realm.h>
+
 
 @interface TGPhotoCaptureViewController() <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-
-@property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
 
 @property (nonatomic, weak) UIImagePickerController *takePhotoPicker;
 @property (nonatomic, weak) UIImagePickerController *chooseExistingPicker;
@@ -26,7 +26,10 @@
 
 @implementation TGPhotoCaptureViewController
 
--(void)viewDidDisappear:(BOOL)animated{
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
     [SVProgressHUD dismiss];
 }
 
@@ -91,8 +94,8 @@
                 [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                               target:viewController
                                                               action:@selector(dismiss)];
-            viewController.navigationItem.rightBarButtonItem = dismissButton;
-            [viewController.navigationItem.rightBarButtonItem setTintColor:[UIColor orangeColor]];
+            viewController.navigationItem.leftBarButtonItem = dismissButton;
+            [viewController.navigationItem.leftBarButtonItem setTintColor:[UIColor orangeColor]];
 
             [self.navigationController presentViewController:navigationController animated:YES completion:nil];
         }
