@@ -8,7 +8,6 @@
 
 #import "TGConverterViewController.h"
 #import <Masonry/Masonry.h>
-#import <QuartzCore/QuartzCore.h>
 
 #import "TGCurrency.h"
 
@@ -58,91 +57,10 @@
     [toolBar setItems:@[ flexSpace, barButtonDone ] animated:YES];
     self.sellTextField.inputAccessoryView = toolBar;
     self.sellTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    
-    //Graph
-    UIView* graphBG= [[UIView alloc] init];
-    
-    graphBG.layer.cornerRadius = 7;
-    graphBG.layer.masksToBounds = YES;
-    
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = self.view.bounds;
-    gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:(247/255.0) green:(149/255.0) blue:(85/255.0) alpha:1] CGColor], (id)[[UIColor colorWithRed:(255/255.0) green:(51/255.0) blue:(51/255.0) alpha:1] CGColor], nil];
-    [graphBG.layer insertSublayer:gradient atIndex:0];
-    graphBG.backgroundColor = [UIColor redColor];
-    [self.view insertSubview:graphBG belowSubview:self.graphView];
-    [graphBG mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(self.graphView);
-        make.height.equalTo(self.graphView);
-        make.center.equalTo(self.graphView);
-    }];
-    
-    self.arrayOfValues = [[NSMutableArray alloc] init];
-    self.arrayOfDates = [[NSMutableArray alloc] init];
-    
-    totalNumber = 0;
-    
-    for (int i = 0; i < 30; i++) {
-        [self.arrayOfValues addObject:@([self getRandomInteger])]; // Random values for the graph
-        [self.arrayOfDates addObject:[NSString stringWithFormat:@"%@", @(2000 + i)]]; // Dates for the X-Axis of the graph
-        
-        totalNumber = totalNumber + [[self.arrayOfValues objectAtIndex:i] intValue]; // All of the values added together
-    }
-    
-    CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
-    size_t num_locations = 2;
-    CGFloat locations[2] = { 0.0, 1.0 };
-    CGFloat components[8] = {
-        1.0, 1.0, 1.0, 1.0,
-        1.0, 1.0, 1.0, 0.0
-    };
-    
-    self.graphView.gradientBottom = CGGradientCreateWithColorComponents(colorspace, components, locations, num_locations);
-    self.graphView.colorTop = [UIColor clearColor];
-    self.graphView.colorBottom = [UIColor clearColor];
-    self.graphView.colorLine = [UIColor whiteColor];
-    self.graphView.colorXaxisLabel = [UIColor whiteColor];
-    self.graphView.colorYaxisLabel = [UIColor whiteColor];
-    self.graphView.widthLine = 3.0;
-    self.graphView.enableTouchReport = YES;
-    self.graphView.enablePopUpReport = YES;
-    self.graphView.enableBezierCurve = NO;
-    self.graphView.enableYAxisLabel = YES;
-    self.graphView.autoScaleYAxis = YES;
-    self.graphView.alwaysDisplayDots = NO;
-    self.graphView.enableReferenceXAxisLines = YES;
-    self.graphView.enableReferenceYAxisLines = YES;
-    self.graphView.enableReferenceAxisFrame = YES;
-    self.graphView.animationGraphStyle = BEMLineAnimationDraw;
-    self.graphView.colorTouchInputLine = [UIColor colorWithWhite:1 alpha:1];
-    self.graphView.widthTouchInputLine = 2.0f;
-    self.graphView.colorBackgroundYaxis =[UIColor clearColor];
 }
 
-- (NSString *)lineGraph:(BEMSimpleLineGraphView *)graph labelOnXAxisForIndex:(NSInteger)index {
-    NSString *label = [self.arrayOfDates objectAtIndex:index];
-    return [label stringByReplacingOccurrencesOfString:@" " withString:@"\n"];
-}
-
-- (NSInteger)getRandomInteger
+- (IBAction)sellAction:(id)sender
 {
-    NSInteger i1 = (int)(arc4random() % 10000);
-    return i1;
-}
-
-- (NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph {
-    return (int)[self.arrayOfValues count];
-}
-
-- (CGFloat)lineGraph:(BEMSimpleLineGraphView *)graph valueForPointAtIndex:(NSInteger)index {
-    return [[self.arrayOfValues objectAtIndex:index] floatValue];
-}
-
-- (NSInteger)numberOfGapsBetweenLabelsOnLineGraph:(BEMSimpleLineGraphView *)graph {
-    return 1;
-}
-
-- (IBAction)sellAction:(id)sender {
     if (self.checkSell == NO) {
         [self.sellButton setTitle:@"AUD" forState:UIControlStateNormal];
         UIView *pickerViewRoot = [[UIView alloc] init];
