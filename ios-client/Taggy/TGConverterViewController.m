@@ -10,6 +10,7 @@
 #import <Masonry/Masonry.h>
 
 #import "TGCurrency.h"
+#import "TGSettingsManager.h"
 
 @interface TGConverterViewController (){
     int previousStepperValue;
@@ -29,16 +30,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [self.sellButton setTitle:[defaults objectForKey:@"country"] forState:UIControlStateNormal];
-    [self.buyButton setTitle:[defaults objectForKey:@"transf"] forState:UIControlStateNormal];
+    [self.sellButton setTitle:[[TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey] description]
+                     forState:UIControlStateNormal];
+    [self.buyButton setTitle:[[TGSettingsManager objectForKey:kTGSettingsTargetCurrencyKey] description]
+                    forState:UIControlStateNormal];
 
     self.dataSource = @[
         @"AUD",
         @"BYR",
         @"EUR",
         @"GBP",
+        @"LTL",
+        @"LVL",
+        @"PLN",
         @"RUB",
+        @"TRY",
+        @"UAH",
         @"USD"
     ];
 
@@ -107,7 +114,8 @@
 }
 
 
-- (IBAction)buyAction:(id)sender {
+- (IBAction)buyAction:(id)sender
+{
     if (self.checkBuy == NO) {
         [self.buyButton setTitle:@"AUD" forState:UIControlStateNormal];
         UIView *pickerViewRoot = [[UIView alloc] init];
@@ -151,23 +159,27 @@
     [self.buyTextField resignFirstResponder];
 }
 
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component {
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent:(NSInteger)component
+{
     if (pickerView == self.sellPickerView) {
         [self.sellButton setTitle:[self.dataSource objectAtIndex:row] forState:UIControlStateNormal];
     }
     else if (pickerView == self.buyPickerView) {
         [self.buyButton setTitle:[self.dataSource objectAtIndex:row] forState:UIControlStateNormal];
     }
+
     [self valueChanged];
 }
 
 // tell the picker how many rows are available for a given component
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
     return self.dataSource.count;
 }
 
 // tell the picker how many components it will have
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
     return 1;
 }
 
@@ -177,7 +189,8 @@
 }
 
 // tell the picker the width of each row for a given component
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
     int sectionWidth = 300;
     
     return sectionWidth;
@@ -207,14 +220,16 @@
     DDLogInfo(@"Buy: Done");
 }
 
-- (IBAction)sellEditingDidBegin:(id)sender {
+- (IBAction)sellEditingDidBegin:(id)sender
+{
     [self.sellPickerView.superview removeFromSuperview];
     [self.buyPickerView.superview removeFromSuperview];
     self.checkSell = NO;
     self.checkBuy = NO;
 }
 
-- (void)valueChanged {
+- (void)valueChanged
+{
     TGCurrency *fromCurency = [TGCurrency currencyForCode:self.sellButton.currentTitle];
     TGCurrency *toCurency = [TGCurrency currencyForCode:self.buyButton.currentTitle];
     
@@ -247,7 +262,8 @@
     }
 }
 
-- (IBAction)swapCurrencies:(id)sender {
+- (IBAction)swapCurrencies:(id)sender
+{
     NSString *sell;
     NSString *buy;
     sell = self.sellButton.currentTitle;
@@ -257,11 +273,13 @@
     [self valueChanged];
 }
 
-- (IBAction)sellEditingChanged:(id)sender {
+- (IBAction)sellEditingChanged:(id)sender
+{
     [self valueChanged];
 }
 
-- (void)sellTextFieldEndEditing: (id)sender {
+- (void)sellTextFieldEndEditing: (id)sender
+{
     [self.sellTextField resignFirstResponder];
 }
 

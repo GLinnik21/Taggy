@@ -37,11 +37,26 @@
 {
     [super viewWillAppear:animated];
 
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    self.privacyCell.hidden = [currSysVer compare:@"8.0" options:NSNumericSearch] != NSOrderedDescending;
+
     self.sourceCurrencyLabel.text = [[TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey] description];
     self.targetCurrencyLabel.text = [[TGSettingsManager objectForKey:kTGSettingsTargetCurrencyKey] description];
     
     [self.auto_updateSwitch setOn:[[TGSettingsManager objectForKey:kTGSettingsAutoUpdateKey] boolValue]
                          animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0 && indexPath.section == 0) {
+        NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+        if ([currSysVer compare:@"8.0" options:NSNumericSearch] != NSOrderedDescending) {
+            return 0.0;
+        }
+    }
+
+    return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
