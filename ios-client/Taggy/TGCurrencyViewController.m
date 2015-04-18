@@ -37,19 +37,28 @@
     }];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope
 {
     NSString *lowerSearchString = [searchText lowercaseString];
     NSMutableArray *results = [NSMutableArray array];
-
+    
     for (NSString *code in self.codes) {
-        NSString *fullName = [[self fullNameForCode:code] lowercaseString];
-        if ([fullName containsString:lowerSearchString]) {
+        NSString *fullName = [[self FullNameForCode:code] lowercaseString];
+        NSString *ISO = [[self ISOForCode:code] lowercaseString];
+        if ([ISO containsString:lowerSearchString]) {
+            [results addObject:code];
+        }else if([fullName containsString:lowerSearchString]){
             [results addObject:code];
         }
     }
-
+    
     self.searchResults = [results copy];
+
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller
@@ -63,7 +72,12 @@
     return YES;
 }
 
-- (NSString *)fullNameForCode:(NSString *)code
+- (NSString *)FullNameForCode:(NSString *)code
+{
+    return [NSString stringWithFormat:@"%@", NSLocalizedString(code, nil)];
+}
+
+- (NSString *)ISOForCode:(NSString *)code
 {
     return [NSString stringWithFormat:@"%@", code];
 }
@@ -85,6 +99,10 @@
     static NSString *cellID = @"currencyCell";
     TGcurrencyCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
 
+    if (cell == nil) {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
+    }
+    
     NSString *rateId = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         rateId = self.searchResults[indexPath.row];
@@ -94,9 +112,9 @@
     }
     NSNumber *rate = self.rates[rateId];
 
-    cell.ISOLabel.text = [self fullNameForCode:rateId];
+    cell.ISOLabel.text = rateId;
     cell.RateLabel.text = [NSString stringWithFormat:@"%.2f", rate.floatValue];
-    cell.FullLabel.text = [NSString stringWithFormat:@"%@", NSLocalizedString([self fullNameForCode:rateId], nil)];
+    cell.FullLabel.text = [NSString stringWithFormat:@"%@", NSLocalizedString(rateId, nil)];
 
     if ([[TGSettingsManager objectForKey:self.settingsKey] isEqualToString:rateId]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
