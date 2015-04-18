@@ -42,6 +42,7 @@
 		EDAE40531A83F5CC00A90A71 /* TGConverterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAE40521A83F5CC00A90A71 /* TGConverterViewController.m */; };
 		EDAE69AF1AB36C1C009E92BE /* TGCurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAE69AE1AB36C1C009E92BE /* TGCurrencyViewController.m */; };
 		EDC5CFA11AB16AA3008C8ECC /* TGSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CFA01AB16AA3008C8ECC /* TGSettingsViewController.m */; };
+		EDF32C251AE278C700FA1F1B /* TGcurrencyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF32C241AE278C700FA1F1B /* TGcurrencyCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,8 @@
 		EDAE69AE1AB36C1C009E92BE /* TGCurrencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGCurrencyViewController.m; sourceTree = "<group>"; };
 		EDC5CF9F1AB16AA3008C8ECC /* TGSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGSettingsViewController.h; sourceTree = "<group>"; };
 		EDC5CFA01AB16AA3008C8ECC /* TGSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGSettingsViewController.m; sourceTree = "<group>"; };
+		EDF32C231AE278C700FA1F1B /* TGcurrencyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGcurrencyCell.h; sourceTree = "<group>"; };
+		EDF32C241AE278C700FA1F1B /* TGcurrencyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGcurrencyCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +200,8 @@
 		41A9D04E1A038B6500922CBC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EDF32C231AE278C700FA1F1B /* TGcurrencyCell.h */,
+				EDF32C241AE278C700FA1F1B /* TGcurrencyCell.m */,
 				ED077A6419F940F700B203CB /* TGImageCell.h */,
 				ED077A6519F940F700B203CB /* TGImageCell.m */,
 				413373EF1A51C4EE0085B564 /* TGPriceViewCell.h */,
@@ -515,6 +520,7 @@
 				413F033A1A617420000C194B /* TGSettingsManager.m in Sources */,
 				ED077A1519F93FE300B203CB /* main.m in Sources */,
 				ED077A7519F9448E00B203CB /* TGCustomTabBarController.m in Sources */,
+				EDF32C251AE278C700FA1F1B /* TGcurrencyCell.m in Sources */,
 				41A9D0481A00F2A700922CBC /* TGRecognizedBlock.m in Sources */,
 				ED077A6D19F940F700B203CB /* TGImageCell.m in Sources */,
 				41A76FC21A05A1D800176A14 /* TGCommon.m in Sources */,
