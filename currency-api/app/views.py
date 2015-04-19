@@ -1,4 +1,4 @@
-from flask import jsonify, abort, make_response, render_template
+from flask import jsonify, abort, make_response, render_template, request
 from app import app, auth, db, models
 
 def latestRates():
@@ -41,7 +41,15 @@ def index():
 @app.route('/rates', methods=['GET'])
 def getRates():
     rates = ratesToDict(latestRates());
-    return jsonify(rates)
+    json = jsonify(rates)
+    callback = request.args.get('callback', False)
+    if callback:
+        data = str(json.data)
+        content = str(callback) + '(' + data + ')'
+        mimetype = 'application/javascript'
+        return app.response_class(content, mimetype=mimetype)
+    else:
+        return json
 
 @app.route('/rates/<string:rateIds>', methods=['GET'])
 #@auth.login_required
