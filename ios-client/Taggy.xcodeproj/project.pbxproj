@@ -21,6 +21,7 @@
 		41A76FC51A05A43600176A14 /* TGDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A76FC41A05A43600176A14 /* TGDataManager.m */; };
 		41A9D0481A00F2A700922CBC /* TGRecognizedBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A9D0471A00F2A700922CBC /* TGRecognizedBlock.m */; };
 		41A9D04B1A022F6500922CBC /* TGPriceRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A9D04A1A022F6500922CBC /* TGPriceRecognizer.m */; };
+		41DF05581AE152F000F3955B /* TGCurrencyHistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DF05571AE152F000F3955B /* TGCurrencyHistoryItem.m */; };
 		41DF52141A3486C70060C7FF /* UIImage+FixOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 41DF52131A3486C70060C7FF /* UIImage+FixOrientation.m */; };
 		E1333C0F2263E54E9C49B26F /* libPods-Taggy.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9526B84B57BF771D8B42008E /* libPods-Taggy.a */; };
 		ED077A1519F93FE300B203CB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A1419F93FE300B203CB /* main.m */; };
@@ -82,6 +83,8 @@
 		41A9D0491A022F6400922CBC /* TGPriceRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGPriceRecognizer.h; sourceTree = "<group>"; };
 		41A9D04A1A022F6500922CBC /* TGPriceRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGPriceRecognizer.m; sourceTree = "<group>"; };
 		41CC86F11ADC552F005D7C28 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		41DF05561AE152F000F3955B /* TGCurrencyHistoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGCurrencyHistoryItem.h; sourceTree = "<group>"; };
+		41DF05571AE152F000F3955B /* TGCurrencyHistoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGCurrencyHistoryItem.m; sourceTree = "<group>"; };
 		41DF52121A3486C70060C7FF /* UIImage+FixOrientation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+FixOrientation.h"; sourceTree = "<group>"; };
 		41DF52131A3486C70060C7FF /* UIImage+FixOrientation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+FixOrientation.m"; sourceTree = "<group>"; };
 		4A072264AC63C331560A9A6C /* Pods-Taggy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Taggy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Taggy/Pods-Taggy.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,6 +150,10 @@
 		4106C4611A10800C004790DB /* Currency */ = {
 			isa = PBXGroup;
 			children = (
+				41A76FB61A05226900176A14 /* TGCurrency.h */,
+				41A76FB71A05226900176A14 /* TGCurrency.m */,
+				41DF05561AE152F000F3955B /* TGCurrencyHistoryItem.h */,
+				41DF05571AE152F000F3955B /* TGCurrencyHistoryItem.m */,
 				4106C4621A109047004790DB /* TGCurrencyManager.h */,
 				4106C4631A109047004790DB /* TGCurrencyManager.m */,
 			);
@@ -231,8 +238,6 @@
 		41A9D0511A038BA000922CBC /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				41A76FB61A05226900176A14 /* TGCurrency.h */,
-				41A76FB71A05226900176A14 /* TGCurrency.m */,
 				41A76FB91A05335100176A14 /* TGPriceImage.h */,
 				41A76FBA1A05335100176A14 /* TGPriceImage.m */,
 				41A76FBC1A05343800176A14 /* TGRecognizedPrice.h */,
@@ -502,6 +507,7 @@
 				41A9D04B1A022F6500922CBC /* TGPriceRecognizer.m in Sources */,
 				41A76FB81A05226900176A14 /* TGCurrency.m in Sources */,
 				EDC5CFA11AB16AA3008C8ECC /* TGSettingsViewController.m in Sources */,
+				41DF05581AE152F000F3955B /* TGCurrencyHistoryItem.m in Sources */,
 				41A76FC51A05A43600176A14 /* TGDataManager.m in Sources */,
 				ED077A1B19F93FE300B203CB /* TGViewController.m in Sources */,
 				ED077A1819F93FE300B203CB /* TGAppDelegate.m in Sources */,

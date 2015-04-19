@@ -13,10 +13,7 @@
 #import "TGCurrency.h"
 #import "TGSettingsManager.h"
 
-@interface TGConverterViewController (){
-    int previousStepperValue;
-    int totalNumber;
-}
+@interface TGConverterViewController ()
 
 @property (strong, nonatomic) NSArray *dataSource;
 @property (nonatomic, retain) UIPickerView *sellPickerView;
@@ -30,11 +27,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    NSString *sourceKey = [[TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey] description];
+    NSString *targetKey = [[TGSettingsManager objectForKey:kTGSettingsTargetCurrencyKey] description];
     
-    [self.sellButton setTitle:[[TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey] description]
-                     forState:UIControlStateNormal];
-    [self.buyButton setTitle:[[TGSettingsManager objectForKey:kTGSettingsTargetCurrencyKey] description]
-                    forState:UIControlStateNormal];
+    [self.sellButton setTitle:sourceKey forState:UIControlStateNormal];
+    [self.buyButton setTitle:targetKey forState:UIControlStateNormal];
 
     self.dataSource = @[
         @"AUD",
@@ -67,7 +65,7 @@
     self.sellTextField.keyboardType = UIKeyboardTypeDecimalPad;
     
     //Graph
-    UIView* graphBG= [[UIView alloc] init];
+    UIView* graphBG = [[UIView alloc] init];
     
     graphBG.layer.cornerRadius = 7;
     graphBG.layer.masksToBounds = YES;
@@ -84,17 +82,7 @@
         make.center.equalTo(self.graphView);
     }];
     
-    self.arrayOfValues = [[NSMutableArray alloc] init];
-    self.arrayOfDates = [[NSMutableArray alloc] init];
-    
-    totalNumber = 0;
-    
-    for (int i = 0; i < 30; i++) {
-        [self.arrayOfValues addObject:@([self getRandomInteger])]; // Random values for the graph
-        [self.arrayOfDates addObject:[NSString stringWithFormat:@"%@", @(2000 + i)]]; // Dates for the X-Axis of the graph
-        
-        totalNumber = totalNumber + [[self.arrayOfValues objectAtIndex:i] intValue]; // All of the values added together
-    }
+    [self formatGraphData];
     
     CGColorSpaceRef colorspace = CGColorSpaceCreateDeviceRGB();
     size_t num_locations = 2;
@@ -126,15 +114,32 @@
     self.graphView.colorBackgroundYaxis =[UIColor clearColor];
 }
 
+- (void)formatGraphData
+{
+    self.arrayOfValues = [[NSMutableArray alloc] init];
+    self.arrayOfDates = [[NSMutableArray alloc] init];
+
+    TGCurrency *sourceCurrency = [TGCurrency currencyForCode:self.sellButton.currentTitle];
+    TGCurrency *targetCurrency = [TGCurrency currencyForCode:self.buyButton.currentTitle];
+
+    RLMResults *items = [sourceCurrency.historyItems objectsWhere:@"date > %@", [NSDate dateWithTimeIntervalSinceNow:-2*24*3600]];
+    for (TGCurrencyHistoryItem *item in items) {
+        TGCurrencyHistoryItem *targetItem = [targetCurrency.historyItems objectsWhere:@"date == %@", item.date].firstObject;
+        if (targetItem == nil) continue;
+
+        CGFloat value = targetItem.value / item.value;
+        NSString *dateString = [NSDateFormatter localizedStringFromDate:item.date
+                                                              dateStyle:NSDateFormatterShortStyle
+                                                              timeStyle:NSDateFormatterShortStyle];
+
+        [self.arrayOfValues addObject:@(value)];
+        [self.arrayOfDates addObject:dateString];
+    }
+}
+
 - (NSString *)lineGraph:(BEMSimpleLineGraphView *)graph labelOnXAxisForIndex:(NSInteger)index {
     NSString *label = [self.arrayOfDates objectAtIndex:index];
     return [label stringByReplacingOccurrencesOfString:@" " withString:@"\n"];
-}
-
-- (NSInteger)getRandomInteger
-{
-    NSInteger i1 = (int)(arc4random() % 10000);
-    return i1;
 }
 
 - (NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph {
@@ -332,16 +337,22 @@
     if ([self.buyButton.currentTitle  isEqual:@"BYR"]) {
         if (result == 0.0f) {
             self.buyTextField.text = nil;
-        }else{
+        }
+        else{
             self.buyTextField.text = [NSString stringWithFormat: @"%.0f", result];
         }
-    }else{
+    }
+    else{
         if (result == 0.0f) {
             self.buyTextField.text = nil;
-        }else{
+        }
+        else{
             self.buyTextField.text = [NSString stringWithFormat: @"%.2f", result];
         }
     }
+
+    [self formatGraphData];
+    [self.graphView reloadGraph];
 }
 
 - (IBAction)swapCurrencies:(id)sender
