@@ -78,7 +78,7 @@ $('#loading-button').on('click', function () {
 });
 
 function convert() {
-    $.getJSON("/GetRates", function (data) {
+    $.getJSON("http://api.taggy.by/rates?callback=?", function (data) {
         if ($('#price').html().length > 0)
             if (data) {
                 $("#priceConverted").hide();
@@ -91,27 +91,29 @@ function convert() {
                 var TOrate;
                 var toConvert = $("#price").html(); // заменить
 
-                for (var i = 0; i < data.length; i++) {
-                    if (data[i].From == from) {
-                        FROMrate = data[i].Rate; // рубль относительно доллара
+                for (var code in data) {
+                    if (data.hasOwnProperty(code)) {
+                    if (code == from) {
+                        FROMrate = data[code]; // рубль относительно доллара
                         if (to == from) {
                             TOrate = FROMrate;
                         }
                         continue;
                     }
-                    if (data[i].From == to) {
-                        TOrate = data[i].Rate; // евро относительно доллара
+                    if (code== to) {
+                        TOrate = data[code]; // евро относительно доллара
                         continue;
+                    }
                     }
                 }
 
-                var r = +TOrate / +FROMrate;
+                var r = +FROMrate / +TOrate;
                 var prices = [];
                 var source = "";//= toConvert;
                 for (var i=0; i< toConvert.length;i++)
                 {
-                	if (toConvert[i] == ',') source += ".";
-                	else {source += toConvert[i];}
+                    if (toConvert[i] == ',') source += ".";
+                    else {source += toConvert[i];}
                 }
 
                 prices = source.split(' ');
