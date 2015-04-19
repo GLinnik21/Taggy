@@ -8,13 +8,13 @@
 
 #import "TGCurrencyViewController.h"
 #import "TGCurrency.h"
+#import "TGcurrencyCell.h"
 
 #import "TGSettingsManager.h"
 
 @interface TGCurrencyViewController ()
 
 @property (nonatomic, retain) NSIndexPath *checkedIndexPath;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) NSArray *codes;
 @property (nonatomic, strong) NSMutableDictionary *rates;
@@ -37,19 +37,28 @@
     }];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
 - (void)filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope
 {
     NSString *lowerSearchString = [searchText lowercaseString];
     NSMutableArray *results = [NSMutableArray array];
-
+    
     for (NSString *code in self.codes) {
-        NSString *fullName = [[self fullNameForCode:code] lowercaseString];
-        if ([fullName containsString:lowerSearchString]) {
+        NSString *fullName = [[self FullNameForCode:code] lowercaseString];
+        NSString *ISO = [[self ISOForCode:code] lowercaseString];
+        if ([ISO containsString:lowerSearchString]) {
+            [results addObject:code];
+        }else if([fullName containsString:lowerSearchString]){
             [results addObject:code];
         }
     }
-
+    
     self.searchResults = [results copy];
+
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller
@@ -63,9 +72,14 @@
     return YES;
 }
 
-- (NSString *)fullNameForCode:(NSString *)code
+- (NSString *)FullNameForCode:(NSString *)code
 {
-    return [NSString stringWithFormat:@"%@ (%@)", NSLocalizedString(code, nil), code];
+    return [NSString stringWithFormat:@"%@", NSLocalizedString(code, nil)];
+}
+
+- (NSString *)ISOForCode:(NSString *)code
+{
+    return [NSString stringWithFormat:@"%@", code];
 }
 
 #pragma mark - Table view data source
@@ -82,12 +96,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellID = @"cellID";
-    UITableViewCell *cell = [tableView dequeueReusableHeaderFooterViewWithIdentifier:cellID];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellID];
-    }
+    static NSString *cellID = @"currencyCell";
+    TGcurrencyCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
 
+    if (cell == nil) {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
+    }
+    
     NSString *rateId = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         rateId = self.searchResults[indexPath.row];
@@ -97,8 +112,9 @@
     }
     NSNumber *rate = self.rates[rateId];
 
-    cell.textLabel.text = [self fullNameForCode:rateId];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f", rate.floatValue];
+    cell.ISOLabel.text = rateId;
+    cell.RateLabel.text = [NSString stringWithFormat:@"%.2f", rate.floatValue];
+    cell.FullLabel.text = [NSString stringWithFormat:@"%@", NSLocalizedString(rateId, nil)];
 
     if ([[TGSettingsManager objectForKey:self.settingsKey] isEqualToString:rateId]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -118,14 +134,13 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (self.checkedIndexPath != nil) {
-        UITableViewCell *uncheckCell = [self.tableView cellForRowAtIndexPath:self.checkedIndexPath];
+        TGcurrencyCell *uncheckCell = [self.tableView cellForRowAtIndexPath:self.checkedIndexPath];
         uncheckCell.accessoryType = UITableViewCellAccessoryNone;
     }
 
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    TGcurrencyCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
-    NSString *fullName = cell.textLabel.text;
-    NSString *code = [fullName substringWithRange:NSMakeRange(fullName.length - 4, 3)];
+    NSString *code = cell.ISOLabel.text;
     
     [TGSettingsManager setObject:code forKey:self.settingsKey];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;

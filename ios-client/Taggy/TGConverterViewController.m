@@ -110,7 +110,7 @@
     self.graphView.enableReferenceAxisFrame = YES;
     self.graphView.animationGraphStyle = BEMLineAnimationDraw;
     self.graphView.colorTouchInputLine = [UIColor colorWithWhite:1 alpha:1];
-    self.graphView.widthTouchInputLine = 2.0f;
+    self.graphView.widthTouchInputLine = 3.0f;
     self.graphView.colorBackgroundYaxis =[UIColor clearColor];
 }
 
@@ -333,20 +333,15 @@
     }
     
     CGFloat result = value * rate;
-
-    if ([self.buyButton.currentTitle  isEqual:@"BYR"]) {
-        if (result == 0.0f) {
-            self.buyTextField.text = nil;
-        }
-        else{
+    
+    if (result == 0.0f) {
+        self.buyTextField.text = nil;
+    }
+    else {
+        if ([self.buyButton.currentTitle  isEqual:@"BYR"]) {
             self.buyTextField.text = [NSString stringWithFormat: @"%.0f", result];
         }
-    }
-    else{
-        if (result == 0.0f) {
-            self.buyTextField.text = nil;
-        }
-        else{
+        else {
             self.buyTextField.text = [NSString stringWithFormat: @"%.2f", result];
         }
     }
