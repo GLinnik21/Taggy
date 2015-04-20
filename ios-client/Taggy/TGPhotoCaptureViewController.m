@@ -33,19 +33,6 @@
     [SVProgressHUD dismiss];
 }
 
-- (IBAction)takePhoto
-{
-    if ([[UIDevice currentDevice].model containsString:@"Simulator"] == NO) {
-        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = self;
-        [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
-        [self presentViewController:picker animated:YES completion:NULL];
-        self.takePhotoPicker = picker;
-
-        [ARAnalytics event:@"Take photo"];
-    }
-}
-
 - (IBAction)chooseExisting
 {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
