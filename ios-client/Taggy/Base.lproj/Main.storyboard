@@ -947,10 +947,9 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hay-Lg-EG5">
-                                                <rect key="frame" x="0.0" y="29" width="80" height="15"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="80" height="74"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="15" id="JeO-Pg-m9K"/>
-                                                    <constraint firstAttribute="width" constant="80" id="wew-C2-yCi"/>
+                                                    <constraint firstAttribute="width" constant="80" id="WnI-EI-zvD"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="Cancel">
@@ -965,20 +964,20 @@
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.41999999999999998" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="centerY" secondItem="jaM-rf-nDM" secondAttribute="centerY" id="0K0-MJ-4s7"/>
-                                            <constraint firstItem="Hay-Lg-EG5" firstAttribute="top" secondItem="nYc-RP-2Jh" secondAttribute="top" constant="29" id="Bm1-Le-8BV"/>
+                                            <constraint firstAttribute="bottom" secondItem="Hay-Lg-EG5" secondAttribute="bottom" id="1NV-Y2-HLX"/>
                                             <constraint firstItem="Bwr-4A-KRh" firstAttribute="top" secondItem="VXS-yD-5zT" secondAttribute="bottom" id="ECL-qZ-635"/>
                                             <constraint firstAttribute="trailing" secondItem="Bwr-4A-KRh" secondAttribute="trailing" constant="8" id="JgW-4b-AHE"/>
                                             <constraint firstItem="VXS-yD-5zT" firstAttribute="top" secondItem="Mfo-Th-IMC" secondAttribute="bottom" id="OC4-J0-w9S"/>
+                                            <constraint firstItem="Hay-Lg-EG5" firstAttribute="leading" secondItem="nYc-RP-2Jh" secondAttribute="leading" id="OHl-LB-9xA"/>
                                             <constraint firstAttribute="trailing" secondItem="Mfo-Th-IMC" secondAttribute="trailing" constant="8" id="PcQ-Hr-xKE"/>
                                             <constraint firstAttribute="trailing" secondItem="VXS-yD-5zT" secondAttribute="trailing" constant="8" id="PdO-fb-GZT"/>
-                                            <constraint firstAttribute="centerY" secondItem="Hay-Lg-EG5" secondAttribute="centerY" id="S7G-re-OJR"/>
                                             <constraint firstAttribute="centerX" secondItem="jaM-rf-nDM" secondAttribute="centerX" id="SB0-bl-mDU"/>
-                                            <constraint firstAttribute="bottom" secondItem="Hay-Lg-EG5" secondAttribute="bottom" constant="30" id="bXn-e8-aMd"/>
                                             <constraint firstAttribute="bottom" secondItem="Bwr-4A-KRh" secondAttribute="bottom" constant="11" id="cKQ-zO-BG3"/>
+                                            <constraint firstAttribute="centerY" secondItem="Hay-Lg-EG5" secondAttribute="centerY" id="lgV-yi-ndo"/>
                                             <constraint firstItem="jaM-rf-nDM" firstAttribute="top" secondItem="nYc-RP-2Jh" secondAttribute="top" constant="4" id="nfa-g1-MTE"/>
                                             <constraint firstAttribute="bottom" secondItem="jaM-rf-nDM" secondAttribute="bottom" constant="4" id="oEF-AX-y0K"/>
                                             <constraint firstItem="Mfo-Th-IMC" firstAttribute="top" secondItem="nYc-RP-2Jh" secondAttribute="top" constant="7" id="pDo-FS-TQv"/>
-                                            <constraint firstItem="Hay-Lg-EG5" firstAttribute="leading" secondItem="nYc-RP-2Jh" secondAttribute="leading" id="sA1-Ho-Mnb"/>
+                                            <constraint firstItem="Hay-Lg-EG5" firstAttribute="top" secondItem="nYc-RP-2Jh" secondAttribute="top" id="s9y-pt-xfY"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpz-t5-AF4">
