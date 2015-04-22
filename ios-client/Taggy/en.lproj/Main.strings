@@ -11,11 +11,11 @@
 /* Class = "UINavigationController"; title = "Scanner"; ObjectID = "2by-fz-iZf"; */
 "2by-fz-iZf.title" = "Scanner";
 
-/* Class = "UIButton"; normalTitle = "XXX"; ObjectID = "3Nb-Hv-wEo"; */
-"3Nb-Hv-wEo.normalTitle" = "XXX";
+/* Class = "UIButton"; normalTitle = "WWW"; ObjectID = "3Nb-Hv-wEo"; */
+"3Nb-Hv-wEo.normalTitle" = "WWW";
 
 /* Class = "UILabel"; text = "Currency for transference\n"; ObjectID = "5ff-tQ-o6N"; */
-"5ff-tQ-o6N.text" = "Currency for transference\n";
+"5ff-tQ-o6N.text" = "Currency for transference";
 
 /* Class = "UITableViewSection"; headerTitle = "Currency"; ObjectID = "65N-fs-2DA"; */
 "65N-fs-2DA.headerTitle" = "Currency";
@@ -26,17 +26,20 @@
 /* Class = "UILabel"; text = "Taggy.by"; ObjectID = "6Va-i9-fAd"; */
 "6Va-i9-fAd.text" = "Taggy.by";
 
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "6nH-W3-rcX"; */
+"6nH-W3-rcX.title" = "Item";
+
 /* Class = "UILabel"; text = "Auto-update"; ObjectID = "8Ky-6p-JpV"; */
 "8Ky-6p-JpV.text" = "Auto-update";
 
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "8nw-R2-dam"; */
 "8nw-R2-dam.title" = "Back";
 
-/* Class = "UILabel"; text = "Detail"; ObjectID = "9Jx-m8-QqW"; */
-"9Jx-m8-QqW.text" = "Detail";
-
 /* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "BcQ-qd-1wG"; */
 "BcQ-qd-1wG.title" = "Item";
+
+/* Class = "UIButton"; normalTitle = "FLASH Off"; ObjectID = "Bwr-4A-KRh"; */
+"Bwr-4A-KRh.normalTitle" = "FLASH Off";
 
 /* Class = "UITableViewSection"; footerTitle = "Learn more about our app"; ObjectID = "Exj-Dv-Hjc"; */
 "Exj-Dv-Hjc.footerTitle" = "Learn more about our app";
@@ -44,8 +47,14 @@
 /* Class = "UITableViewSection"; headerTitle = "More"; ObjectID = "Exj-Dv-Hjc"; */
 "Exj-Dv-Hjc.headerTitle" = "More";
 
-/* Class = "UILabel"; text = "Title"; ObjectID = "IGR-t0-xwS"; */
-"IGR-t0-xwS.text" = "Title";
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "Hay-Lg-EG5"; */
+"Hay-Lg-EG5.normalTitle" = "Cancel";
+
+/* Class = "UILabel"; text = "United Stated Dollar"; ObjectID = "MYx-NV-nlH"; */
+"MYx-NV-nlH.text" = "United Stated Dollar";
+
+/* Class = "UIButton"; normalTitle = "CROP On"; ObjectID = "Mfo-Th-IMC"; */
+"Mfo-Th-IMC.normalTitle" = "CROP On";
 
 /* Class = "UITabBarItem"; title = "Results"; ObjectID = "Nna-ET-djC"; */
 "Nna-ET-djC.title" = "Results";
@@ -56,8 +65,8 @@
 /* Class = "UITableViewSection"; headerTitle = "General"; ObjectID = "O6e-xe-Reh"; */
 "O6e-xe-Reh.headerTitle" = "General";
 
-/* Class = "UIButton"; normalTitle = "XXX"; ObjectID = "RCE-NP-o12"; */
-"RCE-NP-o12.normalTitle" = "XXX";
+/* Class = "UIButton"; normalTitle = "WWW"; ObjectID = "RCE-NP-o12"; */
+"RCE-NP-o12.normalTitle" = "WWW";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "RDV-hl-lwE"; */
 "RDV-hl-lwE.text" = "Detail";
@@ -83,6 +92,9 @@
 /* Class = "UITableViewSection"; headerTitle = "Application information"; ObjectID = "Uuj-3f-c3s"; */
 "Uuj-3f-c3s.headerTitle" = "Application information";
 
+/* Class = "UIButton"; normalTitle = "FILTER"; ObjectID = "VXS-yD-5zT"; */
+"VXS-yD-5zT.normalTitle" = "FILTER";
+
 /* Class = "UILabel"; text = "Label"; ObjectID = "VgM-kZ-GeX"; */
 "VgM-kZ-GeX.text" = "Label";
 
@@ -94,6 +106,9 @@
 
 /* Class = "UINavigationItem"; title = "Converter"; ObjectID = "aUd-YP-JUG"; */
 "aUd-YP-JUG.title" = "Converter";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "b6H-XS-i2r"; */
+"b6H-XS-i2r.title" = "Item";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "cj8-bj-HyA"; */
 "cj8-bj-HyA.text" = "Detail";
@@ -119,6 +134,9 @@
 /* Class = "UILabel"; text = "Represented rates and the actual rates may differ."; ObjectID = "o35-K3-2W4"; */
 "o35-K3-2W4.text" = "Represented rates and the actual rates may differ.";
 
+/* Class = "UIViewController"; title = "CameraViewController"; ObjectID = "pQc-3C-oG6"; */
+"pQc-3C-oG6.title" = "CameraViewController";
+
 /* Class = "UILabel"; text = "About"; ObjectID = "pmk-Bt-tJn"; */
 "pmk-Bt-tJn.text" = "About";
 
@@ -128,23 +146,26 @@
 /* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[1] = "1w"; ObjectID = "qAl-2V-vBL"; */
 "qAl-2V-vBL.segmentTitles[1]" = "1w";
 
-/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[2] = "1m"; ObjectID = "qAl-2V-vBL"; */
-"qAl-2V-vBL.segmentTitles[2]" = "1m";
+/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[2] = "2w"; ObjectID = "qAl-2V-vBL"; */
+"qAl-2V-vBL.segmentTitles[2]" = "2w";
 
-/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[3] = "3m"; ObjectID = "qAl-2V-vBL"; */
-"qAl-2V-vBL.segmentTitles[3]" = "3m";
-
-/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[4] = "6m"; ObjectID = "qAl-2V-vBL"; */
-"qAl-2V-vBL.segmentTitles[4]" = "6m";
-
-/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[5] = "1y"; ObjectID = "qAl-2V-vBL"; */
-"qAl-2V-vBL.segmentTitles[5]" = "1y";
+/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[3] = "1m"; ObjectID = "qAl-2V-vBL"; */
+"qAl-2V-vBL.segmentTitles[3]" = "1m";
 
 /* Class = "UITextField"; placeholder = "Buy"; ObjectID = "qUs-UU-VkY"; */
 "qUs-UU-VkY.placeholder" = "Buy";
 
+/* Class = "UILabel"; text = "Title Label"; ObjectID = "r83-K0-b7k"; */
+"r83-K0-b7k.text" = "Title Label";
+
 /* Class = "UIButton"; normalTitle = "Take a photo"; ObjectID = "vIe-cy-7uO"; */
 "vIe-cy-7uO.normalTitle" = "Take a photo";
+
+/* Class = "UILabel"; text = "15000.00 BYR"; ObjectID = "xX1-Le-9Vp"; */
+"xX1-Le-9Vp.text" = "15000.00 BYR";
+
+/* Class = "UILabel"; text = "USD"; ObjectID = "ydK-F6-uT4"; */
+"ydK-F6-uT4.text" = "USD";
 
 /* Class = "UILabel"; text = "Detail"; ObjectID = "ysM-f3-4pR"; */
 "ysM-f3-4pR.text" = "Detail";

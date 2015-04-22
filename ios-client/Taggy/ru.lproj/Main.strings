@@ -1,129 +1,180 @@
 
-/* Class = "IBUILabel"; text = "-"; ObjectID = "12F-CJ-c1l"; */
+/* Class = "UILabel"; text = "-"; ObjectID = "12F-CJ-c1l"; */
 "12F-CJ-c1l.text" = "-";
 
-/* Class = "IBUINavigationItem"; title = "Scanner"; ObjectID = "1HU-ub-24H"; */
+/* Class = "UINavigationItem"; title = "Scanner"; ObjectID = "1HU-ub-24H"; */
 "1HU-ub-24H.title" = "Сканер";
-
-/* Class = "IBUINavigationController"; title = "Scanner"; ObjectID = "2by-fz-iZf"; */
-"2by-fz-iZf.title" = "Сканер";
-
-/* Class = "IBUIBarButtonItem"; title = "Back"; ObjectID = "8nw-R2-dam"; */
-"8nw-R2-dam.title" = "Назад";
-
-/* Class = "IBUITabBarItem"; title = "Results"; ObjectID = "Nna-ET-djC"; */
-"Nna-ET-djC.title" = "Результаты";
-
-/* Class = "IBUILabel"; text = "-"; ObjectID = "OLE-Wj-jQW"; */
-"OLE-Wj-jQW.text" = "-";
-
-/* Class = "IBUITabBarItem"; title = "Results"; ObjectID = "PVV-W9-UJQ"; */
-"PVV-W9-UJQ.title" = "Результаты";
-
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "SJM-Xi-DOG"; */
-"SJM-Xi-DOG.text" = "Label";
-
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "VgM-kZ-GeX"; */
-"VgM-kZ-GeX.text" = "Label";
-
-/* Class = "IBUITabBarItem"; title = "Scanner"; ObjectID = "VpX-Fe-AWi"; */
-"VpX-Fe-AWi.title" = "Сканер";
-
-/* Class = "IBUINavigationItem"; title = "Results"; ObjectID = "XX7-In-ySs"; */
-"XX7-In-ySs.title" = "Результаты";
-
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "b0B-0G-4ij"; */
-"b0B-0G-4ij.text" = "Label";
-
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "dFn-mR-FxZ"; */
-"dFn-mR-FxZ.text" = "Label";
-
-/* Class = "IBUILabel"; text = "Detail"; ObjectID = "dS9-UP-zDi"; */
-"dS9-UP-zDi.text" = "Detail";
-
-/* Class = "IBUITabBarItem"; title = "Scanner"; ObjectID = "k91-Bn-oGz"; */
-"k91-Bn-oGz.title" = "Сканер";
-
-/* Class = "IBUILabel"; text = "Detail"; ObjectID = "tMO-KG-Ubi"; */
-"tMO-KG-Ubi.text" = "Detail";
-
-/* Class = "IBUIButton"; normalTitle = "Tap to tag"; ObjectID = "vIe-cy-7uO"; */
-"vIe-cy-7uO.normalTitle" = "Сфотографировать";
-
-/* Class = "IBUITabBarItem"; title = "Settings"; ObjectID = "zTU-fO-yMG"; */
-"zTU-fO-yMG.title" = "Настройки";
-
-/* Class = "IBUINavigationItem"; title = "Result"; ObjectID = "zu5-gE-ALQ"; */
-"zu5-gE-ALQ.title" = "Результат";
-
-/* Class = "IBUIButton"; normalTitle = "Converter"; ObjectID = "37n-Cg-vve"; */
-"37n-Cg-vve.normalTitle" = "Конвертер";
-
-/* Class = "IBUINavigationItem"; title = "Converter"; ObjectID = "aUd-YP-JUG"; */
-"aUd-YP-JUG.title" = "Конвертер";
-
-/* Class = "IBUITextField"; placeholder = "Sell"; ObjectID = "ThY-kv-kW8"; */
-"ThY-kv-kW8.placeholder" = "Продажа";
-
-/* Class = "IBUITextField"; placeholder = "Buy"; ObjectID = "qUs-UU-VkY"; */
-"qUs-UU-VkY.placeholder" = "Покупка";
-
-/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "ZeP-mJ-pFo"; */
-"ZeP-mJ-pFo.title" = "Настройки";
-
-/* Class = "UILabel"; text = "Privacy"; ObjectID = "zt4-PU-GA5"; */
-"zt4-PU-GA5.text" = "Приватность";
-
-/* Class = "UILabel"; text = "Open in \"Settings\""; ObjectID = "gL0-X8-6O0"; */
-"gL0-X8-6O0.text" = "Открыть в приложении настроек";
-
-/* Class = "UITableViewSection"; headerTitle = "General"; ObjectID = "O6e-xe-Reh"; */
-"O6e-xe-Reh.headerTitle" = "Основное";
-
-/* Class = "UILabel"; text = "Auto-update"; ObjectID = "8Ky-6p-JpV"; */
-"8Ky-6p-JpV.text" = "Автоматическое обновление";
-
-/* Class = "UITableViewSection"; footerTitle = "Automatic currency update after the first Internet connection"; ObjectID = "O6e-xe-Reh"; */
-"O6e-xe-Reh.footerTitle" = "Автоматическое обновление валют при первом подключении к Интерету";
-
-/* Class = "UITableViewSection"; headerTitle = "Currency"; ObjectID = "65N-fs-2DA"; */
-"65N-fs-2DA.headerTitle" = "Валюта";
 
 /* Class = "UILabel"; text = "Currency of your country"; ObjectID = "2Nr-cv-ike"; */
 "2Nr-cv-ike.text" = "Валюта Вашей страны";
 
+/* Class = "UINavigationController"; title = "Scanner"; ObjectID = "2by-fz-iZf"; */
+"2by-fz-iZf.title" = "Сканер";
+
+/* Class = "UIButton"; normalTitle = "WWW"; ObjectID = "3Nb-Hv-wEo"; */
+"3Nb-Hv-wEo.normalTitle" = "WWW";
+
 /* Class = "UILabel"; text = "Currency for transference\n"; ObjectID = "5ff-tQ-o6N"; */
-"5ff-tQ-o6N.text" = "Валюта для перевода";
+"5ff-tQ-o6N.text" = "Валюта перевода";
 
-/* Class = "UITableViewSection"; headerTitle = "More"; ObjectID = "Exj-Dv-Hjc"; */
-"Exj-Dv-Hjc.headerTitle" = "ЕЩЁ";
+/* Class = "UITableViewSection"; headerTitle = "Currency"; ObjectID = "65N-fs-2DA"; */
+"65N-fs-2DA.headerTitle" = "Валюта";
 
-/* Class = "UINavigationItem"; title = "About"; ObjectID = "S55-aI-Mh3"; */
-"S55-aI-Mh3.title" = "О приложении";
+/* Class = "UILabel"; text = "time"; ObjectID = "66A-4B-O2C"; */
+"66A-4B-O2C.text" = "время";
 
-/* Class = "UILabel"; text = "About"; ObjectID = "pmk-Bt-tJn"; */
-"pmk-Bt-tJn.text" = "О приложении";
+/* Class = "UILabel"; text = "Taggy.by"; ObjectID = "6Va-i9-fAd"; */
+"6Va-i9-fAd.text" = "Taggy.by";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "6nH-W3-rcX"; */
+"6nH-W3-rcX.title" = "";
+
+/* Class = "UILabel"; text = "Auto-update"; ObjectID = "8Ky-6p-JpV"; */
+"8Ky-6p-JpV.text" = "Автоматическое обновление";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "8nw-R2-dam"; */
+"8nw-R2-dam.title" = "Назад";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "BcQ-qd-1wG"; */
+"BcQ-qd-1wG.title" = "";
+
+/* Class = "UIButton"; normalTitle = "FLASH Off"; ObjectID = "Bwr-4A-KRh"; */
+"Bwr-4A-KRh.normalTitle" = "ВСПЫШКА Выкл";
 
 /* Class = "UITableViewSection"; footerTitle = "Learn more about our app"; ObjectID = "Exj-Dv-Hjc"; */
 "Exj-Dv-Hjc.footerTitle" = "Узнайте больше о нашем приложении";
 
-/* Class = "UITableViewSection"; headerTitle = "More"; ObjectID = "SmV-jS-Fyt"; */
-"SmV-jS-Fyt.headerTitle" = "Ещё";
+/* Class = "UITableViewSection"; headerTitle = "More"; ObjectID = "Exj-Dv-Hjc"; */
+"Exj-Dv-Hjc.headerTitle" = "Ещё";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "Hay-Lg-EG5"; */
+"Hay-Lg-EG5.normalTitle" = "Отмена";
+
+/* Class = "UILabel"; text = "United Stated Dollar"; ObjectID = "MYx-NV-nlH"; */
+"MYx-NV-nlH.text" = "Доллар США";
+
+/* Class = "UIButton"; normalTitle = "CROP On"; ObjectID = "Mfo-Th-IMC"; */
+"Mfo-Th-IMC.normalTitle" = "КРОП Вкл";
+
+/* Class = "UITabBarItem"; title = "Results"; ObjectID = "Nna-ET-djC"; */
+"Nna-ET-djC.title" = "Результаты";
+
+/* Class = "UITableViewSection"; footerTitle = "Automatic currency update after the first Internet connection"; ObjectID = "O6e-xe-Reh"; */
+"O6e-xe-Reh.footerTitle" = "Автоматическое обновление валют при первом подключении к Интерету";
+
+/* Class = "UITableViewSection"; headerTitle = "General"; ObjectID = "O6e-xe-Reh"; */
+"O6e-xe-Reh.headerTitle" = "Основное";
+
+/* Class = "UIButton"; normalTitle = "WWW"; ObjectID = "RCE-NP-o12"; */
+"RCE-NP-o12.normalTitle" = "WWW";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "RDV-hl-lwE"; */
+"RDV-hl-lwE.text" = "";
+
+/* Class = "UINavigationItem"; title = "About"; ObjectID = "S55-aI-Mh3"; */
+"S55-aI-Mh3.title" = "О приложении";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "SJM-Xi-DOG"; */
+"SJM-Xi-DOG.text" = "";
 
 /* Class = "UITableViewSection"; footerTitle = "Visit our website for more information"; ObjectID = "SmV-jS-Fyt"; */
 "SmV-jS-Fyt.footerTitle" = "Посетите наш веб-сайт, чтобы узнать больше";
 
-/* Class = "UITableViewSection"; headerTitle = "Application information"; ObjectID = "Uuj-3f-c3s"; */
-"Uuj-3f-c3s.headerTitle" = "О программе";
+/* Class = "UITableViewSection"; headerTitle = "More"; ObjectID = "SmV-jS-Fyt"; */
+"SmV-jS-Fyt.headerTitle" = "Ещё";
 
-/* Class = "UILabel"; text = "Version"; ObjectID = "nhg-bW-z3Q"; */
-"nhg-bW-z3Q.text" = "Версия";
+/* Class = "UITextField"; placeholder = "Sell"; ObjectID = "ThY-kv-kW8"; */
+"ThY-kv-kW8.placeholder" = "Продажа";
 
 /* Class = "UITableViewSection"; footerTitle = "Copyright © 2015 V.A.S.A.G. All rights reserved."; ObjectID = "Uuj-3f-c3s"; */
 "Uuj-3f-c3s.footerTitle" = "Copyright © 2015 V.A.S.A.G. Все права защищены.";
 
+/* Class = "UITableViewSection"; headerTitle = "Application information"; ObjectID = "Uuj-3f-c3s"; */
+"Uuj-3f-c3s.headerTitle" = "Информация о приложении";
+
+/* Class = "UIButton"; normalTitle = "FILTER"; ObjectID = "VXS-yD-5zT"; */
+"VXS-yD-5zT.normalTitle" = "ФИЛЬТР";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "VgM-kZ-GeX"; */
+"VgM-kZ-GeX.text" = "";
+
+/* Class = "UINavigationItem"; title = "Results"; ObjectID = "XX7-In-ySs"; */
+"XX7-In-ySs.title" = "Результаты";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "ZeP-mJ-pFo"; */
+"ZeP-mJ-pFo.title" = "Настройки";
+
+/* Class = "UINavigationItem"; title = "Converter"; ObjectID = "aUd-YP-JUG"; */
+"aUd-YP-JUG.title" = "Конвертер";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "b6H-XS-i2r"; */
+"b6H-XS-i2r.title" = "";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "cj8-bj-HyA"; */
+"cj8-bj-HyA.text" = "";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "g2T-pH-H2Q"; */
+"g2T-pH-H2Q.title" = "Настройки";
+
+/* Class = "UILabel"; text = "Open in \"Settings\""; ObjectID = "gL0-X8-6O0"; */
+"gL0-X8-6O0.text" = "Открыть в \"Настройках\"";
+
 /* Class = "UINavigationItem"; title = "Currencies"; ObjectID = "gQW-8X-8Ly"; */
 "gQW-8X-8Ly.title" = "Валюты";
 
+/* Class = "UITabBarItem"; title = "Scanner"; ObjectID = "k91-Bn-oGz"; */
+"k91-Bn-oGz.title" = "Сканер";
+
+/* Class = "UILabel"; text = "tag"; ObjectID = "nFo-cY-zNL"; */
+"nFo-cY-zNL.text" = "тэг";
+
+/* Class = "UILabel"; text = "Version"; ObjectID = "nhg-bW-z3Q"; */
+"nhg-bW-z3Q.text" = "Версия";
+
 /* Class = "UILabel"; text = "Represented rates and the actual rates may differ."; ObjectID = "o35-K3-2W4"; */
 "o35-K3-2W4.text" = "Представленные и действительные валюты могут отличаться.";
+
+/* Class = "UIViewController"; title = "CameraViewController"; ObjectID = "pQc-3C-oG6"; */
+"pQc-3C-oG6.title" = "";
+
+/* Class = "UILabel"; text = "About"; ObjectID = "pmk-Bt-tJn"; */
+"pmk-Bt-tJn.text" = "О приложении";
+
+/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[0] = "1d"; ObjectID = "qAl-2V-vBL"; */
+"qAl-2V-vBL.segmentTitles[0]" = "1д";
+
+/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[1] = "1w"; ObjectID = "qAl-2V-vBL"; */
+"qAl-2V-vBL.segmentTitles[1]" = "1н";
+
+/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[2] = "2w"; ObjectID = "qAl-2V-vBL"; */
+"qAl-2V-vBL.segmentTitles[2]" = "2н";
+
+/* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[3] = "1m"; ObjectID = "qAl-2V-vBL"; */
+"qAl-2V-vBL.segmentTitles[3]" = "1м";
+
+/* Class = "UITextField"; placeholder = "Buy"; ObjectID = "qUs-UU-VkY"; */
+"qUs-UU-VkY.placeholder" = "Покупка";
+
+/* Class = "UILabel"; text = "Title Label"; ObjectID = "r83-K0-b7k"; */
+"r83-K0-b7k.text" = "";
+
+/* Class = "UIButton"; normalTitle = "Take a photo"; ObjectID = "vIe-cy-7uO"; */
+"vIe-cy-7uO.normalTitle" = "Сфотографировать";
+
+/* Class = "UILabel"; text = "15000.00 BYR"; ObjectID = "xX1-Le-9Vp"; */
+"xX1-Le-9Vp.text" = "15000.00 BYR";
+
+/* Class = "UILabel"; text = "USD"; ObjectID = "ydK-F6-uT4"; */
+"ydK-F6-uT4.text" = "USD";
+
+/* Class = "UILabel"; text = "Detail"; ObjectID = "ysM-f3-4pR"; */
+"ysM-f3-4pR.text" = "";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "zTU-fO-yMG"; */
+"zTU-fO-yMG.title" = "Настройки";
+
+/* Class = "UILabel"; text = "Privacy"; ObjectID = "zt4-PU-GA5"; */
+"zt4-PU-GA5.text" = "Приватность";
+
+/* Class = "UINavigationItem"; title = "Result"; ObjectID = "zu5-gE-ALQ"; */
+"zu5-gE-ALQ.title" = "Результат";

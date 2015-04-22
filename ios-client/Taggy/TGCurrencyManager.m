@@ -14,7 +14,7 @@
 static NSString *const kTGCurrencyLink = @"http://api.taggy.by/rates";
 static NSString *const kTGCurrencyHistoryLink = @"http://api.taggy.by/history/%lu/%lu";
 
-static NSTimeInterval const kTGWeek = 7 * 24 * 60 * 60;
+static NSTimeInterval const kTGMonth = 30 * 24 * 60 * 60;
 static NSTimeInterval const kTGOneUpdate = 60 * 60;
 
 @implementation TGCurrencyManager
@@ -134,7 +134,7 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
 {
     NSDate *maximumDate = [NSDate date];
     for (TGCurrency *currency in [TGCurrency allObjects]) {
-        NSDate *date = [NSDate dateWithTimeIntervalSinceNow:-kTGWeek];
+        NSDate *date = [NSDate dateWithTimeIntervalSinceNow:-kTGMonth];
         for (TGCurrencyHistoryItem *item in currency.historyItems) {
             if ([date compare:item.date] == NSOrderedAscending) {
                 date = item.date;
@@ -180,11 +180,12 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
 
 + (void)updateCurrencyHistoryWithDictionary:(NSDictionary *)currencies
 {
-    RLMRealm *realm = [RLMRealm defaultRealm];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
 
     for (NSString *code in currencies) {
+        RLMRealm *realm = [RLMRealm defaultRealm];
+
         NSDictionary *rates = currencies[code];
 
         [realm transactionWithBlock:^{

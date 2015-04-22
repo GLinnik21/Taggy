@@ -13,6 +13,8 @@
 #import "TGCurrency.h"
 #import "TGSettingsManager.h"
 
+static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
+
 @interface TGConverterViewController ()
 
 @property (strong, nonatomic) NSArray *dataSource;
@@ -20,6 +22,8 @@
 @property (nonatomic, assign) BOOL checkSell;
 @property (nonatomic, retain) UIPickerView *buyPickerView;
 @property (nonatomic, assign) BOOL checkBuy;
+
+@property (nonatomic, weak) IBOutlet UISegmentedControl *intervalControl;
 
 @end
 
@@ -101,7 +105,7 @@
     self.graphView.widthLine = 3.0;
     self.graphView.enableTouchReport = YES;
     self.graphView.enablePopUpReport = YES;
-    self.graphView.enableBezierCurve = NO;
+    self.graphView.enableBezierCurve = YES;
     self.graphView.enableYAxisLabel = YES;
     self.graphView.autoScaleYAxis = YES;
     self.graphView.alwaysDisplayDots = NO;
@@ -119,16 +123,60 @@
     self.arrayOfValues = [[NSMutableArray alloc] init];
     self.arrayOfDates = [[NSMutableArray alloc] init];
 
+    NSTimeInterval interval = kTGOneDay;
+    NSUInteger skipHours = 2;
+    NSInteger intervalIndex = self.intervalControl.selectedSegmentIndex;
+    switch (intervalIndex) {
+        case 0: // 1d
+            interval = kTGOneDay;
+            skipHours = 1;
+            break;
+
+        case 1: // 1w
+            interval = 7 * kTGOneDay;
+            skipHours = 10;
+            break;
+
+        case 2: // 2w
+            interval = 14 * kTGOneDay;
+            skipHours = 10;
+            break;
+
+        case 3: // 1m
+            interval = 30 * kTGOneDay;
+            skipHours = 15;
+            break;
+    }
+
     TGCurrency *sourceCurrency = [TGCurrency currencyForCode:self.sellButton.currentTitle];
     TGCurrency *targetCurrency = [TGCurrency currencyForCode:self.buyButton.currentTitle];
 
-    RLMResults *items = [sourceCurrency.historyItems objectsWhere:@"date > %@", [NSDate dateWithTimeIntervalSinceNow:-2*24*3600]];
+    RLMResults *items = [[sourceCurrency.historyItems objectsWhere:@"date >= %@", [NSDate dateWithTimeIntervalSinceNow:-interval]]
+                                        sortedResultsUsingProperty:@"date" ascending:YES];
+    NSInteger skipCount = skipHours;
+    CGFloat averageValue = 0;
+    NSTimeInterval averegeTime = 0;
     for (TGCurrencyHistoryItem *item in items) {
         TGCurrencyHistoryItem *targetItem = [targetCurrency.historyItems objectsWhere:@"date == %@", item.date].firstObject;
         if (targetItem == nil) continue;
 
         CGFloat value = targetItem.value / item.value;
-        NSString *dateString = [NSDateFormatter localizedStringFromDate:item.date
+        NSDate *date = item.date;
+
+        if (skipCount --> 0) {
+            averageValue += value;
+            averegeTime += date.timeIntervalSinceNow;
+            continue;
+        }
+        else {
+            skipCount = skipHours;
+            value = averageValue / skipHours;
+            date = [NSDate dateWithTimeIntervalSinceNow:averegeTime / skipHours];
+            averegeTime = 0;
+            averageValue = 0;
+        }
+
+        NSString *dateString = [NSDateFormatter localizedStringFromDate:date
                                                               dateStyle:NSDateFormatterShortStyle
                                                               timeStyle:NSDateFormatterShortStyle];
 
@@ -137,21 +185,31 @@
     }
 }
 
-- (NSString *)lineGraph:(BEMSimpleLineGraphView *)graph labelOnXAxisForIndex:(NSInteger)index {
+- (NSString *)lineGraph:(BEMSimpleLineGraphView *)graph labelOnXAxisForIndex:(NSInteger)index
+{
     NSString *label = [self.arrayOfDates objectAtIndex:index];
     return [label stringByReplacingOccurrencesOfString:@" " withString:@"\n"];
 }
 
-- (NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph {
+- (NSInteger)numberOfPointsInLineGraph:(BEMSimpleLineGraphView *)graph
+{
     return (int)[self.arrayOfValues count];
 }
 
-- (CGFloat)lineGraph:(BEMSimpleLineGraphView *)graph valueForPointAtIndex:(NSInteger)index {
+- (CGFloat)lineGraph:(BEMSimpleLineGraphView *)graph valueForPointAtIndex:(NSInteger)index
+{
     return [[self.arrayOfValues objectAtIndex:index] floatValue];
 }
 
-- (NSInteger)numberOfGapsBetweenLabelsOnLineGraph:(BEMSimpleLineGraphView *)graph {
+- (NSInteger)numberOfGapsBetweenLabelsOnLineGraph:(BEMSimpleLineGraphView *)graph
+{
     return 1;
+}
+
+- (IBAction)intervalValueChanged:(id)sender
+{
+    [self formatGraphData];
+    [self.graphView reloadGraph];
 }
 
 - (IBAction)sellAction:(id)sender {
