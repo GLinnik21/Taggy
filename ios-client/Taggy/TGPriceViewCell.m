@@ -85,4 +85,24 @@ static CGFloat const kTGSpaceMargin = 10.0f;
     }
 }
 
+-(void)setAdView:(UIView *)adView
+{
+    if (_adView != adView) {
+        if (_adView != nil) {
+            [_adView removeFromSuperview];
+        }
+        if (adView != nil) {
+            [self addSubview:adView];
+        }
+        _adView = adView;
+
+        BOOL isAd = adView != nil;
+        self.separatorLabel.hidden = isAd;
+        self.sourceTextLabel.hidden = isAd;
+        self.convertedTextLabel.hidden = isAd;
+
+        self.selectionStyle = isAd ? UITableViewCellSelectionStyleNone : UITableViewCellSelectionStyleDefault;
+    }
+}
+
 @end

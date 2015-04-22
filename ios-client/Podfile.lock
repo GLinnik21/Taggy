@@ -26,6 +26,7 @@ PODS:
   - FMDB/common (2.2)
   - FMDB/standard (2.2):
     - FMDB/common
+  - Google-Mobile-Ads-SDK (7.1.0)
   - GoogleAnalytics-iOS-SDK (3.10):
     - GoogleAnalytics-iOS-SDK/Core (= 3.10)
   - GoogleAnalytics-iOS-SDK/Core (3.10)
@@ -57,6 +58,7 @@ DEPENDENCIES:
   - CocoaLumberjack (~> 2.0.0)
   - DateTools (~> 1.5.0)
   - FlurrySDK (~> 5.4.0)
+  - Google-Mobile-Ads-SDK (~> 7.1.0)
   - GoogleAnalytics-iOS-SDK (~> 3.10)
   - GPUImage (~> 0.1.6)
   - Masonry (~> 0.6.1)
@@ -72,6 +74,7 @@ SPEC CHECKSUMS:
   DateTools: b93a2c2017747329c6077c7d7e8a75106e23d0d7
   FlurrySDK: 7f929b68dea38ce735979fb039229f62c0b697b5
   FMDB: 0678cab3b024ea6a2e6ea5dd91fc8eb9a296bf57
+  Google-Mobile-Ads-SDK: 9b7c22345f13de4164e9e6d90ad49cce42124c3c
   GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
   GPUImage: 4675ce4a5370ca92fcea8623b2a08b8f0c51b940
   KSCrash: 8cb2d6e316c9c12b1444df232e650547be742494
@@ -83,4 +86,4 @@ SPEC CHECKSUMS:
   TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
   YandexMobileMetrica: 0a57437e752dcd66d88d11710c89320a0df32802
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.36.4

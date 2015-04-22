@@ -18,7 +18,7 @@
 
 + (void)migrate
 {
-    [RLMRealm setSchemaVersion:4
+    [RLMRealm setSchemaVersion:5
                 forRealmAtPath:[RLMRealm defaultRealmPath]
             withMigrationBlock:^(RLMMigration *migration, NSUInteger oldSchemaVersion) {
         if (oldSchemaVersion < 1) {
@@ -63,6 +63,10 @@
             }];
 
             [ARAnalytics finishTimingEvent:@"Migration 3 > 4"];
+        }
+
+        if (oldSchemaVersion < 5) {
+            [ARAnalytics event:@"Migration 4 > 5"];
         }
     }];
     [RLMRealm migrateRealmAtPath:[RLMRealm defaultRealmPath]];

@@ -11,6 +11,9 @@
 #import "TGPriceViewCell.h"
 
 #import <Masonry/Masonry.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
+
+static NSInteger const kTGAdRowIndex = 1;
 
 @interface TGDetailViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -132,15 +135,47 @@
         cell = [[TGPriceViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kTGIdentifier];
     }
 
-    TGRecognizedPrice *price = self.detail.prices[indexPath.row];
-    cell.sourceValue = [price formattedSourcePrice];
-    cell.convertedValue = [price formattedConvertedPrice];
+    if (indexPath.row == kTGAdRowIndex || (indexPath.row < kTGAdRowIndex && self.detail.prices.count == 0)) {
+        GADAdSize size = kGADAdSizeBanner;
+        CGPoint offset = { (CGRectGetWidth(self.view.frame) - size.size.width) * 0.5f , 0 };
+        GADBannerView *bannerView = [[GADBannerView alloc] initWithAdSize:size origin:offset];
+
+        bannerView.adUnitID = @"ca-app-pub-4888565019454310/2060506587";
+        bannerView.rootViewController = self;
+        cell.adView = bannerView;
+
+        GADRequest *request = [GADRequest request];
+        request.testDevices = @[
+            @"15b40275f1bcd61e4de764a6c44229a6aaf58783", // Gleb iPad
+            @"7f354da3b0a2cd6d85c1afe5630a59a9bcbb709c", // Yndx 6
+            @"48cd3860fedb69529c8254e94603813ffdb6505c", // Yndx 6+
+            @"b2c4ec43071fab1ab34f2cb9c68aa55dd5b533b2", // Yndx iPad 
+        ];
+
+        [bannerView loadRequest:request];
+    }
+    else {
+        TGRecognizedPrice *price = self.detail.prices[indexPath.row + (indexPath.row < kTGAdRowIndex ? 0 : 1)];
+        cell.adView = nil;
+        cell.sourceValue = [price formattedSourcePrice];
+        cell.convertedValue = [price formattedConvertedPrice];
+    }
 
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    BOOL isAd = indexPath.row == kTGAdRowIndex || (indexPath.row < kTGAdRowIndex && self.detail.prices.count == 0);
+    return isAd ? kGADAdSizeBanner.size.height : tableView.rowHeight;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == kTGAdRowIndex) {
+        return;
+    }
+
     TGRecognizedPrice *price = self.detail.prices[indexPath.row];
     self.imageView.image = [TGRecognizedPrice drawPrices:@[price] onImage:self.detail.image];
 
@@ -150,7 +185,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.detail.prices.count;
+    return self.detail.prices.count + 1;
 }
 
 -(void)saveTag
