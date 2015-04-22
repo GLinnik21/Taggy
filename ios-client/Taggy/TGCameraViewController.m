@@ -7,16 +7,20 @@
 //
 
 #import "TGCameraViewController.h"
+#import "TGImageRecognizerHelper.h"
 
 #import "IPDFCameraViewController.h"
+
+#import <SVProgressHUD/SVProgressHUD.h>
+#import <ARAnalytics/ARAnalytics.h>
 
 @interface TGCameraViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet IPDFCameraViewController *cameraViewController;
 @property (weak, nonatomic) IBOutlet UIImageView *focusIndicator;
-- (IBAction)focusGesture:(id)sender;
 
+- (IBAction)focusGesture:(id)sender;
 - (IBAction)captureButton:(id)sender;
 
 @end
@@ -29,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [self.cameraViewController setupCameraView];
     [self.cameraViewController setEnableBorderDetection:YES];
     [self updateTitleLabel];
@@ -53,9 +57,9 @@
     if (sender.state == UIGestureRecognizerStateRecognized)
     {
         CGPoint location = [sender locationInView:self.cameraViewController];
-        
+
         [self focusIndicatorAnimateToPoint:location];
-        
+
         [self.cameraViewController focusAtPoint:location completionHandler:^
          {
              [self focusIndicatorAnimateToPoint:location];
@@ -68,18 +72,16 @@
     [self.focusIndicator setCenter:targetPoint];
     self.focusIndicator.alpha = 0.0;
     self.focusIndicator.hidden = NO;
-    
-    [UIView animateWithDuration:0.4 animations:^
-     {
-         self.focusIndicator.alpha = 1.0;
-     }
-                     completion:^(BOOL finished)
-     {
-         [UIView animateWithDuration:0.4 animations:^
-          {
-              self.focusIndicator.alpha = 0.0;
-          }];
-     }];
+
+    [UIView animateWithDuration:0.4 animations:^{
+        self.focusIndicator.alpha = 1.0;
+    }
+                     completion:^(BOOL finished) {
+                         [UIView animateWithDuration:0.4 animations:^
+                          {
+                              self.focusIndicator.alpha = 0.0;
+                          }];
+                     }];
 }
 
 - (IBAction)borderDetectToggle:(id)sender
@@ -111,7 +113,7 @@
     animation.subtype = kCATransitionFromBottom;
     animation.duration = 0.35;
     [self.titleLabel.layer addAnimation:animation forKey:@"kCATransitionFade"];
-    
+
     NSString *filterMode = (self.cameraViewController.cameraViewType == IPDFCameraViewTypeBlackAndWhite) ? @"TEXT FILTER" : @"COLOR FILTER";
     self.titleLabel.text = [filterMode stringByAppendingFormat:@" | %@",(self.cameraViewController.isBorderDetectionEnabled)?@"AUTOCROP On":@"AUTOCROP Off"];
 }
@@ -119,7 +121,8 @@
 - (void)changeButton:(UIButton *)button targetTitle:(NSString *)title toStateEnabled:(BOOL)enabled
 {
     [button setTitle:title forState:UIControlStateNormal];
-    [button setTitleColor:(enabled) ? [UIColor colorWithRed:1 green:0.81 blue:0 alpha:1] : [UIColor whiteColor] forState:UIControlStateNormal];
+    [button setTitleColor:(enabled ? [UIColor colorWithRed:1 green:0.81 blue:0 alpha:1] : [UIColor whiteColor])
+                 forState:UIControlStateNormal];
 }
 
 
@@ -128,9 +131,13 @@
 
 - (IBAction)captureButton:(id)sender
 {
-    [self.cameraViewController captureImageWithCompletionHander:^(id data)
-    {
-        self.CameraImage = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
+    [self.cameraViewController captureImageWithCompletionHander:^(id data) {
+        UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
+
+        [ARAnalytics event:@"Photo takken"];
+
+        [TGImageRecognizerHelper recognizeImage:image navigationController:self.tabNavigationController];
+
         [self dismissViewControllerAnimated:YES completion:nil];
     }];
 }
@@ -138,6 +145,15 @@
 - (IBAction)dismiss:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+
+    [SVProgressHUD dismiss];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+
+    [SVProgressHUD dismiss];
 }
 
 @end

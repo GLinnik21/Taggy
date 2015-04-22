@@ -10,7 +10,7 @@
 
 @interface TGCameraViewController : UIViewController
 
-@property (nonatomic, retain) UIImage *CameraImage;
+@property (nonatomic, weak) UINavigationController *tabNavigationController;
 
 @end
 
