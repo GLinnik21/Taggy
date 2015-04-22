@@ -2,24 +2,20 @@ from flask import jsonify, abort, make_response, render_template, request
 from app import app, auth, db, models
 
 def latestRates():
-    rates = models.Rate.query.group_by('name').all()
+    ratesCount = db.session.query(models.Rate.name).distinct().count()
+    rates = models.Rate.query.order_by(models.Rate.id.desc())[0:ratesCount]
     return rates
 
-def ratesHistory(count):
+def ratesHistory(start, count):
+    ratesCount = db.session.query(models.Rate.name).distinct().count()
+    dateRates = models.Rate.query.order_by(models.Rate.id.desc())[start * ratesCount:(start + count)*ratesCount]
+
     rates = dict()
-    query = db.session.query(models.Rate.date).distinct().order_by(models.Rate.date.desc())
-    if count > 0:
-        query = query.limit(count)
-
-    dates = [date[0] for date in query.all()]
-
-    for date in dates:
-        dateRates = models.Rate.query.filter(models.Rate.date == date).all()
-        for rate in dateRates:
-            if rate.name in rates:
-                rates[rate.name][str(rate.date)] = rate.value
-            else:
-                rates[rate.name] = {str(rate.date): rate.value}
+    for rate in dateRates:
+        if rate.name in rates:
+            rates[rate.name][str(rate.date)] = rate.value
+        else:
+            rates[rate.name] = {str(rate.date): rate.value}
 
     return rates
 
@@ -35,7 +31,7 @@ def not_found(error):
 
 @app.route('/')
 def index():
-    rates = latestRates()
+    rates = sorted(latestRates(), key=lambda rate: rate.name)
     return render_template('index.html', rates = rates)
 
 @app.route('/rates', methods=['GET'])
@@ -62,7 +58,7 @@ def getRate(rateIds):
         resultRates[rateId] = rates[rateId]
     return jsonify(resultRates)
 
-@app.route('/history/<int:count>', methods=['GET'])
-def getHistory(count):
-    rates = ratesHistory(count);
+@app.route('/history/<int:start>/<int:count>', methods=['GET'])
+def getHistory(start, count):
+    rates = ratesHistory(start, count);
     return jsonify(rates)
