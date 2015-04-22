@@ -28,7 +28,10 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
 
 + (void)updateWithCallback:(TGCurrencyUpdateCallback)callback
 {
-    [[self class] updateWithCallback:callback offline:NO];
+    __weak __typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
+        [[weakSelf class] updateWithCallback:callback offline:NO];
+    });
 }
 
 + (void)updateWithCallback:(TGCurrencyUpdateCallback)callback offline:(BOOL)offline
@@ -89,34 +92,42 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
         }
 
         if (*error == nil) {
-            NSDate *nowDate = [NSDate date];
-            RLMRealm *realm = [RLMRealm defaultRealm];
-
-            for (NSString *code in currencyRates) {
-                CGFloat rate = [currencyRates[code] floatValue];
-
-                [realm transactionWithBlock:^{
-                    TGCurrency *tgCurrency = [TGCurrency currencyForCode:code];
-
-                    if (tgCurrency != nil) {
-                        tgCurrency.value = rate;
-                        tgCurrency.updateDate = nowDate;
-                    }
-                    else {
-                        tgCurrency = [[TGCurrency alloc] init];
-
-                        tgCurrency.code = code;
-                        tgCurrency.value = rate;
-                        tgCurrency.updateDate = nowDate;
-                        
-                        [realm addObject:tgCurrency];
-                    }
-                }];
-            }
+            __weak __typeof(self) weakSelf = self;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[weakSelf class] updateCurrencyDataFromDictionary:currencyRates];
+            });
         }
     }
 
     return *error == nil;
+}
+
++ (void)updateCurrencyDataFromDictionary:(NSDictionary *)currencyRates
+{
+    NSDate *nowDate = [NSDate date];
+    RLMRealm *realm = [RLMRealm defaultRealm];
+
+    for (NSString *code in currencyRates) {
+        CGFloat rate = [currencyRates[code] floatValue];
+
+        [realm transactionWithBlock:^{
+            TGCurrency *tgCurrency = [TGCurrency currencyForCode:code];
+
+            if (tgCurrency != nil) {
+                tgCurrency.value = rate;
+                tgCurrency.updateDate = nowDate;
+            }
+            else {
+                tgCurrency = [[TGCurrency alloc] init];
+
+                tgCurrency.code = code;
+                tgCurrency.value = rate;
+                tgCurrency.updateDate = nowDate;
+
+                [realm addObject:tgCurrency];
+            }
+        }];
+    }
 }
 
 + (BOOL)updateHistoryInfoWithError:(NSError **)error
@@ -157,36 +168,44 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
         }
 
         if (*error == nil) {
-            RLMRealm *realm = [RLMRealm defaultRealm];
-            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-            [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-
-            for (NSString *code in currencies) {
-                NSDictionary *rates = currencies[code];
-
-                [realm transactionWithBlock:^{
-                    TGCurrency *tgCurrency = [TGCurrency currencyForCode:code];
-
-                    if (tgCurrency == nil) return;
-
-                    for (NSString *dateString in rates) {
-                        NSDate *date = [formatter dateFromString:dateString];
-                        TGCurrencyHistoryItem *item = [tgCurrency.historyItems objectsWhere:@"date == %@", date].firstObject;
-
-                        if (item == nil) {
-                            item = [[TGCurrencyHistoryItem alloc] init];
-                            item.date = date;
-                            item.value = [rates[dateString] floatValue];
-
-                            [tgCurrency.historyItems addObject:item];
-                        }
-                    }
-                }];
-            }
+            __weak __typeof(self) weakSelf = self;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[weakSelf class] updateCurrencyHistoryWithDictionary:currencies];
+            });
         }
     }
     
     return *error == nil;
+}
+
++ (void)updateCurrencyHistoryWithDictionary:(NSDictionary *)currencies
+{
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+
+    for (NSString *code in currencies) {
+        NSDictionary *rates = currencies[code];
+
+        [realm transactionWithBlock:^{
+            TGCurrency *tgCurrency = [TGCurrency currencyForCode:code];
+
+            if (tgCurrency == nil) return;
+
+            for (NSString *dateString in rates) {
+                NSDate *date = [formatter dateFromString:dateString];
+                TGCurrencyHistoryItem *item = [tgCurrency.historyItems objectsWhere:@"date == %@", date].firstObject;
+
+                if (item == nil) {
+                    item = [[TGCurrencyHistoryItem alloc] init];
+                    item.date = date;
+                    item.value = [rates[dateString] floatValue];
+
+                    [tgCurrency.historyItems addObject:item];
+                }
+            }
+        }];
+    }
 }
 
 @end
