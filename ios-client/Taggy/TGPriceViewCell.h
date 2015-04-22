@@ -13,4 +13,6 @@
 @property (nonatomic, copy) NSString *sourceValue;
 @property (nonatomic, copy) NSString *convertedValue;
 
+@property (nonatomic, weak) UIView *adView;
+
 @end
