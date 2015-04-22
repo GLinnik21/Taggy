@@ -50,13 +50,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
     [TGCurrencyManager updateWithCallback:^(TGCurrencyUpdateResult result) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
 
-        if (result == TGCurrencyUpdateResultSuccess) {
-            [TGSettingsManager setObject:[NSDate date] forKey:kTGSettingsLastUpdateKey];
-
-            [strongSelf.refreshControl endRefreshing];
-        }
-        else {
-            [strongSelf.refreshControl endRefreshing];
+        if (result != TGCurrencyUpdateResultSuccess) {
             [SVProgressHUD setForegroundColor:[UIColor grayColor]];
             [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
 
@@ -70,12 +64,13 @@ static NSString *const kTGImageCellId = @"ImageCell";
                 [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"ServerError", @"Server-side error")];
             }
         }
+
+        [strongSelf.refreshControl endRefreshing];
     }];
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDate *updateDate = [defaults objectForKey:@"last_update"];
+    NSDate *updateDate = [TGSettingsManager objectForKey:kTGSettingsLastUpdateKey];
     NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:updateDate];
     
     if (seconds < 60) {
@@ -86,7 +81,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
                                                                               attributes:attrsDictionary];
         self.refreshControl.attributedTitle = attributedTitle;
     }
-    else if ([defaults objectForKey:@"last_update"] == nil) {
+    else if ([TGSettingsManager objectForKey:kTGSettingsLastUpdateKey] == nil) {
         NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor]
                                                                     forKey:NSForegroundColorAttributeName];
         NSString *never = [NSString stringWithFormat:NSLocalizedString(@"never", @"Never")];

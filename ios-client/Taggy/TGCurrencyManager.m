@@ -7,6 +7,8 @@
 //
 
 #import "TGCurrencyManager.h"
+#import "TGSettingsManager.h"
+
 #import <Realm/Realm.h>
 #import <Reachability/Reachability.h>
 #import "TGCurrency.h"
@@ -52,6 +54,7 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
             }
         }
         else {
+            [TGSettingsManager setObject:[NSDate date] forKey:kTGSettingsLastUpdateKey];
             if (callback != nil) {
                 callback(TGCurrencyUpdateResultSuccess);
             }
