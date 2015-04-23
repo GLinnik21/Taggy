@@ -83,6 +83,7 @@ static NSInteger const kTGAdRowIndex = 1;
     [tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(self.view);
         make.top.equalTo(self.imageScrollView.mas_bottom);
+        make.centerX.equalTo(self.view);
         make.bottom.equalTo(self.view);
     }];
     self.tableView = tableView;
