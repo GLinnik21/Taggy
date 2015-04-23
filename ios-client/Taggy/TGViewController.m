@@ -39,7 +39,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
 
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(updateCurrency) forControlEvents:UIControlEventValueChanged];
-    [refreshControl setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
+    [refreshControl setBackgroundColor:[UIColor colorWithRed:(240 / 255.0)green:(240 / 255.0)blue:(240 / 255.0)alpha:1]];
 
     self.refreshControl = refreshControl;
 }
@@ -69,10 +69,11 @@ static NSString *const kTGImageCellId = @"ImageCell";
     }];
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
     NSDate *updateDate = [TGSettingsManager objectForKey:kTGSettingsLastUpdateKey];
     NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:updateDate];
-    
+
     if (seconds < 60) {
         NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor]
                                                                     forKey:NSForegroundColorAttributeName];
@@ -106,19 +107,20 @@ static NSString *const kTGImageCellId = @"ImageCell";
     if (flag) {
         [self.tableView setEditing:YES animated:YES];
         UIBarButtonItem *deleteAllButton = [[UIBarButtonItem alloc]
-                                            initWithTitle:NSLocalizedString(@"delete_all", @"Delete all")
-                                            style:UIBarButtonItemStyleBordered
-                                            target:self
-                                            action:@selector(deleteAllAction:)];
+            initWithTitle:NSLocalizedString(@"delete_all", @"Delete all")
+                    style:UIBarButtonItemStyleBordered
+                   target:self
+                   action:@selector(deleteAllAction:)];
         self.navigationItem.leftBarButtonItem = deleteAllButton;
-    } else {
+    }
+    else {
         [self.tableView setEditing:NO animated:YES];
         self.navigationItem.leftBarButtonItem = nil;
     }
 }
 
-
-- (void)deleteAllAction:(UIBarButtonItem *)sender{
+- (void)deleteAllAction:(UIBarButtonItem *)sender
+{
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"conf_question", nil)
                                                              delegate:self
                                                     cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel")
@@ -129,12 +131,14 @@ static NSString *const kTGImageCellId = @"ImageCell";
     [self.tableView reloadData];
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
     if (buttonIndex != actionSheet.cancelButtonIndex) {
         [TGDataManager deleteAllObjects];
         [self setEditing:NO animated:YES];
         [self.tableView reloadData];
-    } else {
+    }
+    else {
         [self setEditing:NO animated:YES];
     }
 }
@@ -152,10 +156,10 @@ static NSString *const kTGImageCellId = @"ImageCell";
         [self setEditing:NO animated:YES];
         [self.refreshControl removeFromSuperview];
         self.navigationItem.leftBarButtonItem = nil;
-        self.tableView.backgroundColor = [UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1];
+        self.tableView.backgroundColor = [UIColor colorWithRed:(240 / 255.0)green:(240 / 255.0)blue:(240 / 255.0)alpha:1];
         UILabel *messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)];
         messageLabel.text = NSLocalizedString(@"no_results", @"No results");
-        messageLabel.textColor = [UIColor colorWithRed:(203/255.0) green:(203/255.0) blue:(203/255.0) alpha:1];
+        messageLabel.textColor = [UIColor colorWithRed:(203 / 255.0)green:(203 / 255.0)blue:(203 / 255.0)alpha:1];
         messageLabel.numberOfLines = 0;
         messageLabel.textAlignment = NSTextAlignmentCenter;
         messageLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:25];
@@ -208,7 +212,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
         TGPriceImage *item = [TGDataManager recognizedImageAtIndex:indexPath.row];
 
         [ARAnalytics event:@"Item opened"];
-        
+
         [segue.destinationViewController setDetail:item];
     }
 }

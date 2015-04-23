@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger,IPDFCameraViewType)
-{
+typedef NS_ENUM(NSInteger, IPDFCameraViewType) {
     IPDFCameraViewTypeBlackAndWhite,
     IPDFCameraViewTypeNormal
 };
@@ -21,13 +20,13 @@ typedef NS_ENUM(NSInteger,IPDFCameraViewType)
 - (void)start;
 - (void)stop;
 
-@property (nonatomic,assign,getter=isBorderDetectionEnabled) BOOL enableBorderDetection;
-@property (nonatomic,assign,getter=isTorchEnabled) BOOL enableTorch;
+@property (nonatomic, assign, getter=isBorderDetectionEnabled) BOOL enableBorderDetection;
+@property (nonatomic, assign, getter=isTorchEnabled) BOOL enableTorch;
 
-@property (nonatomic,assign) IPDFCameraViewType cameraViewType;
+@property (nonatomic, assign) IPDFCameraViewType cameraViewType;
 
-- (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)())completionHandler;
+- (void)focusAtPoint:(CGPoint)point completionHandler:(void (^)())completionHandler;
 
-- (void)captureImageWithCompletionHander:(void(^)(id data))completionHandler;
+- (void)captureImageWithCompletionHander:(void (^)(id data))completionHandler;
 
 @end

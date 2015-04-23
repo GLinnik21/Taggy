@@ -11,7 +11,7 @@
 
 @implementation TGCommon
 
-+ (UIImage*)imageWithImage:(UIImage*)sourceImage scaledToSizeWithSameAspectRatio:(CGSize)targetSize
++ (UIImage *)imageWithImage:(UIImage *)sourceImage scaledToSizeWithSameAspectRatio:(CGSize)targetSize
 {
     CGSize imageSize = sourceImage.size;
     CGFloat width = imageSize.width;
@@ -34,12 +34,12 @@
             scaleFactor = heightFactor;
         }
 
-        scaledWidth  = width * scaleFactor;
+        scaledWidth = width * scaleFactor;
         scaledHeight = height * scaleFactor;
     }
 
     UIGraphicsBeginImageContext(CGSizeMake(scaledWidth, scaledHeight));
-    [sourceImage drawInRect: CGRectMake(0, 0, scaledWidth, scaledHeight)];
+    [sourceImage drawInRect:CGRectMake(0, 0, scaledWidth, scaledHeight)];
     UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
 
     return smallImage;

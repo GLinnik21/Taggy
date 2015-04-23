@@ -9,9 +9,9 @@
 #import "TGPriceImage.h"
 #import "TGCommon.h"
 
-static CGSize const kTGThumbnailSize = { 100.0f, 100.0f };
+static CGSize const kTGThumbnailSize = {100.0f, 100.0f};
 
-@interface TGPriceImage()
+@interface TGPriceImage ()
 
 @property NSData *sourceImageData;
 @property NSData *thumbnailImageData;
@@ -54,7 +54,7 @@ static CGSize const kTGThumbnailSize = { 100.0f, 100.0f };
 
 + (NSArray *)ignoredProperties
 {
-    return @[@"image"];
+    return @[ @"image" ];
 }
 
 @end

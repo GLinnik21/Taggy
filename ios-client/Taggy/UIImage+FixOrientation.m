@@ -13,14 +13,14 @@
 - (UIImage *)fixOrientation
 {
     // No-op if the orientation is already correct
-    if (self.imageOrientation == UIImageOrientationUp) return self;
+    if (self.imageOrientation == UIImageOrientationUp)
+        return self;
 
     // We need to calculate the proper transformation to make the image upright.
     // We do it in 2 steps: Rotate if Left/Right/Down, and then flip if Mirrored.
     CGAffineTransform transform = CGAffineTransformIdentity;
 
-    switch (self.imageOrientation)
-    {
+    switch (self.imageOrientation) {
         case UIImageOrientationDown:
         case UIImageOrientationDownMirrored:
             transform = CGAffineTransformTranslate(transform, self.size.width, self.size.height);
@@ -77,11 +77,11 @@
         case UIImageOrientationRight:
         case UIImageOrientationRightMirrored:
             // Grr...
-            CGContextDrawImage(ctx, CGRectMake(0,0,self.size.height,self.size.width), self.CGImage);
+            CGContextDrawImage(ctx, CGRectMake(0, 0, self.size.height, self.size.width), self.CGImage);
             break;
 
         default:
-            CGContextDrawImage(ctx, CGRectMake(0,0,self.size.width,self.size.height), self.CGImage);
+            CGContextDrawImage(ctx, CGRectMake(0, 0, self.size.width, self.size.height), self.CGImage);
             break;
     }
 

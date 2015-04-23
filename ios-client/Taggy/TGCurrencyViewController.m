@@ -46,7 +46,7 @@
 {
     NSString *lowerSearchString = [searchText lowercaseString];
     NSMutableArray *results = [NSMutableArray array];
-    
+
     for (NSString *code in self.codes) {
         NSString *fullName = [[self FullNameForCode:code] lowercaseString];
         NSString *ISO = [[self ISOForCode:code] lowercaseString];
@@ -55,18 +55,18 @@
             [results addObject:code];
         }
     }
-    
+
     self.searchResults = [results copy];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller
-        shouldReloadTableForSearchString:(NSString *)searchString
+    shouldReloadTableForSearchString:(NSString *)searchString
 {
     NSInteger scopeIndex = self.searchDisplayController.searchBar.selectedScopeButtonIndex;
     NSString *scope = self.searchDisplayController.searchBar.scopeButtonTitles[scopeIndex];
 
     [self filterContentForSearchText:searchString scope:scope];
-    
+
     return YES;
 }
 
@@ -100,7 +100,7 @@
     if (cell == nil) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
     }
-    
+
     NSString *rateId = nil;
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         rateId = self.searchResults[indexPath.row];
@@ -123,14 +123,14 @@
     else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    
+
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+
     if (self.checkedIndexPath != nil) {
         TGcurrencyCell *uncheckCell = [self.tableView cellForRowAtIndexPath:self.checkedIndexPath];
         uncheckCell.accessoryType = UITableViewCellAccessoryNone;
@@ -139,7 +139,7 @@
     TGcurrencyCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
     NSString *code = cell.ISOLabel.text;
-    
+
     [TGSettingsManager setObject:code forKey:self.settingsKey];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     self.checkedIndexPath = indexPath;

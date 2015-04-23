@@ -37,10 +37,10 @@
 
     [self.cameraViewController setupCameraView];
     [self.cameraViewController setEnableBorderDetection:YES];
-    [self.cameraViewController setCameraViewType: IPDFCameraViewTypeNormal];
+    [self.cameraViewController setCameraViewType:IPDFCameraViewTypeNormal];
     [self.flashButton setImage:[UIImage imageNamed:@"flash_off"] forState:UIControlStateNormal];
-    [self.flashButton setTitle: NSLocalizedString(@"flash_off", @"Off") forState:UIControlStateNormal];
-    [self.cropButton setTitle: NSLocalizedString(@"flash_on", @"On") forState:UIControlStateNormal];
+    [self.flashButton setTitle:NSLocalizedString(@"flash_off", @"Off") forState:UIControlStateNormal];
+    [self.cropButton setTitle:NSLocalizedString(@"flash_on", @"On") forState:UIControlStateNormal];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -58,16 +58,14 @@
 
 - (IBAction)focusGesture:(UITapGestureRecognizer *)sender
 {
-    if (sender.state == UIGestureRecognizerStateRecognized)
-    {
+    if (sender.state == UIGestureRecognizerStateRecognized) {
         CGPoint location = [sender locationInView:self.cameraViewController];
 
         [self focusIndicatorAnimateToPoint:location];
 
-        [self.cameraViewController focusAtPoint:location completionHandler:^
-         {
+        [self.cameraViewController focusAtPoint:location completionHandler:^{
              [self focusIndicatorAnimateToPoint:location];
-         }];
+        }];
     }
 }
 
@@ -80,12 +78,12 @@
     [UIView animateWithDuration:1.0 animations:^{
         self.focusIndicator.alpha = 1.0;
     }
-                     completion:^(BOOL finished) {
+        completion:^(BOOL finished) {
                          [UIView animateWithDuration:1.0 animations:^
                           {
                               self.focusIndicator.alpha = 0.0;
                           }];
-                     }];
+        }];
 }
 
 - (IBAction)borderDetectToggle:(id)sender
@@ -93,11 +91,12 @@
     BOOL enable = !self.cameraViewController.isBorderDetectionEnabled;
     if (enable) {
         [self.cropButton setImage:[UIImage imageNamed:@"crop_on"] forState:UIControlStateNormal];
-        [self.cropButton setTitle: NSLocalizedString(@"flash_on", @"On") forState:UIControlStateNormal];
+        [self.cropButton setTitle:NSLocalizedString(@"flash_on", @"On") forState:UIControlStateNormal];
         [self.cropButton setTitleColor:[UIColor colorWithRed:1 green:0.81 blue:0 alpha:1] forState:UIControlStateNormal];
-    }else{
+    }
+    else {
         [self.cropButton setImage:[UIImage imageNamed:@"crop_off"] forState:UIControlStateNormal];
-        [self.cropButton setTitle: NSLocalizedString(@"flash_off", @"Off") forState:UIControlStateNormal];
+        [self.cropButton setTitle:NSLocalizedString(@"flash_off", @"Off") forState:UIControlStateNormal];
         [self.cropButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
     self.cameraViewController.enableBorderDetection = enable;
@@ -108,11 +107,12 @@
     BOOL enable = !self.cameraViewController.isTorchEnabled;
     if (enable) {
         [self.flashButton setImage:[UIImage imageNamed:@"flash_on"] forState:UIControlStateNormal];
-        [self.flashButton setTitle: NSLocalizedString(@"flash_on", @"On") forState:UIControlStateNormal];
+        [self.flashButton setTitle:NSLocalizedString(@"flash_on", @"On") forState:UIControlStateNormal];
         [self.flashButton setTitleColor:[UIColor colorWithRed:1 green:0.81 blue:0 alpha:1] forState:UIControlStateNormal];
-    }else{
+    }
+    else {
         [self.flashButton setImage:[UIImage imageNamed:@"flash_off"] forState:UIControlStateNormal];
-        [self.flashButton setTitle: NSLocalizedString(@"flash_off", @"Off") forState:UIControlStateNormal];
+        [self.flashButton setTitle:NSLocalizedString(@"flash_off", @"Off") forState:UIControlStateNormal];
         [self.flashButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
     self.cameraViewController.enableTorch = enable;
@@ -148,7 +148,7 @@
     [SVProgressHUD dismiss];
 }
 
--(void)viewDidDisappear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
 

@@ -19,5 +19,4 @@
 @property (strong, nonatomic) NSMutableArray *arrayOfValues;
 @property (strong, nonatomic) NSMutableArray *arrayOfDates;
 
-
 @end

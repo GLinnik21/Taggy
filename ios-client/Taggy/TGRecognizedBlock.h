@@ -23,6 +23,6 @@
 
 + (TGRecognizedBlock *)blockFromG8Block:(G8RecognizedBlock *)block;
 + (NSArray *)blocksFromRecognitionArray:(NSArray *)recognition;
-+ (UIImage *)drawBlocks:(NSArray*)recognizedBlocks onImage:(UIImage *)image;
++ (UIImage *)drawBlocks:(NSArray *)recognizedBlocks onImage:(UIImage *)image;
 
 @end

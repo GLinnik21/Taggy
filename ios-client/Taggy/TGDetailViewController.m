@@ -39,10 +39,10 @@ static NSInteger const kTGAdRowIndex = 1;
     UIButton *tagButton = [[UIButton alloc] initWithFrame:frameimg];
     [tagButton setBackgroundImage:tagImage forState:UIControlStateNormal];
     [tagButton addTarget:self action:@selector(saveTag) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *tagBarButton =[[UIBarButtonItem alloc] initWithCustomView:tagButton];
+
+    UIBarButtonItem *tagBarButton = [[UIBarButtonItem alloc] initWithCustomView:tagButton];
     self.resultNavigationBar.rightBarButtonItem = tagBarButton;
-    
+
     [self configureViewController];
     [self reloadData];
 }
@@ -110,7 +110,7 @@ static NSInteger const kTGAdRowIndex = 1;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView selectRowAtIndexPath:indexPath
                                 animated:animated
@@ -137,7 +137,7 @@ static NSInteger const kTGAdRowIndex = 1;
 
     if (indexPath.row == kTGAdRowIndex || (indexPath.row < kTGAdRowIndex && self.detail.prices.count == 0)) {
         GADAdSize size = kGADAdSizeBanner;
-        CGPoint offset = { (CGRectGetWidth(self.view.frame) - size.size.width) * 0.5f , 0 };
+        CGPoint offset = {(CGRectGetWidth(self.view.frame) - size.size.width) * 0.5f, 0};
         GADBannerView *bannerView = [[GADBannerView alloc] initWithAdSize:size origin:offset];
 
         bannerView.adUnitID = @"ca-app-pub-4888565019454310/2060506587";
@@ -149,7 +149,7 @@ static NSInteger const kTGAdRowIndex = 1;
             @"15b40275f1bcd61e4de764a6c44229a6aaf58783", // Gleb iPad
             @"7f354da3b0a2cd6d85c1afe5630a59a9bcbb709c", // Yndx 6
             @"48cd3860fedb69529c8254e94603813ffdb6505c", // Yndx 6+
-            @"b2c4ec43071fab1ab34f2cb9c68aa55dd5b533b2", // Yndx iPad 
+            @"b2c4ec43071fab1ab34f2cb9c68aa55dd5b533b2", // Yndx iPad
         ];
 
         [bannerView loadRequest:request];
@@ -177,7 +177,7 @@ static NSInteger const kTGAdRowIndex = 1;
     }
 
     TGRecognizedPrice *price = self.detail.prices[indexPath.row];
-    self.imageView.image = [TGRecognizedPrice drawPrices:@[price] onImage:self.detail.image];
+    self.imageView.image = [TGRecognizedPrice drawPrices:@[ price ] onImage:self.detail.image];
 
     /*CGRect rect = CGRectApplyAffineTransform(price.rect, CGAffineTransformTranslate(CGAffineTransformTranslate(CGAffineTransformIdentity, price.rect.size.width / 2, price.rect.size.height / 2), -self.imageScrollView.frame.size.width / 2, -self.imageScrollView.frame.size.height / 2));
     [self.imageScrollView setContentOffset:rect.origin animated:YES];*/
@@ -188,10 +188,13 @@ static NSInteger const kTGAdRowIndex = 1;
     return self.detail.prices.count + 1;
 }
 
--(void)saveTag
+- (void)saveTag
 {
     UIAlertView *tagSaveAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"save_tag", @"Save?")
-                                                           message:NSLocalizedString(@"save_tag_mess", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel") otherButtonTitles:@"OK", nil];
+                                                           message:NSLocalizedString(@"save_tag_mess", nil)
+                                                          delegate:self
+                                                 cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel")
+                                                 otherButtonTitles:@"OK", nil];
     tagSaveAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [tagSaveAlert show];
 }

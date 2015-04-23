@@ -177,7 +177,7 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
             });
         }
     }
-    
+
     return *error == nil;
 }
 
