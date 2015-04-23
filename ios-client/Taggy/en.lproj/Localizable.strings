@@ -23,6 +23,8 @@
 "never" = "Never";
 "save_tag" = "Save tag?";
 "save_tag_mess" = "Enter the name of the tag to save it:";
+"flash_off" = "Off";
+"flash_on" = "On";
 
 "AED" = "United Arab Emirates Dirham";
 "AFN" = "Afghan Afghani";

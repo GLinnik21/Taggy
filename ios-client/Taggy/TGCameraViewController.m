@@ -16,9 +16,10 @@
 
 @interface TGCameraViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet IPDFCameraViewController *cameraViewController;
 @property (weak, nonatomic) IBOutlet UIImageView *focusIndicator;
+@property (weak, nonatomic) IBOutlet UIButton *flashButton;
+@property (weak, nonatomic) IBOutlet UIButton *cropButton;
 
 - (IBAction)focusGesture:(id)sender;
 - (IBAction)captureButton:(id)sender;
@@ -36,7 +37,10 @@
 
     [self.cameraViewController setupCameraView];
     [self.cameraViewController setEnableBorderDetection:YES];
-    [self updateTitleLabel];
+    [self.cameraViewController setCameraViewType: IPDFCameraViewTypeNormal];
+    [self.flashButton setImage:[UIImage imageNamed:@"flash_off"] forState:UIControlStateNormal];
+    [self.flashButton setTitle: NSLocalizedString(@"flash_off", @"Off") forState:UIControlStateNormal];
+    [self.cropButton setTitle: NSLocalizedString(@"flash_on", @"On") forState:UIControlStateNormal];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -73,11 +77,11 @@
     self.focusIndicator.alpha = 0.0;
     self.focusIndicator.hidden = NO;
 
-    [UIView animateWithDuration:0.4 animations:^{
+    [UIView animateWithDuration:1.0 animations:^{
         self.focusIndicator.alpha = 1.0;
     }
                      completion:^(BOOL finished) {
-                         [UIView animateWithDuration:0.4 animations:^
+                         [UIView animateWithDuration:1.0 animations:^
                           {
                               self.focusIndicator.alpha = 0.0;
                           }];
@@ -87,35 +91,31 @@
 - (IBAction)borderDetectToggle:(id)sender
 {
     BOOL enable = !self.cameraViewController.isBorderDetectionEnabled;
-    [self changeButton:sender targetTitle:(enable) ? @"CROP On" : @"CROP Off" toStateEnabled:enable];
+    if (enable) {
+        [self.cropButton setImage:[UIImage imageNamed:@"crop_on"] forState:UIControlStateNormal];
+        [self.cropButton setTitle: NSLocalizedString(@"flash_on", @"On") forState:UIControlStateNormal];
+        [self.cropButton setTitleColor:[UIColor colorWithRed:1 green:0.81 blue:0 alpha:1] forState:UIControlStateNormal];
+    }else{
+        [self.cropButton setImage:[UIImage imageNamed:@"crop_off"] forState:UIControlStateNormal];
+        [self.cropButton setTitle: NSLocalizedString(@"flash_off", @"Off") forState:UIControlStateNormal];
+        [self.cropButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
     self.cameraViewController.enableBorderDetection = enable;
-    [self updateTitleLabel];
-}
-
-- (IBAction)filterToggle:(id)sender
-{
-    [self.cameraViewController setCameraViewType:(self.cameraViewController.cameraViewType == IPDFCameraViewTypeBlackAndWhite) ? IPDFCameraViewTypeNormal : IPDFCameraViewTypeBlackAndWhite];
-    [self updateTitleLabel];
 }
 
 - (IBAction)torchToggle:(id)sender
 {
     BOOL enable = !self.cameraViewController.isTorchEnabled;
-    [self changeButton:sender targetTitle:(enable) ? @"FLASH On" : @"FLASH Off" toStateEnabled:enable];
+    if (enable) {
+        [self.flashButton setImage:[UIImage imageNamed:@"flash_on"] forState:UIControlStateNormal];
+        [self.flashButton setTitle: NSLocalizedString(@"flash_on", @"On") forState:UIControlStateNormal];
+        [self.flashButton setTitleColor:[UIColor colorWithRed:1 green:0.81 blue:0 alpha:1] forState:UIControlStateNormal];
+    }else{
+        [self.flashButton setImage:[UIImage imageNamed:@"flash_off"] forState:UIControlStateNormal];
+        [self.flashButton setTitle: NSLocalizedString(@"flash_off", @"Off") forState:UIControlStateNormal];
+        [self.flashButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
     self.cameraViewController.enableTorch = enable;
-}
-
-- (void)updateTitleLabel
-{
-    CATransition *animation = [CATransition animation];
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
-    animation.type = kCATransitionPush;
-    animation.subtype = kCATransitionFromBottom;
-    animation.duration = 0.35;
-    [self.titleLabel.layer addAnimation:animation forKey:@"kCATransitionFade"];
-
-    NSString *filterMode = (self.cameraViewController.cameraViewType == IPDFCameraViewTypeBlackAndWhite) ? @"TEXT FILTER" : @"COLOR FILTER";
-    self.titleLabel.text = [filterMode stringByAppendingFormat:@" | %@",(self.cameraViewController.isBorderDetectionEnabled)?@"AUTOCROP On":@"AUTOCROP Off"];
 }
 
 - (void)changeButton:(UIButton *)button targetTitle:(NSString *)title toStateEnabled:(BOOL)enabled
@@ -124,7 +124,6 @@
     [button setTitleColor:(enabled ? [UIColor colorWithRed:1 green:0.81 blue:0 alpha:1] : [UIColor whiteColor])
                  forState:UIControlStateNormal];
 }
-
 
 #pragma mark -
 #pragma mark CameraVC Capture Image
