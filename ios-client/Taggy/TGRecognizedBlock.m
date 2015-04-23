@@ -31,9 +31,9 @@
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%dp %@ in %@",
-            (int)self.confidence,
-            self.text,
-            [NSValue valueWithCGRect:self.region]];
+                                      (int)self.confidence,
+                                      self.text,
+                                      [NSValue valueWithCGRect:self.region]];
 }
 
 + (TGRecognizedBlock *)blockFromG8Block:(G8RecognizedBlock *)block
@@ -73,7 +73,7 @@
         CGContextStrokeRect(context, rect);
 
         NSAttributedString *string = [[NSAttributedString alloc] initWithString:block.text attributes:@{
-            NSForegroundColorAttributeName: [UIColor redColor]
+            NSForegroundColorAttributeName : [UIColor redColor]
         }];
         [string drawAtPoint:(CGPoint){CGRectGetMidX(rect), CGRectGetMaxY(rect) + 2}];
     }

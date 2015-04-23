@@ -10,11 +10,12 @@
 
 @implementation TGCustomTabBarController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    
+
     [[UITabBar appearance] setTintColor:[UIColor orangeColor]];
-    
+
     self.selectedIndex = 1;
 }
 

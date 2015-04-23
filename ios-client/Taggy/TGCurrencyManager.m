@@ -31,7 +31,7 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
 + (void)updateWithCallback:(TGCurrencyUpdateCallback)callback
 {
     __weak __typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         [[weakSelf class] updateWithCallback:callback offline:NO];
     });
 }
@@ -177,7 +177,7 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
             });
         }
     }
-    
+
     return *error == nil;
 }
 

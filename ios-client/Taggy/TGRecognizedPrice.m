@@ -13,7 +13,7 @@
 
 + (NSArray *)ignoredProperties
 {
-    return @[@"rect"];
+    return @[ @"rect" ];
 }
 
 - (CGRect)rect
@@ -36,7 +36,7 @@
 - (CGFloat)convertedPrice
 {
     CGFloat rate = 1.0f;
-    
+
     if (self.sourceCurrency != nil) {
         rate /= self.sourceCurrency.value;
     }
@@ -91,15 +91,15 @@
 
         NSString *value = [NSString stringWithFormat:@"%.00f", price.value];
         NSAttributedString *string = [[NSAttributedString alloc] initWithString:value attributes:@{
-            NSForegroundColorAttributeName: [UIColor redColor]
+            NSForegroundColorAttributeName : [UIColor redColor]
         }];
         [string drawAtPoint:(CGPoint){CGRectGetMidX(rect), CGRectGetMaxY(rect) + 2}];
     }
-    
+
     UIGraphicsPopContext();
     UIImage *outputImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    
+
     return outputImage;
 }
 
