@@ -50,7 +50,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0 && indexPath.section == 0) {
+    if (indexPath.row == 0 && indexPath.section == 0 && self.versionLabel == nil) {
         NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
         if ([currSysVer compare:@"8.0" options:NSNumericSearch] != NSOrderedDescending) {
             return 0.0;
