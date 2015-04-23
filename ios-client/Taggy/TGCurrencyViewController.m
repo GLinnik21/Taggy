@@ -50,15 +50,13 @@
     for (NSString *code in self.codes) {
         NSString *fullName = [[self FullNameForCode:code] lowercaseString];
         NSString *ISO = [[self ISOForCode:code] lowercaseString];
-        if ([ISO containsString:lowerSearchString]) {
-            [results addObject:code];
-        }else if([fullName containsString:lowerSearchString]){
+        if ([ISO rangeOfString:lowerSearchString].length != 0 ||
+            [fullName rangeOfString:lowerSearchString].length != 0) {
             [results addObject:code];
         }
     }
     
     self.searchResults = [results copy];
-
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller
