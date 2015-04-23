@@ -42,6 +42,10 @@
     [self.flashButton setImage:[UIImage imageNamed:@"flash_off"] forState:UIControlStateNormal];
     [self.flashButton setTitle:NSLocalizedString(@"flash_off", @"Off") forState:UIControlStateNormal];
     [self.cropButton setTitle:NSLocalizedString(@"flash_on", @"On") forState:UIControlStateNormal];
+
+    if (self.cameraViewController.legacyMode) {
+        self.cropButton.hidden = YES;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

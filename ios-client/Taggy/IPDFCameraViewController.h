@@ -20,6 +20,7 @@ typedef NS_ENUM(NSInteger, IPDFCameraViewType) {
 - (void)start;
 - (void)stop;
 
+@property (nonatomic, assign, getter=isLegacyMode, readonly) BOOL legacyMode;
 @property (nonatomic, assign, getter=isBorderDetectionEnabled) BOOL enableBorderDetection;
 @property (nonatomic, assign, getter=isTorchEnabled) BOOL enableTorch;
 

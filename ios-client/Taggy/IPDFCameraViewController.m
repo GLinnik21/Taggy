@@ -42,6 +42,13 @@
     BOOL _isCapturing;
 }
 
+- (BOOL)isLegacyMode
+{
+    NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
+    BOOL isLowerIOS8 = [currSysVer compare:@"8.0" options:NSNumericSearch] == NSOrderedAscending;
+    return isLowerIOS8;
+}
+
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -361,11 +368,19 @@
 
 - (CIImage *)filteredImageUsingEnhanceFilterOnImage:(CIImage *)image
 {
+    if (self.legacyMode) {
+        return image;
+    }
+
     return [CIFilter filterWithName:@"CIColorControls" keysAndValues:kCIInputImageKey, image, @"inputBrightness", [NSNumber numberWithFloat:0.0], @"inputContrast", [NSNumber numberWithFloat:1.14], @"inputSaturation", [NSNumber numberWithFloat:0.0], nil].outputImage;
 }
 
 - (CIImage *)filteredImageUsingContrastFilterOnImage:(CIImage *)image
 {
+    if (self.legacyMode) {
+        return image;
+    }
+
     return [CIFilter filterWithName:@"CIColorControls" withInputParameters:@{ @"inputContrast" : @(1.1),
                                                                               kCIInputImageKey : image }].outputImage;
 }
@@ -385,7 +400,9 @@
     static CIDetector *detector = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-          detector = [CIDetector detectorOfType:CIDetectorTypeRectangle context:nil options:@{CIDetectorAccuracy : CIDetectorAccuracyLow,CIDetectorTracking : @(YES)}];
+        if (self.legacyMode == NO) {
+            detector = [CIDetector detectorOfType:CIDetectorTypeRectangle context:nil options:@{CIDetectorAccuracy : CIDetectorAccuracyLow,CIDetectorTracking : @(YES)}];
+        }
     });
     return detector;
 }
@@ -395,7 +412,9 @@
     static CIDetector *detector = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        detector = [CIDetector detectorOfType:CIDetectorTypeRectangle context:nil options:@{CIDetectorAccuracy : CIDetectorAccuracyHigh}];
+        if (self.legacyMode == NO) {
+            detector = [CIDetector detectorOfType:CIDetectorTypeRectangle context:nil options:@{CIDetectorAccuracy : CIDetectorAccuracyHigh}];
+        }
     });
     return detector;
 }
