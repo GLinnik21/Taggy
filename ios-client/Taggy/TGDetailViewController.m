@@ -155,7 +155,7 @@ static NSInteger const kTGAdRowIndex = 1;
         [bannerView loadRequest:request];
     }
     else {
-        TGRecognizedPrice *price = self.detail.prices[indexPath.row + (indexPath.row < kTGAdRowIndex ? 0 : 1)];
+        TGRecognizedPrice *price = self.detail.prices[indexPath.row - (indexPath.row < kTGAdRowIndex ? 0 : 1)];
         cell.adView = nil;
         cell.sourceValue = [price formattedSourcePrice];
         cell.convertedValue = [price formattedConvertedPrice];
