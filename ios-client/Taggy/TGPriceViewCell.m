@@ -85,7 +85,7 @@ static CGFloat const kTGSpaceMargin = 10.0f;
     }
 }
 
--(void)setAdView:(UIView *)adView
+- (void)setAdView:(UIView *)adView
 {
     if (_adView != adView) {
         if (_adView != nil) {

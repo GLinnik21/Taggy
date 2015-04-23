@@ -38,12 +38,11 @@
 
         [realm addObject:item];
 
-
         item = [[TGPriceImage alloc] init];
         item.captureDate = [NSDate date];
         item.image = [UIImage imageNamed:@"2"];
         item.tag = @"Пивас";
-        
+
         price = [[TGRecognizedPrice alloc] init];
         price.value = 110;
         price.sourceCurrency = [TGCurrency currencyForCode:@"RUB"];
@@ -53,12 +52,11 @@
 
         [realm addObject:item];
 
-
         item = [[TGPriceImage alloc] init];
         item.captureDate = [NSDate date];
         item.image = [UIImage imageNamed:@"3"];
         item.tag = @"Памперсы";
-        
+
         price = [[TGRecognizedPrice alloc] init];
         price.value = 24.99;
         price.sourceCurrency = [TGCurrency currencyForCode:@"EUR"];
@@ -103,18 +101,19 @@
 + (BOOL)deleteAllObjects
 {
     RLMRealm *realm = [RLMRealm defaultRealm];
-    
+
     BOOL success = YES;
     @try {
         [realm beginWriteTransaction];
         [realm deleteObjects:[TGPriceImage allObjects]];
         [realm commitWriteTransaction];
     }
-    @catch (NSException *exception) {
+    @catch (NSException *exception)
+    {
         DDLogError(@"Can't delete all objects");
         success = NO;
     }
-    
+
     return success;
 }
 
@@ -136,7 +135,7 @@
     TGPriceRecognizer *recognizer = [[TGPriceRecognizer alloc] init];
     recognizer.progressBlock = progress;
     recognizer.image = image;
-    
+
     __weak typeof(self) weakSelf = self;
     [[[self class] sharedQueue] addOperationWithBlock:^{
         

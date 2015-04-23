@@ -10,7 +10,7 @@
 #import <UIKit/UIKit.h>
 #import "TGRecognizedBlock.h"
 
-typedef void(^TGRecognitionProgress)(CGFloat progress);
+typedef void (^TGRecognitionProgress)(CGFloat progress);
 
 @interface TGPriceRecognizer : NSObject
 

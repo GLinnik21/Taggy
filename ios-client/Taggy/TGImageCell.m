@@ -12,7 +12,6 @@
 #import "TGRecognizedPrice.h"
 #import "NSDate+DateTools.h"
 
-
 @interface TGImageCell ()
 
 @property (nonatomic, weak) IBOutlet UIImageView *cellImageView;
@@ -29,23 +28,23 @@
 {
     if (priceImage != _priceImage) {
         _priceImage = priceImage;
-        
+
         self.cellTagLabel.text = priceImage.tag;
-        
+
         self.cellImageView.image = priceImage.thumbnail;
-        
-        
+
         NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:priceImage.captureDate];
 
         if (seconds < 60) {
             self.cellTimeLabel.text = NSLocalizedString(@"just_now", @"Just now");
-        }else{
-            self.cellTimeLabel.text = priceImage.captureDate.timeAgoSinceNow;;
+        }
+        else {
+            self.cellTimeLabel.text = priceImage.captureDate.timeAgoSinceNow;
+            ;
         }
         TGRecognizedPrice *firstPrice = priceImage.prices.firstObject;
         self.cellSourcePriceLabel.text = [firstPrice formattedSourcePrice];
         self.cellConvertedPriceLabel.text = [firstPrice formattedConvertedPrice];
-        
     }
 }
 

@@ -16,8 +16,7 @@
 #import "TGCameraViewController.h"
 #import <Realm/Realm.h>
 
-
-@interface TGPhotoCaptureViewController() <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface TGPhotoCaptureViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, weak) UIImagePickerController *takePhotoPicker;
 @property (nonatomic, weak) UIImagePickerController *chooseExistingPicker;
@@ -26,10 +25,10 @@
 
 @implementation TGPhotoCaptureViewController
 
--(void)viewDidDisappear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    
+
     [SVProgressHUD dismiss];
 }
 
@@ -79,8 +78,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.destinationViewController isKindOfClass:[TGCameraViewController class]])
-    {
+    if ([segue.destinationViewController isKindOfClass:[TGCameraViewController class]]) {
         TGCameraViewController *viewController = segue.destinationViewController;
         viewController.tabNavigationController = self.navigationController;
     }

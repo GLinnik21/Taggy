@@ -27,7 +27,8 @@
 
 @implementation TGSettingsViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     self.versionLabel.text = [[TGSettingsManager objectForKey:kTGSettingsVersionKey] description];
@@ -42,14 +43,14 @@
 
     self.sourceCurrencyLabel.text = [[TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey] description];
     self.targetCurrencyLabel.text = [[TGSettingsManager objectForKey:kTGSettingsTargetCurrencyKey] description];
-    
+
     [self.auto_updateSwitch setOn:[[TGSettingsManager objectForKey:kTGSettingsAutoUpdateKey] boolValue]
                          animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0 && indexPath.section == 0) {
+    if (indexPath.row == 0 && indexPath.section == 0 && self.versionLabel == nil) {
         NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
         if ([currSysVer compare:@"8.0" options:NSNumericSearch] != NSOrderedDescending) {
             return 0.0;
@@ -59,7 +60,8 @@
     return [super tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     UITableViewCell *theCellClicked = [self.tableView cellForRowAtIndexPath:indexPath];
     if (theCellClicked == self.siteCell) {
@@ -73,7 +75,7 @@
     }
 
     if (theCellClicked == self.sourceCurrencyCell) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         TGCurrencyViewController *currency =
             [storyboard instantiateViewControllerWithIdentifier:@"CurrenciesViewController"];
         currency.settingsKey = kTGSettingsSourceCurrencyKey;
@@ -81,7 +83,7 @@
     }
 
     if (theCellClicked == self.targetCurrencyCell) {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
         TGCurrencyViewController *currency =
             [storyboard instantiateViewControllerWithIdentifier:@"CurrenciesViewController"];
         currency.settingsKey = kTGSettingsTargetCurrencyKey;
@@ -89,7 +91,8 @@
     }
 }
 
-- (IBAction)auto_updateSwitchAction:(id)sender {
+- (IBAction)auto_updateSwitchAction:(id)sender
+{
     BOOL autoUpdate = [[TGSettingsManager objectForKey:kTGSettingsAutoUpdateKey] boolValue];
     autoUpdate = autoUpdate == NO;
     [TGSettingsManager setObject:@(autoUpdate) forKey:kTGSettingsAutoUpdateKey];

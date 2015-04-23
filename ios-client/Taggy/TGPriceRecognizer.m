@@ -27,7 +27,7 @@ static NSUInteger const kTGMaximumPriceLength = 10;
 static CGFloat const kTGMinimumPriceValue = 10.0f;
 static NSUInteger const kTGMaximumPricesCount = 4;
 
-@interface TGPriceRecognizer() <G8TesseractDelegate>
+@interface TGPriceRecognizer () <G8TesseractDelegate>
 
 @property (nonatomic, strong) NSArray *recognizedBlocks;
 @property (nonatomic, strong) NSArray *recognizedPrices;
@@ -206,9 +206,9 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 - (void)sortBlocks
 {
     self.wellRecognizedBlocks = [self.wellRecognizedBlocks sortedArrayUsingComparator:
-                                 ^NSComparisonResult(TGRecognizedBlock *obj1, TGRecognizedBlock *obj2) {
+                                                               ^NSComparisonResult(TGRecognizedBlock *obj1, TGRecognizedBlock *obj2) {
         return obj2.confidence - obj1.confidence;
-    }];
+                                                               }];
 }
 
 - (void)splitBlocks
@@ -240,7 +240,7 @@ static NSUInteger const kTGMaximumPricesCount = 4;
                                                                        confidence:block.confidence
                                                                              text:newText];
                                      [newBlocks addObject:newBlock];
-            }];
+                                 }];
         }
     }
     self.wellRecognizedBlocks = newBlocks;
@@ -250,7 +250,8 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 {
     NSMutableArray *newBlocks = [[NSMutableArray alloc] initWithCapacity:self.wellRecognizedBlocks.count];
     for (TGRecognizedBlock *block in self.wellRecognizedBlocks) {
-        if (block.confidence < kTGMinimalBlockConfidence) continue;
+        if (block.confidence < kTGMinimalBlockConfidence)
+            continue;
 
         [newBlocks addObject:block];
     }
@@ -261,7 +262,8 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 {
     NSMutableArray *newBlocks = [[NSMutableArray alloc] initWithCapacity:self.wellRecognizedBlocks.count];
     for (TGRecognizedBlock *block in self.wellRecognizedBlocks) {
-        if (ABS(CGRectGetHeight(block.region)) < kTGMinimalBlockHeight) continue;
+        if (ABS(CGRectGetHeight(block.region)) < kTGMinimalBlockHeight)
+            continue;
 
         [newBlocks addObject:block];
     }
@@ -284,20 +286,26 @@ static NSUInteger const kTGMaximumPricesCount = 4;
         anyFound = NO;
         NSMutableArray *newGoodWords = [[NSMutableArray alloc] initWithArray:self.wellRecognizedBlocks];
         for (TGRecognizedBlock *block in self.wellRecognizedBlocks) {
-            if ([newGoodWords containsObject:block] == NO) continue;
+            if ([newGoodWords containsObject:block] == NO)
+                continue;
             for (TGRecognizedBlock *exBlock in self.wellRecognizedBlocks) {
-                if ([newGoodWords containsObject:exBlock] == NO) continue;
-                if (block == exBlock) continue;
-                if ([exBlock.text isEqualToString:@"."] == NO) continue;
+                if ([newGoodWords containsObject:exBlock] == NO)
+                    continue;
+                if (block == exBlock)
+                    continue;
+                if ([exBlock.text isEqualToString:@"."] == NO)
+                    continue;
 
                 CGFloat leftDistDelta = ABS(CGRectGetMinX(block.region) - CGRectGetMaxX(exBlock.region));
                 CGFloat rightDistDelta = ABS(CGRectGetMaxX(block.region) - CGRectGetMinX(exBlock.region));
                 CGFloat confDelta = ABS(block.confidence - exBlock.confidence);
 
-                if (confDelta > kTGMaximalConfidenceDelta) continue;
+                if (confDelta > kTGMaximalConfidenceDelta)
+                    continue;
 
                 CGFloat maxHDelta = MIN(CGRectGetHeight(block.region), CGRectGetHeight(exBlock.region)) * 0.85;
-                if (leftDistDelta < maxHDelta && rightDistDelta < maxHDelta) continue;
+                if (leftDistDelta < maxHDelta && rightDistDelta < maxHDelta)
+                    continue;
 
                 TGRecognizedBlock *unionedResult = nil;
                 if (leftDistDelta < maxHDelta) {
@@ -336,10 +344,13 @@ static NSUInteger const kTGMaximumPricesCount = 4;
         anyFound = NO;
         NSMutableArray *newGoodWords = [[NSMutableArray alloc] initWithArray:self.wellRecognizedBlocks];
         for (TGRecognizedBlock *block in self.wellRecognizedBlocks) {
-            if ([newGoodWords containsObject:block] == NO) continue;
+            if ([newGoodWords containsObject:block] == NO)
+                continue;
             for (TGRecognizedBlock *exBlock in self.wellRecognizedBlocks) {
-                if ([newGoodWords containsObject:exBlock] == NO) continue;
-                if (block == exBlock) continue;
+                if ([newGoodWords containsObject:exBlock] == NO)
+                    continue;
+                if (block == exBlock)
+                    continue;
 
                 CGFloat topDelta = ABS(CGRectGetMinY(block.region) - CGRectGetMinY(exBlock.region));
                 CGFloat bottomDelta = ABS(CGRectGetMaxY(block.region) - CGRectGetMaxY(exBlock.region));
@@ -347,13 +358,16 @@ static NSUInteger const kTGMaximumPricesCount = 4;
                 CGFloat rightDistDelta = ABS(CGRectGetMaxX(block.region) - CGRectGetMinX(exBlock.region));
                 CGFloat confDelta = ABS(block.confidence - exBlock.confidence);
 
-                if (confDelta > kTGMaximalConfidenceDelta) continue;
+                if (confDelta > kTGMaximalConfidenceDelta)
+                    continue;
 
                 CGFloat maxVDelta = (CGRectGetHeight(block.region) + CGRectGetHeight(exBlock.region)) * 0.5;
                 CGFloat maxHDelta = MIN(CGRectGetHeight(block.region), CGRectGetHeight(exBlock.region)) * 0.85;
 
-                if (topDelta > maxVDelta || bottomDelta > maxVDelta) continue;
-                if (leftDistDelta < maxHDelta && rightDistDelta < maxHDelta) continue;
+                if (topDelta > maxVDelta || bottomDelta > maxVDelta)
+                    continue;
+                if (leftDistDelta < maxHDelta && rightDistDelta < maxHDelta)
+                    continue;
 
                 TGRecognizedBlock *unionedResult = nil;
                 if (leftDistDelta < maxHDelta) {
@@ -389,8 +403,10 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 {
     NSMutableArray *newBlocks = [[NSMutableArray alloc] initWithCapacity:self.wellRecognizedBlocks.count];
     for (TGRecognizedBlock *block in self.wellRecognizedBlocks) {
-        if (block.text.length > kTGMaximumPriceLength) continue;
-        if ([[block number] floatValue] < kTGMinimumPriceValue) continue;
+        if (block.text.length > kTGMaximumPriceLength)
+            continue;
+        if ([[block number] floatValue] < kTGMinimumPriceValue)
+            continue;
 
         [newBlocks addObject:block];
     }
@@ -401,7 +417,8 @@ static NSUInteger const kTGMaximumPricesCount = 4;
 {
     NSMutableArray *newBlocks = [[NSMutableArray alloc] initWithCapacity:self.wellRecognizedBlocks.count];
     for (TGRecognizedBlock *block in self.wellRecognizedBlocks) {
-        if ([[block.text substringFromIndex:block.text.length-1] isEqualToString:@"0"] == NO) continue;
+        if ([[block.text substringFromIndex:block.text.length - 1] isEqualToString:@"0"] == NO)
+            continue;
 
         [newBlocks addObject:block];
     }
@@ -413,8 +430,10 @@ static NSUInteger const kTGMaximumPricesCount = 4;
     NSMutableArray *newBlocks = [[NSMutableArray alloc] initWithCapacity:self.wellRecognizedBlocks.count];
     CGFloat maxConfidence = ((TGRecognizedBlock *)self.wellRecognizedBlocks.firstObject).confidence;
     for (TGRecognizedBlock *block in self.wellRecognizedBlocks) {
-        if (count <= 0) break;
-        if (ABS(block.confidence - maxConfidence) > kTGMaximalConfidenceDelta) break;
+        if (count <= 0)
+            break;
+        if (ABS(block.confidence - maxConfidence) > kTGMaximalConfidenceDelta)
+            break;
 
         [newBlocks addObject:block];
         --count;
@@ -437,7 +456,7 @@ static NSUInteger const kTGMaximumPricesCount = 4;
     TGPriceRecognizer *recognizer = [[TGPriceRecognizer alloc] init];
     recognizer.image = image;
     [recognizer recognize];
-    
+
     return recognizer.recognizedPrices;
 }
 

@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, TGCurrencyUpdateResult) {
     TGCurrencyUpdateResultServerError,
 };
 
-typedef void(^TGCurrencyUpdateCallback)(TGCurrencyUpdateResult result);
+typedef void (^TGCurrencyUpdateCallback)(TGCurrencyUpdateResult result);
 
 @interface TGCurrencyManager : NSObject
 
