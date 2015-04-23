@@ -38,13 +38,16 @@
     [self.cameraViewController setupCameraView];
     [self.cameraViewController setEnableBorderDetection:YES];
     [self.cameraViewController setCameraViewType:IPDFCameraViewTypeNormal];
+
     [self.flashButton setImage:[UIImage imageNamed:@"flash_off"] forState:UIControlStateNormal];
     [self.flashButton setTitle:NSLocalizedString(@"flash_off", @"Off") forState:UIControlStateNormal];
     [self.cropButton setTitle:NSLocalizedString(@"flash_on", @"On") forState:UIControlStateNormal];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     [self.cameraViewController start];
 }
 
@@ -144,15 +147,14 @@
 - (IBAction)dismiss:(id)sender
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-
-    [SVProgressHUD dismiss];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [super viewDidDisappear:animated];
-
+    [self.cameraViewController stop];
     [SVProgressHUD dismiss];
+
+    [super viewDidDisappear:animated];
 }
 
 @end

@@ -41,6 +41,7 @@
     UIGraphicsBeginImageContext(CGSizeMake(scaledWidth, scaledHeight));
     [sourceImage drawInRect:CGRectMake(0, 0, scaledWidth, scaledHeight)];
     UIImage *smallImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
 
     return smallImage;
 }

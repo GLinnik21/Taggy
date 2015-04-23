@@ -95,7 +95,9 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
     CGFloat components[8] = {
         1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0};
 
-    self.graphView.gradientBottom = CGGradientCreateWithColorComponents(colorspace, components, locations, num_locations);
+    CGGradientRef gradientRef = CGGradientCreateWithColorComponents(colorspace, components, locations, num_locations);
+    CGColorSpaceRelease(colorspace);
+    self.graphView.gradientBottom = gradientRef;
     self.graphView.colorTop = [UIColor clearColor];
     self.graphView.colorBottom = [UIColor clearColor];
     self.graphView.colorLine = [UIColor whiteColor];
