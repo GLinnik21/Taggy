@@ -50,13 +50,17 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
 
         if (error != nil) {
             if (callback != nil) {
-                callback(TGCurrencyUpdateResultServerError);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    callback(TGCurrencyUpdateResultServerError);
+                });
             }
         }
         else {
             [TGSettingsManager setObject:[NSDate date] forKey:kTGSettingsLastUpdateKey];
             if (callback != nil) {
-                callback(TGCurrencyUpdateResultSuccess);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    callback(TGCurrencyUpdateResultSuccess);
+                });
             }
         }
     }
@@ -68,12 +72,16 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
 
         if (error != nil) {
             if (callback != nil) {
-                callback(TGCurrencyUpdateResultServerError);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    callback(TGCurrencyUpdateResultServerError);
+                });
             }
         }
         else {
             if (callback != nil) {
-                callback(TGCurrencyUpdateResultNoInternet);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    callback(TGCurrencyUpdateResultNoInternet);
+                });
             }
         }
     }
@@ -95,10 +103,7 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
         }
 
         if (*error == nil) {
-            __weak __typeof(self) weakSelf = self;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [[weakSelf class] updateCurrencyDataFromDictionary:currencyRates];
-            });
+            [[self class] updateCurrencyDataFromDictionary:currencyRates];
         }
     }
 
@@ -155,7 +160,7 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
         return YES;
     }
 
-    NSString *link = [NSString stringWithFormat:kTGCurrencyHistoryLink, from, count];
+    NSString *link = [NSString stringWithFormat:kTGCurrencyHistoryLink, (unsigned long)from, (unsigned long)count];
     NSURL *URL = [NSURL URLWithString:link];
     NSData *currencyData = [NSData dataWithContentsOfURL:URL options:0 error:error];
 
@@ -171,10 +176,7 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
         }
 
         if (*error == nil) {
-            __weak __typeof(self) weakSelf = self;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [[weakSelf class] updateCurrencyHistoryWithDictionary:currencies];
-            });
+            [[self class] updateCurrencyHistoryWithDictionary:currencies];
         }
     }
 
@@ -196,12 +198,13 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
 
             if (tgCurrency == nil) return;
 
+            TGCurrencyHistoryItem *lastItem = [tgCurrency.historyItems sortedResultsUsingProperty:@"date" ascending:NO].firstObject;
+
             for (NSString *dateString in rates) {
                 NSDate *date = [formatter dateFromString:dateString];
-                TGCurrencyHistoryItem *item = [tgCurrency.historyItems objectsWhere:@"date == %@", date].firstObject;
 
-                if (item == nil) {
-                    item = [[TGCurrencyHistoryItem alloc] init];
+                if (lastItem == nil || [date compare:lastItem.date] == NSOrderedDescending) {
+                    TGCurrencyHistoryItem *item = [[TGCurrencyHistoryItem alloc] init];
                     item.date = date;
                     item.value = [rates[dateString] floatValue];
 
@@ -209,6 +212,8 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
                 }
             }
         }];
+
+        [realm invalidate];
     }
 }
 
