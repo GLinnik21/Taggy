@@ -8,6 +8,7 @@
 
 #import "TGCameraViewController.h"
 #import "TGImageRecognizerHelper.h"
+#import "TGSettingsManager.h"
 
 #import "IPDFCameraViewController.h"
 
@@ -35,13 +36,16 @@
 {
     [super viewDidLoad];
 
+    BOOL borderDetection = [[TGSettingsManager objectForKey:kTGSettingsBorderDetectionKey] boolValue];
+
     [self.cameraViewController setupCameraView];
-    [self.cameraViewController setEnableBorderDetection:YES];
+    [self.cameraViewController setEnableBorderDetection:borderDetection];
     [self.cameraViewController setCameraViewType:IPDFCameraViewTypeNormal];
 
     [self.flashButton setImage:[UIImage imageNamed:@"flash_off"] forState:UIControlStateNormal];
     [self.flashButton setTitle:NSLocalizedString(@"flash_off", @"Off") forState:UIControlStateNormal];
-    [self.cropButton setTitle:NSLocalizedString(@"flash_on", @"On") forState:UIControlStateNormal];
+
+    [self makeCropEnabled:borderDetection];
 
     if (self.cameraViewController.legacyMode) {
         self.cropButton.hidden = YES;
@@ -95,8 +99,14 @@
 
 - (IBAction)borderDetectToggle:(id)sender
 {
-    BOOL enable = !self.cameraViewController.isBorderDetectionEnabled;
-    if (enable) {
+    BOOL enable = self.cameraViewController.isBorderDetectionEnabled == NO;
+    [self makeCropEnabled:enable];
+    [TGSettingsManager setObject:@(enable) forKey:kTGSettingsBorderDetectionKey];
+}
+
+- (void)makeCropEnabled:(BOOL)enabled
+{
+    if (enabled) {
         [self.cropButton setImage:[UIImage imageNamed:@"crop_on"] forState:UIControlStateNormal];
         [self.cropButton setTitle:NSLocalizedString(@"flash_on", @"On") forState:UIControlStateNormal];
         [self.cropButton setTitleColor:[UIColor colorWithRed:1 green:0.81 blue:0 alpha:1] forState:UIControlStateNormal];
@@ -106,7 +116,7 @@
         [self.cropButton setTitle:NSLocalizedString(@"flash_off", @"Off") forState:UIControlStateNormal];
         [self.cropButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
-    self.cameraViewController.enableBorderDetection = enable;
+    self.cameraViewController.enableBorderDetection = enabled;
 }
 
 - (IBAction)torchToggle:(id)sender

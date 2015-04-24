@@ -13,6 +13,7 @@ NSString *const kTGSettingsAutoUpdateKey = @"auto_update";
 NSString *const kTGSettingsSourceCurrencyKey = @"country";
 NSString *const kTGSettingsTargetCurrencyKey = @"transf";
 NSString *const kTGSettingsLastUpdateKey = @"last_update";
+NSString *const kTGSettingsBorderDetectionKey = @"border_detection";
 
 static NSString *const kTGInfoVersion = @"CFBundleShortVersionString";
 
@@ -46,6 +47,8 @@ static NSString *const kTGInfoVersion = @"CFBundleShortVersionString";
             settings[prefItemKey] = prefItemDefaultValue;
         }
     }
+
+    settings[kTGSettingsBorderDetectionKey] = @(YES);
 
     return settings;
 }
