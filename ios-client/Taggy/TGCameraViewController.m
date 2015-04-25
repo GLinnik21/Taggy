@@ -14,6 +14,7 @@
 
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <ARAnalytics/ARAnalytics.h>
+#import <Masonry/Masonry.h>
 
 @interface TGCameraViewController ()
 
@@ -41,6 +42,13 @@
     [self.cameraViewController setupCameraView];
     [self.cameraViewController setEnableBorderDetection:borderDetection];
     [self.cameraViewController setCameraViewType:IPDFCameraViewTypeNormal];
+
+    [self.cameraViewController mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.equalTo(self.cameraViewController.mas_height).multipliedBy(3.0f / 4.0f);
+        make.size.lessThanOrEqualTo(self.view);
+        make.size.equalTo(self.view).with.priorityHigh();
+        make.center.equalTo(self.view);
+    }];
 
     [self.flashButton setImage:[UIImage imageNamed:@"flash_off"] forState:UIControlStateNormal];
     [self.flashButton setTitle:NSLocalizedString(@"flash_off", @"Off") forState:UIControlStateNormal];
