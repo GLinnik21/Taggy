@@ -14,6 +14,7 @@ pod 'Reachability', '~> 3.2'
 pod 'DateTools', '~> 1.5.0'
 pod 'BEMSimpleLineGraph', '~> 3.3'
 pod 'CocoaLumberjack', '~> 2.0.0'
+pod 'DeviceUtil', '~> 1.2'
 
 pod 'FlurrySDK', '~> 5.4.0'
 pod 'GoogleAnalytics-iOS-SDK', '~> 3.10'

@@ -15,6 +15,7 @@
 #import "SVProgressHUD.h"
 #import "TGCameraViewController.h"
 #import <Realm/Realm.h>
+#import <DeviceUtil/DeviceUtil.h>
 
 @interface TGPhotoCaptureViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -30,6 +31,39 @@
     [super viewDidDisappear:animated];
 
     [SVProgressHUD dismiss];
+}
+
+- (IBAction)takePhoto
+{
+    if ([[UIDevice currentDevice].model containsString:@"Simulator"]) {
+        return;
+    }
+
+    Hardware hw = [DeviceUtil hardware];
+    BOOL newCamera =
+        (hw >= IPHONE_5 && hw < IPOD_TOUCH_1G) ||
+        (hw >= IPOD_TOUCH_5G && hw < IPAD) ||
+        (hw >= IPAD_2 && hw < IPAD_MINI) ||
+        (hw >= IPAD_MINI_RETINA_WIFI && hw < IPAD_AIR_WIFI) ||
+        (hw >= IPAD_AIR_WIFI && hw < SIMULATOR) ||
+        hw == NOT_AVAILABLE;
+
+    if (newCamera) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        TGCameraViewController *viewController =
+            [storyboard instantiateViewControllerWithIdentifier:@"CameraViewController"];
+        viewController.tabNavigationController = self.navigationController;
+        [self presentViewController:viewController animated:YES completion:nil];
+    }
+    else {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        picker.delegate = self;
+        [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
+        [self presentViewController:picker animated:YES completion:NULL];
+        self.takePhotoPicker = picker;
+
+        [ARAnalytics event:@"Take photo"];
+    }
 }
 
 - (IBAction)chooseExisting
