@@ -177,7 +177,7 @@ static NSInteger const kTGAdRowIndex = 1;
         return;
     }
 
-    TGRecognizedPrice *price = self.detail.prices[indexPath.row];
+    TGRecognizedPrice *price = self.detail.prices[indexPath.row - (indexPath.row < kTGAdRowIndex ? 0 : 1)];
     self.imageView.image = [TGRecognizedPrice drawPrices:@[ price ] onImage:self.detail.image];
 
     /*CGRect rect = CGRectApplyAffineTransform(price.rect, CGAffineTransformTranslate(CGAffineTransformTranslate(CGAffineTransformIdentity, price.rect.size.width / 2, price.rect.size.height / 2), -self.imageScrollView.frame.size.width / 2, -self.imageScrollView.frame.size.height / 2));
