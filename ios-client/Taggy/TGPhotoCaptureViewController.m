@@ -35,17 +35,13 @@
 
 - (IBAction)takePhoto
 {
-    if ([[UIDevice currentDevice].model containsString:@"Simulator"]) {
-        return;
-    }
-
     Hardware hw = [DeviceUtil hardware];
     BOOL newCamera =
         (hw >= IPHONE_5 && hw < IPOD_TOUCH_1G) ||
         (hw >= IPOD_TOUCH_5G && hw < IPAD) ||
         (hw >= IPAD_2 && hw < IPAD_MINI) ||
         (hw >= IPAD_MINI_RETINA_WIFI && hw < IPAD_AIR_WIFI) ||
-        (hw >= IPAD_AIR_WIFI && hw < SIMULATOR) ||
+        (hw >= IPAD_AIR_WIFI && hw <= SIMULATOR) ||
         hw == NOT_AVAILABLE;
 
     if (newCamera) {
@@ -56,6 +52,10 @@
         [self presentViewController:viewController animated:YES completion:nil];
     }
     else {
+        if (hw == SIMULATOR) {
+            return;
+        }
+
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         [picker setSourceType:UIImagePickerControllerSourceTypeCamera];

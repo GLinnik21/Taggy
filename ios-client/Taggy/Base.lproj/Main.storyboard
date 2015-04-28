@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Wnc-nd-Cx3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Wnc-nd-Cx3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
@@ -45,7 +45,7 @@
                                 <state key="normal" title="Take a photo" backgroundImage="PhotoButton"/>
                                 <state key="highlighted" backgroundImage="PhotoButtonP.png"/>
                                 <connections>
-                                    <segue destination="pQc-3C-oG6" kind="modal" id="nQP-oQ-L47"/>
+                                    <action selector="takePhoto" destination="G5l-i6-tbZ" eventType="touchUpInside" id="QRp-Cd-nco"/>
                                 </connections>
                             </button>
                         </subviews>
