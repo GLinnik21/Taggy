@@ -201,4 +201,5 @@ Rates.txt
 env/
 *.pyc
 app.db
+.gradle/
 

@@ -1,0 +1,29 @@
+buildscript {
+  repositories {
+    maven {
+      url('http://repository.openbakery.org/')
+    }
+    mavenCentral()
+  }
+  dependencies {
+    classpath group: 'org.openbakery', name: 'xcodePlugin', version: '0.10.2-beta2'
+  }
+}
+
+apply plugin: 'xcode'
+
+xcodebuild {
+  target = 'Taggy'
+  scheme = 'Taggy'
+
+  sdk = 'iphoneos'
+
+  signing {
+    identity = 'iPhone Developer: Nikolay Volosatov (H65FFGF283)'
+    certificateURI = 'file:///Users/bamx23/cert.p12'
+    certificatePassword = '12345' // e.g. 'secret'
+    mobileProvisionURI = [ 'file:///Users/bamx23/Development.mobileprovision' ]
+  }
+}
+
+// gradle package --refresh-dependencies
