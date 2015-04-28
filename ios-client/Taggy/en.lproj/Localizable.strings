@@ -20,6 +20,7 @@
 "LastUpdate" = "Last update: %@";
 "updating" = "Updating";
 "updated" = "Updated";
+"NoData" = "Update rates history first";
 "delete_all" = "Delete all";
 "conf_question" = "Do you really want to delete all results?";
 "cancel" = "Cancel";

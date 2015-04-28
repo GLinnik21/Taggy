@@ -222,6 +222,11 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
     return 1;
 }
 
+- (NSString *)noDataLabelTextForLineGraph:(BEMSimpleLineGraphView *)graph
+{
+    return NSLocalizedString(@"NoData", nil);
+}
+
 - (IBAction)intervalValueChanged:(id)sender
 {
     [self formatGraphData];
