@@ -43,7 +43,8 @@
 
     [TGCurrencyManager initCurrencies];
     if ([[TGSettingsManager objectForKey:kTGSettingsAutoUpdateKey] boolValue]) {
-        [TGCurrencyManager updateWithCallback:nil];
+        BOOL history = [[TGSettingsManager objectForKey:kTGSettingsUpdateWithHisoryKey] boolValue];
+        [TGCurrencyManager updateOne:YES history:history callback:nil progress:nil];
     }
 
 #ifdef DEBUG

@@ -15,10 +15,14 @@ typedef NS_ENUM(NSUInteger, TGCurrencyUpdateResult) {
 };
 
 typedef void (^TGCurrencyUpdateCallback)(TGCurrencyUpdateResult result);
+typedef void (^TGCurrencyUpdateProgressCallback)(CGFloat progress);
 
 @interface TGCurrencyManager : NSObject
 
 + (void)initCurrencies;
-+ (void)updateWithCallback:(TGCurrencyUpdateCallback)callback;
++ (void)updateOne:(BOOL)one
+          history:(BOOL)history
+         callback:(TGCurrencyUpdateCallback)callback
+         progress:(TGCurrencyUpdateProgressCallback)progress;
 
 @end

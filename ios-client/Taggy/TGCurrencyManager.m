@@ -18,38 +18,50 @@ static NSString *const kTGCurrencyHistoryLink = @"http://api.taggy.by/history/%l
 
 static NSTimeInterval const kTGMonth = 30 * 24 * 60 * 60;
 static NSTimeInterval const kTGOneUpdate = 60 * 60;
+static NSTimeInterval const kTGUpdatesPerBunch = 24 * 4;
 
 @implementation TGCurrencyManager
 
 + (void)initCurrencies
 {
     if ([TGCurrency allObjects].count == 0) {
-        [[self class] updateWithCallback:nil offline:YES];
+        [[self class] updateOne:YES history:NO offline:YES callback:nil progress:nil];
     }
 }
 
-+ (void)updateWithCallback:(TGCurrencyUpdateCallback)callback
++ (void)updateOne:(BOOL)isOne
+          history:(BOOL)isHistory
+         callback:(TGCurrencyUpdateCallback)callback
+         progress:(TGCurrencyUpdateProgressCallback)progress
 {
     __weak __typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        [[weakSelf class] updateWithCallback:callback offline:NO];
+        [[weakSelf class] updateOne:isOne history:isHistory offline:NO callback:callback progress:progress];
     });
 }
 
-+ (void)updateWithCallback:(TGCurrencyUpdateCallback)callback offline:(BOOL)offline
++ (void)updateOne:(BOOL)one
+          history:(BOOL)history
+          offline:(BOOL)offline
+         callback:(TGCurrencyUpdateCallback)callback
+         progress:(TGCurrencyUpdateProgressCallback)progress
 {
     NSError *error = nil;
     NSURL *URL = [NSURL URLWithString:kTGCurrencyLink];
     Reachability *apiReachable = [Reachability reachabilityWithHostname:URL.host];
 
     if (offline == NO && [apiReachable isReachable]) {
-        if ([[TGSettingsManager objectForKey:kTGSettingsUpdateWithHisoryKey] boolValue]) {
+        CGFloat startProgres = 0.0f;
+        if (one) {
             [self updateFromURL:URL error:&error];
-        }
-        if ([[TGSettingsManager objectForKey:kTGSettingsUpdateWithHisoryKey] boolValue]) {
-            if (error == nil) {
-                [self updateHistoryInfoWithError:&error];
+
+            startProgres += history ? 0.2f : 1.0f;
+            if (progress != nil) {
+                progress(startProgres);
             }
+        }
+        if (history && error == nil) {
+            [self updateHistoryInfoWithError:&error startProgress:startProgres progress:progress];
         }
 
         if (error != nil) {
@@ -69,9 +81,13 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
         }
     }
     else {
-        if ([TGCurrency allObjects].count == 0) {
+        if (one && [TGCurrency allObjects].count == 0) {
             NSString *filePath = [[NSBundle mainBundle] pathForResource:@"currency" ofType:@"json"];
             [self updateFromURL:[NSURL fileURLWithPath:filePath] error:&error];
+        }
+
+        if (progress != nil) {
+            progress(1.0f);
         }
 
         if (error != nil) {
@@ -143,6 +159,8 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
 }
 
 + (BOOL)updateHistoryInfoWithError:(NSError **)error
+                     startProgress:(CGFloat)startProgress
+                          progress:(TGCurrencyUpdateProgressCallback)progress
 {
     NSDate *maximumDate = [NSDate date];
     for (TGCurrency *currency in [TGCurrency allObjects]) {
@@ -157,13 +175,40 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
         }
     }
 
-    NSInteger from = 0;
     NSInteger count = ceilf(ABS(maximumDate.timeIntervalSinceNow) / kTGOneUpdate);
 
     if (count == 0) {
         return YES;
     }
 
+    NSInteger from = 0;
+    CGFloat progresUnit = (1.0f - startProgress) / ((CGFloat)count / kTGUpdatesPerBunch);
+
+    for (from = count - kTGUpdatesPerBunch; from > 0; from -= kTGUpdatesPerBunch) {
+        __weak __typeof(self) weakSelf = self;
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            [[weakSelf class] updateHistoryInfoWithError:error from:from count:kTGUpdatesPerBunch];
+        });
+
+        startProgress += progresUnit;
+        if (progress != nil) {
+            progress(startProgress);
+        }
+
+        if (*error != nil) {
+            return NO;
+        }
+    }
+
+    if (from < 0) {
+        [[self class] updateHistoryInfoWithError:error from:0 count:from + kTGUpdatesPerBunch];
+    }
+
+    return *error == nil;
+}
+
++ (BOOL)updateHistoryInfoWithError:(NSError **)error from:(NSInteger)from count:(NSInteger)count
+{
     NSString *link = [NSString stringWithFormat:kTGCurrencyHistoryLink, (unsigned long)from, (unsigned long)count];
     NSURL *URL = [NSURL URLWithString:link];
     NSData *currencyData = [NSData dataWithContentsOfURL:URL options:0 error:error];
@@ -189,35 +234,42 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
 
 + (void)updateCurrencyHistoryWithDictionary:(NSDictionary *)currencies
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    static NSDateFormatter *formatter = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    });
 
-    for (NSString *code in currencies) {
+    @autoreleasepool {
         RLMRealm *realm = [RLMRealm defaultRealm];
-
-        NSDictionary *rates = currencies[code];
-
         [realm transactionWithBlock:^{
-            TGCurrency *tgCurrency = [TGCurrency currencyForCode:code];
+            for (NSString *code in currencies) {
+                NSDictionary *rates = currencies[code];
 
-            if (tgCurrency == nil) return;
+                TGCurrency *tgCurrency = [TGCurrency currencyForCode:code];
 
-            TGCurrencyHistoryItem *lastItem = [tgCurrency.historyItems sortedResultsUsingProperty:@"date" ascending:NO].firstObject;
+                if (tgCurrency == nil) continue;
 
-            for (NSString *dateString in rates) {
-                NSDate *date = [formatter dateFromString:dateString];
+                TGCurrencyHistoryItem *lastItem = [tgCurrency.historyItems sortedResultsUsingProperty:@"date" ascending:NO].firstObject;
 
-                if (lastItem == nil || [date compare:lastItem.date] == NSOrderedDescending) {
-                    TGCurrencyHistoryItem *item = [[TGCurrencyHistoryItem alloc] init];
-                    item.date = date;
-                    item.value = [rates[dateString] floatValue];
+                BOOL firstFound = NO;
+                for (NSString *dateString in rates) {
+                    NSDate *date = [formatter dateFromString:dateString];
 
-                    [tgCurrency.historyItems addObject:item];
+                    if ((firstFound || lastItem == nil || [date compare:lastItem.date] == NSOrderedDescending) && date != nil) {
+                        firstFound = YES;
+
+                        TGCurrencyHistoryItem *item = [[TGCurrencyHistoryItem alloc] init];
+                        item.date = date;
+                        item.value = [rates[dateString] floatValue];
+                        
+                        [tgCurrency.historyItems addObject:item];
+                    }
                 }
             }
         }];
-
-        [realm invalidate];
+        //[realm invalidate];
     }
 }
 

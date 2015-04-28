@@ -18,6 +18,8 @@
 "updated_with_history" = "Exchange rates and history were updated!";
 "only_exchange_rates" = "Only exchange rates were updated!";
 "LastUpdate" = "Last update: %@";
+"updating" = "Updating";
+"updated" = "Updated";
 "delete_all" = "Delete all";
 "conf_question" = "Do you really want to delete all results?";
 "cancel" = "Cancel";

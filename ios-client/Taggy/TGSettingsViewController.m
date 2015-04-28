@@ -13,6 +13,7 @@
 #import "AFMInfoBanner.h"
 
 #import "TGSettingsManager.h"
+#import "TGCurrencyManager.h"
 
 @interface TGSettingsViewController ()
 
@@ -45,20 +46,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    NSDate *updateDate = [TGSettingsManager objectForKey:kTGSettingsLastUpdateKey];
-    NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:updateDate];
-    
-    if (seconds < 60) {
-        self.lastUpdateLabel.text = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), [NSString stringWithFormat:NSLocalizedString(@"just_now", @"Just now")]];
-    }
-    else if ([TGSettingsManager objectForKey:kTGSettingsLastUpdateKey] == nil) {
-        self.lastUpdateLabel.text = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), [NSString stringWithFormat:NSLocalizedString(@"never", @"Never")]];
-    }
-    else {
-        self.lastUpdateLabel.text = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), updateDate.timeAgoSinceNow];
-    }
 
+    [self fillLastUpdateLabel];
 
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     self.privacyCell.hidden = [currSysVer compare:@"8.0" options:NSNumericSearch] != NSOrderedDescending;
@@ -70,6 +59,22 @@
                          animated:NO];
     [self.auto_updateSwitch setOn:[[TGSettingsManager objectForKey:kTGSettingsAutoUpdateKey] boolValue]
                          animated:NO];
+}
+
+- (void)fillLastUpdateLabel
+{
+    NSDate *updateDate = [TGSettingsManager objectForKey:kTGSettingsLastUpdateKey];
+    NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:updateDate];
+
+    if (seconds < 60) {
+        self.lastUpdateLabel.text = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), [NSString stringWithFormat:NSLocalizedString(@"just_now", @"Just now")]];
+    }
+    else if ([TGSettingsManager objectForKey:kTGSettingsLastUpdateKey] == nil) {
+        self.lastUpdateLabel.text = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), [NSString stringWithFormat:NSLocalizedString(@"never", @"Never")]];
+    }
+    else {
+        self.lastUpdateLabel.text = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), updateDate.timeAgoSinceNow];
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,10 +121,24 @@
     
     if (theCellClicked == self.updateRateCell) {
         [self.updateRatesActivityIndicator startAnimating];
+
+        __weak __typeof(self) weakSelf = self;
+        [TGCurrencyManager updateOne:YES history:NO callback:^(TGCurrencyUpdateResult result) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf fillLastUpdateLabel];
+            [strongSelf.updateRatesActivityIndicator stopAnimating];
+        } progress:nil];
     }
     
     if (theCellClicked == self.updateHistoryCell) {
         [self.updateHistoryActivityIndicator startAnimating];
+
+        __weak __typeof(self) weakSelf = self;
+        [TGCurrencyManager updateOne:NO history:YES callback:^(TGCurrencyUpdateResult result) {
+            __strong __typeof(weakSelf) strongSelf = weakSelf;
+            [strongSelf fillLastUpdateLabel];
+            [strongSelf.updateHistoryActivityIndicator stopAnimating];
+        } progress:nil];
     }
 }
 

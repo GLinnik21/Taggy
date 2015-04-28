@@ -47,14 +47,18 @@ static NSString *const kTGImageCellId = @"ImageCell";
 
 - (void)updateCurrency
 {
+    [SVProgressHUD setForegroundColor:[UIColor grayColor]];
+    [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
+    [SVProgressHUD showWithStatus:NSLocalizedString(@"updating", @"Updating")];
+
+    BOOL history = [[TGSettingsManager objectForKey:kTGSettingsUpdateWithHisoryKey] boolValue];
     __weak __typeof(self) weakSelf = self;
-    [TGCurrencyManager updateWithCallback:^(TGCurrencyUpdateResult result) {
+    [TGCurrencyManager updateOne:YES history:history callback:^(TGCurrencyUpdateResult result) {
         __strong __typeof(weakSelf) strongSelf = weakSelf;
 
         if (result != TGCurrencyUpdateResultSuccess) {
             [SVProgressHUD setForegroundColor:[UIColor grayColor]];
             [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
-
 
             if (result == TGCurrencyUpdateResultNoInternet) {
                 [SVProgressHUD setInfoImage:[UIImage imageNamed:@"internet"]];
@@ -65,14 +69,21 @@ static NSString *const kTGImageCellId = @"ImageCell";
                 [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"ServerError", @"Server-side error")];
             }
         }else{
+            [SVProgressHUD dismiss];
+            
             if ([[TGSettingsManager objectForKey:kTGSettingsUpdateWithHisoryKey] boolValue]== YES) {
                 [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"updated_with_history", @"Updated") style:AFMInfoBannerStyleInfo];
-            }else{
+            }
+            else{
                 [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"only_exchange_rates", @"Updated") style:AFMInfoBannerStyleInfo];
             }
         }
 
         [strongSelf.refreshControl endRefreshing];
+    } progress:^(CGFloat progress) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [SVProgressHUD showProgress:progress status:NSLocalizedString(@"updating", @"Updating")];
+        });
     }];
 }
 
