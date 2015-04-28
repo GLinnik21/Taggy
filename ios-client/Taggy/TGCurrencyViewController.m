@@ -12,6 +12,8 @@
 
 #import "TGSettingsManager.h"
 
+#import <ARAnalytics/ARAnalytics.h>
+
 @interface TGCurrencyViewController ()
 
 @property (nonatomic, retain) NSIndexPath *checkedIndexPath;
@@ -35,6 +37,13 @@
     self.codes = [self.rates.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
         return [obj1 compare:obj2];
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [ARAnalytics pageView:[NSString stringWithFormat:@"Currency select: %@", self.settingsKey]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

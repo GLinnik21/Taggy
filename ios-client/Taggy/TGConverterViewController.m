@@ -12,6 +12,7 @@
 
 #import "TGCurrency.h"
 #import "TGSettingsManager.h"
+#import <ARAnalytics/ARAnalytics.h>
 
 static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
 
@@ -28,6 +29,13 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
 @end
 
 @implementation TGConverterViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [ARAnalytics pageView:@"Converter"];
+}
 
 - (void)viewDidLoad
 {

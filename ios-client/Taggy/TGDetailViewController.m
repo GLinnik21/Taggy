@@ -12,6 +12,7 @@
 
 #import <Masonry/Masonry.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
+#import <ARAnalytics/ARAnalytics.h>
 
 static NSInteger const kTGAdRowIndex = 1;
 
@@ -111,6 +112,8 @@ static NSInteger const kTGAdRowIndex = 1;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    [ARAnalytics pageView:@"Result"];
 
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView selectRowAtIndexPath:indexPath

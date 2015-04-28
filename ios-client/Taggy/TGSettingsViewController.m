@@ -15,6 +15,8 @@
 #import "TGSettingsManager.h"
 #import "TGCurrencyManager.h"
 
+#import <ARAnalytics/ARAnalytics.h>
+
 @interface TGSettingsViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableViewCell *sourceCurrencyCell;
@@ -46,6 +48,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
+    [ARAnalytics pageView:[NSString stringWithFormat:@"Settings %@", self.title]];
 
     [self fillLastUpdateLabel];
 

@@ -165,6 +165,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
     [super viewWillAppear:animated];
 
     [self.tableView reloadData];
+    [ARAnalytics pageView:@"Results"];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

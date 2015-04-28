@@ -26,6 +26,13 @@
 
 @implementation TGPhotoCaptureViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [ARAnalytics pageView:@"Main"];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];

@@ -65,6 +65,7 @@
     [super viewWillAppear:animated];
     
     [self.cameraViewController start];
+    [ARAnalytics pageView:@"Camera"];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
