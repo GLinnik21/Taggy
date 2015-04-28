@@ -47,9 +47,9 @@ static NSString *const kTGImageCellId = @"ImageCell";
 
 - (void)updateCurrency
 {
-    [SVProgressHUD setForegroundColor:[UIColor grayColor]];
-    [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
-    [SVProgressHUD showWithStatus:NSLocalizedString(@"updating", @"Updating")];
+    //[SVProgressHUD setForegroundColor:[UIColor grayColor]];
+    //[SVProgressHUD setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
+    //[SVProgressHUD showWithStatus:NSLocalizedString(@"updating", @"Updating")];
 
     BOOL history = [[TGSettingsManager objectForKey:kTGSettingsUpdateWithHisoryKey] boolValue];
     __weak __typeof(self) weakSelf = self;
@@ -69,7 +69,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
                 [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"ServerError", @"Server-side error")];
             }
         }else{
-            [SVProgressHUD dismiss];
+            //[SVProgressHUD dismiss];
             
             if ([[TGSettingsManager objectForKey:kTGSettingsUpdateWithHisoryKey] boolValue]== YES) {
                 [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"updated_with_history", @"Updated") style:AFMInfoBannerStyleInfo];
