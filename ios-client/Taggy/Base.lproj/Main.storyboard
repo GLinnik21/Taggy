@@ -200,7 +200,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Converter" id="aUd-YP-JUG">
                         <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="6nH-W3-rcX">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lxi-8g-3Oj">
+                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lxi-8g-3Oj">
                                 <rect key="frame" x="184" y="-38" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="fav">
