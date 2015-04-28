@@ -82,7 +82,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
         [strongSelf.refreshControl endRefreshing];
     } progress:^(CGFloat progress) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [SVProgressHUD showProgress:progress status:NSLocalizedString(@"updating", @"Updating")];
+            //[SVProgressHUD showProgress:progress status:NSLocalizedString(@"updating", @"Updating")];
         });
     }];
 }
