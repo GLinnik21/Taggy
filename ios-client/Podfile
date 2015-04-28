@@ -1,7 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 xcodeproj 'Taggy.xcodeproj/'
 
-platform :ios, "7.0"
+platform :ios, "7.1"
 
 target "Taggy" do
 
@@ -14,6 +14,7 @@ pod 'Reachability', '~> 3.2'
 pod 'DateTools', '~> 1.5.0'
 pod 'BEMSimpleLineGraph', '~> 3.3'
 pod 'CocoaLumberjack', '~> 2.0.0'
+pod 'AFMInfoBanner'
 
 pod 'FlurrySDK', '~> 5.4.0'
 pod 'GoogleAnalytics-iOS-SDK', '~> 3.10'

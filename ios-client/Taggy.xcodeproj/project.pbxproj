@@ -89,7 +89,6 @@
 		41C853431AE79CFB009F8B63 /* TGImageRecognizerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGImageRecognizerHelper.h; sourceTree = "<group>"; };
 		41C853441AE79CFB009F8B63 /* TGImageRecognizerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGImageRecognizerHelper.m; sourceTree = "<group>"; };
 		41C8534A1AE7E43F009F8B63 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
-		41C8534C1AE7E44E009F8B63 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		41CC86F11ADC552F005D7C28 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		41DF05561AE152F000F3955B /* TGCurrencyHistoryItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGCurrencyHistoryItem.h; sourceTree = "<group>"; };
 		41DF05571AE152F000F3955B /* TGCurrencyHistoryItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGCurrencyHistoryItem.m; sourceTree = "<group>"; };
@@ -103,7 +102,7 @@
 		ED077A1619F93FE300B203CB /* TGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TGAppDelegate.h; sourceTree = "<group>"; };
 		ED077A1719F93FE300B203CB /* TGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TGAppDelegate.m; sourceTree = "<group>"; };
 		ED077A1919F93FE300B203CB /* TGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TGViewController.h; sourceTree = "<group>"; };
-		ED077A1A19F93FE300B203CB /* TGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TGViewController.m; sourceTree = "<group>"; };
+		ED077A1A19F93FE300B203CB /* TGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TGViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
 		ED077A1D19F93FE300B203CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ED077A2219F93FE300B203CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		ED077A2819F93FE300B203CB /* TaggyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TaggyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +129,7 @@
 		ED9E18D81A516A3E00506598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		EDA7E2D41A35DB9B00641F18 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EDA7E2D61A35DBA100641F18 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EDA837BD1AEF9993002E45F5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		EDAE40511A83F5CC00A90A71 /* TGConverterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGConverterViewController.h; sourceTree = "<group>"; };
 		EDAE40521A83F5CC00A90A71 /* TGConverterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGConverterViewController.m; sourceTree = "<group>"; };
 		EDAE69AD1AB36C1C009E92BE /* TGCurrencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGCurrencyViewController.h; sourceTree = "<group>"; };
@@ -584,7 +584,7 @@
 			children = (
 				ED077A1D19F93FE300B203CB /* Base */,
 				41C8534A1AE7E43F009F8B63 /* ru */,
-				41C8534C1AE7E44E009F8B63 /* en */,
+				EDA837BD1AEF9993002E45F5 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

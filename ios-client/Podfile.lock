@@ -1,4 +1,6 @@
 PODS:
+  - AFMInfoBanner (1.0.2):
+    - CVKHierarchySearcher (~> 0.2)
   - ARAnalytics/CoreIOS (2.9.1)
   - ARAnalytics/Flurry (2.9.1):
     - ARAnalytics/CoreIOS
@@ -18,6 +20,7 @@ PODS:
     - CocoaLumberjack/Core
   - CocoaLumberjack/Extensions (2.0.0):
     - CocoaLumberjack/Default
+  - CVKHierarchySearcher (0.2.0)
   - DateTools (1.5.0)
   - FlurrySDK (5.4.0):
     - FlurrySDK/FlurrySDK (= 5.4.0)
@@ -53,6 +56,7 @@ PODS:
     - protobuf-c (= 0.15)
 
 DEPENDENCIES:
+  - AFMInfoBanner
   - ARAnalytics/Flurry
   - ARAnalytics/GoogleAnalytics
   - ARAnalytics/YandexMobileMetrica
@@ -71,9 +75,11 @@ DEPENDENCIES:
   - YandexMobileMetrica (~> 1.6.2)
 
 SPEC CHECKSUMS:
+  AFMInfoBanner: e2f2b479cc589986a0ab7fb31fb4c6d5c81f732f
   ARAnalytics: e00f739e2bc994ce096a3e494295950e33b057ce
   BEMSimpleLineGraph: 7fc92cd65a5f91640f6624b11be96fe1f3d7f1cf
   CocoaLumberjack: a6f77d987d65dc7ba86b0f84db7d0b9084f77bcb
+  CVKHierarchySearcher: 7be8d3bcbcc6f86ff07f785e6c632b5e40da2553
   DateTools: b93a2c2017747329c6077c7d7e8a75106e23d0d7
   FlurrySDK: 7f929b68dea38ce735979fb039229f62c0b697b5
   FMDB: 0678cab3b024ea6a2e6ea5dd91fc8eb9a296bf57

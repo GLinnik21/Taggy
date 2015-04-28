@@ -10,6 +10,7 @@
 
 NSString *const kTGSettingsVersionKey = @"version";
 NSString *const kTGSettingsAutoUpdateKey = @"auto_update";
+NSString *const kTGSettingsUpdateWithHisoryKey = @"update_with_history";
 NSString *const kTGSettingsSourceCurrencyKey = @"country";
 NSString *const kTGSettingsTargetCurrencyKey = @"transf";
 NSString *const kTGSettingsLastUpdateKey = @"last_update";

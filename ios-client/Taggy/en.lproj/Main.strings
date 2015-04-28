@@ -15,7 +15,7 @@
 "3Nb-Hv-wEo.normalTitle" = "WWW";
 
 /* Class = "UILabel"; text = "Currency for transference\n"; ObjectID = "5ff-tQ-o6N"; */
-"5ff-tQ-o6N.text" = "Currency for transference";
+"5ff-tQ-o6N.text" = "Currency for transference\n";
 
 /* Class = "UITableViewSection"; headerTitle = "Currency"; ObjectID = "65N-fs-2DA"; */
 "65N-fs-2DA.headerTitle" = "Currency";
@@ -38,8 +38,8 @@
 /* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "BcQ-qd-1wG"; */
 "BcQ-qd-1wG.title" = "Item";
 
-/* Class = "UIButton"; normalTitle = "FLASH Off"; ObjectID = "Bwr-4A-KRh"; */
-"Bwr-4A-KRh.normalTitle" = "FLASH Off";
+/* Class = "UIButton"; normalTitle = "Выкл."; ObjectID = "Bwr-4A-KRh"; */
+"Bwr-4A-KRh.normalTitle" = "Выкл.";
 
 /* Class = "UITableViewSection"; footerTitle = "Learn more about our app"; ObjectID = "Exj-Dv-Hjc"; */
 "Exj-Dv-Hjc.footerTitle" = "Learn more about our app";
@@ -50,20 +50,26 @@
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "Hay-Lg-EG5"; */
 "Hay-Lg-EG5.normalTitle" = "Cancel";
 
+/* Class = "UILabel"; text = "Update with history"; ObjectID = "KdB-bf-gwF"; */
+"KdB-bf-gwF.text" = "Update with history";
+
+/* Class = "UILabel"; text = "Update exchange rates history"; ObjectID = "L98-by-Ekz"; */
+"L98-by-Ekz.text" = "Update exchange rates history";
+
 /* Class = "UILabel"; text = "United Stated Dollar"; ObjectID = "MYx-NV-nlH"; */
 "MYx-NV-nlH.text" = "United Stated Dollar";
 
-/* Class = "UIButton"; normalTitle = "CROP On"; ObjectID = "Mfo-Th-IMC"; */
-"Mfo-Th-IMC.normalTitle" = "CROP On";
+/* Class = "UIButton"; normalTitle = "Выкл."; ObjectID = "Mfo-Th-IMC"; */
+"Mfo-Th-IMC.normalTitle" = "Выкл.";
 
 /* Class = "UITabBarItem"; title = "Results"; ObjectID = "Nna-ET-djC"; */
 "Nna-ET-djC.title" = "Results";
 
-/* Class = "UITableViewSection"; footerTitle = "Automatic currency update after the first Internet connection"; ObjectID = "O6e-xe-Reh"; */
-"O6e-xe-Reh.footerTitle" = "Automatic currency update after the first Internet connection";
+/* Class = "UITableViewSection"; footerTitle = "Automatic exchange rates update "; ObjectID = "O6e-xe-Reh"; */
+"O6e-xe-Reh.footerTitle" = "Automatic exchange rates update ";
 
-/* Class = "UITableViewSection"; headerTitle = "General"; ObjectID = "O6e-xe-Reh"; */
-"O6e-xe-Reh.headerTitle" = "General";
+/* Class = "UITableViewSection"; headerTitle = "Update settings"; ObjectID = "O6e-xe-Reh"; */
+"O6e-xe-Reh.headerTitle" = "Update settings";
 
 /* Class = "UIButton"; normalTitle = "WWW"; ObjectID = "RCE-NP-o12"; */
 "RCE-NP-o12.normalTitle" = "WWW";
@@ -92,14 +98,17 @@
 /* Class = "UITableViewSection"; headerTitle = "Application information"; ObjectID = "Uuj-3f-c3s"; */
 "Uuj-3f-c3s.headerTitle" = "Application information";
 
-/* Class = "UIButton"; normalTitle = "FILTER"; ObjectID = "VXS-yD-5zT"; */
-"VXS-yD-5zT.normalTitle" = "FILTER";
-
 /* Class = "UILabel"; text = "Label"; ObjectID = "VgM-kZ-GeX"; */
 "VgM-kZ-GeX.text" = "Label";
 
+/* Class = "UILabel"; text = "Update exchange rates"; ObjectID = "Wnc-3g-JZJ"; */
+"Wnc-3g-JZJ.text" = "Update exchange rates";
+
 /* Class = "UINavigationItem"; title = "Results"; ObjectID = "XX7-In-ySs"; */
 "XX7-In-ySs.title" = "Results";
+
+/* Class = "UITableViewSection"; footerTitle = "Update exchange rates with history in Results tab. History will be displayed in graph in converter"; ObjectID = "YDm-Cu-wBW"; */
+"YDm-Cu-wBW.footerTitle" = "Update exchange rates with history in Results tab. History will be displayed in graph in converter";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "ZeP-mJ-pFo"; */
 "ZeP-mJ-pFo.title" = "Settings";
@@ -140,6 +149,12 @@
 /* Class = "UILabel"; text = "About"; ObjectID = "pmk-Bt-tJn"; */
 "pmk-Bt-tJn.text" = "About";
 
+/* Class = "UITableViewSection"; footerTitle = "Manually update exchange rates. History update may take additional time and charges"; ObjectID = "prB-Vn-IHs"; */
+"prB-Vn-IHs.footerTitle" = "Manually update exchange rates. History update may take additional time and charges";
+
+/* Class = "UITableViewSection"; headerTitle = "manual"; ObjectID = "prB-Vn-IHs"; */
+"prB-Vn-IHs.headerTitle" = "manual";
+
 /* Class = "UISegmentedControl"; qAl-2V-vBL.segmentTitles[0] = "1d"; ObjectID = "qAl-2V-vBL"; */
 "qAl-2V-vBL.segmentTitles[0]" = "1d";
 
@@ -155,8 +170,8 @@
 /* Class = "UITextField"; placeholder = "Buy"; ObjectID = "qUs-UU-VkY"; */
 "qUs-UU-VkY.placeholder" = "Buy";
 
-/* Class = "UILabel"; text = "Title Label"; ObjectID = "r83-K0-b7k"; */
-"r83-K0-b7k.text" = "Title Label";
+/* Class = "UILabel"; text = "Label"; ObjectID = "teE-rR-waU"; */
+"teE-rR-waU.text" = "Label";
 
 /* Class = "UIButton"; normalTitle = "Take a photo"; ObjectID = "vIe-cy-7uO"; */
 "vIe-cy-7uO.normalTitle" = "Take a photo";

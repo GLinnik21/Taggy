@@ -10,6 +10,7 @@
 
 extern NSString *const kTGSettingsVersionKey;
 extern NSString *const kTGSettingsAutoUpdateKey;
+extern NSString *const kTGSettingsUpdateWithHisoryKey;
 extern NSString *const kTGSettingsSourceCurrencyKey;
 extern NSString *const kTGSettingsTargetCurrencyKey;
 extern NSString *const kTGSettingsLastUpdateKey;

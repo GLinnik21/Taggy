@@ -16,6 +16,7 @@
 #import "TGSettingsManager.h"
 #import "SVProgressHUD.h"
 #import "NSDate+DateTools.h"
+#import "AFMInfoBanner.h"
 
 static NSString *const kTGImageCellId = @"ImageCell";
 
@@ -63,6 +64,12 @@ static NSString *const kTGImageCellId = @"ImageCell";
                 [SVProgressHUD setInfoImage:[UIImage imageNamed:@"server"]];
                 [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"ServerError", @"Server-side error")];
             }
+        }else{
+            if ([[TGSettingsManager objectForKey:kTGSettingsUpdateWithHisoryKey] boolValue]== YES) {
+                [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"updated_with_history", @"Updated") style:AFMInfoBannerStyleInfo];
+            }else{
+                [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"only_exchange_rates", @"Updated") style:AFMInfoBannerStyleInfo];
+            }
         }
 
         [strongSelf.refreshControl endRefreshing];
@@ -85,8 +92,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
     else if ([TGSettingsManager objectForKey:kTGSettingsLastUpdateKey] == nil) {
         NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:[UIColor grayColor]
                                                                     forKey:NSForegroundColorAttributeName];
-        NSString *never = [NSString stringWithFormat:NSLocalizedString(@"never", @"Never")];
-        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), never];
+        NSString *title = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), [NSString stringWithFormat:NSLocalizedString(@"never", @"Never")]];
         NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title
                                                                               attributes:attrsDictionary];
         self.refreshControl.attributedTitle = attributedTitle;

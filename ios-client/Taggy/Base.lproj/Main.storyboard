@@ -803,7 +803,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Auto-update" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ky-6p-JpV">
-                                                    <rect key="frame" x="16" y="11" width="229" height="21"/>
+                                                    <rect key="frame" x="16" y="5" width="229" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -815,6 +815,12 @@
                                                         <action selector="auto_updateSwitchAction:" destination="vyT-x9-K1d" eventType="touchUpInside" id="PUq-wG-oSC"/>
                                                     </connections>
                                                 </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="teE-rR-waU">
+                                                    <rect key="frame" x="16" y="21" width="229" height="23"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="centerY" secondItem="ThI-f7-dgT" secondAttribute="centerY" id="Tjp-b6-lOm"/>
@@ -841,6 +847,9 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BPc-Ey-WeR">
                                                     <rect key="frame" x="253" y="6" width="51" height="31"/>
                                                     <color key="onTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="update_with_historySwitchAction:" destination="vyT-x9-K1d" eventType="touchUpInside" id="X8A-cI-Jn3"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -851,36 +860,50 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="manual" footerTitle="Manually update exchange rates. History update may take additional charges" id="prB-Vn-IHs">
+                            <tableViewSection headerTitle="manual" footerTitle="Manually update exchange rates. History update may take additional time and charges" id="prB-Vn-IHs">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="NGk-0r-a5b" style="IBUITableViewCellStyleDefault" id="Yl9-8w-OJK">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Yl9-8w-OJK">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Yl9-8w-OJK" id="LvO-08-jO1">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Update exchange rates" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NGk-0r-a5b">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Update exchange rates" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wnc-3g-JZJ">
+                                                    <rect key="frame" x="16" y="11" width="224" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ba4-aE-sl5">
+                                                    <rect key="frame" x="292" y="12" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="ba4-aE-sl5" secondAttribute="centerY" id="4w4-8H-E7U"/>
+                                                <constraint firstItem="ba4-aE-sl5" firstAttribute="trailing" secondItem="LvO-08-jO1" secondAttribute="trailingMargin" id="DaV-Gi-EGk"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="BaI-Zy-SlG" style="IBUITableViewCellStyleDefault" id="WXE-LD-ZNH">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="WXE-LD-ZNH">
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WXE-LD-ZNH" id="4RN-cp-ots">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Update exchange rates history" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BaI-Zy-SlG">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Update exchange rates history" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L98-by-Ekz">
+                                                    <rect key="frame" x="16" y="11" width="248" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MQl-ex-LN4">
+                                                    <rect key="frame" x="292" y="12" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="MQl-ex-LN4" secondAttribute="centerY" id="IUn-fi-Cxm"/>
+                                                <constraint firstItem="MQl-ex-LN4" firstAttribute="trailing" secondItem="4RN-cp-ots" secondAttribute="trailingMargin" id="qQW-Fq-ggC"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -915,11 +938,17 @@
                     <navigationItem key="navigationItem" title="Settings" id="ZeP-mJ-pFo"/>
                     <connections>
                         <outlet property="auto_updateSwitch" destination="ThI-f7-dgT" id="t6y-P9-0xS"/>
+                        <outlet property="lastUpdateLabel" destination="teE-rR-waU" id="SaZ-WC-fOK"/>
                         <outlet property="privacyCell" destination="WrG-Gv-Qqc" id="1aw-yf-qBK"/>
                         <outlet property="sourceCurrencyCell" destination="Wtz-UV-x0g" id="emh-3T-Asb"/>
                         <outlet property="sourceCurrencyLabel" destination="RDV-hl-lwE" id="45f-Uy-hn5"/>
                         <outlet property="targetCurrencyCell" destination="Yg6-nD-3wF" id="389-zy-183"/>
                         <outlet property="targetCurrencyLabel" destination="ysM-f3-4pR" id="U4L-cU-xWl"/>
+                        <outlet property="updateHistoryActivityIndicator" destination="MQl-ex-LN4" id="LJS-9b-Lmf"/>
+                        <outlet property="updateHistoryCell" destination="WXE-LD-ZNH" id="nM2-ue-RaM"/>
+                        <outlet property="updateRateCell" destination="Yl9-8w-OJK" id="kIF-yA-Xkc"/>
+                        <outlet property="updateRatesActivityIndicator" destination="ba4-aE-sl5" id="Ln4-X2-egx"/>
+                        <outlet property="update_with_historySwitch" destination="BPc-Ey-WeR" id="g34-YZ-Zye"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRY-Kf-oah" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -940,15 +969,23 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GWd-5C-hlc" customClass="IPDFCameraViewController">
                                 <rect key="frame" x="0.0" y="71" width="320" height="426"/>
+                                <subviews>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="focusIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="2wc-kc-n0m">
+                                        <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="75" id="8d7-9y-6fS"/>
+                                            <constraint firstAttribute="height" constant="75" id="ohh-WH-Zum"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstItem="2wc-kc-n0m" firstAttribute="leading" secondItem="GWd-5C-hlc" secondAttribute="leading" id="NiS-DN-8y6"/>
+                                    <constraint firstItem="2wc-kc-n0m" firstAttribute="top" secondItem="GWd-5C-hlc" secondAttribute="top" id="RK3-ec-VJG"/>
                                     <constraint firstAttribute="width" secondItem="GWd-5C-hlc" secondAttribute="height" multiplier="3:4" id="ugm-BN-Rmd"/>
                                 </constraints>
                             </view>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="focusIndicator" translatesAutoresizingMaskIntoConstraints="NO" id="2wc-kc-n0m">
-                                <rect key="frame" x="122" y="247" width="75" height="75"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qpz-t5-AF4">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                 <subviews>

@@ -43,9 +43,13 @@ static NSTimeInterval const kTGOneUpdate = 60 * 60;
     Reachability *apiReachable = [Reachability reachabilityWithHostname:URL.host];
 
     if (offline == NO && [apiReachable isReachable]) {
-        [self updateFromURL:URL error:&error];
-        if (error == nil) {
-            [self updateHistoryInfoWithError:&error];
+        if ([[TGSettingsManager objectForKey:kTGSettingsUpdateWithHisoryKey] boolValue]) {
+            [self updateFromURL:URL error:&error];
+        }
+        if ([[TGSettingsManager objectForKey:kTGSettingsUpdateWithHisoryKey] boolValue]) {
+            if (error == nil) {
+                [self updateHistoryInfoWithError:&error];
+            }
         }
 
         if (error != nil) {

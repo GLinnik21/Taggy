@@ -72,14 +72,13 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
     //Graph
     UIView *graphBG = [[UIView alloc] init];
 
-    graphBG.layer.cornerRadius = 7;
+    graphBG.layer.cornerRadius = 5;
     graphBG.layer.masksToBounds = YES;
 
     CAGradientLayer *gradient = [CAGradientLayer layer];
     gradient.frame = self.view.bounds;
     gradient.colors = [NSArray arrayWithObjects:(id)[[UIColor colorWithRed:(247 / 255.0)green:(149 / 255.0)blue:(85 / 255.0)alpha:1] CGColor], (id)[[UIColor colorWithRed:(255 / 255.0)green:(51 / 255.0)blue:(51 / 255.0)alpha:1] CGColor], nil];
     [graphBG.layer insertSublayer:gradient atIndex:0];
-    graphBG.backgroundColor = [UIColor redColor];
     [self.view insertSubview:graphBG belowSubview:self.graphView];
     [graphBG mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.equalTo(self.graphView);
@@ -106,10 +105,11 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
     self.graphView.widthLine = 3.0;
     self.graphView.enableTouchReport = YES;
     self.graphView.enablePopUpReport = YES;
-    self.graphView.enableBezierCurve = YES;
+    self.graphView.enableBezierCurve = NO;
     self.graphView.enableYAxisLabel = YES;
     self.graphView.autoScaleYAxis = YES;
-    self.graphView.alwaysDisplayDots = NO;
+    self.graphView.alwaysDisplayDots = YES;
+    self.graphView.sizePoint = 6.5;
     self.graphView.enableReferenceXAxisLines = YES;
     self.graphView.enableReferenceYAxisLines = YES;
     self.graphView.enableReferenceAxisFrame = YES;
@@ -117,6 +117,7 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
     self.graphView.colorTouchInputLine = [UIColor colorWithWhite:1 alpha:1];
     self.graphView.widthTouchInputLine = 3.0f;
     self.graphView.colorBackgroundYaxis = [UIColor clearColor];
+    
 }
 
 - (void)formatGraphData
@@ -182,10 +183,14 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
         NSString *dateString = [NSDateFormatter localizedStringFromDate:date
                                                               dateStyle:NSDateFormatterShortStyle
                                                               timeStyle:NSDateFormatterShortStyle];
-
+        
         [self.arrayOfValues addObject:@(value)];
         [self.arrayOfDates addObject:dateString];
     }
+}
+- (NSString *)popUpSuffixForlineGraph:(BEMSimpleLineGraphView *)graph{
+    NSString *suffix = [NSString stringWithFormat:@" %@", self.buyButton.currentTitle];
+    return suffix;
 }
 
 - (NSString *)lineGraph:(BEMSimpleLineGraphView *)graph labelOnXAxisForIndex:(NSInteger)index

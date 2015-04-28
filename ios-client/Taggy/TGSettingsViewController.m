@@ -9,6 +9,8 @@
 #import "TGSettingsViewController.h"
 #import "TGCurrencyViewController.h"
 #import "TGViewController.h"
+#import "NSDate+DateTools.h"
+#import "AFMInfoBanner.h"
 
 #import "TGSettingsManager.h"
 
@@ -22,6 +24,12 @@
 @property (weak, nonatomic) IBOutlet UITableViewCell *privacyCell;
 @property (weak, nonatomic) IBOutlet UITableViewCell *siteCell;
 @property (weak, nonatomic) IBOutlet UISwitch *auto_updateSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *lastUpdateLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *update_with_historySwitch;
+@property (weak, nonatomic) IBOutlet UITableViewCell *updateRateCell;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *updateRatesActivityIndicator;
+@property (weak, nonatomic) IBOutlet UITableViewCell *updateHistoryCell;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *updateHistoryActivityIndicator;
 
 @end
 
@@ -37,15 +45,31 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    NSDate *updateDate = [TGSettingsManager objectForKey:kTGSettingsLastUpdateKey];
+    NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:updateDate];
+    
+    if (seconds < 60) {
+        self.lastUpdateLabel.text = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), [NSString stringWithFormat:NSLocalizedString(@"just_now", @"Just now")]];
+    }
+    else if ([TGSettingsManager objectForKey:kTGSettingsLastUpdateKey] == nil) {
+        self.lastUpdateLabel.text = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), [NSString stringWithFormat:NSLocalizedString(@"never", @"Never")]];
+    }
+    else {
+        self.lastUpdateLabel.text = [NSString stringWithFormat:NSLocalizedString(@"LastUpdate", nil), updateDate.timeAgoSinceNow];
+    }
+
 
     NSString *currSysVer = [[UIDevice currentDevice] systemVersion];
     self.privacyCell.hidden = [currSysVer compare:@"8.0" options:NSNumericSearch] != NSOrderedDescending;
 
     self.sourceCurrencyLabel.text = [[TGSettingsManager objectForKey:kTGSettingsSourceCurrencyKey] description];
     self.targetCurrencyLabel.text = [[TGSettingsManager objectForKey:kTGSettingsTargetCurrencyKey] description];
-
+    
+    [self.update_with_historySwitch setOn:[[TGSettingsManager objectForKey:kTGSettingsUpdateWithHisoryKey] boolValue]
+                         animated:NO];
     [self.auto_updateSwitch setOn:[[TGSettingsManager objectForKey:kTGSettingsAutoUpdateKey] boolValue]
-                         animated:YES];
+                         animated:NO];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -89,6 +113,14 @@
         currency.settingsKey = kTGSettingsTargetCurrencyKey;
         [self.navigationController pushViewController:currency animated:YES];
     }
+    
+    if (theCellClicked == self.updateRateCell) {
+        [self.updateRatesActivityIndicator startAnimating];
+    }
+    
+    if (theCellClicked == self.updateHistoryCell) {
+        [self.updateHistoryActivityIndicator startAnimating];
+    }
 }
 
 - (IBAction)auto_updateSwitchAction:(id)sender
@@ -96,6 +128,13 @@
     BOOL autoUpdate = [[TGSettingsManager objectForKey:kTGSettingsAutoUpdateKey] boolValue];
     autoUpdate = autoUpdate == NO;
     [TGSettingsManager setObject:@(autoUpdate) forKey:kTGSettingsAutoUpdateKey];
+}
+
+- (IBAction)update_with_historySwitchAction:(id)sender {
+    BOOL updateWithHistory = [[TGSettingsManager objectForKey:kTGSettingsUpdateWithHisoryKey] boolValue];
+    updateWithHistory = updateWithHistory == NO;
+    [TGSettingsManager setObject:@(updateWithHistory) forKey:kTGSettingsUpdateWithHisoryKey];
+
 }
 
 @end
