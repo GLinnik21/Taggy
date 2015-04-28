@@ -22,6 +22,7 @@ PODS:
     - CocoaLumberjack/Default
   - CVKHierarchySearcher (0.2.0)
   - DateTools (1.5.0)
+  - DeviceUtil (1.2.0)
   - FlurrySDK (5.4.0):
     - FlurrySDK/FlurrySDK (= 5.4.0)
   - FlurrySDK/FlurrySDK (5.4.0)
@@ -63,6 +64,7 @@ DEPENDENCIES:
   - BEMSimpleLineGraph (~> 3.3)
   - CocoaLumberjack (~> 2.0.0)
   - DateTools (~> 1.5.0)
+  - DeviceUtil (~> 1.2)
   - FlurrySDK (~> 5.4.0)
   - Google-Mobile-Ads-SDK (~> 7.1.0)
   - GoogleAnalytics-iOS-SDK (~> 3.10)
@@ -81,6 +83,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: a6f77d987d65dc7ba86b0f84db7d0b9084f77bcb
   CVKHierarchySearcher: 7be8d3bcbcc6f86ff07f785e6c632b5e40da2553
   DateTools: b93a2c2017747329c6077c7d7e8a75106e23d0d7
+  DeviceUtil: 818812d4d2413e145a05d502cd1378e484d0c293
   FlurrySDK: 7f929b68dea38ce735979fb039229f62c0b697b5
   FMDB: 0678cab3b024ea6a2e6ea5dd91fc8eb9a296bf57
   Google-Mobile-Ads-SDK: 9b7c22345f13de4164e9e6d90ad49cce42124c3c
