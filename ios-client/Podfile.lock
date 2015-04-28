@@ -45,9 +45,9 @@ PODS:
   - Masonry (0.6.1)
   - protobuf-c (0.15)
   - Reachability (3.2)
-  - Realm (0.91.1):
-    - Realm/Headers (= 0.91.1)
-  - Realm/Headers (0.91.1)
+  - Realm (0.91.4):
+    - Realm/Headers (= 0.91.4)
+  - Realm/Headers (0.91.4)
   - SVProgressHUD (1.1.3)
   - TesseractOCRiOS (4.0.0)
   - YandexMobileMetrica (1.6.2):
@@ -71,7 +71,7 @@ DEPENDENCIES:
   - GPUImage (~> 0.1.6)
   - Masonry (~> 0.6.1)
   - Reachability (~> 3.2)
-  - Realm (~> 0.91.1)
+  - Realm (~> 0.91.4)
   - SVProgressHUD (~> 1.1.3)
   - TesseractOCRiOS (~> 4.0)
   - YandexMobileMetrica (~> 1.6.2)
@@ -93,7 +93,7 @@ SPEC CHECKSUMS:
   Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
   protobuf-c: e7a40bc5d069f55f6d47d616ea532481b947b8d9
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  Realm: b9c1fd9defa26aa7276ce938a8df52ec81f24528
+  Realm: 84d044b9a25cc8d44a8c075489419acaab7597ad
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
   YandexMobileMetrica: 0a57437e752dcd66d88d11710c89320a0df32802
