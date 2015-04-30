@@ -17,6 +17,8 @@
 "ServerError" = "Server Error";
 "updated_with_history" = "Exchange rates and history were updated!";
 "only_exchange_rates" = "Only exchange rates were updated!";
+"rates_updated" = "Exchange rates were updated!";
+"history_updated" = "History of exchange rates was updated!";
 "LastUpdate" = "Last update: %@";
 "updating" = "Updating";
 "updated" = "Updated";

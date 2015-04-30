@@ -131,6 +131,7 @@
             __strong __typeof(weakSelf) strongSelf = weakSelf;
             [strongSelf fillLastUpdateLabel];
             [strongSelf.updateRatesActivityIndicator stopAnimating];
+            [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"rates_updated", @"Updated") style:AFMInfoBannerStyleInfo];
         } progress:nil];
     }
     
@@ -142,6 +143,7 @@
             __strong __typeof(weakSelf) strongSelf = weakSelf;
             [strongSelf fillLastUpdateLabel];
             [strongSelf.updateHistoryActivityIndicator stopAnimating];
+            [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"history_updated", @"Updated") style:AFMInfoBannerStyleInfo];
         } progress:nil];
     }
 }

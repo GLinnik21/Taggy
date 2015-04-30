@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Wnc-nd-Cx3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Wnc-nd-Cx3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
@@ -172,29 +172,29 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3Nb-Hv-wEo" firstAttribute="leading" secondItem="ThY-kv-kW8" secondAttribute="trailing" constant="9" id="3Iy-PS-Umh"/>
+                            <constraint firstItem="dBL-dU-f1a" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leading" constant="16" id="5qB-Yu-C42"/>
                             <constraint firstItem="dBL-dU-f1a" firstAttribute="top" secondItem="qAl-2V-vBL" secondAttribute="bottom" constant="16" id="5yF-2F-ywU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="RCE-NP-o12" secondAttribute="trailing" constant="-6" id="7Ib-E9-9ku"/>
+                            <constraint firstItem="qAl-2V-vBL" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leading" constant="16" id="6qh-bV-ov8"/>
+                            <constraint firstItem="qUs-UU-VkY" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leading" constant="16" id="7zp-iB-PtP"/>
                             <constraint firstItem="RID-RN-ACY" firstAttribute="top" secondItem="dBL-dU-f1a" secondAttribute="bottom" constant="16" id="9On-ib-dVa"/>
                             <constraint firstItem="qAl-2V-vBL" firstAttribute="top" secondItem="RCE-NP-o12" secondAttribute="bottom" constant="16" id="BDF-uL-R8n"/>
-                            <constraint firstItem="dBL-dU-f1a" firstAttribute="trailing" secondItem="c2M-ke-WNb" secondAttribute="trailingMargin" id="C54-Y2-HT4"/>
+                            <constraint firstAttribute="trailing" secondItem="dBL-dU-f1a" secondAttribute="trailing" constant="16" id="DuW-pU-aQc"/>
+                            <constraint firstAttribute="trailing" secondItem="qAl-2V-vBL" secondAttribute="trailing" constant="16" id="IDq-c2-1gz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="w2g-5A-J60" secondAttribute="trailing" constant="1" id="IWu-UJ-zsX"/>
                             <constraint firstItem="3Nb-Hv-wEo" firstAttribute="top" secondItem="Zzh-Ne-4TN" secondAttribute="bottom" constant="8" id="Iql-rY-df9"/>
                             <constraint firstItem="ThY-kv-kW8" firstAttribute="centerY" secondItem="3Nb-Hv-wEo" secondAttribute="centerY" id="Iya-g8-7av"/>
                             <constraint firstItem="w2g-5A-J60" firstAttribute="top" secondItem="3Nb-Hv-wEo" secondAttribute="bottom" constant="8" id="MGr-Pu-KBw"/>
-                            <constraint firstItem="qAl-2V-vBL" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leadingMargin" id="MKd-ES-s06"/>
-                            <constraint firstItem="qUs-UU-VkY" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leadingMargin" id="MWu-5T-F57"/>
-                            <constraint firstItem="ThY-kv-kW8" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leadingMargin" id="NNy-ws-QxL"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="3Nb-Hv-wEo" secondAttribute="trailing" constant="-6" id="Nht-oG-8dZ"/>
+                            <constraint firstAttribute="trailing" secondItem="3Nb-Hv-wEo" secondAttribute="trailing" constant="10" id="ODa-qZ-FNC"/>
                             <constraint firstItem="RID-RN-ACY" firstAttribute="top" secondItem="o35-K3-2W4" secondAttribute="bottom" id="V7n-ar-FGv"/>
                             <constraint firstItem="w2g-5A-J60" firstAttribute="centerX" secondItem="RCE-NP-o12" secondAttribute="centerX" id="WrR-FL-oSg"/>
                             <constraint firstItem="RCE-NP-o12" firstAttribute="top" secondItem="w2g-5A-J60" secondAttribute="bottom" constant="8" id="XA7-d7-vYP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="o35-K3-2W4" secondAttribute="trailing" constant="-16" id="XI3-Sv-S6f"/>
+                            <constraint firstAttribute="trailing" secondItem="RCE-NP-o12" secondAttribute="trailing" constant="10" id="Y1i-tH-qqK"/>
                             <constraint firstItem="o35-K3-2W4" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leadingMargin" constant="-16" id="ZYT-wg-twc"/>
                             <constraint firstItem="RID-RN-ACY" firstAttribute="top" secondItem="o35-K3-2W4" secondAttribute="bottom" id="g8P-ya-hqk"/>
-                            <constraint firstItem="qAl-2V-vBL" firstAttribute="trailing" secondItem="c2M-ke-WNb" secondAttribute="trailingMargin" id="m2D-Cu-X3O"/>
-                            <constraint firstItem="dBL-dU-f1a" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leadingMargin" id="nUi-kb-ued"/>
                             <constraint firstItem="w2g-5A-J60" firstAttribute="centerX" secondItem="3Nb-Hv-wEo" secondAttribute="centerX" id="rxr-em-gj6"/>
                             <constraint firstItem="qUs-UU-VkY" firstAttribute="centerY" secondItem="RCE-NP-o12" secondAttribute="centerY" id="s2u-vp-FHw"/>
+                            <constraint firstItem="ThY-kv-kW8" firstAttribute="leading" secondItem="c2M-ke-WNb" secondAttribute="leading" constant="16" id="ss6-Vq-gga"/>
                             <constraint firstItem="RCE-NP-o12" firstAttribute="leading" secondItem="qUs-UU-VkY" secondAttribute="trailing" constant="9" id="tf0-dF-CZ2"/>
                         </constraints>
                     </view>
@@ -269,7 +269,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="E0o-Em-koR">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="565"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ImageCell" rowHeight="64" id="IdO-uy-VMI" customClass="TGImageCell">
@@ -377,10 +377,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="E0o-Em-koR" secondAttribute="trailing" constant="-16" id="AxW-7D-Vds"/>
-                            <constraint firstItem="E0o-Em-koR" firstAttribute="leading" secondItem="gVY-mh-cxc" secondAttribute="leadingMargin" constant="-16" id="JZ1-VQ-q8o"/>
+                            <constraint firstAttribute="trailing" secondItem="E0o-Em-koR" secondAttribute="trailing" id="WTa-9W-SPU"/>
                             <constraint firstItem="E0o-Em-koR" firstAttribute="top" secondItem="gVY-mh-cxc" secondAttribute="topMargin" id="acI-2y-6K7"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="E0o-Em-koR" secondAttribute="bottom" constant="3" id="ffd-Nn-4f5"/>
+                            <constraint firstItem="E0o-Em-koR" firstAttribute="leading" secondItem="gVY-mh-cxc" secondAttribute="leading" id="gsT-KI-Agd"/>
+                            <constraint firstItem="E0o-Em-koR" firstAttribute="bottom" secondItem="gVY-mh-cxc" secondAttribute="bottomMargin" id="z42-BV-Fvc"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Results" id="XX7-In-ySs">
@@ -681,17 +681,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="lav-1j-HXY" firstAttribute="top" secondItem="8ru-8f-fyG" secondAttribute="topMargin" constant="44" id="BZ5-Rm-DU7"/>
+                            <constraint firstItem="xpX-uj-Vpq" firstAttribute="leading" secondItem="8ru-8f-fyG" secondAttribute="leading" id="EFc-l8-Y0e"/>
                             <constraint firstItem="Pph-m1-htW" firstAttribute="top" secondItem="lav-1j-HXY" secondAttribute="bottom" id="MmW-QA-ppr"/>
-                            <constraint firstItem="xpX-uj-Vpq" firstAttribute="leading" secondItem="8ru-8f-fyG" secondAttribute="leadingMargin" constant="-16" id="VgF-2n-9r8"/>
+                            <constraint firstItem="lav-1j-HXY" firstAttribute="leading" secondItem="8ru-8f-fyG" secondAttribute="leading" id="Vct-sC-Wu2"/>
                             <constraint firstItem="Pph-m1-htW" firstAttribute="top" secondItem="lav-1j-HXY" secondAttribute="bottom" id="fOY-2U-m3n"/>
                             <constraint firstItem="xpX-uj-Vpq" firstAttribute="top" secondItem="gzV-rB-zAK" secondAttribute="bottom" id="h7W-fW-8E0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xpX-uj-Vpq" secondAttribute="trailing" constant="-16" id="pPO-ug-kdS"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="lav-1j-HXY" secondAttribute="trailing" constant="-16" id="tUO-gx-MhF"/>
-                            <constraint firstItem="lav-1j-HXY" firstAttribute="leading" secondItem="8ru-8f-fyG" secondAttribute="leadingMargin" constant="-16" id="xzs-lq-Ovn"/>
+                            <constraint firstAttribute="trailing" secondItem="lav-1j-HXY" secondAttribute="trailing" id="kl3-aj-voU"/>
+                            <constraint firstAttribute="trailing" secondItem="xpX-uj-Vpq" secondAttribute="trailing" id="laa-mC-Wr0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Currencies" id="gQW-8X-8Ly">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="TWE-zY-vrz">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="TWE-zY-vrz">
                             <connections>
                                 <action selector="addCurrency:" destination="j1R-bg-cx4" id="eRr-cY-BBc"/>
                             </connections>
@@ -1078,13 +1078,13 @@
                         <constraints>
                             <constraint firstItem="GWd-5C-hlc" firstAttribute="leading" secondItem="hYk-JE-GTS" secondAttribute="leadingMargin" constant="-16" id="6mU-pS-WEa"/>
                             <constraint firstItem="CBc-Q8-hFv" firstAttribute="top" secondItem="nYc-RP-2Jh" secondAttribute="bottom" id="9hF-wO-ZE7"/>
+                            <constraint firstAttribute="trailing" secondItem="nYc-RP-2Jh" secondAttribute="trailing" id="AE6-3S-rxW"/>
                             <constraint firstAttribute="trailingMargin" secondItem="GWd-5C-hlc" secondAttribute="trailing" constant="-16" id="D9o-Ly-uK1"/>
-                            <constraint firstItem="nYc-RP-2Jh" firstAttribute="leading" secondItem="hYk-JE-GTS" secondAttribute="leadingMargin" constant="-16" id="Tax-bV-2rq"/>
+                            <constraint firstItem="nYc-RP-2Jh" firstAttribute="leading" secondItem="hYk-JE-GTS" secondAttribute="leading" id="Kex-Cq-U1H"/>
+                            <constraint firstItem="qpz-t5-AF4" firstAttribute="leading" secondItem="hYk-JE-GTS" secondAttribute="leading" id="LIf-vk-xSr"/>
                             <constraint firstItem="qpz-t5-AF4" firstAttribute="top" secondItem="hYk-JE-GTS" secondAttribute="topMargin" id="aof-Ls-4Lc"/>
-                            <constraint firstItem="qpz-t5-AF4" firstAttribute="leading" secondItem="hYk-JE-GTS" secondAttribute="leadingMargin" constant="-16" id="c6Z-nR-8hS"/>
                             <constraint firstAttribute="centerY" secondItem="GWd-5C-hlc" secondAttribute="centerY" id="dwn-6r-THq"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qpz-t5-AF4" secondAttribute="trailing" constant="-16" id="fsJ-jE-yI6"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="nYc-RP-2Jh" secondAttribute="trailing" constant="-16" id="ylT-md-ZYv"/>
+                            <constraint firstAttribute="trailing" secondItem="qpz-t5-AF4" secondAttribute="trailing" id="kAs-o2-2Mc"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="uxT-rT-zgt" appends="YES" id="LI6-yb-Pzw"/>
