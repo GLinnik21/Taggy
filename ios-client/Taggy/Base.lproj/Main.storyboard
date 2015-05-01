@@ -200,7 +200,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Converter" id="aUd-YP-JUG">
                         <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="6nH-W3-rcX">
-                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lxi-8g-3Oj">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lxi-8g-3Oj">
                                 <rect key="frame" x="184" y="-38" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="fav">
@@ -374,12 +374,18 @@
                                     <outlet property="delegate" destination="sLy-DR-MhB" id="Kn6-df-GNh"/>
                                 </connections>
                             </tableView>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dhX-ch-N0K">
+                                <rect key="frame" x="0.0" y="64" width="320" height="3"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="dhX-ch-N0K" firstAttribute="leading" secondItem="gVY-mh-cxc" secondAttribute="leading" id="FGD-Ix-S3E"/>
                             <constraint firstAttribute="trailing" secondItem="E0o-Em-koR" secondAttribute="trailing" id="WTa-9W-SPU"/>
                             <constraint firstItem="E0o-Em-koR" firstAttribute="top" secondItem="gVY-mh-cxc" secondAttribute="topMargin" id="acI-2y-6K7"/>
                             <constraint firstItem="E0o-Em-koR" firstAttribute="leading" secondItem="gVY-mh-cxc" secondAttribute="leading" id="gsT-KI-Agd"/>
+                            <constraint firstAttribute="trailing" secondItem="dhX-ch-N0K" secondAttribute="trailing" id="t5s-D0-Q44"/>
+                            <constraint firstItem="dhX-ch-N0K" firstAttribute="top" secondItem="Kxl-0v-opE" secondAttribute="bottom" id="yd2-zX-4Za"/>
                             <constraint firstItem="E0o-Em-koR" firstAttribute="bottom" secondItem="gVY-mh-cxc" secondAttribute="bottomMargin" id="z42-BV-Fvc"/>
                         </constraints>
                     </view>
@@ -388,6 +394,7 @@
                     </navigationItem>
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
+                        <outlet property="progressBar" destination="dhX-ch-N0K" id="bK6-Pz-H9n"/>
                         <outlet property="searchDisplayController" destination="1CN-vV-LPA" id="pah-LY-QkE"/>
                         <outlet property="tableView" destination="E0o-Em-koR" id="Msx-U4-YGa"/>
                     </connections>
@@ -691,7 +698,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Currencies" id="gQW-8X-8Ly">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="TWE-zY-vrz">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="TWE-zY-vrz">
                             <connections>
                                 <action selector="addCurrency:" destination="j1R-bg-cx4" id="eRr-cY-BBc"/>
                             </connections>

@@ -22,6 +22,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
 
 @interface TGViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 
+@property (weak, nonatomic) IBOutlet UIProgressView *progressBar;
 @property (nonatomic, weak) IBOutlet UITableView *tableView;
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -33,6 +34,8 @@ static NSString *const kTGImageCellId = @"ImageCell";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.progressBar.progress = 0.0f;
 
     self.tableView.tableFooterView = [[UIView alloc] init];
 
@@ -47,10 +50,6 @@ static NSString *const kTGImageCellId = @"ImageCell";
 
 - (void)updateCurrency
 {
-    //[SVProgressHUD setForegroundColor:[UIColor grayColor]];
-    //[SVProgressHUD setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
-    //[SVProgressHUD showWithStatus:NSLocalizedString(@"updating", @"Updating")];
-
     BOOL history = [[TGSettingsManager objectForKey:kTGSettingsUpdateWithHisoryKey] boolValue];
     __weak __typeof(self) weakSelf = self;
     [TGCurrencyManager updateOne:YES history:history callback:^(TGCurrencyUpdateResult result) {
@@ -63,13 +62,15 @@ static NSString *const kTGImageCellId = @"ImageCell";
             if (result == TGCurrencyUpdateResultNoInternet) {
                 [SVProgressHUD setInfoImage:[UIImage imageNamed:@"internet"]];
                 [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"NoInternet", @"No Internet connection")];
+                self.progressBar.progress = 0.0f;
             }
             else if (result == TGCurrencyUpdateResultServerError) {
                 [SVProgressHUD setInfoImage:[UIImage imageNamed:@"server"]];
                 [SVProgressHUD showInfoWithStatus:NSLocalizedString(@"ServerError", @"Server-side error")];
+                self.progressBar.progress = 0.0f;
             }
         }else{
-            //[SVProgressHUD dismiss];
+            self.progressBar.progress = 0.0f;
             
             if ([[TGSettingsManager objectForKey:kTGSettingsUpdateWithHisoryKey] boolValue]== YES) {
                 [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"updated_with_history", @"Updated") style:AFMInfoBannerStyleInfo];
@@ -82,7 +83,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
         [strongSelf.refreshControl endRefreshing];
     } progress:^(CGFloat progress) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            //[SVProgressHUD showProgress:progress status:NSLocalizedString(@"updating", @"Updating")];
+            [self.progressBar setProgress:progress animated:YES];
         });
     }];
 }
