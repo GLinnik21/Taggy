@@ -146,7 +146,6 @@ static NSString *const kTGImageCellId = @"ImageCell";
                                                     otherButtonTitles:nil];
 
     [actionSheet showInView:self.view];
-    [self.tableView reloadData];
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex

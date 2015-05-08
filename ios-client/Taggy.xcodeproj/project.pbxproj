@@ -46,6 +46,8 @@
 		EDAE40531A83F5CC00A90A71 /* TGConverterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAE40521A83F5CC00A90A71 /* TGConverterViewController.m */; };
 		EDAE69AF1AB36C1C009E92BE /* TGCurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAE69AE1AB36C1C009E92BE /* TGCurrencyViewController.m */; };
 		EDC5CFA11AB16AA3008C8ECC /* TGSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC5CFA01AB16AA3008C8ECC /* TGSettingsViewController.m */; };
+		EDD0D6371AFD222400A0FC8F /* TGFavoriteCurrencies.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD0D6361AFD222400A0FC8F /* TGFavoriteCurrencies.m */; };
+		EDD6F6B91AFA9635003296F6 /* TGFavouriteCurrenciesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDD6F6B81AFA9635003296F6 /* TGFavouriteCurrenciesViewController.m */; };
 		EDF32C251AE278C700FA1F1B /* TGcurrencyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF32C241AE278C700FA1F1B /* TGcurrencyCell.m */; };
 /* End PBXBuildFile section */
 
@@ -136,6 +138,10 @@
 		EDAE69AE1AB36C1C009E92BE /* TGCurrencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGCurrencyViewController.m; sourceTree = "<group>"; };
 		EDC5CF9F1AB16AA3008C8ECC /* TGSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGSettingsViewController.h; sourceTree = "<group>"; };
 		EDC5CFA01AB16AA3008C8ECC /* TGSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGSettingsViewController.m; sourceTree = "<group>"; };
+		EDD0D6351AFD222400A0FC8F /* TGFavoriteCurrencies.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGFavoriteCurrencies.h; sourceTree = "<group>"; };
+		EDD0D6361AFD222400A0FC8F /* TGFavoriteCurrencies.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGFavoriteCurrencies.m; sourceTree = "<group>"; };
+		EDD6F6B71AFA9635003296F6 /* TGFavouriteCurrenciesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGFavouriteCurrenciesViewController.h; sourceTree = "<group>"; };
+		EDD6F6B81AFA9635003296F6 /* TGFavouriteCurrenciesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGFavouriteCurrenciesViewController.m; sourceTree = "<group>"; };
 		EDF32C231AE278C700FA1F1B /* TGcurrencyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGcurrencyCell.h; sourceTree = "<group>"; };
 		EDF32C241AE278C700FA1F1B /* TGcurrencyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGcurrencyCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -203,6 +209,8 @@
 				ED077A6319F940F700B203CB /* TGDetailViewController.m */,
 				ED077A6719F940F700B203CB /* TGPhotoCaptureViewController.h */,
 				ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */,
+				EDD6F6B71AFA9635003296F6 /* TGFavouriteCurrenciesViewController.h */,
+				EDD6F6B81AFA9635003296F6 /* TGFavouriteCurrenciesViewController.m */,
 				ED90CB2C1AE4F274001F471F /* TGCameraViewController.h */,
 				ED90CB2D1AE4F274001F471F /* TGCameraViewController.m */,
 				EDAE40511A83F5CC00A90A71 /* TGConverterViewController.h */,
@@ -265,6 +273,8 @@
 				4106C4681A10A642004790DB /* TGMigrationManager.m */,
 				413F03381A617420000C194B /* TGSettingsManager.h */,
 				413F03391A617420000C194B /* TGSettingsManager.m */,
+				EDD0D6351AFD222400A0FC8F /* TGFavoriteCurrencies.h */,
+				EDD0D6361AFD222400A0FC8F /* TGFavoriteCurrencies.m */,
 			);
 			name = Storage;
 			sourceTree = "<group>";
@@ -543,6 +553,7 @@
 				EDAE40531A83F5CC00A90A71 /* TGConverterViewController.m in Sources */,
 				41DF52141A3486C70060C7FF /* UIImage+FixOrientation.m in Sources */,
 				413373F11A51C4EE0085B564 /* TGPriceViewCell.m in Sources */,
+				EDD0D6371AFD222400A0FC8F /* TGFavoriteCurrencies.m in Sources */,
 				41C853451AE79CFC009F8B63 /* TGImageRecognizerHelper.m in Sources */,
 				41A76FBE1A05343800176A14 /* TGRecognizedPrice.m in Sources */,
 				41A76FBB1A05335100176A14 /* TGPriceImage.m in Sources */,
@@ -552,6 +563,7 @@
 				ED90CB311AE4F274001F471F /* IPDFCameraViewController.m in Sources */,
 				ED077A7519F9448E00B203CB /* TGCustomTabBarController.m in Sources */,
 				EDF32C251AE278C700FA1F1B /* TGcurrencyCell.m in Sources */,
+				EDD6F6B91AFA9635003296F6 /* TGFavouriteCurrenciesViewController.m in Sources */,
 				41A9D0481A00F2A700922CBC /* TGRecognizedBlock.m in Sources */,
 				ED077A6D19F940F700B203CB /* TGImageCell.m in Sources */,
 				41A76FC21A05A1D800176A14 /* TGCommon.m in Sources */,
