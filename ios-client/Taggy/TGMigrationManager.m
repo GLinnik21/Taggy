@@ -13,6 +13,7 @@
 #import "TGCurrency.h"
 #import "TGPriceImage.h"
 #import "TGRecognizedPrice.h"
+#import "TGFavouriteCurrencies.h"
 
 @implementation TGMigrationManager
 
@@ -68,6 +69,8 @@
         if (oldSchemaVersion < 5) {
             [ARAnalytics event:@"Migration 4 > 5"];
         }
+       
+                
             }];
     [RLMRealm migrateRealmAtPath:[RLMRealm defaultRealmPath]];
 }

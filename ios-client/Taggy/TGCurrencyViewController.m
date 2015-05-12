@@ -8,7 +8,7 @@
 
 #import "TGCurrencyViewController.h"
 #import "TGCurrency.h"
-#import "TGcurrencyCell.h"
+#import "TGСurrencyCell.h"
 
 #import "TGSettingsManager.h"
 
@@ -104,7 +104,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *cellID = @"currencyCell";
-    TGcurrencyCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    TGСurrencyCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
 
     if (cell == nil) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:cellID];
@@ -141,11 +141,11 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     if (self.checkedIndexPath != nil) {
-        TGcurrencyCell *uncheckCell = [self.tableView cellForRowAtIndexPath:self.checkedIndexPath];
+        TGСurrencyCell *uncheckCell = [self.tableView cellForRowAtIndexPath:self.checkedIndexPath];
         uncheckCell.accessoryType = UITableViewCellAccessoryNone;
     }
 
-    TGcurrencyCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    TGСurrencyCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
     NSString *code = cell.ISOLabel.text;
 

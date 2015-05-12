@@ -34,6 +34,8 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
 {
     [super viewWillAppear:animated];
 
+    self.dataSource = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"fav_currencies"]];
+    
     [ARAnalytics pageView:@"Converter"];
 }
 
@@ -46,20 +48,6 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
 
     [self.sellButton setTitle:sourceKey forState:UIControlStateNormal];
     [self.buyButton setTitle:targetKey forState:UIControlStateNormal];
-
-    self.dataSource = @[
-        @"AUD",
-        @"BYR",
-        @"EUR",
-        @"GBP",
-        @"LTL",
-        @"LVL",
-        @"PLN",
-        @"RUB",
-        @"TRY",
-        @"UAH",
-        @"USD"
-    ];
 
     UIToolbar *toolBar = [[UIToolbar alloc] init];
     UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
@@ -236,7 +224,7 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
 - (IBAction)sellAction:(id)sender
 {
     if (self.checkSell == NO) {
-        [self.sellButton setTitle:@"AUD" forState:UIControlStateNormal];
+        [self.sellButton setTitle:[self.dataSource objectAtIndex:0] forState:UIControlStateNormal];
         UIView *pickerViewRoot = [[UIView alloc] init];
         pickerViewRoot.backgroundColor = [UIColor whiteColor];
 
@@ -283,7 +271,7 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
 - (IBAction)buyAction:(id)sender
 {
     if (self.checkBuy == NO) {
-        [self.buyButton setTitle:@"AUD" forState:UIControlStateNormal];
+        [self.buyButton setTitle:[self.dataSource objectAtIndex:0] forState:UIControlStateNormal];
         UIView *pickerViewRoot = [[UIView alloc] init];
         pickerViewRoot.backgroundColor = [UIColor whiteColor];
 

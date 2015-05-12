@@ -1,5 +1,5 @@
 //
-//  TGcurrencyCell.h
+//  TGСurrencyCell.h
 //  Taggy
 //
 //  Created by Gleb Linkin on 18/04/15.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TGcurrencyCell : UITableViewCell
+@interface TGСurrencyCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *ISOLabel;
 @property (weak, nonatomic) IBOutlet UILabel *FullLabel;

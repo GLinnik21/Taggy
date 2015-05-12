@@ -28,25 +28,10 @@
     self.navigationItem.leftBarButtonItem = dismissButton;
     
     self.tableView.editing = YES;
-    
-    self.tableData = [@[
-                        @"AUD",
-                        @"BYR",
-                        @"EUR",
-                        @"GBP",
-                        @"LTL",
-                        @"LVL",
-                        @"PLN",
-                        @"RUB",
-                        @"TRY",
-                        @"UAH",
-                        @"USD"
-                        ]mutableCopy];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    self.tableData = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"fav_currencies"]];
 }
 
 - (void)dismiss
@@ -96,6 +81,10 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath*)indexPath{
+    [[NSUserDefaults standardUserDefaults] setObject:self.tableData forKey:@"fav_currencies"];
+}
+
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;
@@ -106,6 +95,7 @@
     NSString *stringToMove = self.tableData[sourceIndexPath.row];
     [self.tableData removeObjectAtIndex:sourceIndexPath.row];
     [self.tableData insertObject:stringToMove atIndex:destinationIndexPath.row];
+    [[NSUserDefaults standardUserDefaults] setObject:self.tableData forKey:@"fav_currencies"];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
