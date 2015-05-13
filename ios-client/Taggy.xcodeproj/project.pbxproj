@@ -42,6 +42,7 @@
 		ED715FDC1A0927DD00F81CAF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED715FDB1A0927DD00F81CAF /* Settings.bundle */; };
 		ED90CB301AE4F274001F471F /* TGCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED90CB2D1AE4F274001F471F /* TGCameraViewController.m */; };
 		ED90CB311AE4F274001F471F /* IPDFCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED90CB2F1AE4F274001F471F /* IPDFCameraViewController.m */; };
+		ED963DB71B03F4E800DE1FA8 /* defaultPrefs.plist in Resources */ = {isa = PBXBuildFile; fileRef = ED963DB61B03F4E800DE1FA8 /* defaultPrefs.plist */; };
 		EDA7E2D31A35DB9B00641F18 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EDA7E2D51A35DB9B00641F18 /* Localizable.strings */; };
 		EDAE40531A83F5CC00A90A71 /* TGConverterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAE40521A83F5CC00A90A71 /* TGConverterViewController.m */; };
 		EDAE69AF1AB36C1C009E92BE /* TGCurrencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAE69AE1AB36C1C009E92BE /* TGCurrencyViewController.m */; };
@@ -127,6 +128,7 @@
 		ED90CB2D1AE4F274001F471F /* TGCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGCameraViewController.m; sourceTree = "<group>"; };
 		ED90CB2E1AE4F274001F471F /* IPDFCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPDFCameraViewController.h; sourceTree = "<group>"; };
 		ED90CB2F1AE4F274001F471F /* IPDFCameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IPDFCameraViewController.m; sourceTree = "<group>"; };
+		ED963DB61B03F4E800DE1FA8 /* defaultPrefs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = defaultPrefs.plist; sourceTree = "<group>"; };
 		ED9E18D81A516A3E00506598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		EDA7E2D41A35DB9B00641F18 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EDA7E2D61A35DBA100641F18 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				ED715FDB1A0927DD00F81CAF /* Settings.bundle */,
 				EDA7E2D51A35DB9B00641F18 /* Localizable.strings */,
 				41CC86F11ADC552F005D7C28 /* PrefixHeader.pch */,
+				ED963DB61B03F4E800DE1FA8 /* defaultPrefs.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED077A1E19F93FE300B203CB /* Main.storyboard in Resources */,
+				ED963DB71B03F4E800DE1FA8 /* defaultPrefs.plist in Resources */,
 				ED077A6E19F940F700B203CB /* images.xcassets in Resources */,
 				ED077A4A19F9405E00B203CB /* 1.png in Resources */,
 				EDA7E2D31A35DB9B00641F18 /* Localizable.strings in Resources */,

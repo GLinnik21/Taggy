@@ -50,6 +50,10 @@
 #ifdef DEBUG
     [TGDataManager fillSample];
 #endif
+    
+    NSString *defaultPrefsFile = [[NSBundle mainBundle] pathForResource:@"defaultPrefs" ofType:@"plist"];
+    NSDictionary *defaultPreferences = [NSDictionary dictionaryWithContentsOfFile:defaultPrefsFile];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaultPreferences];
 
     return YES;
 }
