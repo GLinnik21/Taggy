@@ -122,6 +122,7 @@
 		ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGPhotoCaptureViewController.m; sourceTree = "<group>"; };
 		ED077A7319F9448E00B203CB /* TGCustomTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TGCustomTabBarController.h; path = ../TGCustomTabBarController.h; sourceTree = "<group>"; };
 		ED077A7419F9448E00B203CB /* TGCustomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TGCustomTabBarController.m; path = ../TGCustomTabBarController.m; sourceTree = "<group>"; };
+		ED61A4631B0687F200308D52 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		ED715FDB1A0927DD00F81CAF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		ED7CAD421A29EEDB00AAF192 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		ED90CB2C1AE4F274001F471F /* TGCameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGCameraViewController.h; sourceTree = "<group>"; };
@@ -132,7 +133,6 @@
 		ED9E18D81A516A3E00506598 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		EDA7E2D41A35DB9B00641F18 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EDA7E2D61A35DBA100641F18 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		EDA837BD1AEF9993002E45F5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		EDAE40511A83F5CC00A90A71 /* TGConverterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGConverterViewController.h; sourceTree = "<group>"; };
 		EDAE40521A83F5CC00A90A71 /* TGConverterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGConverterViewController.m; sourceTree = "<group>"; };
 		EDAE69AD1AB36C1C009E92BE /* TGCurrencyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGCurrencyViewController.h; sourceTree = "<group>"; };
@@ -594,7 +594,7 @@
 			children = (
 				ED077A1D19F93FE300B203CB /* Base */,
 				41C8534A1AE7E43F009F8B63 /* ru */,
-				EDA837BD1AEF9993002E45F5 /* en */,
+				ED61A4631B0687F200308D52 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

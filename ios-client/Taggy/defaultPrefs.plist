@@ -15,5 +15,9 @@
 		<string>UAH</string>
 		<string>USD</string>
 	</array>
+	<key>buy_key</key>
+	<string>EUR</string>
+	<key>sell_key</key>
+	<string>USD</string>
 </dict>
 </plist>

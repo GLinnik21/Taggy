@@ -238,7 +238,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FKj-29-zxm">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="AfY-lg-K9z" detailTextLabel="NNR-Ox-ord" style="IBUITableViewCellStyleSubtitle" id="D6S-uO-RZG">
@@ -292,10 +292,10 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="kwh-7u-LvQ" secondAttribute="trailing" id="2zX-Rd-xJc"/>
                             <constraint firstAttribute="trailing" secondItem="FKj-29-zxm" secondAttribute="trailing" id="9Ji-CY-W9k"/>
-                            <constraint firstItem="VeF-Vy-omz" firstAttribute="top" secondItem="FKj-29-zxm" secondAttribute="bottom" id="TFR-Iu-gbr"/>
                             <constraint firstItem="VeF-Vy-omz" firstAttribute="top" secondItem="kwh-7u-LvQ" secondAttribute="bottom" id="VIf-4l-wjm"/>
                             <constraint firstItem="kwh-7u-LvQ" firstAttribute="leading" secondItem="YLc-c4-N4R" secondAttribute="leading" id="VQ8-q1-ljh"/>
                             <constraint firstItem="FKj-29-zxm" firstAttribute="top" secondItem="YLc-c4-N4R" secondAttribute="topMargin" id="jiG-YC-oHD"/>
+                            <constraint firstItem="kwh-7u-LvQ" firstAttribute="top" secondItem="FKj-29-zxm" secondAttribute="bottom" id="wqm-UE-cd9"/>
                             <constraint firstItem="FKj-29-zxm" firstAttribute="leading" secondItem="YLc-c4-N4R" secondAttribute="leading" id="zSV-ea-pda"/>
                         </constraints>
                     </view>

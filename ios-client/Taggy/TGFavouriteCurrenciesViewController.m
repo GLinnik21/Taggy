@@ -138,8 +138,8 @@
     self.sortActionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"fav_sort_conf_question", nil)
                                                  delegate:self
                                         cancelButtonTitle:NSLocalizedString(@"cancel", @"Cancel")
-                                   destructiveButtonTitle:NSLocalizedString(@"yes", @"Yes")
-                                        otherButtonTitles:nil];
+                                   destructiveButtonTitle:nil
+                                        otherButtonTitles:NSLocalizedString(@"yes", @"Yes"), nil];
     
     [self.sortActionSheet showInView:self.view];
 }

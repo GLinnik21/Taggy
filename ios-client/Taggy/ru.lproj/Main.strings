@@ -203,4 +203,7 @@
 /* Class = "UITableViewSection"; headerTitle = "manual"; ObjectID = "prB-Vn-IHs"; */
 "prB-Vn-IHs.headerTitle" = "Ручное обновление";
 
+/* Class = "UINavigationItem"; title = "Favourite"; ObjectID = "6w1-Mc-Ezb"; */
+"6w1-Mc-Ezb.title" = "Любимые";
+
 

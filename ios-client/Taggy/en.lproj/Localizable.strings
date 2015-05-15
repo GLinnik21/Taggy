@@ -15,6 +15,7 @@
 "Open in Settings app" = "Open in “Settings” app";
 "NoInternet" = "Check your Internet connection";
 "ServerError" = "Server Error";
+"no_fav_info" = "No favourite currencies added!";
 "updated_with_history" = "Exchange rates and history were updated!";
 "only_exchange_rates" = "Only exchange rates were updated!";
 "rates_updated" = "Exchange rates were updated!";
@@ -32,6 +33,10 @@
 "save_tag_mess" = "Enter the name of the tag to save it:";
 "flash_off" = "Off";
 "flash_on" = "On";
+"no_fav" = "No favourite currencies added";
+"fav_del_conf_question" = "Do you really want to delete all your favourite currencies?";
+"fav_sort_conf_question" = "Do you really want to sort your favourite currencies by alphabetical order?";
+"yes" = "Yes";
 
 "AED" = "United Arab Emirates Dirham";
 "AFN" = "Afghan Afghani";
