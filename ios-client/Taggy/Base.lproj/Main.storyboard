@@ -147,7 +147,7 @@
                                     <outlet property="delegate" destination="YD1-K6-6Gg" id="hfn-q6-rXe"/>
                                 </connections>
                             </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qAl-2V-vBL">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="3" translatesAutoresizingMaskIntoConstraints="NO" id="qAl-2V-vBL">
                                 <rect key="frame" x="16" y="194" width="288" height="29"/>
                                 <segments>
                                     <segment title="1d"/>
