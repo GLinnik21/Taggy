@@ -36,6 +36,8 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
     [super viewWillAppear:animated];
 
     self.dataSource = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"fav_currencies"]];
+    self.sellTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"conv_value"];
+    [self valueChanged];
     
     [ARAnalytics pageView:@"Converter"];
 }
@@ -403,6 +405,7 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
     TGCurrency *toCurency = [TGCurrency currencyForCode:self.buyButton.currentTitle];
 
     NSString *digits = [self.sellTextField.text stringByReplacingOccurrencesOfString:@"," withString:@"."];
+    [[NSUserDefaults standardUserDefaults] setObject:digits forKey:@"conv_value"];
 
     CGFloat value = (CGFloat)[digits floatValue];
     CGFloat rate = 1.0f;
