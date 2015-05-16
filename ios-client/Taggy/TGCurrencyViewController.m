@@ -29,7 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    NSLog(self.fav ? @"Yes" : @"No");
+    
     self.rates = [NSMutableDictionary dictionary];
     for (TGCurrency *currency in [TGCurrency allObjects]) {
         self.rates[currency.code] = @(currency.value);
@@ -123,14 +125,16 @@
     cell.RateLabel.text = [NSString stringWithFormat:@"%.2f", rate.floatValue];
     cell.FullLabel.text = [NSString stringWithFormat:@"%@", NSLocalizedString(rateId, nil)];
 
-    if ([[TGSettingsManager objectForKey:self.settingsKey] isEqualToString:rateId]) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        if (tableView != self.searchDisplayController.searchResultsTableView) {
-            self.checkedIndexPath = indexPath;
+    if (!self.fav) {
+        if ([[TGSettingsManager objectForKey:self.settingsKey] isEqualToString:rateId]) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            if (tableView != self.searchDisplayController.searchResultsTableView) {
+                self.checkedIndexPath = indexPath;
+            }
         }
-    }
-    else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
+        else {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
     }
 
     return cell;
@@ -149,11 +153,25 @@
 
     NSString *code = cell.ISOLabel.text;
 
-    [TGSettingsManager setObject:code forKey:self.settingsKey];
-    cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    self.checkedIndexPath = indexPath;
+    if (!self.fav) {
+        [TGSettingsManager setObject:code forKey:self.settingsKey];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        self.checkedIndexPath = indexPath;
+        [self.searchDisplayController setActive:NO animated:YES];
+    }else{
+        NSMutableArray *fav_data = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"fav_currencies"]];
+        if (![fav_data containsObject:code]) {
+            [fav_data insertObject:code atIndex:0];
+            [[NSUserDefaults standardUserDefaults] setObject:fav_data forKey:@"fav_currencies"];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }else{
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }
+}
 
-    [self.searchDisplayController setActive:NO animated:YES];
+-(void)dismiss{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "TGFavouriteCurrenciesViewController.h"
-#import "TGCurrencyViewController.h"
 
 @interface TGFavouriteCurrenciesViewController ()
 
@@ -32,6 +31,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     self.tableData = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"fav_currencies"]];
+    [self.tableView reloadData];
 }
 
 - (void)dismiss
@@ -112,6 +112,8 @@
     TGCurrencyViewController *viewController =
     [storyboard instantiateViewControllerWithIdentifier:@"CurrenciesViewController"];
     
+    viewController.fav = YES;
+    
     UINavigationController *detailNavigationController =
     [[UINavigationController alloc] initWithRootViewController:viewController];
     
@@ -119,8 +121,8 @@
     [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                   target:viewController
                                                   action:@selector(dismiss)];
-    viewController.navigationItem.leftBarButtonItem = dismissButton;
-    [viewController.navigationItem.leftBarButtonItem setTintColor:[UIColor orangeColor]];
+    viewController.navigationItem.rightBarButtonItem = dismissButton;
+    [viewController.navigationItem.rightBarButtonItem setTintColor:[UIColor orangeColor]];
     [self presentViewController:detailNavigationController animated:YES completion:nil];
 }
 

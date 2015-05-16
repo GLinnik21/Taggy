@@ -262,7 +262,12 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
             self.checkBuy = NO;
             self.checkSell = YES;
             [self.buyPickerView.superview removeFromSuperview];
-            [self.sellPickerView selectRow:[self.dataSource indexOfObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"sell_key"]] inComponent:0 animated:YES];
+            
+            if ([self.dataSource containsObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"sell_key"]]) {
+                [self.sellPickerView selectRow:[self.dataSource indexOfObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"sell_key"]] inComponent:0 animated:YES];
+            }else{
+                [self.sellButton setTitle:[self.dataSource objectAtIndex:0] forState:UIControlStateNormal];
+            }
         }
         
         [self.sellTextField resignFirstResponder];
@@ -314,8 +319,13 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
             }];
             self.checkBuy = YES;
             self.checkSell = NO;
-            [self.buyPickerView selectRow:[self.dataSource indexOfObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"buy_key"]] inComponent:0 animated:YES];
             [self.sellPickerView.superview removeFromSuperview];
+            
+            if ([self.dataSource containsObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"buy_key"]]) {
+                [self.buyPickerView selectRow:[self.dataSource indexOfObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"buy_key"]] inComponent:0 animated:YES];
+            }else{
+                [self.sellButton setTitle:[self.dataSource objectAtIndex:0] forState:UIControlStateNormal];
+            }
         }
         [self.sellTextField resignFirstResponder];
         [self.buyTextField resignFirstResponder];

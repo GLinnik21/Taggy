@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TGCurrencyViewController.h"
 
 @interface TGFavouriteCurrenciesViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 

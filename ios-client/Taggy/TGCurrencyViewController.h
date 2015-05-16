@@ -11,6 +11,7 @@
 @interface TGCurrencyViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, copy) NSString *settingsKey;
+@property (nonatomic, assign) BOOL fav;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
