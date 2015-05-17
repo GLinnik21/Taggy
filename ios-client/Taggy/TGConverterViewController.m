@@ -38,6 +38,8 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
     self.dataSource = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"fav_currencies"]];
     self.sellTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"conv_value"];
     [self valueChanged];
+    [self.buyPickerView.superview removeFromSuperview];
+    [self.sellPickerView.superview removeFromSuperview];
     
     [ARAnalytics pageView:@"Converter"];
 }
@@ -267,6 +269,8 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
                 [self.sellPickerView selectRow:[self.dataSource indexOfObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"sell_key"]] inComponent:0 animated:YES];
             }else{
                 [self.sellButton setTitle:[self.dataSource objectAtIndex:0] forState:UIControlStateNormal];
+                [self formatGraphData];
+                [self.graphView reloadGraph];
             }
         }
         
@@ -324,7 +328,9 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
             if ([self.dataSource containsObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"buy_key"]]) {
                 [self.buyPickerView selectRow:[self.dataSource indexOfObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"buy_key"]] inComponent:0 animated:YES];
             }else{
-                [self.sellButton setTitle:[self.dataSource objectAtIndex:0] forState:UIControlStateNormal];
+                [self.buyButton setTitle:[self.dataSource objectAtIndex:0] forState:UIControlStateNormal];
+                [self formatGraphData];
+                [self.graphView reloadGraph];
             }
         }
         [self.sellTextField resignFirstResponder];
@@ -348,6 +354,8 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
         [[NSUserDefaults standardUserDefaults] setObject:[self.dataSource objectAtIndex:row] forKey:@"buy_key"];
     }
 
+    [self formatGraphData];
+    [self.graphView reloadGraph];
     [self valueChanged];
 }
 
@@ -440,9 +448,6 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
             self.buyTextField.text = [NSString stringWithFormat:@"%.2f", result];
         }
     }
-
-    [self formatGraphData];
-    [self.graphView reloadGraph];
 }
 
 - (IBAction)swapCurrencies:(id)sender
@@ -453,6 +458,8 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
     [[NSUserDefaults standardUserDefaults] setObject:buy forKey:@"sell_key"];
     [self.sellButton setTitle:buy forState:UIControlStateNormal];
     [self.buyButton setTitle:sell forState:UIControlStateNormal];
+    [self formatGraphData];
+    [self.graphView reloadGraph];
     [self valueChanged];
 }
 
