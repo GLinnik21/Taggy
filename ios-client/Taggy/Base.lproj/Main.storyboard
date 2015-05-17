@@ -528,10 +528,10 @@
             </objects>
             <point key="canvasLocation" x="-282" y="-1327"/>
         </scene>
-        <!--Custom Tab Bar Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="d7H-zO-dd8">
             <objects>
-                <tabBarController id="Wnc-nd-Cx3" customClass="TGCustomTabBarController" sceneMemberID="viewController">
+                <tabBarController id="Wnc-nd-Cx3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="g2P-py-6wP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
@@ -540,7 +540,6 @@
                         <color key="tintColor" red="1" green="0.2139268248" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <outlet property="customTabBar" destination="g2P-py-6wP" id="Tyk-ZX-nal"/>
                         <segue destination="6yL-bV-xYj" kind="relationship" relationship="viewControllers" id="ufE-HX-Kj6"/>
                         <segue destination="2by-fz-iZf" kind="relationship" relationship="viewControllers" id="xfw-kU-6YO"/>
                         <segue destination="qqd-m7-avg" kind="relationship" relationship="viewControllers" id="4qT-x6-8Uh"/>

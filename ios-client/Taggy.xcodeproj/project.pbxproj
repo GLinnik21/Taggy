@@ -38,7 +38,6 @@
 		ED077A6D19F940F700B203CB /* TGImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A6519F940F700B203CB /* TGImageCell.m */; };
 		ED077A6E19F940F700B203CB /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED077A6619F940F700B203CB /* images.xcassets */; };
 		ED077A6F19F940F700B203CB /* TGPhotoCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */; };
-		ED077A7519F9448E00B203CB /* TGCustomTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A7419F9448E00B203CB /* TGCustomTabBarController.m */; };
 		ED715FDC1A0927DD00F81CAF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED715FDB1A0927DD00F81CAF /* Settings.bundle */; };
 		ED90CB301AE4F274001F471F /* TGCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED90CB2D1AE4F274001F471F /* TGCameraViewController.m */; };
 		ED90CB311AE4F274001F471F /* IPDFCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED90CB2F1AE4F274001F471F /* IPDFCameraViewController.m */; };
@@ -120,8 +119,6 @@
 		ED077A6619F940F700B203CB /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
 		ED077A6719F940F700B203CB /* TGPhotoCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGPhotoCaptureViewController.h; sourceTree = "<group>"; };
 		ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGPhotoCaptureViewController.m; sourceTree = "<group>"; };
-		ED077A7319F9448E00B203CB /* TGCustomTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TGCustomTabBarController.h; path = ../TGCustomTabBarController.h; sourceTree = "<group>"; };
-		ED077A7419F9448E00B203CB /* TGCustomTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TGCustomTabBarController.m; path = ../TGCustomTabBarController.m; sourceTree = "<group>"; };
 		ED61A4631B0687F200308D52 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		ED715FDB1A0927DD00F81CAF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		ED7CAD421A29EEDB00AAF192 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -279,8 +276,6 @@
 		41A9D0521A038BC000922CBC /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				ED077A7319F9448E00B203CB /* TGCustomTabBarController.h */,
-				ED077A7419F9448E00B203CB /* TGCustomTabBarController.m */,
 				41C853431AE79CFB009F8B63 /* TGImageRecognizerHelper.h */,
 				41C853441AE79CFB009F8B63 /* TGImageRecognizerHelper.m */,
 			);
@@ -559,7 +554,6 @@
 				413F033A1A617420000C194B /* TGSettingsManager.m in Sources */,
 				ED077A1519F93FE300B203CB /* main.m in Sources */,
 				ED90CB311AE4F274001F471F /* IPDFCameraViewController.m in Sources */,
-				ED077A7519F9448E00B203CB /* TGCustomTabBarController.m in Sources */,
 				EDF32C251AE278C700FA1F1B /* TGСurrencyCell.m in Sources */,
 				EDD6F6B91AFA9635003296F6 /* TGFavouriteCurrenciesViewController.m in Sources */,
 				41A9D0481A00F2A700922CBC /* TGRecognizedBlock.m in Sources */,

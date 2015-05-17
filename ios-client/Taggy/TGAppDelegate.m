@@ -57,6 +57,9 @@
     
     [self.window setTintColor:[UIColor orangeColor]];
 
+    UITabBarController *tabBar = (UITabBarController *)self.window.rootViewController;
+    tabBar.selectedIndex = 1;
+    
     return YES;
 }
 
