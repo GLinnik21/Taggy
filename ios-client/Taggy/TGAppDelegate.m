@@ -54,6 +54,8 @@
     NSString *defaultPrefsFile = [[NSBundle mainBundle] pathForResource:@"defaultPrefs" ofType:@"plist"];
     NSDictionary *defaultPreferences = [NSDictionary dictionaryWithContentsOfFile:defaultPrefsFile];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaultPreferences];
+    
+    [self.window setTintColor:[UIColor orangeColor]];
 
     return YES;
 }

@@ -44,7 +44,6 @@
                                                               target:viewController
                                                               action:@selector(dismiss)];
             viewController.navigationItem.leftBarButtonItem = dismissButton;
-            [viewController.navigationItem.leftBarButtonItem setTintColor:[UIColor orangeColor]];
 
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [navigationController presentViewController:detailNavigationController animated:YES completion:nil];
