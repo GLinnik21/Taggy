@@ -15,17 +15,17 @@
 "Open in Settings app" = "Open in “Settings” app";
 "NoInternet" = "Check your Internet connection";
 "ServerError" = "Server Error";
-"no_fav_info" = "No favourite currencies added!";
-"updated_with_history" = "Exchange rates and history were updated!";
-"only_exchange_rates" = "Only exchange rates were updated!";
-"rates_updated" = "Exchange rates were updated!";
-"history_updated" = "History of exchange rates was updated!";
+"no_fav_info" = "No favourite currency added!";
+"updated_with_history" = "Exchange rates and history have been updated!";
+"only_exchange_rates" = "Only exchange rates have been updated!";
+"rates_updated" = "Exchange rates have been updated!";
+"history_updated" = "The history of exchange rates has been updated!";
 "LastUpdate" = "Last update: %@";
 "updating" = "Updating";
 "updated" = "Updated";
 "NoData" = "Update rates history first";
 "delete_all" = "Delete all";
-"conf_question" = "Do you really want to delete all results?";
+"conf_question" = "Do you really want to delete all the results?";
 "cancel" = "Cancel";
 "just_now" = "Just now";
 "never" = "Never";
@@ -33,9 +33,9 @@
 "save_tag_mess" = "Enter the name of the tag to save it:";
 "flash_off" = "Off";
 "flash_on" = "On";
-"no_fav" = "No favourite currencies added";
-"fav_del_conf_question" = "Do you really want to delete all your favourite currencies?";
-"fav_sort_conf_question" = "Do you really want to sort your favourite currencies by alphabetical order?";
+"no_fav" = "No favourite currency added";
+"fav_del_conf_question" = "Do you really want to delete all your favourite currency?";
+"fav_sort_conf_question" = "Do you really want to sort out your favourite currency in alphabetical order?";
 "yes" = "Yes";
 
 "AED" = "United Arab Emirates Dirham";

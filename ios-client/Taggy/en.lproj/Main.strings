@@ -117,7 +117,7 @@
 "XX7-In-ySs.title" = "Results";
 
 /* Class = "UITableViewSection"; footerTitle = "Update exchange rates with history in Results tab. History will be displayed in graph in converter"; ObjectID = "YDm-Cu-wBW"; */
-"YDm-Cu-wBW.footerTitle" = "Update exchange rates with history in Results tab. History will be displayed in graph in converter";
+"YDm-Cu-wBW.footerTitle" = "Update exchange rates with history in Results tab. History will be displayed graphically in converter";
 
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "ZeP-mJ-pFo"; */
 "ZeP-mJ-pFo.title" = "Settings";
@@ -159,7 +159,7 @@
 "pmk-Bt-tJn.text" = "About";
 
 /* Class = "UITableViewSection"; footerTitle = "Manually update exchange rates. History update may take additional time and charges"; ObjectID = "prB-Vn-IHs"; */
-"prB-Vn-IHs.footerTitle" = "Manually update exchange rates. History update may take additional time and charges";
+"prB-Vn-IHs.footerTitle" = "Manually update exchange rates. History update may require additional time and charges";
 
 /* Class = "UITableViewSection"; headerTitle = "manual"; ObjectID = "prB-Vn-IHs"; */
 "prB-Vn-IHs.headerTitle" = "manual";
