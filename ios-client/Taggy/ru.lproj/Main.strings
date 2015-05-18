@@ -60,7 +60,7 @@
 "Nna-ET-djC.title" = "Результаты";
 
 /* Class = "UITableViewSection"; footerTitle = "Automatic currency update after the first Internet connection"; ObjectID = "O6e-xe-Reh"; */
-"O6e-xe-Reh.footerTitle" = "Автоматическое обновление валют при первом подключении к Интерету";
+"O6e-xe-Reh.footerTitle" = "Автоматическое обновление валют при первом подключении к Интернету";
 
 /* Class = "UITableViewSection"; headerTitle = "General"; ObjectID = "O6e-xe-Reh"; */
 "O6e-xe-Reh.headerTitle" = "Основное";
@@ -183,7 +183,7 @@
 "L98-by-Ekz.text" = "Обновить историю курсов";
 
 /* Class = "UILabel"; text = "Update with history"; ObjectID = "KdB-bf-gwF"; */
-"KdB-bf-gwF.text" = "Обновлять с исторей";
+"KdB-bf-gwF.text" = "Обновлять с историей";
 
 /* Class = "UILabel"; text = "Update exchange rates"; ObjectID = "Wnc-3g-JZJ"; */
 "Wnc-3g-JZJ.text" = "Обновить курсы валют";
@@ -195,7 +195,7 @@
 "O6e-xe-Reh.headerTitle" = "Настройки обновлений";
 
 /* Class = "UITableViewSection"; footerTitle = "Update exchange rates with history in Results tab. History will be displayed in graph in converter"; ObjectID = "YDm-Cu-wBW"; */
-"YDm-Cu-wBW.footerTitle" = "Обновлять курсы валют с историей во вкладке Результатов. История будет показана в графике конвертора";
+"YDm-Cu-wBW.footerTitle" = "Обновлять курсы валют с историей во вкладке Результатов. История будет показана в графике конвертера";
 
 /* Class = "UITableViewSection"; footerTitle = "Manually update exchange rates. History update may take additional time and charges"; ObjectID = "prB-Vn-IHs"; */
 "prB-Vn-IHs.footerTitle" = "Обновить курсы валют вручную. Обновление истории может занять больше времени и трафика";
