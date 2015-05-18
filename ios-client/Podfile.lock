@@ -11,7 +11,6 @@ PODS:
   - ARAnalytics/YandexMobileMetrica (2.9.1):
     - ARAnalytics/CoreIOS
     - YandexMobileMetrica
-  - BEMSimpleLineGraph (3.3)
   - CocoaLumberjack (2.0.0):
     - CocoaLumberjack/Default (= 2.0.0)
     - CocoaLumberjack/Extensions (= 2.0.0)
@@ -61,7 +60,6 @@ DEPENDENCIES:
   - ARAnalytics/Flurry
   - ARAnalytics/GoogleAnalytics
   - ARAnalytics/YandexMobileMetrica
-  - BEMSimpleLineGraph (~> 3.3)
   - CocoaLumberjack (~> 2.0.0)
   - DateTools (~> 1.5.0)
   - DeviceUtil (~> 1.2)
@@ -79,7 +77,6 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFMInfoBanner: e2f2b479cc589986a0ab7fb31fb4c6d5c81f732f
   ARAnalytics: e00f739e2bc994ce096a3e494295950e33b057ce
-  BEMSimpleLineGraph: 7fc92cd65a5f91640f6624b11be96fe1f3d7f1cf
   CocoaLumberjack: a6f77d987d65dc7ba86b0f84db7d0b9084f77bcb
   CVKHierarchySearcher: 7be8d3bcbcc6f86ff07f785e6c632b5e40da2553
   DateTools: b93a2c2017747329c6077c7d7e8a75106e23d0d7
