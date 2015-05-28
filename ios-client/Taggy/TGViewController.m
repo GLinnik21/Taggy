@@ -43,7 +43,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
 
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
     [refreshControl addTarget:self action:@selector(updateCurrency) forControlEvents:UIControlEventValueChanged];
-    [refreshControl setBackgroundColor:[UIColor colorWithRed:(240 / 255.0)green:(240 / 255.0)blue:(240 / 255.0)alpha:1]];
+    [refreshControl setBackgroundColor:[UIColor colorWithRed:(240 / 255.0)green:(240 / 255.0)blue:(240 / 255.0)alpha:0.9]];
 
     self.refreshControl = refreshControl;
 }
@@ -57,7 +57,7 @@ static NSString *const kTGImageCellId = @"ImageCell";
 
         if (result != TGCurrencyUpdateResultSuccess) {
             [SVProgressHUD setForegroundColor:[UIColor grayColor]];
-            [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:1]];
+            [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:(240/255.0) green:(240/255.0) blue:(240/255.0) alpha:0.9]];
 
             if (result == TGCurrencyUpdateResultNoInternet) {
                 [SVProgressHUD setInfoImage:[UIImage imageNamed:@"internet"]];
