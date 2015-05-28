@@ -129,9 +129,23 @@
         __weak __typeof(self) weakSelf = self;
         [TGCurrencyManager updateOne:YES history:NO callback:^(TGCurrencyUpdateResult result) {
             __strong __typeof(weakSelf) strongSelf = weakSelf;
-            [strongSelf fillLastUpdateLabel];
-            [strongSelf.updateRatesActivityIndicator stopAnimating];
-            [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"rates_updated", @"Updated") style:AFMInfoBannerStyleInfo];
+            if (result != TGCurrencyUpdateResultSuccess) {
+                
+                if (result == TGCurrencyUpdateResultNoInternet) {
+                    [strongSelf fillLastUpdateLabel];
+                    [strongSelf.updateRatesActivityIndicator stopAnimating];
+                    [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"NoInternet", @"No Internet") style:AFMInfoBannerStyleError];
+                }
+                else if (result == TGCurrencyUpdateResultServerError) {
+                    [strongSelf fillLastUpdateLabel];
+                    [strongSelf.updateRatesActivityIndicator stopAnimating];
+                    [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"ServerError", @"Server Error") style:AFMInfoBannerStyleError];
+                }
+            }else{
+                    [strongSelf fillLastUpdateLabel];
+                    [strongSelf.updateRatesActivityIndicator stopAnimating];
+                    [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"rates_updated", @"Updated") style:AFMInfoBannerStyleInfo];
+                }
         } progress:nil];
     }
     
@@ -141,9 +155,23 @@
         __weak __typeof(self) weakSelf = self;
         [TGCurrencyManager updateOne:NO history:YES callback:^(TGCurrencyUpdateResult result) {
             __strong __typeof(weakSelf) strongSelf = weakSelf;
-            [strongSelf fillLastUpdateLabel];
-            [strongSelf.updateHistoryActivityIndicator stopAnimating];
-            [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"history_updated", @"Updated") style:AFMInfoBannerStyleInfo];
+            if (result != TGCurrencyUpdateResultSuccess) {
+                
+                if (result == TGCurrencyUpdateResultNoInternet) {
+                    [strongSelf fillLastUpdateLabel];
+                    [strongSelf.updateHistoryActivityIndicator stopAnimating];
+                    [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"NoInternet", @"No Internet") style:AFMInfoBannerStyleError];
+                }
+                else if (result == TGCurrencyUpdateResultServerError) {
+                    [strongSelf fillLastUpdateLabel];
+                    [strongSelf.updateHistoryActivityIndicator stopAnimating];
+                    [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"ServerError", @"Server Error") style:AFMInfoBannerStyleError];
+                }
+            }else{
+                [strongSelf fillLastUpdateLabel];
+                [strongSelf.updateHistoryActivityIndicator stopAnimating];
+                [AFMInfoBanner showAndHideWithText:NSLocalizedString(@"history_updated", @"Updated") style:AFMInfoBannerStyleInfo];
+            }
         } progress:nil];
     }
 }
