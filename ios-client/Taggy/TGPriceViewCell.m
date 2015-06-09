@@ -17,7 +17,6 @@ static CGFloat const kTGSpaceMargin = 10.0f;
 @property (nonatomic, weak) UILabel *sourceTextLabel;
 @property (nonatomic, weak) UILabel *separatorLabel;
 @property (nonatomic, weak) UILabel *convertedTextLabel;
-@property (nonatomic, weak) UIButton *editButton;
 
 @end
 
@@ -43,12 +42,6 @@ static CGFloat const kTGSpaceMargin = 10.0f;
         targetLabel.adjustsFontSizeToFitWidth = YES;
         [self.contentView addSubview:targetLabel];
         _convertedTextLabel = targetLabel;
-
-        UIButton *editButton = [[UIButton alloc] init];
-        [editButton setBackgroundImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
-        [editButton setTintColor:[UIColor orangeColor]];
-        [self.contentView addSubview:editButton];
-        _editButton = editButton;
         
         [self configureViews];
     }
@@ -64,7 +57,7 @@ static CGFloat const kTGSpaceMargin = 10.0f;
     [self.convertedTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(self);
         make.left.equalTo(self.separatorLabel.mas_right).offset(kTGSpaceMargin);
-        make.right.equalTo(self.editButton.mas_left);
+        make.right.equalTo(self).offset(-kTGSpaceMargin);
     }];
 
     [self.sourceTextLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -72,12 +65,7 @@ static CGFloat const kTGSpaceMargin = 10.0f;
         make.right.equalTo(self.separatorLabel.mas_left).offset(-kTGSpaceMargin);
         make.left.equalTo(self).offset(kTGSpaceMargin);
     }];
-    
-    [self.editButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.mas_equalTo(20);
-        make.centerY.equalTo(self);
-        make.right.equalTo(self).offset(-kTGSpaceMargin);
-    }];
+  
 }
 
 - (void)setSourceValue:(NSString *)sourceValue
@@ -113,7 +101,6 @@ static CGFloat const kTGSpaceMargin = 10.0f;
         self.separatorLabel.hidden = isAd;
         self.sourceTextLabel.hidden = isAd;
         self.convertedTextLabel.hidden = isAd;
-        self.editButton.hidden = isAd;
 
         self.selectionStyle = isAd ? UITableViewCellSelectionStyleNone : UITableViewCellSelectionStyleDefault;
     }

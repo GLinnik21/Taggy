@@ -33,15 +33,21 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewWillAppear:YES];
 
     self.dataSource = [NSMutableArray arrayWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:@"fav_currencies"]];
     self.sellTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"conv_value"];
     [self valueChanged];
-    [self.buyPickerView.superview removeFromSuperview];
-    [self.sellPickerView.superview removeFromSuperview];
+    self.checkSell = false;
+    self.checkBuy = false;
     
     [ARAnalytics pageView:@"Converter"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    [self.buyPickerView.superview removeFromSuperview];
+    [self.sellPickerView.superview removeFromSuperview];
 }
 
 - (void)viewDidLoad
@@ -226,7 +232,7 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
 - (IBAction)sellAction:(id)sender
 {
     if ([self.dataSource count] != 0) {
-        if (self.checkSell == NO) {
+        if (!self.checkSell) {
             UIView *pickerViewRoot = [[UIView alloc] init];
             pickerViewRoot.backgroundColor = [UIColor whiteColor];
             
@@ -236,7 +242,7 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
             UIToolbar *toolBar = [[UIToolbar alloc] init];
             UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
             
-            UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(changeSellCurrency:)];
+            UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(Done)];
             
             [toolBar setItems:@[ flexSpace, barButtonDone ] animated:YES];
             
@@ -244,26 +250,40 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
             [pickerViewRoot addSubview:self.sellPickerView];
             [pickerViewRoot addSubview:toolBar];
             
+            pickerViewRoot.backgroundColor = nil;
+            self.sellPickerView.backgroundColor = [UIColor whiteColor];
+            
             [pickerViewRoot mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.equalTo(self.view);
-                make.height.equalTo(self.view).multipliedBy(0.45f);
-                make.bottom.equalTo(self.view);
+                make.height.mas_equalTo(206);
+                make.top.equalTo(self.view.mas_bottom);
             }];
             
             [toolBar mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.equalTo(pickerViewRoot);
-                make.top.equalTo(pickerViewRoot.mas_top);
-            }];
-            [self.sellPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.width.equalTo(pickerViewRoot);
-                make.top.equalTo(toolBar);
-                make.bottom.equalTo(pickerViewRoot);
-                make.center.equalTo(pickerViewRoot);
+                make.top.equalTo(pickerViewRoot);
             }];
             
-            self.checkBuy = NO;
-            self.checkSell = YES;
-            [self.buyPickerView.superview removeFromSuperview];
+            [self.sellPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.width.equalTo(pickerViewRoot);
+                make.height.mas_equalTo(162);
+                make.bottom.equalTo(pickerViewRoot.mas_bottom);
+            }];
+            
+            sleep(0.01);
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                CGAffineTransform transfrom = CGAffineTransformMakeTranslation(0, -254);
+                self.sellPickerView.superview.transform = transfrom;}];
+                
+            self.checkBuy = false;
+            self.checkSell = true;
+            [UIView animateWithDuration:0.3 animations:^{
+                CGAffineTransform transfrom = CGAffineTransformMakeTranslation(0, 206);
+                self.buyPickerView.superview.transform = transfrom;
+            }];
+            
+
             
             if ([self.dataSource containsObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"sell_key"]]) {
                 [self.sellPickerView selectRow:[self.dataSource indexOfObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"sell_key"]] inComponent:0 animated:YES];
@@ -275,8 +295,7 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
         }
         
         [self.sellTextField resignFirstResponder];
-        [self.buyTextField resignFirstResponder];
-    }else{
+           }else{
         [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.9]];
         [SVProgressHUD setForegroundColor:[UIColor orangeColor]];
         [SVProgressHUD setInfoImage:[UIImage imageNamed:@"fav"]];
@@ -287,7 +306,7 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
 - (IBAction)buyAction:(id)sender
 {
     if ([self.dataSource count] != 0) {
-        if (self.checkBuy == NO) {
+        if (!self.checkBuy) {
             UIView *pickerViewRoot = [[UIView alloc] init];
             pickerViewRoot.backgroundColor = [UIColor whiteColor];
             
@@ -298,7 +317,7 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
             UIToolbar *toolBar = [[UIToolbar alloc] init];
             UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
             
-            UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(changeBuyCurrency:)];
+            UIBarButtonItem *barButtonDone = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(Done)];
             
             [toolBar setItems:@[ flexSpace, barButtonDone ] animated:YES];
             
@@ -306,24 +325,39 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
             [pickerViewRoot addSubview:self.buyPickerView];
             [pickerViewRoot addSubview:toolBar];
             
+            pickerViewRoot.backgroundColor = nil;
+            self.buyPickerView.backgroundColor = [UIColor whiteColor];
+            
             [pickerViewRoot mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.equalTo(self.view);
-                make.height.equalTo(self.view).multipliedBy(0.45f);
-                make.bottom.equalTo(self.view);
+                make.height.mas_equalTo(206);
+                make.top.equalTo(self.view.mas_bottom);
             }];
+            
             [toolBar mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.equalTo(pickerViewRoot);
-                make.top.equalTo(pickerViewRoot.mas_top);
+                make.top.equalTo(pickerViewRoot);
             }];
+            
             [self.buyPickerView mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.width.equalTo(pickerViewRoot);
-                make.top.equalTo(toolBar);
-                make.bottom.equalTo(pickerViewRoot);
-                make.center.equalTo(pickerViewRoot);
+                make.height.mas_equalTo(162);
+                make.bottom.equalTo(pickerViewRoot.mas_bottom);
             }];
-            self.checkBuy = YES;
-            self.checkSell = NO;
-            [self.sellPickerView.superview removeFromSuperview];
+            
+            sleep(0.01);
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                CGAffineTransform transfrom = CGAffineTransformMakeTranslation(0, -254);
+                self.buyPickerView.superview.transform = transfrom;}];
+        
+            self.checkBuy = true;
+            self.checkSell = false;
+            
+            [UIView animateWithDuration:0.3 animations:^{
+                CGAffineTransform transfrom = CGAffineTransformMakeTranslation(0, 206);
+                self.sellPickerView.superview.transform = transfrom;
+            }];
             
             if ([self.dataSource containsObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"buy_key"]]) {
                 [self.buyPickerView selectRow:[self.dataSource indexOfObject:[[NSUserDefaults standardUserDefaults] objectForKey:@"buy_key"]] inComponent:0 animated:YES];
@@ -334,7 +368,6 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
             }
         }
         [self.sellTextField resignFirstResponder];
-        [self.buyTextField resignFirstResponder];
     }else{
         [SVProgressHUD setBackgroundColor:[UIColor colorWithWhite:1 alpha:0.9]];
         [SVProgressHUD setForegroundColor:[UIColor orangeColor]];
@@ -385,36 +418,30 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
     return sectionWidth;
 }
 
-- (void)changeSellCurrency:(id)sender
+- (void)Done
 {
     [UIView animateWithDuration:0.3 animations:^{
-        CGAffineTransform transfrom = CGAffineTransformMakeTranslation(0, 200);
-        self.sellPickerView.superview.transform = transfrom;
-        self.sellPickerView.superview.alpha = 1.0f - self.sellPickerView.alpha;
+        CGAffineTransform transfrom = CGAffineTransformMakeTranslation(0, 206);
+            self.sellPickerView.superview.transform = transfrom;
+            self.buyPickerView.superview.transform = transfrom;
     }];
-    self.checkSell = NO;
-    self.checkBuy = NO;
-    DDLogInfo(@"Sell: Done");
+    [self performSelector:@selector(removeFromSuperview) withObject:self afterDelay:0.4];
+    DDLogInfo(@"Done");
 }
 
-- (void)changeBuyCurrency:(id)sender
-{
-    [UIView animateWithDuration:0.3 animations:^{
-        CGAffineTransform transfrom = CGAffineTransformMakeTranslation(0, 200);
-        self.buyPickerView.superview.transform = transfrom;
-        self.buyPickerView.superview.alpha = 1.0f - self.buyPickerView.alpha;
-    }];
-    self.checkSell = NO;
-    self.checkBuy = NO;
-    DDLogInfo(@"Buy: Done");
+- (void)removeFromSuperview{
+    if (self.checkSell) {
+        [self.buyPickerView.superview removeFromSuperview];
+    }else if (self.checkBuy){
+        [self.sellPickerView.superview removeFromSuperview];
+    }
+    self.checkSell = false;
+    self.checkBuy = false;
 }
 
 - (IBAction)sellEditingDidBegin:(id)sender
 {
-    [self.sellPickerView.superview removeFromSuperview];
-    [self.buyPickerView.superview removeFromSuperview];
-    self.checkSell = NO;
-    self.checkBuy = NO;
+    [self Done];
 }
 
 - (void)valueChanged
@@ -461,6 +488,7 @@ static NSTimeInterval const kTGOneDay = 1 * 24 * 3600;
     [self formatGraphData];
     [self.graphView reloadGraph];
     [self valueChanged];
+    [self Done];
 }
 
 - (IBAction)sellEditingChanged:(id)sender

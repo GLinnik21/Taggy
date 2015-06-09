@@ -9,6 +9,8 @@
 #import "TGDetailViewController.h"
 #import "TGPriceImage.h"
 #import "TGPriceViewCell.h"
+#import "WYPopoverController.h"
+#import "TGEditViewController.h"
 
 #import <Masonry/Masonry.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
@@ -16,7 +18,10 @@
 
 static NSInteger const kTGAdRowIndex = 1;
 
-@interface TGDetailViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TGDetailViewController () <UITableViewDelegate, UITableViewDataSource, WYPopoverControllerDelegate>
+{
+    WYPopoverController* popoverController;
+}
 
 @property (nonatomic, weak) UIScrollView *imageScrollView;
 @property (nonatomic, weak) UIImageView *imageView;
@@ -26,6 +31,7 @@ static NSInteger const kTGAdRowIndex = 1;
 @property (nonatomic, weak) UILabel *sourcePriceDetailLabel;
 @property (nonatomic, weak) UILabel *targetPriceDetailLabel;
 @property (weak, nonatomic) IBOutlet UINavigationItem *resultNavigationBar;
+@property (nonatomic, strong) UIButton *editButton;
 
 @end
 
@@ -163,6 +169,12 @@ static NSInteger const kTGAdRowIndex = 1;
         cell.adView = nil;
         cell.sourceValue = [price formattedSourcePrice];
         cell.convertedValue = [price formattedConvertedPrice];
+        self.editButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 22, 22)];
+        [self.editButton setImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
+        cell.accessoryView = self.editButton;
+        [self.editButton addTarget:self
+                   action:@selector(editAction)
+         forControlEvents:UIControlEventTouchUpInside];
     }
 
     return cell;
@@ -192,6 +204,24 @@ static NSInteger const kTGAdRowIndex = 1;
     return self.detail.prices.count + 1;
 }
 
+- (void)editAction
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    TGEditViewController *viewController =
+    [storyboard instantiateViewControllerWithIdentifier:@"EditViewContriller"];
+    popoverController = [[WYPopoverController alloc] initWithContentViewController:viewController];
+    UINavigationController *detailNavigationController =
+    [[UINavigationController alloc] initWithRootViewController:viewController];
+    
+    UIBarButtonItem *dismissButton =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                  target:viewController
+                                                  action:@selector(dismiss)];
+    viewController.navigationItem.rightBarButtonItem = dismissButton;
+    popoverController.delegate = self;
+    [popoverController presentPopoverFromRect:self.editButton.bounds inView:self.editButton permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES options:WYPopoverAnimationOptionFadeWithScale];
+}
+
 - (void)saveTag
 {
     UIAlertView *tagSaveAlert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"save_tag", @"Save?")
@@ -209,7 +239,7 @@ static NSInteger const kTGAdRowIndex = 1;
     if (buttonIndex == 1) {
         RLMRealm *realm = [RLMRealm defaultRealm];
         [realm beginWriteTransaction];
-        self.detail.tag = test; // Так вот только надо сюда добавить показ алерта. Понятно, но получается кнопка сохранения тега будет и детаиле в результатах. Да, почему бы и нет) Возможность изменять результат. Ну или можно её включать только для результата распознания. Надо еще где-то показывать теги в детаиле. Да, наддо придумать им место.... Я отключаюсь? ок
+        self.detail.tag = test;
         [realm commitWriteTransaction];
     }
 }

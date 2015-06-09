@@ -118,11 +118,10 @@
     [[UINavigationController alloc] initWithRootViewController:viewController];
     
     UIBarButtonItem *dismissButton =
-    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                   target:viewController
                                                   action:@selector(dismiss)];
     viewController.navigationItem.rightBarButtonItem = dismissButton;
-    [viewController.navigationItem.rightBarButtonItem setTintColor:[UIColor orangeColor]];
     [self presentViewController:detailNavigationController animated:YES completion:nil];
 }
 

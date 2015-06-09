@@ -38,6 +38,7 @@
 		ED077A6D19F940F700B203CB /* TGImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A6519F940F700B203CB /* TGImageCell.m */; };
 		ED077A6E19F940F700B203CB /* images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED077A6619F940F700B203CB /* images.xcassets */; };
 		ED077A6F19F940F700B203CB /* TGPhotoCaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */; };
+		ED1F79FB1B271B670098810B /* TGEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED1F79FA1B271B670098810B /* TGEditViewController.m */; };
 		ED715FDC1A0927DD00F81CAF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = ED715FDB1A0927DD00F81CAF /* Settings.bundle */; };
 		ED90CB301AE4F274001F471F /* TGCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED90CB2D1AE4F274001F471F /* TGCameraViewController.m */; };
 		ED90CB311AE4F274001F471F /* IPDFCameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED90CB2F1AE4F274001F471F /* IPDFCameraViewController.m */; };
@@ -119,6 +120,8 @@
 		ED077A6619F940F700B203CB /* images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = images.xcassets; sourceTree = "<group>"; };
 		ED077A6719F940F700B203CB /* TGPhotoCaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGPhotoCaptureViewController.h; sourceTree = "<group>"; };
 		ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGPhotoCaptureViewController.m; sourceTree = "<group>"; };
+		ED1F79F91B271B670098810B /* TGEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGEditViewController.h; sourceTree = "<group>"; };
+		ED1F79FA1B271B670098810B /* TGEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TGEditViewController.m; sourceTree = "<group>"; };
 		ED61A4631B0687F200308D52 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		ED715FDB1A0927DD00F81CAF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		ED7CAD421A29EEDB00AAF192 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -199,23 +202,25 @@
 		41A9D04D1A038B5800922CBC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				ED077A1919F93FE300B203CB /* TGViewController.h */,
-				ED077A1A19F93FE300B203CB /* TGViewController.m */,
-				ED077A6219F940F700B203CB /* TGDetailViewController.h */,
-				ED077A6319F940F700B203CB /* TGDetailViewController.m */,
-				ED077A6719F940F700B203CB /* TGPhotoCaptureViewController.h */,
-				ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */,
+				ED90CB321AE4F37D001F471F /* IPDFCameraViewCintroller */,
 				ED90CB2C1AE4F274001F471F /* TGCameraViewController.h */,
 				ED90CB2D1AE4F274001F471F /* TGCameraViewController.m */,
 				EDAE40511A83F5CC00A90A71 /* TGConverterViewController.h */,
 				EDAE40521A83F5CC00A90A71 /* TGConverterViewController.m */,
-				EDD6F6B71AFA9635003296F6 /* TGFavouriteCurrenciesViewController.h */,
-				EDD6F6B81AFA9635003296F6 /* TGFavouriteCurrenciesViewController.m */,
 				EDAE69AD1AB36C1C009E92BE /* TGCurrencyViewController.h */,
 				EDAE69AE1AB36C1C009E92BE /* TGCurrencyViewController.m */,
+				ED077A6219F940F700B203CB /* TGDetailViewController.h */,
+				ED077A6319F940F700B203CB /* TGDetailViewController.m */,
+				ED1F79F91B271B670098810B /* TGEditViewController.h */,
+				ED1F79FA1B271B670098810B /* TGEditViewController.m */,
+				EDD6F6B71AFA9635003296F6 /* TGFavouriteCurrenciesViewController.h */,
+				EDD6F6B81AFA9635003296F6 /* TGFavouriteCurrenciesViewController.m */,
+				ED077A6719F940F700B203CB /* TGPhotoCaptureViewController.h */,
+				ED077A6819F940F700B203CB /* TGPhotoCaptureViewController.m */,
 				EDC5CF9F1AB16AA3008C8ECC /* TGSettingsViewController.h */,
 				EDC5CFA01AB16AA3008C8ECC /* TGSettingsViewController.m */,
-				ED90CB321AE4F37D001F471F /* IPDFCameraViewCintroller */,
+				ED077A1919F93FE300B203CB /* TGViewController.h */,
+				ED077A1A19F93FE300B203CB /* TGViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -555,6 +560,7 @@
 				ED077A1519F93FE300B203CB /* main.m in Sources */,
 				ED90CB311AE4F274001F471F /* IPDFCameraViewController.m in Sources */,
 				EDF32C251AE278C700FA1F1B /* TGСurrencyCell.m in Sources */,
+				ED1F79FB1B271B670098810B /* TGEditViewController.m in Sources */,
 				EDD6F6B91AFA9635003296F6 /* TGFavouriteCurrenciesViewController.m in Sources */,
 				41A9D0481A00F2A700922CBC /* TGRecognizedBlock.m in Sources */,
 				ED077A6D19F940F700B203CB /* TGImageCell.m in Sources */,

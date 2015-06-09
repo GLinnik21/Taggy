@@ -16,6 +16,7 @@ pod 'BEMSimpleLineGraph', '~> 3.3'
 pod 'CocoaLumberjack', '~> 2.0.0'
 pod 'AFMInfoBanner'
 pod 'DeviceUtil', '~> 1.2'
+pod 'WYPopoverController', '~> 0.2.0'
 
 
 pod 'FlurrySDK', '~> 5.4.0'
