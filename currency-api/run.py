@@ -8,4 +8,4 @@ if len(sys.argv) == 3:
 	debug = sys.argv[1] == 'debug'
 	port = int(sys.argv[2])
 
-app.run(debug = debug, port = port)
+app.run(host='0.0.0.0', debug = debug, port = port)
