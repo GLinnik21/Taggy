@@ -27,13 +27,13 @@
     [ARAnalytics setupWithAnalytics:@{
                                       ARFlurryAPIKey : @"R28M5M82FH2X33XCQW4N",
                                       ARGoogleAnalyticsID : @"UA-9189602-6",
-                                      ARYandexMobileMetricaAPIKey : @"30144",
+                                      ARYandexMobileMetricaAPIKey : @"352ffba9-2296-4eac-90aa-82790deee634",
                                       }];
 #else
     [ARAnalytics setupWithAnalytics:@{
                                       ARFlurryAPIKey : @"6QPH2WFQCQRJHKPNHYTS",
                                       ARGoogleAnalyticsID : @"UA-9189602-7",
-                                      ARYandexMobileMetricaAPIKey : @"31233",
+                                      ARYandexMobileMetricaAPIKey : @"acd1baf4-8ef1-446d-8246-8264e71c1105",
                                       }];
 #endif
 

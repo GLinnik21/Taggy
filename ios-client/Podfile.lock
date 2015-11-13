@@ -1,104 +1,124 @@
 PODS:
-  - AFMInfoBanner (1.0.2):
+  - AFMInfoBanner (1.1):
     - CVKHierarchySearcher (~> 0.2)
-  - ARAnalytics/CoreIOS (2.9.1)
-  - ARAnalytics/Flurry (2.9.1):
+  - ARAnalytics/CoreIOS (3.8.0)
+  - ARAnalytics/Flurry (3.8.0):
     - ARAnalytics/CoreIOS
     - FlurrySDK
-  - ARAnalytics/GoogleAnalytics (2.9.1):
+  - ARAnalytics/GoogleAnalytics (3.8.0):
     - ARAnalytics/CoreIOS
-    - GoogleAnalytics-iOS-SDK
-  - ARAnalytics/YandexMobileMetrica (2.9.1):
+    - Google/Analytics
+  - ARAnalytics/YandexMobileMetrica (3.8.0):
     - ARAnalytics/CoreIOS
     - YandexMobileMetrica
-  - BEMSimpleLineGraph (3.3)
-  - CocoaLumberjack (2.0.0):
-    - CocoaLumberjack/Default (= 2.0.0)
-    - CocoaLumberjack/Extensions (= 2.0.0)
-  - CocoaLumberjack/Core (2.0.0)
-  - CocoaLumberjack/Default (2.0.0):
+  - BEMSimpleLineGraph (4.1)
+  - CocoaLumberjack (2.2.0):
+    - CocoaLumberjack/Default (= 2.2.0)
+    - CocoaLumberjack/Extensions (= 2.2.0)
+  - CocoaLumberjack/Core (2.2.0)
+  - CocoaLumberjack/Default (2.2.0):
     - CocoaLumberjack/Core
-  - CocoaLumberjack/Extensions (2.0.0):
+  - CocoaLumberjack/Extensions (2.2.0):
     - CocoaLumberjack/Default
   - CVKHierarchySearcher (0.2.0)
-  - DateTools (1.5.0)
-  - DeviceUtil (1.2.0)
-  - FlurrySDK (5.4.0):
-    - FlurrySDK/FlurrySDK (= 5.4.0)
-  - FlurrySDK/FlurrySDK (5.4.0)
-  - FMDB (2.2):
-    - FMDB/standard (= 2.2)
-  - FMDB/common (2.2)
-  - FMDB/standard (2.2):
+  - DateTools (1.7.0)
+  - DeviceUtil (1.2.2)
+  - FlurrySDK (6.7.0):
+    - FlurrySDK/FlurrySDK (= 6.7.0)
+  - FlurrySDK/FlurrySDK (6.7.0)
+  - FMDB (2.5):
+    - FMDB/standard (= 2.5)
+  - FMDB/common (2.5)
+  - FMDB/standard (2.5):
     - FMDB/common
-  - Google-Mobile-Ads-SDK (7.1.0)
-  - GoogleAnalytics-iOS-SDK (3.10):
-    - GoogleAnalytics-iOS-SDK/Core (= 3.10)
-  - GoogleAnalytics-iOS-SDK/Core (3.10)
-  - GPUImage (0.1.6)
-  - KSCrash/Recording (0.0.3)
-  - KSCrash/Reporting/Filters/AppleFmt (0.0.3):
+  - Google-Mobile-Ads-SDK (7.5.2)
+  - Google/Analytics (1.2.1):
+    - Google/Core
+    - GoogleAnalytics (~> 3.12)
+  - Google/Core (1.2.1):
+    - GoogleInterchangeUtilities (~> 1.0)
+    - GoogleNetworkingUtilities (~> 1.0)
+    - GoogleSymbolUtilities (~> 1.0)
+    - GoogleUtilities (~> 1.1)
+  - GoogleAnalytics (3.14.0)
+  - GoogleInterchangeUtilities (1.1.0):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleNetworkingUtilities (1.0.0):
+    - GoogleSymbolUtilities (~> 1.0)
+  - GoogleSymbolUtilities (1.0.3)
+  - GoogleUtilities (1.1.0):
+    - GoogleSymbolUtilities (~> 1.0.0)
+  - GPUImage (0.1.7)
+  - KSCrash/no-arc (0.0.6)
+  - KSCrash/Recording (0.0.6):
+    - KSCrash/no-arc
+  - KSCrash/Reporting/Filters/AppleFmt (0.0.6):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/Base (0.0.3):
+  - KSCrash/Reporting/Filters/Base (0.0.6):
     - KSCrash/Recording
-  - Masonry (0.6.1)
-  - protobuf-c (0.15)
+  - Masonry (0.6.3)
+  - protobuf-c (1.0.1)
   - Reachability (3.2)
-  - Realm (0.91.4):
-    - Realm/Headers (= 0.91.4)
-  - Realm/Headers (0.91.4)
+  - Realm (0.96.2):
+    - Realm/Headers (= 0.96.2)
+  - Realm/Headers (0.96.2)
   - SVProgressHUD (1.1.3)
   - TesseractOCRiOS (4.0.0)
-  - WYPopoverController (0.2.2)
-  - YandexMobileMetrica (1.6.2):
-    - FMDB (= 2.2.0)
-    - KSCrash/Recording (~> 0.0.3)
-    - KSCrash/Reporting/Filters/AppleFmt (~> 0.0.3)
-    - protobuf-c (= 0.15)
+  - WYPopoverController (0.3.8)
+  - YandexMobileMetrica (2.1.1):
+    - FMDB (~> 2.2)
+    - KSCrash/Recording (~> 0.0.5)
+    - KSCrash/Reporting/Filters/AppleFmt (~> 0.0.5)
+    - protobuf-c (~> 1.0.1)
 
 DEPENDENCIES:
-  - AFMInfoBanner
+  - AFMInfoBanner (~> 1.1)
   - ARAnalytics/Flurry
   - ARAnalytics/GoogleAnalytics
   - ARAnalytics/YandexMobileMetrica
-  - BEMSimpleLineGraph (~> 3.3)
-  - CocoaLumberjack (~> 2.0.0)
-  - DateTools (~> 1.5.0)
-  - DeviceUtil (~> 1.2)
-  - FlurrySDK (~> 5.4.0)
-  - Google-Mobile-Ads-SDK (~> 7.1.0)
-  - GoogleAnalytics-iOS-SDK (~> 3.10)
-  - GPUImage (~> 0.1.6)
-  - Masonry (~> 0.6.1)
+  - BEMSimpleLineGraph (~> 4.1)
+  - CocoaLumberjack (~> 2.2.0)
+  - DateTools (~> 1.7.0)
+  - DeviceUtil (~> 1.2.2)
+  - FlurrySDK (~> 6.7.0)
+  - Google-Mobile-Ads-SDK (~> 7.5.2)
+  - GoogleAnalytics (~> 3.13)
+  - GPUImage (~> 0.1.7)
+  - Masonry (~> 0.6.3)
   - Reachability (~> 3.2)
-  - Realm (~> 0.91.4)
+  - Realm (~> 0.96.2)
   - SVProgressHUD (~> 1.1.3)
   - TesseractOCRiOS (~> 4.0)
-  - WYPopoverController (~> 0.2.0)
-  - YandexMobileMetrica (~> 1.6.2)
+  - WYPopoverController (~> 0.3.8)
+  - YandexMobileMetrica (~> 2.1)
 
 SPEC CHECKSUMS:
-  AFMInfoBanner: e2f2b479cc589986a0ab7fb31fb4c6d5c81f732f
-  ARAnalytics: e00f739e2bc994ce096a3e494295950e33b057ce
-  BEMSimpleLineGraph: 7fc92cd65a5f91640f6624b11be96fe1f3d7f1cf
-  CocoaLumberjack: a6f77d987d65dc7ba86b0f84db7d0b9084f77bcb
+  AFMInfoBanner: 207a0622fdfc6bff3e8d04ac557932f3d6849425
+  ARAnalytics: 5468652928cee7100dd0e6b5162631409da37106
+  BEMSimpleLineGraph: 44fd451f27f8e9cf96f2da5bea27603093576dd1
+  CocoaLumberjack: 17fe8581f84914d5d7e6360f7c70022b173c3ae0
   CVKHierarchySearcher: 7be8d3bcbcc6f86ff07f785e6c632b5e40da2553
-  DateTools: b93a2c2017747329c6077c7d7e8a75106e23d0d7
-  DeviceUtil: 818812d4d2413e145a05d502cd1378e484d0c293
-  FlurrySDK: 7f929b68dea38ce735979fb039229f62c0b697b5
-  FMDB: 0678cab3b024ea6a2e6ea5dd91fc8eb9a296bf57
-  Google-Mobile-Ads-SDK: 9b7c22345f13de4164e9e6d90ad49cce42124c3c
-  GoogleAnalytics-iOS-SDK: 4f98a376c1d61e6ac4ca47951655820314856eef
-  GPUImage: 4675ce4a5370ca92fcea8623b2a08b8f0c51b940
-  KSCrash: 8cb2d6e316c9c12b1444df232e650547be742494
-  Masonry: 4972309f2f134de9dd312f4dc4a21359b50e6caa
-  protobuf-c: e7a40bc5d069f55f6d47d616ea532481b947b8d9
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
+  DeviceUtil: 6781344f19a7684796d3b2684a9cab5b285ebb3a
+  FlurrySDK: ea03fd78ffb32886e26c9b7634ff0d8cb18dcd55
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  Google: fd33b5fa40fa3aaee5176de49c873a74e3d11dce
+  Google-Mobile-Ads-SDK: 24a8ddfc0bcfec281960c5d88f75327df0d86b00
+  GoogleAnalytics: 9be1afdb8deeac4bb5f13ca7f7d3b9db2a1f43dc
+  GoogleInterchangeUtilities: d7f7174176fbcf9710f696f1acebad4dbd98ac03
+  GoogleNetworkingUtilities: 292992ab31b7b4ba32809a0e8b40e324cdfb2c0c
+  GoogleSymbolUtilities: 82ad9f93d3615244b3f4ce440f5ab2515e8b4f56
+  GoogleUtilities: 8ed9134debe11719097881711464752900668f10
+  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
+  KSCrash: c6ab634b7d7c63d6b9abc2ef00f995cbd9eead1e
+  Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
+  protobuf-c: 87088f5a154d5293d9c75b44fc48b497056f4e76
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  Realm: 84d044b9a25cc8d44a8c075489419acaab7597ad
+  Realm: 3ce8448151c571e90b85002d984d7f93f54fc8a3
   SVProgressHUD: 748080e4f36e603f6c02aec292664239df5279c1
   TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
-  WYPopoverController: 00d879c25bddd1fd873dcc21aa98c8308d7f1555
-  YandexMobileMetrica: 0a57437e752dcd66d88d11710c89320a0df32802
+  WYPopoverController: dda54780e1bef186464ae5a10ab9b4998c279e89
+  YandexMobileMetrica: cfc5935da0dae6494c8e1c9adc78bc6904776725
 
-COCOAPODS: 0.36.4
+COCOAPODS: 0.39.0
