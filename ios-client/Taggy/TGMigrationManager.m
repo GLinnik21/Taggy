@@ -15,64 +15,82 @@
 #import "TGRecognizedPrice.h"
 #import "TGFavouriteCurrencies.h"
 
+static NSUInteger const kTGSchemaVersion = 5;
+
 @implementation TGMigrationManager
 
 + (void)migrate
 {
-    [RLMRealm setSchemaVersion:5
-                forRealmAtPath:[RLMRealm defaultRealmPath]
-            withMigrationBlock:^(RLMMigration *migration, NSUInteger oldSchemaVersion) {
-        if (oldSchemaVersion < 1) {
-            [ARAnalytics startTimingEvent:@"Migration 0 > 1"];
+    [RLMRealmConfiguration defaultConfiguration].migrationBlock =
+        ^(RLMMigration *migration, uint64_t oldSchemaVersion) {
+            [self migrateAll:migration oldVer:oldSchemaVersion newVer:kTGSchemaVersion];
+        };
+    [RLMRealmConfiguration defaultConfiguration].schemaVersion = kTGSchemaVersion;
+}
 
-            [migration enumerateObjects:[TGRecognizedPrice className] block:^(RLMObject *oldObject, RLMObject *newObject) {
-                NSString *currencyCode = oldObject[@"sourceCurrencyCode"];
-                [migration enumerateObjects:[TGCurrency className] block:^(RLMObject *oldCurrency, RLMObject *newCurrency) {
-                    if ([newCurrency[@"codeFrom"] isEqualToString:currencyCode]) {
-                        newObject[@"sourceCurrency"] = newCurrency;
-                    }
-                }];
-            }];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
-            [ARAnalytics finishTimingEvent:@"Migration 0 > 1"];
++ (void)migrateAll:(RLMMigration *)migration oldVer:(NSUInteger)oldVer newVer:(NSUInteger)newVer
+{
+    for (NSUInteger fromVer = oldVer; fromVer < newVer; ++fromVer) {
+        NSString *methodName = [NSString stringWithFormat:@"migrateTo%lu:", fromVer + 1];
+        SEL method = NSSelectorFromString(methodName);
+
+        [ARAnalytics startTimingEvent:methodName];
+
+        BOOL success = YES;
+        if ([self respondsToSelector:method]) {
+            [self performSelector:method withObject:migration];
         }
-        if (oldSchemaVersion < 2) {
-            [ARAnalytics startTimingEvent:@"Migration 1 > 2"];
-
-            [migration enumerateObjects:[TGRecognizedPrice className] block:^(RLMObject *oldObject, RLMObject *newObject) {
-                newObject[@"rectData"] = [NSKeyedArchiver archivedDataWithRootObject:[NSValue valueWithCGRect:CGRectZero]];
-            }];
-
-            [ARAnalytics finishTimingEvent:@"Migration 1 > 2"];
-        }
-        if (oldSchemaVersion < 3) {
-            [ARAnalytics startTimingEvent:@"Migration 2 > 3"];
-
-            [migration enumerateObjects:[TGCurrency className] block:^(RLMObject *oldObject, RLMObject *newObject) {
-                newObject[@"code"] = oldObject[@"codeFrom"];
-            }];
-
-            [ARAnalytics finishTimingEvent:@"Migration 2 > 3"];
-        }
-                
-        if (oldSchemaVersion < 4) {
-            [ARAnalytics startTimingEvent:@"Migration 3 > 4"];
-
-            [migration enumerateObjects:[TGPriceImage className] block:^(RLMObject *oldObject, RLMObject *newObject) {
-                newObject[@"tag"] = @"";
-                newObject[@"locationData"] = [NSData data];
-            }];
-
-            [ARAnalytics finishTimingEvent:@"Migration 3 > 4"];
+        else {
+            success = NO;
+            DDLogWarn(@"Not found migration for version %lu -> %lu", fromVer, fromVer + 1);
         }
 
-        if (oldSchemaVersion < 5) {
-            [ARAnalytics event:@"Migration 4 > 5"];
-        }
-       
-                
-            }];
-    [RLMRealm migrateRealmAtPath:[RLMRealm defaultRealmPath]];
+        [ARAnalytics finishTimingEvent:methodName
+                        withProperties:@{ @"ok" : (success ? @"true" : @"false") }];
+    }
+}
+
+#pragma clang diagnostic pop
+
++ (void)migrateTo1:(RLMMigration *)migration
+{
+    [migration enumerateObjects:[TGRecognizedPrice className] block:^(RLMObject *oldObject, RLMObject *newObject) {
+        NSString *currencyCode = oldObject[@"sourceCurrencyCode"];
+        [migration enumerateObjects:[TGCurrency className] block:^(RLMObject *oldCurrency, RLMObject *newCurrency) {
+            if ([newCurrency[@"codeFrom"] isEqualToString:currencyCode]) {
+                newObject[@"sourceCurrency"] = newCurrency;
+            }
+        }];
+    }];
+}
+
++ (void)migrateTo2:(RLMMigration *)migration
+{
+    [migration enumerateObjects:[TGRecognizedPrice className] block:^(RLMObject *oldObject, RLMObject *newObject) {
+        newObject[@"rectData"] = [NSKeyedArchiver archivedDataWithRootObject:[NSValue valueWithCGRect:CGRectZero]];
+    }];
+}
+
++ (void)migrateTo3:(RLMMigration *)migration
+{
+    [migration enumerateObjects:[TGCurrency className] block:^(RLMObject *oldObject, RLMObject *newObject) {
+        newObject[@"code"] = oldObject[@"codeFrom"];
+    }];
+}
+
++ (void)migrateTo4:(RLMMigration *)migration
+{
+    [migration enumerateObjects:[TGPriceImage className] block:^(RLMObject *oldObject, RLMObject *newObject) {
+        newObject[@"tag"] = @"";
+        newObject[@"locationData"] = [NSData data];
+    }];
+}
+
++ (void)migrateTo5:(RLMMigration *)migration
+{
 }
 
 @end
