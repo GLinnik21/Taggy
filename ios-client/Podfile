@@ -18,8 +18,8 @@ pod 'AFMInfoBanner', '~> 1.1'
 pod 'DeviceUtil', '~> 1.2.2'
 pod 'WYPopoverController', '~> 0.3.8'
 
-pod 'FlurrySDK', '~> 6.7.0'
-pod 'GoogleAnalytics', '~> 3.13'
+pod 'Flurry-iOS-SDK'
+pod 'GoogleAnalytics'
 pod 'Google-Mobile-Ads-SDK', '~> 7.5.2'
 pod 'YandexMobileMetrica', '~> 2.1'
 
