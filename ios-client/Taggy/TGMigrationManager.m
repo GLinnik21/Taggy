@@ -45,7 +45,7 @@ static NSUInteger const kTGSchemaVersion = 5;
         }
         else {
             success = NO;
-            DDLogWarn(@"Not found migration for version %lu -> %lu", fromVer, fromVer + 1);
+            DDLogWarn(@"Not found migration for version %lu -> %lu", (unsigned long)fromVer, fromVer + 1);
         }
 
         [ARAnalytics finishTimingEvent:methodName

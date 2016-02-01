@@ -211,15 +211,19 @@ static NSInteger const kTGAdRowIndex = 1;
     [storyboard instantiateViewControllerWithIdentifier:@"EditViewContriller"];
     popoverController = [[WYPopoverController alloc] initWithContentViewController:viewController];
     UINavigationController *detailNavigationController =
-    [[UINavigationController alloc] initWithRootViewController:viewController];
+        [[UINavigationController alloc] initWithRootViewController:viewController];
     
     UIBarButtonItem *dismissButton =
-    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                  target:viewController
-                                                  action:@selector(dismiss)];
+        [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                      target:viewController
+                                                      action:@selector(dismiss)];
     viewController.navigationItem.rightBarButtonItem = dismissButton;
     popoverController.delegate = self;
-    [popoverController presentPopoverFromRect:self.editButton.bounds inView:self.editButton permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES options:WYPopoverAnimationOptionFadeWithScale];
+    [popoverController presentPopoverFromRect:self.editButton.bounds
+                                       inView:self.editButton
+                     permittedArrowDirections:WYPopoverArrowDirectionAny
+                                     animated:YES
+                                      options:WYPopoverAnimationOptionFadeWithScale];
 }
 
 - (void)saveTag

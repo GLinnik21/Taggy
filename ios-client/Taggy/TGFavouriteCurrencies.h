@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 Gleb Linkin. All rights reserved.
 //
 
-#import "RLMObject.h"
 #import <Realm/Realm.h>
 
 @interface TGFavouriteCurrencies : RLMObject
