@@ -210,8 +210,6 @@ static NSInteger const kTGAdRowIndex = 1;
     TGEditViewController *viewController =
     [storyboard instantiateViewControllerWithIdentifier:@"EditViewContriller"];
     popoverController = [[WYPopoverController alloc] initWithContentViewController:viewController];
-    UINavigationController *detailNavigationController =
-        [[UINavigationController alloc] initWithRootViewController:viewController];
     
     UIBarButtonItem *dismissButton =
         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
